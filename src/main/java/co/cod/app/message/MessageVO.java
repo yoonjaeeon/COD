@@ -1,4 +1,4 @@
-package co.cod.app;
+package co.cod.app.message;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

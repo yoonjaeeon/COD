@@ -8,5 +8,6 @@ public class MessageVO {
 	Integer messageSeq;
 	String messageContent;
 	Integer sendReceive;
-	String admin_id;
+	String adminId;
+	Integer read;
 }

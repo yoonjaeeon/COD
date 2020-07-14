@@ -34,7 +34,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", service.getTime());
 
-		return "home.empty";
+		return "userTemplate";
 	}
 
 	@RequestMapping(value = "/homeEmpty.do", method = RequestMethod.GET)

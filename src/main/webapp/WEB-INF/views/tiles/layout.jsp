@@ -1,65 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<style>
-div.container {
-	width: 100%;
-	border: 1px solid gray;
-}
-
-header, footer {
-	padding: 1em;
-	color: white;
-	background-color: black;
-	clear: left;
-	text-align: center;
-}
-
-nav {
-	float: left;
-	max-width: 160px;
-	margin: 0;
-	padding: 1em;
-}
-
-nav ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-nav ul a {
-	text-decoration: none;
-}
-
-article {
-	margin-left: 170px;
-	border-left: 1px solid gray;
-	padding: 1em;
-	overflow: hidden;
-	min-height: 400px;
-}
-</style>
+<title>Cafe Of Deagu</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="resources/member/assets/css/main.css" />
 </head>
+<body class="single is-preload">
 
-<body>
-	<div class="container">
-		<header>
-			<h2>Spring project(ver 1.0)</h2>
-		</header>
-		<nav>
-			<tiles:insertAttribute name="header" />
-		</nav>
-		<article>
-			<tiles:insertAttribute name="content"/>
-		</article>
-		<footer>
-			copyright
-		</footer>
-		
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Header -->
+		<tiles:insertAttribute name="header"/>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<tiles:insertAttribute name="content"/>
+			</article>
+		</div>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span
+						class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span
+						class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">
+				&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.
+				Images: <a href="http://unsplash.com">Cafe Of Deagu</a>.
+			</p>
+		</section>
 	</div>
+	<!-- Scripts -->
+	<script src="resources/member/assets/js/jquery.min.js"></script>
+	<script src="resources/member/assets/js/browser.min.js"></script>
+	<script src="resources/member/assets/js/breakpoints.min.js"></script>
+	<script src="resources/member/assets/js/util.js"></script>
+	<script src="resources/member/assets/js/main.js"></script>
 </body>
 </html>

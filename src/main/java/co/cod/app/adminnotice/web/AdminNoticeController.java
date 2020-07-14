@@ -8,7 +8,7 @@ import co.cod.app.adminnotice.mapper.AdminNoticeMapper;
 
 @Controller
 public class AdminNoticeController {
-	
+
 	@Autowired
 	AdminNoticeMapper adminNoticemapper;
 	

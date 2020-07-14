@@ -1,4 +1,4 @@
-package vofile;
+package co.cod.app.cafe;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

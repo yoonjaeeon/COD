@@ -17,6 +17,11 @@ $(function(){
 })
 </script>
 <style>
+body{min-height :100%}
+.modal-content{
+height :50%;
+}
+
 p:hover, h1:hover, td:hover {
    font-weight: bold;
 }

@@ -13,7 +13,7 @@ public class MessageController {
 	MessageMapper messageMapper;
 	
 
-	@RequestMapping("adminMessage.do")
+	@RequestMapping("adminMessage")
 	public String adminMessage() {
 		return "message/adminMessage";
 		

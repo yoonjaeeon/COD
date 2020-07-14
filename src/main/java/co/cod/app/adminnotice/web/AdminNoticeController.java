@@ -12,7 +12,7 @@ public class AdminNoticeController {
 	@Autowired
 	AdminNoticeMapper adminNoticemapper;
 	
-	@RequestMapping("adminNotice.do")
+	@RequestMapping("adminNotice")
 	public String adminNotice(String num) {
 		return "adminnotice/adminNoticeModal";
 	}

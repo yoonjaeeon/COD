@@ -19,7 +19,7 @@
 		BoardMapper Interface -->
  
  		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-			<property name="basePackage" value="com.dbal.app.**.mapper" /> 
+			<property name="basePackage" value="co.cod.app.**.mapper" /> 
 		</bean> 
 		
 </beans>

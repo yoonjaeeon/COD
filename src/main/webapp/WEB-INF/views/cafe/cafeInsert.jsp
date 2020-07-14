@@ -213,10 +213,15 @@ $(function(){
    <table class="table text-center">
       <thead>
       <tr>
-         <th class="text-center">아이디</th>
-         <th class="text-center">이름</th>
-         <th class="text-center">성별</th>
-         <th class="text-center">거주지</th>
+         
+         <th class="text-center">카페이름</th>
+         <th class="text-center">주소</th>
+         <th class="text-center">전화번호</th>
+         <th class="text-center">카폐영업시간</th>
+         <th class="text-center">휴무일</th>
+        <input type="button"  class="btn btn-primary" value="자세히"  id="btnview" /> 
+               
+              
       </tr>
       </thead>
       <tbody></tbody>

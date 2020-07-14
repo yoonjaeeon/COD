@@ -36,7 +36,7 @@ hs_err_pid*
 # Directories #
 /build/
 #/bin/
-target/
-**/target/*
+#target/
+#**/target/*
 # 매니패스틓ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
-MANIFEST.MF
+#MANIFEST.MF

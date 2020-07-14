@@ -17,9 +17,23 @@ $(function(){
 })
 </script>
 <style>
-body{min-height :100%}
-.modal-content{
-height :50%;
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+ 
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
 }
 
 p:hover, h1:hover, td:hover {
@@ -46,7 +60,9 @@ p:hover, h1:hover, td:hover {
         </button>
       </div>
       <div class="modal-body">
-        여기에 텍스트 입력
+        여기에 텍스트 입력sdfgsdfg
+        asdflaijeoifjaweifaweifoawiofj
+        asdfaoidjf
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>

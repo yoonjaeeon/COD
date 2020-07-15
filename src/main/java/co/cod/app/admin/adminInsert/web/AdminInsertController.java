@@ -17,3 +17,5 @@ public class AdminInsertController {
 		return "admin/adminInsertModel";
 	}
 }
+
+

@@ -7,14 +7,14 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-white sidebar sidebar-block accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-coffee"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Cafe Of Degue</div>
+        <div class="sidebar-brand-text mx-3" style ="color=#646464">Cafe Of Degue</div>
       </a>
 
       <!-- Divider -->
@@ -300,3 +300,7 @@
             </li>
           </ul>
         </nav>
+        </div>
+        </div>
+        </div>
+        

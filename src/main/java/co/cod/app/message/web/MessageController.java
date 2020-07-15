@@ -26,14 +26,14 @@ public class MessageController {
 		messageVO.setAdminId((String) session.getAttribute("adminId"));
 	}
 	
-	@RequestMapping("getMessage") //메세지 한건조회
-	public MessageVO getMessage{
-		
-	}
-	
-	
-	@RequestMapping("messageList") //메세지 전체조회
-	public List<> messageList(){
-		
-	}
+	/*
+	 * @RequestMapping("getMessage") //메세지 한건조회 public MessageVO getMessage{
+	 * 
+	 * }
+	 * 
+	 * 
+	 * @RequestMapping("messageList") //메세지 전체조회 public List<> messageList(){
+	 * 
+	 * }
+	 */
 }

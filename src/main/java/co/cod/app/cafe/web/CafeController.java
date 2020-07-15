@@ -12,10 +12,10 @@ public class CafeController {
 
 	@Autowired
 	CafeMapper cafeMapper;
-	
-	@RequestMapping("insertFormCafe")
-	//등록폼
+
+	@RequestMapping("insertFormCafe") // 등록폼
 	public String insertFormCafe(CafeVO cafeVO) {
 		return "cafe/cafeInsert";
 	}
+
 }

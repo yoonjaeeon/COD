@@ -1,4 +1,4 @@
-package co.cod.app;
+package vofile;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

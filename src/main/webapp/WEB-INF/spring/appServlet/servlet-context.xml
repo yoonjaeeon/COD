@@ -28,7 +28,7 @@
 	</beans:bean>
 
 	<context:component-scan
-		base-package="co.cod.app com.dbal.app" />
+		base-package="co.cod.app" />
 
 	<!-- Tiles -->
 	<beans:bean id="tilesConfigurer"

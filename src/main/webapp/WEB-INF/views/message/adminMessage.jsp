@@ -19,6 +19,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
+
 <script>
 	$(function() {
 		$('#myModal').on('shown.bs.modal', function() {
@@ -26,26 +27,46 @@
 		})
 
 		$()
-	})
-</script>
-<script>
-	$(function() {
-		$('#myModal').on('shown.bs.modal', function() {
-			$('#myInput').trigger('focus')
-		})
+	});
+	
+	function send() {
+		$(function() {
+			$('#myModal').on('shown.bs.modal', function() {
+				$('#myInput').trigger('focus')
+			})
 
-		$()
-	})
+			$()
+		})
+	};
 </script>
 <style>
 p:hover, h1:hover, tr:hover {
 	font-weight: bold;
 }
+
+.modal {
+	text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
+
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
 </style>
 <title>Message</title>
 </head>
 <body>
-	<button>메세지 보내기</button>
+	<button onclick="send()" data-toggle="modal" data-target="#modalMessage">메세지 작성</button>
 	<table border="1">
 		<tr>
 			<th>번호</th>
@@ -54,9 +75,9 @@ p:hover, h1:hover, tr:hover {
 		</tr>
 		<%-- <c:forEach items="" var=""> --%>
 		<tr class="" data-toggle="modal" data-target="#exampleModal">
-		<td>asdf</td>
-		<td>asdf</td>
-		<td>asdf</td>
+			<td>asdf</td>
+			<td>asdf</td>
+			<td>asdf</td>
 		</tr>
 		<%-- </c:forEach> --%>
 	</table>
@@ -75,7 +96,29 @@ p:hover, h1:hover, tr:hover {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">여기에 텍스트 입력</div>
+				<div class="modal-body">여기에 텍스트 입력</div>				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Message -->
+	<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">메세지 보내기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<input type="text" id="mesage" name="message" placeholder="보낼 메세지 입력" />
+				<input type="submit" class="btn btn-danger" value="보내기">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">확인</button>

@@ -10286,7 +10286,7 @@ opacity
 }
 
 .sidebar-light #sidebarToggle:hover {
-	background-color: #dddfeb
+	background-color: #2ebaae
 }
 
 .sidebar-dark .sidebar-brand {
@@ -10311,12 +10311,12 @@ opacity
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus,
 	.sidebar-dark .nav-item .nav-link:hover {
-	color: #fff
+	color: #2ebaae
 }
 
 .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i,
 	.sidebar-dark .nav-item .nav-link:hover i {
-	color: #fff
+	color: #2ebaae
 }
 
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {

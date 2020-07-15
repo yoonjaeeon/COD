@@ -1,4 +1,4 @@
-package co.cod.app.adminnotice.mapper;
+package co.cod.app.admin.mapper;
 
 public interface AdminNoticeMapper {
 	

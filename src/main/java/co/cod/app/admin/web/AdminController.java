@@ -1,5 +1,7 @@
 package co.cod.app.admin.web;
 
-public class AdminController {
+import org.springframework.web.bind.annotation.RequestMapping;
 
+public class AdminController {
+	
 }

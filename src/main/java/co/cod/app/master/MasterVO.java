@@ -1,13 +1,10 @@
-package vofile;
+package co.cod.app.master;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor //Bean생성자를 만들어줌
-public class MemberVO {
-String email;
-String pw;
-String birthday;
-String phone;
-String nickname;
+public class MasterVO {
+	String id;
+	String pw;
 }

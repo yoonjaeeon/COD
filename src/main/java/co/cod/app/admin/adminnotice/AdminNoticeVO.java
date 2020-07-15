@@ -1,4 +1,4 @@
-package co.cod.app.adminnotice;
+package co.cod.app.admin.adminnotice;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class MessageVO {
 	Integer messageSeq;
+	String messageTitle;
 	String messageContent;
 	Integer sendReceive;
 	String adminId;

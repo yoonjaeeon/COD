@@ -4,31 +4,42 @@
 <!-- dumy_mapper.xml -->
 
 <!-- MESSAGE -->
-<mapper namespace="mapper.master_mapper">
-	<select id="messageList" resultType="map">
-		SELECT * FROM MESSAGE WHERE
+<mapper namespace="co.cod.app.message.mapper.MessageMapper">
+	<select id="messageList" resultType="co.cod.app.message.MessageVO">
+		SELECT MESSAGE_SEQ,
+		MESSAGE_TITLE, 
+		MESSAGE_CONTENT, 
+		ADMIN_ID, 
+		SEND_RECEIVE,READ FROM MESSAGE WHERE
 		ADMIN_ID = #{adminId}
 	</select>
 
 	<select id="getMessage"
 		resultType="co.cod.app.message.MessageVO" parameterType="int">
 		SELECT * FROM
-		MESSAGE WHERE MESSAGE_SEQ = #{messageSeq}
+		MESSAGE WHERE MESSAGE_SEQ = find a new lover#{messageSeq}
 	</select>
 
-	<insert id="insertMesesage"
-		parameterType="co.cod.app.message.MessageVO">
+	<insert id="insertMessage" parameterType="co.cod.app.message.MessageVO">
 		INSERT INTO MESSAGE(
 		MESSAGE_SEQ, 
+		MESSAGE_TITLE,
 		MESSAGE_CONTENT, 
 		ADMIN_ID, 
-		SEND_RECEIVE,
-		READ)
-		VALUES max(select message_seq from message)+1 , 
+		SEND_RECEIVE)
+		VALUES  ((select nvl(max(message_seq),0)+1 from message), 
+		#{messageTitle},
 		#{messageContent}, 
-		, 
-		, 
-		,0)
+		#{adminId}, 
+		#{sendReceive}
+		)
 	</insert>
+	
+	<update id="updateMessage" parameterType="int">  <!-- 메세지 읽음, 읽지않음 -->
+	UPDATE MESSAGE
+	SET
+	read=0
+	WHERE MESSAGE_SEQ=#{messageSeq}
+	</update>
 
 </mapper>

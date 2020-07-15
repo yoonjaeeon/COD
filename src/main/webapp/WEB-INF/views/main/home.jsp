@@ -8,10 +8,8 @@
 </head>
 <body>
 <h1>
-	Hello world!  <spring:message code="message.board.list.mainTitle"/>
-
+	Hello world!
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<P>  Main </P>
 </body>
 </html>

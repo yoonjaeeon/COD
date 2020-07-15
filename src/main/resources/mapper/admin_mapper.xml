@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <!-- dumy_mapper.xml -->
-<mapper namespace="DumyDAO">
-	<select id="getTime" resultType="map">
-		select sysdate "date" from dual
+<mapper namespace="co.cod.app.admin.adminVo">
+	<select id="getAdmin" parameterType="co.cod.app.admin.AdminVO" resultType="co.cod.app.admin.AdminVO">
+		select admin_id, 
+		 		cafe_state,
+		 		admin_phone,
+		 		admin_state
+				from admin
+				where admin_id = #{admin_id}
 	</select>
 	<select id="getEmp" resultType="map">
+		
+		
+		
 		
 	</select>
 </mapper>

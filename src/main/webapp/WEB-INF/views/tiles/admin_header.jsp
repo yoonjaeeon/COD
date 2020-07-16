@@ -10,7 +10,7 @@
     <ul class="navbar-nav sidebar" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-coffee"></i>
         </div>
@@ -123,7 +123,7 @@
       <!-- Main Content -->
       <div id="content">
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn  d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -300,7 +300,4 @@
             </li>
           </ul>
         </nav>
-        </div>
-        </div>
-        </div>
-        
+

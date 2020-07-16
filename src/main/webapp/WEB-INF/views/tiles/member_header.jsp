@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8"%>
 <header id="header">
 	<h1>
-		<a href="index.html"><i class="fas fa-coffee"></i>    C O D</a>
+		<a href="/"><i class="fas fa-coffee"></i>    C O D</a>
 	</h1>
 	<nav class="links">
 		<ul>
-			<li><a href="#">Lorem</a></li>
-			<li><a href="#">Ipsum</a></li>
-			<li><a href="#">Feugiat</a></li>
-			<li><a href="#">Tempus</a></li>
-			<li><a href="#">Adipiscing</a></li>
+			<li><a href="#">테마별</a></li>
+			<li><a href="#">지역별</a></li>
+			<li><a href="#">즐겨찾기</a></li>
+			<li><a href="#">로그인</a></li>
 		</ul>
 	</nav>
 	<nav class="main">

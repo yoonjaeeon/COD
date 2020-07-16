@@ -30,10 +30,10 @@
 
 </head>
 <tiles:insertAttribute name="a_header" />
-<!-- Begin Page Content -->
-<div class="container-fluid">
-	<tiles:insertAttribute name="a_content" />
-</div>
+
+        <tiles:insertAttribute name="a_content" />
+        </div>
+        
 <!-- End of Main Content -->
 
 <!-- Footer -->

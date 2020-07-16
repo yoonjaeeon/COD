@@ -30,3 +30,27 @@ ul.navvar{
 .nav-link.collapsed{
 	color:#646464 !importance;
 }
+/* message */
+.message p:hover, h1:hover, tr:hover {
+	font-weight: bold;
+}
+
+.modal {
+	text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
+
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+/* end of message */

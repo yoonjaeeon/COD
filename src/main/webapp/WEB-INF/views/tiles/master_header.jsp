@@ -54,15 +54,15 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>카페관리</span>
+          <span>관리</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">관리</h6>
-            <a class="collapse-item" href="utilities-color.html">메뉴관리</a>
-            <a class="collapse-item" href="utilities-border.html">좌석관리</a>
-            <a class="collapse-item" href="utilities-animation.html">재고관리</a>
-            <a class="collapse-item" href="utilities-other.html">알바생관리</a>
+            <a class="collapse-item" href="utilities-color.html">회원관리</a>
+            <a class="collapse-item" href="utilities-border.html">사장님관리</a>
+            <a class="collapse-item" href="advertisement">광고관리</a>
+            <a class="collapse-item" href="utilities-animation.html">문의내역</a>
           </div>
         </div>
       </li>

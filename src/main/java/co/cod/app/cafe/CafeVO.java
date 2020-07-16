@@ -7,9 +7,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class CafeVO {
 	String adminId;
-	String pw;
-	String pw2;
-	Integer cafeState;
-	String adminPhone;
-	Integer adminState;
+	String cafeName;
+	String cafeAddress;
+	String cafeAskContent;
+	String cafePhone;
+	String cafeTime;
+	String cafeCloseday;
+	String cafeHashtag;
+	String cafeTheme;
+	String cafeThumbnail;
+	Integer wifi;
+	Integer nokid;
+	Integer parking;
+	Integer animal;
+	Integer beam;
+	Integer charger;
+	Integer lend;
+	Integer bigSeat;
+	Integer phtotGroup;
 }

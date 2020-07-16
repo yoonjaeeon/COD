@@ -1,7 +1,7 @@
-package co.cod.app.admin.adminnotice.mapper;
+package co.cod.app.admin.adminnotice.service;
 
 import co.cod.app.admin.adminnotice.AdminNoticeVO;
 
-public interface AdminNoticeMapper {
+public interface AdminNoticeService {
 	public void insertAdminNotice(AdminNoticeVO adminNoticeVO);
 }

@@ -23,9 +23,8 @@
 		)
 	</insert>
 	<select id="getAdminList" resultType="map">
-		
-			
-		
-	</select>
+	</select>	
+	
+	
 </mapper>
 

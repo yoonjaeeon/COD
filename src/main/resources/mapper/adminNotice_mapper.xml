@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.cod.app.admin.adminnotice.mapper.AdminNoticeMapper">
+
+<insert id="insertAdminNotice" parameterType="co.cod.app.admin.adminnotice.AdminNoticeVO">
+	INSERT INTO ADMIN_NOTICE
+	(ADMIN_NOTICE_SEQ,
+	ADMIN_NOTICE_TITLE,	
+	ADMIN_NOTICE_CONTENT,
+	ADMIN_NOTICE_TIME,
+	ADMIN_ID)
+	VALUES(
+	(SELECT NVL(MAX(ADMIN_NOTICE_SEQ),0)+1 FROM ADMIN_NOTICE),
+	#{adminNoticeTitle},
+	#{adminNoticeContent},
+	SYSDATE,
+	#{adminId}
+	)
+	</insert>
+</mapper>

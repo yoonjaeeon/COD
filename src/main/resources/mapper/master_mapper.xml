@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="getMessage"
-		resultType="co.cod.app.message.MessageVO" parameterType="int">
+		resultType="co.cod.app.message.MessageVO" parameterType="co.cod.app.message.MessageVO">
 		SELECT MESSAGE_CONTENT FROM
 		MESSAGE WHERE MESSAGE_SEQ = #{messageSeq}
 	</select>

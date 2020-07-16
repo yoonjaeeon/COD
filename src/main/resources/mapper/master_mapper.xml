@@ -10,14 +10,16 @@
 		MESSAGE_TITLE, 
 		MESSAGE_CONTENT, 
 		ADMIN_ID, 
-		SEND_RECEIVE,READ FROM MESSAGE WHERE
-		ADMIN_ID = #{adminId}
+		SEND_RECEIVE,READ 
+		FROM MESSAGE 
+		WHERE ADMIN_ID = #{adminId}
+		ORDER BY MESSAGE_SEQ DESC
 	</select>
 
 	<select id="getMessage"
-		resultType="co.cod.app.message.MessageVO" parameterType="int">
-		SELECT * FROM
-		MESSAGE WHERE MESSAGE_SEQ = find a new lover#{messageSeq}
+		resultType="co.cod.app.message.MessageVO" parameterType="co.cod.app.message.MessageVO">
+		SELECT MESSAGE_CONTENT FROM
+		MESSAGE WHERE MESSAGE_SEQ = #{messageSeq}
 	</select>
 
 	<insert id="insertMessage" parameterType="co.cod.app.message.MessageVO">
@@ -35,11 +37,11 @@
 		)
 	</insert>
 	
-	<update id="updateMessage" parameterType="int">  <!-- 메세지 읽음, 읽지않음 -->
+	<update id="updateMessage" parameterType="int" >  <!-- 메세지 읽음, 읽지않음 -->
 	UPDATE MESSAGE
 	SET
 	read=0
-	WHERE MESSAGE_SEQ=#{messageSeq}
+	WHERE MESSAGE_SEQ=#{messageSeq} AND ADMIN_ID=${adminId}
 	</update>
 
 </mapper>

@@ -45,7 +45,7 @@ p:hover, h1:hover, td:hover {
 <!-- Button trigger modal -->
 <table>
 <tr class="" data-toggle="modal" data-target="#exampleModal" >  
-  <td>마스터 공지사항 </td>
+  <td>공지사항 1</td>
 </tr>
 </table>
 
@@ -60,7 +60,9 @@ p:hover, h1:hover, td:hover {
         </button>
       </div>
       <div class="modal-body">
-        ㅇㅇㅇㅇㅇ
+        여기에 텍스트 입력sdfgsdfg
+        asdflaijeoifjaweifaweifoawiofj
+        asdfaoidjf
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>

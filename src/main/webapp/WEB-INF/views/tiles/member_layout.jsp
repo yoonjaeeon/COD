@@ -9,6 +9,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="resources/member/assets/css/main.css" />
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="resources/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="resources/slick/slick-theme.css"/>
+
 </head>
 <body class="single is-preload">
 
@@ -52,5 +56,7 @@
 	<script src="resources/member/assets/js/breakpoints.min.js"></script>
 	<script src="resources/member/assets/js/util.js"></script>
 	<script src="resources/member/assets/js/main.js"></script>
-</body>
+	<script src="resources/slick/jquery-1.12.4.min.js"></script>
+	<script src="resources/slick/slick.min.js"></script>
+
 </html>

@@ -21,21 +21,22 @@ public class AdminController {
 	//등록폼
 	@RequestMapping("adminInsert")
 	public String IsertForeAdmin(AdminVO vo) {
-		return "admin/adminInsertModel";
+//		model.addAttribute("adminList",adminService.adminList(""));
+		return "ad/admin/adminInsert";
 	}
 	
 	//목록조회
 	@RequestMapping("adminList")
 	public String adminList(Model model, AdminVO adminVO) {
 		model.addAttribute("adminList", adminService.getAdminList(adminVO));
-		return "admin/adminList";
+		return "ad/admin/adminList";
 	}
 	
 	//단건 조회 
 	@RequestMapping("/geAdmin/{adminId}")  
 	public String getAdmin(@PathVariable String adminId) {
 		System.out.println(adminId);
-		return "adminList";
+		return "ad/adminList";
 	}
 }		
 	//수정처리 
@@ -44,6 +45,7 @@ public class AdminController {
 //		System.out.println(adminId);
 //		return "adminList";	
 //		
+	// 삭제처리 
 	
 	
 	

@@ -19,12 +19,6 @@ public class AdminVO {
 	Integer cafeState;
 	String adminPhone;
 	Integer adminState;
-
-	@JsonFormat(pattern = "yyyy-MM-dd HH")
-	Date hireDate;		//LocalDateTimem, Date  -> String은 안된다.
-
-	@JsonIgnore 
-	String adminIds;
 	
 	
 }

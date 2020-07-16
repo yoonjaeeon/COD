@@ -1,11 +1,11 @@
-package co.cod.app.cafe.mapper;
+package co.cod.app.cafe.service;
 
 import java.util.List;
 import java.util.Map;
 
 import co.cod.app.cafe.CafeVO;
 
-public interface CafeMapper {
+public interface CafeService {
 
 	public CafeVO getCafe(CafeVO cafeVO);
 	public List<CafeVO> getCafeList(CafeVO cafeVO);
@@ -13,5 +13,4 @@ public interface CafeMapper {
 	public void updateCafe(CafeVO cafeVO);
 	public void deleteCafe(CafeVO cafeVO);
 	public List<Map<String, Object>> getCafeMap();
-	
 }

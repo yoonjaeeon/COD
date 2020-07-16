@@ -171,28 +171,141 @@ $(function(){
 <body>
 <div class="container">
    <form id="form1"  class="form-horizontal">
-      <h2>사용자 등록 및 수정</h2>
+      <div align="center"><h2>카페 등록 및 수정</h2></div>
       <div class="form-group">      
-         <label >아이디:</label>
-         <input type="text"  class="form-control" name="id" >
+         <label> 관리자 아이디:</label>
+         <input type="text"  class="form-control" name="id" value="${sessionScope.adminId}" readonly>
       </div>   
       <div class="form-group">
-         <label>이름:</label>
+         <label>카페이름:</label>
          <input type="text"  class="form-control"  name="name" >
       </div>   
       <div class="form-group">
-         <label>패스워드:</label>
-         <input type="text"  class="form-control"  name="password" >
-      </div>         
-<!--       <div class="form-group">
-         <label >성별:</label>
+         <label>카페주소:</label>
+         <input type="text"  class="form-control"  name=address" >
+      </div>
+      <div class="form-group">
+         <label>전화번호:</label>
+         <input type="text"  class="form-control"  name="phone" >
+      </div>  
+      <div class="form-group">
+         <label>카페영업시간:</label>
+         <input type="text"  class="form-control"  name="time" >
+      </div>
+      <div class="form-group">
+         <label>휴무일:</label>
+         <input type="text"  class="form-control"  name="close" >
+      </div>
+     <div class="form-group">
+      <label>썸네일:</label> 
+     </div>       
+      <div class="form-group">
+         <label>해시테그:</label>
+         <input type="text"  class="form-control"  name="hashtag" >
+      </div>
+      <div class="form-group">
+         <label >테마:</label>
+         <div class="checkbox">
+            <label><input type="checkbox"  name="theme"  value="작업하기좋">작업하기좋은</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="checkbox"  name="theme"  value="핸드드립">핸드드립</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="checkbox"  name="theme"  value="야외석있는">야외석있는</label>
+         </div>  
+         <div class="checkbox">
+            <label><input type="checkbox"  name="theme"  value="이색카페">이색카페</label>
+         </div>  
+         <div class="checkbox">
+            <label><input type="checkbox"  name="theme"  value="디저트">디저트</label>
+         </div>     
+         <br>
+         <div>
+         <label>문의사항:</label><br>
+         <textarea rows="15" cols="40" name="contents"></textarea>
+      </div><br>
+         
+        <div class="form-group">
+         <label >wifi 여부</label>
          <div class="radio">
-            <label><input type="radio"  name="gender"  value="남">남</label>
+            <label><input type="radio"  name="theme"  value="Yes">Yes</label>
          </div>
          <div class="radio">
-            <label><input type="radio"  name="gender"  value="여">여</label>
-         </div>   
-      </div>    -->    
+            <label><input type="radio"  name="theme"  value="No">No</label>
+         </div> <br>
+         </div>
+        
+         <div class="form-group">
+	         <label >키즈존 여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name=nokid"  value="Yes">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="nokid"  value="No">No</label>
+	         </div> <br>
+         </div>
+         
+         <div class="form-group">
+         <label >주차여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="parking"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="parking"  value="No">No</label>
+         </div> <br>
+         </div>
+         
+          <div class="form-group">
+         <label >반려견동반여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="animal"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="aniaml"  value="No">No</label>
+         </div> <br>
+         </div>
+         
+          <div class="form-group">
+         <label >빔프로젝트 대여여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="beam"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="beam"  value="No">No</label>
+         </div> <br>
+         </div>
+         
+          <div class="form-group">
+         <label >충전기 대여여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="beam"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="beam"  value="No">No</label>
+         </div> <br>
+         </div>
+         
+             <div class="form-group">
+         <label >단체석 여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="big"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="big"  value="No">No</label>
+         </div> <br>
+         </div>
+             <div class="form-group">
+         <label >대관여부</label>
+         <div class="radio">
+            <label><input type="radio"  name="lend"  value="Yes">Yes</label>
+         </div>
+         <div class="radio">
+            <label><input type="radio"  name="lend"  value="No">No</label>
+         </div> <br>
+         </div>
+         
+           
       <div class="form-group">   
          <label>역할:</label>
             <select class="form-control" name="role">

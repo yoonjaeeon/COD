@@ -1,4 +1,4 @@
-package vofile;
+package co.cod.app.master.advertisement;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class AdvertisementVO {
-	Integer advertise_seq;
-	Integer advertise_money;
-	String photo_group;
+	Integer advertiseSeq;
+	Integer advertiseMoney;
+	String advertiseFile;
 	String advertiser;
-	String advertiser_phone;
+	String advertiserPhone;
 	String site;
-	String contract_period;
+	String contractPeriod;
 }

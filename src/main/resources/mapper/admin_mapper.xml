@@ -4,7 +4,8 @@
 
 
 <!-- dumy_mapper.xml -->
-<mapper namespace="co.cod.app.admin.adminVo">
+
+<mapper namespace="co.cod.app.admin.AdminMapper">
 	<insert id="adminInsert" parameterType="co.cod.app.admin.AdminVO" >
 		INSERT INTO ADMIN(
 		ADMIN_ID,
@@ -27,3 +28,4 @@
 		
 	</select>
 </mapper>
+

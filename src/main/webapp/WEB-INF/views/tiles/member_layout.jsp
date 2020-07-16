@@ -12,6 +12,10 @@
 <!-- slick -->
 <link rel="stylesheet" type="text/css" href="resources/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="resources/slick/slick-theme.css"/>
+	<script src="resources/slick/jquery-1.12.4.min.js"></script>
+	<script src="resources/slick/slick.min.js"></script>
+
+
 
 </head>
 <body class="single is-preload">
@@ -56,7 +60,5 @@
 	<script src="resources/member/assets/js/breakpoints.min.js"></script>
 	<script src="resources/member/assets/js/util.js"></script>
 	<script src="resources/member/assets/js/main.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="resources/slick/slick.min.js"></script>
 
 </html>

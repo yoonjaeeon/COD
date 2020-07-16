@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <header id="header">
 	<h1>
-		<a href="index.html">C O D</a>
+		<a href="index.html"><i class="fas fa-coffee"></i>    C O D</a>
 	</h1>
 	<nav class="links">
 		<ul>

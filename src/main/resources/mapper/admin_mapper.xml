@@ -1,54 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <!-- dumy_mapper.xml -->
-<mapper namespace="co.cod.app.cafe.mapper.CafeMapper" >
-	<select id="getCafe" parameterType="co.cod.app.cafe.CafeVO" resultType="co.cod.app.cafe.CafeVO">
-			SELECT 
-			admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
-			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
-			nokid, parking, animal, beam, charger, big_seat, lend
-			FROM cafe
-			WHERE admin_id = #{adminId}
-	</select>
-	
-	<select id="getCafeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-		<where>
-			<if test="adminId != null">
-				admin_id = #{adminId}
-			</if>
-		</where>
-	
-	</select>
-  
-  	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
-  		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phobe,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
-			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
-			nokid, parking, animal, beam, charger, big_seat, lend)
-			VALUES(
-				#{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
-				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{phtotGroup},
-				#{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
-				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend})
-  	</insert>
-  
-  <update id="updateCafe" parameterType="co.cod.app.cafe.CafeVO">
-  		UPDATE CAFE
-  		SET
-  		cafe_name = #{cafeName},cafe_address = #{cafeAddress},cafe_phone = #{cafePhone},
-				cafe_time = #{cafeTime},cafe_closeday = #{cafeCloseday},cafe_thumbnail = #{cafeThumbnail},phtot_group = #{phtotGroup},
-				cafe_hashtag = #{cafeHashtag},cafe_theme = #{cafeTheme},cafe_ask_content = #{cafeAskContent},wifi = #{wifi},
-				nokid = #{nokid},parking = #{parking},animal = #{animal},beam = #{beam},
-				charger = #{charger},big_seat = #{bigSeat},lend = #{lend})
-  		WHERE
-  		ADMIN_ID = #{adminId}
-  </update>
-  
-  <delete id="deleteCafe" parameterType="co.cod.app.cafe.CafeVO">
-  	DELETE FROM CAFE WHERE
-  	ADMIN_ID =#{adminId}
-  
-  </delete>
-</mapper>
+
+

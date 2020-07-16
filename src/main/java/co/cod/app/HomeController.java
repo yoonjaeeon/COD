@@ -25,6 +25,6 @@ public class HomeController {
 	public String adminHome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		return "admin/admin_home";
+		return "ad/admin/admin_home";
 	}
 }

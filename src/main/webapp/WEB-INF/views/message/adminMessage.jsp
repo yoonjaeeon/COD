@@ -70,16 +70,17 @@ p:hover, h1:hover, tr:hover {
 	<table border="1">
 		<tr>
 			<th>번호</th>
-			<th>메세지 내용</th>
+			<th>메세지 제목</th>
 			<th>읽음</th>
+			<!-- data-toggle="modal" data-target="#exampleModal" -->
 		</tr>
-		<%-- <c:forEach items="" var=""> --%>
-		<tr class="" data-toggle="modal" data-target="#exampleModal">
-			<td>asdf</td>
-			<td>asdf</td>
-			<td>asdf</td>
+		 <c:forEach items="${messageList}" var="list"> 
+		<tr onclick="messageUpdate" >
+			<td>${list.messageSeq }</td>
+			<td>${list.messageTitle }</td>
+			<td>${list.read }</td>
 		</tr>
-		<%-- </c:forEach> --%>
+		 </c:forEach> 
 	</table>
 	<!-- 페이징 처리하기 -->
 	<form action="" id="modal" method="post"></form>
@@ -117,14 +118,18 @@ p:hover, h1:hover, tr:hover {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<input type="text" id="mesage" name="message" placeholder="보낼 메세지 입력" />
-				<input type="submit" class="btn btn-danger" value="보내기">
+				<form action="insertMessage">
+				<input type="text" id="messageTitle" name="messageTitle" placeholder="제목 입력" />
+				<input type="text" id="messageContent" name="messageContent" placeholder="메세지 입력" />
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">확인</button>
+				<input type="submit" class="btn btn-danger" value="보내기">
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	<form id="messageSend" action="">
+	
+	</form>
 </body>
 </html>

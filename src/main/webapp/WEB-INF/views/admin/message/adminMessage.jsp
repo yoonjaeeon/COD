@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -21,6 +19,7 @@
 	crossorigin="anonymous"></script>
 
 <script>
+
 	$(function() {
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').trigger('focus')
@@ -39,33 +38,7 @@
 		})
 	};
 </script>
-<style>
-p:hover, h1:hover, tr:hover {
-	font-weight: bold;
-}
 
-.modal {
-	text-align: center;
-}
-
-@media screen and (min-width: 768px) {
-	.modal:before {
-		display: inline-block;
-		vertical-align: middle;
-		content: " ";
-		height: 100%;
-	}
-}
-
-.modal-dialog {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-}
-</style>
-<title>Message</title>
-</head>
-<body>
 	<button onclick="send()" data-toggle="modal" data-target="#modalMessage">메세지 작성</button>
 	<table border="1">
 		<tr>
@@ -74,19 +47,21 @@ p:hover, h1:hover, tr:hover {
 			<th>읽음</th>
 			<!-- data-toggle="modal" data-target="#exampleModal" -->
 		</tr>
-		 <c:forEach items="${messageList}" var="list"> 
-		<tr onclick="messageUpdate" >
+		 <c:forEach items="${messageList}" var="list">   
+		<form action="">
+		<tr  data-toggle="modal" data-target="#contentModal">
 			<td>${list.messageSeq }</td>
 			<td>${list.messageTitle }</td>
 			<td>${list.read }</td>
 		</tr>
-		 </c:forEach> 
+		 </form> 
+		 </c:forEach>
 	</table>
 	<!-- 페이징 처리하기 -->
 	<form action="" id="modal" method="post"></form>
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -97,7 +72,9 @@ p:hover, h1:hover, tr:hover {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">여기에 텍스트 입력</div>				
+				<div class="modal-body">
+				${getMessageContent}
+				</div>				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">확인</button>
@@ -119,7 +96,7 @@ p:hover, h1:hover, tr:hover {
 					</button>
 				</div>
 				<form action="insertMessage">
-				<input type="text" id="messageTitle" name="messageTitle" placeholder="제목 입력" />
+				<input type="text" id="messageTitle" name="messageTitle" placeholder="제목 입력" /><br>
 				<input type="text" id="messageContent" name="messageContent" placeholder="메세지 입력" />
 				<div class="modal-footer">
 				<input type="submit" class="btn btn-danger" value="보내기">
@@ -128,8 +105,3 @@ p:hover, h1:hover, tr:hover {
 			</div>
 		</div>
 	</div>
-	<form id="messageSend" action="">
-	
-	</form>
-</body>
-</html>

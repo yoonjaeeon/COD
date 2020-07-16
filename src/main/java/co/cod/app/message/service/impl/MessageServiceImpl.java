@@ -12,7 +12,8 @@ import co.cod.app.message.service.MessageService;
 @Service
 public class MessageServiceImpl implements MessageService{
 	
-	@Autowired MessageMapper messageMapper;
+	@Autowired 
+	MessageMapper messageMapper;
 	
 	//메세지 전체 조회
 	@Override

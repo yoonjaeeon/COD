@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
 
- <div style="padding:300px 100px; background-color: skyblue;" align="center">
+ <div style="padding:300px 100px; background-color: pink;" align="center">
    <div id ="slick_list">
       <div> 		one     </div>
       <div> 		two    	</div>
-      <div> 		three   </div>
-      <div> 		three   </div>
       <div> 		three   </div>
       <div> 		three   </div>
       <div> 		three   </div>

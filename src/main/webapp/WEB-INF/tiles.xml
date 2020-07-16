@@ -13,21 +13,23 @@ Configuration 2.1//EN"
 		<put-attribute name="a_header" value="/WEB-INF/views/tiles/admin_header.jsp" />
 		<put-attribute name="a_content" value="/WEB-INF/views/tiles/admin_content.jsp" />
 	</definition>
-	
 	<definition name="ad/*/*" extends="adminTemplate">
 		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	
 	<definition name="ad/*/*/*" extends="adminTemplate">
 		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
-	
-	<definition name="ma/*/*" extends="adminTemplate">
-		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	<!-- master -->
+	<definition name="masterTemplate" template="/WEB-INF/views/tiles/master_layout.jsp">
+		<put-attribute name="m_header" value="/WEB-INF/views/tiles/master_header.jsp" />
+		<put-attribute name="m_content" value="/WEB-INF/views/tiles/admin_content.jsp" />
+	</definition>
+	<definition name="ma/*/*" extends="masterTemplate">
+		<put-attribute name="m_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="ma/*/*/*" extends="adminTemplate">
-		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	<definition name="ma/*/*/*" extends="masterTemplate">
+		<put-attribute name="m_content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
 	
 	<!--  사용자  -->

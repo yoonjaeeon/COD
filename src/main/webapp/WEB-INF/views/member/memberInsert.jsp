@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>   
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script>
 function validCheck() {
 	/* not null 값 무조건 들어가야하니까 비면 경고창  */
@@ -60,6 +53,7 @@ function pwValidCheck(){
 </head>
 <body>
 
+<form action="memberInsert">  
 <h2> 일반 회원가입 </h2> <br>
 		ID 
 		<span id="idCheck"></span>
@@ -78,9 +72,11 @@ function pwValidCheck(){
 		생년월일<input type="date" name="birth" /><br/><br/>
 		<div class="align-center" style="margin-top: 30px"><br/><br/>
 		<div class="align-center" style="margin-top: 30px">
-				<button type="button" onclick="validCheck()">회원가입</button>
+				<button type="submit" onclick="validCheck()">회원가입</button>
 				<input type="reset" value="지우기" />
 		</div>
+		</div>
+		</form>
 </body>
 
 <script >
@@ -102,7 +98,7 @@ $('.pw').focusout(function() {
          $("#pw2").val("");
          frm.pw.focus();
       }
-}
+	}
 });
 </script>
-</html>
+

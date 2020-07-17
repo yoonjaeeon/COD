@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.cod.app.member.review.mapper.ReviewMapper">
+<mapper namespace="co.cod.app.review.mapper.ReviewMapper">
 	<!-- 단건조회  -->
-	<select id="getReview" parameterType="co.cod.app.member.review.ReviewVO" resultType="co.cod.app.member.review.ReviewVO">
+	<select id="getReview" parameterType="co.cod.app.review.ReviewVO" resultType="co.cod.app.review.ReviewVO">
 		SELECT 
 		        review_seq,
 		        email,
@@ -26,7 +26,7 @@
 	</resultMap> -->
 
 	<!-- 전체조회  -->
-	<select id="getReviewList" resultType="co.cod.app.member.review.ReviewVO">
+	<select id="getReviewList" resultType="co.cod.app.review.ReviewVO">
 		SELECT * FROM review
 <!-- 		<where>
 		<if test="departmentId != null">
@@ -52,7 +52,7 @@
 		order by review_seq
 	</select>
 
-	<insert id="insertReview" parameterType="co.cod.app.member.review.ReviewVO">
+	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">
 		INSERT INTO review (review_seq, review_content, stars)  
 		
 		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, #{stars})

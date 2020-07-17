@@ -23,5 +23,10 @@ public class AdminNoticeController {
 		return "redirect:admin";
 	}
 	
+	@RequestMapping("adminSales")
+	public String  adminSales() {
+		return "ad/adminOrder/adminSales";
+	}
+	
 	
 }

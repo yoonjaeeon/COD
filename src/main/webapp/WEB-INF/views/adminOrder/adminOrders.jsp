@@ -15,8 +15,6 @@
                    
                   </tfoot>
                   <tbody>
-                    
-
                   <tr role="row" class="odd">
                       <td class="sorting_1">Airi Satou</td>
                       <td>Accountant</td>

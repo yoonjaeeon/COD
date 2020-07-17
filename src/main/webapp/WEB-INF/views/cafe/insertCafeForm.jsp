@@ -162,7 +162,7 @@ $(function(){
 </head>
 <body>
 <div class="container">
-   <form action="cafeInsert" id="form1" name="form1"  class="form-horizontal">
+   <form action="insertCafe" id="form1" name="form1"  class="form-horizontal">
       <div align="center"><h2>카페 등록 및 수정</h2></div>
       <div class="form-group">      
          <label> 관리자 아이디:</label>
@@ -300,7 +300,7 @@ $(function(){
 
       <div class="btn-group">      
             <input type="submit"  class="btn btn-primary" value="등록" /> 
-            <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
+            <!-- <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" /> -->
             <input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />
       </div>
    </form>

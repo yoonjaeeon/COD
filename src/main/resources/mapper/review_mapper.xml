@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.cod.app.member.review.mapper.ReviewMapper">
+	<!-- 단건조회  -->
+	<select id="getReview" parameterType="co.cod.app.member.review.ReviewVO" resultType="co.cod.app.member.review.ReviewVO">
+		SELECT 
+		        review_seq,
+		        email,
+				review_content,
+				review_time,
+				stars,
+				order_seq,
+				admin_id
+						
+		 		
+		FROM employees
+		WHERE email = #{email}
+	</select>
+
+	<!-- <resultMap type="#modelname" id="YourResultSet">
+		<id property="param1" column="columnname1" />
+		<result property="param2" column="columnname2" />
+		<result property="param3" column="columnname3" />
+	</resultMap> -->
+
+	<!-- 전체조회  -->
+	<select id="getReviewList" resultType="co.cod.app.member.review.ReviewVO">
+		SELECT * FROM review
+<!-- 		<where>
+		<if test="departmentId != null">
+			 department_id = #{departmentId}		
+		</if>
+		<if test="employeeId != null">
+			and employee_id = #{employeeId}		
+		</if>
+		<if test="salary != null">
+			<![CDATA[ and salary > #{salary} ]]>
+		</if>
+		<if test="firstName != null" >
+		and upper(first_name) like '%'|| upper( #{firstName}) || '%'
+		</if>
+		<if test="employeeIds != null">
+			and employee_id in 
+			<foreach collection="employeeIds" item="id" 
+			open="(" close=")" separator=",">
+				#{id}
+				</foreach>
+			</if>	
+		</where> -->	
+		order by review_seq
+	</select>
+
+	<insert id="insertReview" parameterType="co.cod.app.member.review.ReviewVO">
+		INSERT INTO review (review_seq, review_content, stars)  
+		
+		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, #{stars})
+	</insert>
+<!-- 		<select id ="getName" resultType="java.lang.String" parameterType="java.lang.Integer">
+			select first_name from employees where employee_id = #{employeeId}
+		</select>
+		
+		
+		<select id ="getCnt" resultType="int">
+			select count(*) from employees
+		</select>
+		
+		
+		<select id ="getEmpMap" resultType="map">
+			select * from employees order by first_name
+		</select>
+		 -->
+	
+
+
+<!-- 	<update id="updateSomething" parameterType="#modelname">
+		UPDATE tablename1
+		SET
+		columnname1=#{param1}
+		WHERE
+		columnname2 = #{param2}
+	</update>
+
+	<delete id="deleteSomething" parameterType="int">
+		DELETE FROM tablename1 WHERE
+		columnname1 = #{param1}
+	</delete>
+ -->
+</mapper>

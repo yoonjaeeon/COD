@@ -20,10 +20,10 @@ public class MemberController {
 		return "member/memberInsert";			
 	}
 	//등록처리
-	@RequestMapping("/memberInsert")
+	@RequestMapping("memberInsert")
 	public String insertMember(MemberVO memberVO, Model model) {
 	memberService.insertMember(memberVO);
-	return "redirect:getMemberList";
+	return "redirect:home";
 	}
 	
 	//전체조회

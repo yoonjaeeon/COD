@@ -6,7 +6,7 @@ import java.util.Map;
 import co.cod.app.menu.MenuVO;
 import co.cod.app.menu.service.MenuService;
 
-public class CafeServiceImpl implements MenuService {
+public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public MenuVO getCafe(MenuVO MenuVO) {

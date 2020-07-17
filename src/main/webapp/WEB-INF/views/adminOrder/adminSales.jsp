@@ -78,8 +78,8 @@
 <select>
 <%-- <c:forEach></c:forEach> --%>
 <option selected>년 선택</option>
-</select>
-
+</select><br>
+<button>일별</button><button>주별</button><button>월별</button>
  <div id="chart_div" style="width: 800px; height: 500px;"></div>
  <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">

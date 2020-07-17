@@ -19,7 +19,7 @@ public class CafeController {
 
 	@RequestMapping("insertCafe") // 등록폼
 	public String insertFormCafe(HttpSession session, HttpServletRequest request, CafeVO cafeVO, Model  model) {
-		cafeVO.setAdminId("ha");
+		cafeVO.setAdminId("lee");
 		cafeVO.setAnimal(1);
 		cafeVO.setBeam(1);
 		cafeVO.setBigSeat(1);
@@ -39,7 +39,12 @@ public class CafeController {
 		cafeVO.setCafeThumbnail("사진");
 		cafeVO.setPhtotGroup(1);
 		 cafeService.insertCafe(cafeVO);
-		return "ad/cafe/cafeInsert";
+		return "redirect:ad/cafe/cafeInsert";
+	}
+	
+	@RequestMapping("insertCafeForm")
+	public String insertCafeForm() {
+		return "ad/cafe/insertCafeForm";
 	}
 
 }

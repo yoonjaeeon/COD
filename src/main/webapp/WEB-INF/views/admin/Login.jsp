@@ -33,7 +33,11 @@
                       Login
                     </a>
                     <hr>
+                    <a href="index.html" class="btn btn-warning btn-user btn-block">
+                      <i class="fas fa-comment"></i>   Login with kakao
+                    </a>
                   </form>
+                  <hr>
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>

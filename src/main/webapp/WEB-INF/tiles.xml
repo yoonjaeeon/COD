@@ -19,6 +19,9 @@ Configuration 2.1//EN"
 	<definition name="ad/*/*/*" extends="adminTemplate">
 		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
+	<definition name="e/*/*" template="/WEB-INF/views/tiles/emptyLayout.jsp">
+		<put-attribute name="e_content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>	
 	<!-- master -->
 	<definition name="masterTemplate" template="/WEB-INF/views/tiles/master_layout.jsp">
 		<put-attribute name="m_header" value="/WEB-INF/views/tiles/master_header.jsp" />

@@ -30,6 +30,11 @@ public class HomeController {
 	public String masterHome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "ma/master/masterMain";
-	}	
+	}
+	
+	@RequestMapping("adminLogin")
+	public String Login() {
+			return "e/admin/adminLogin";
+	}
 	
 }

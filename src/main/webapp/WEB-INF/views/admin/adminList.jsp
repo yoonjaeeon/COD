@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
 <h2>관리자(사장) 리스트</h2>
 <input name="p" value="1" type="hidden">
 <input type="text" name="name" id="name" placeholder="관리자이름"

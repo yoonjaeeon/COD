@@ -29,3 +29,9 @@ ul.navvar{
 .nav-link.collapsed{
    color:#646464 !importance;
 }
+
+.adminNoticeF{
+	padding:0.3em;
+	width: 100%;
+}
+

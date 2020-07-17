@@ -34,7 +34,7 @@
                     </a>
                     <hr>
                     <a href="index.html" class="btn btn-warning btn-user btn-block">
-                      <i class="fas fa-comment"></i>   Login with kakao
+                      <i class="fab fa-kickstarter-k"></i>   Login with kakao
                     </a>
                   </form>
                   <hr>

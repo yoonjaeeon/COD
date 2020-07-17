@@ -30,7 +30,7 @@
 
 </head>
 <tiles:insertAttribute name="a_header" />
-<div style="padding :3em">
+<div style="padding :4em">
 <tiles:insertAttribute name="a_content" />
 </div>
 
@@ -39,10 +39,10 @@
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
 	<div class="icon" align="center">
-		<a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i
-			class="fab fa-twitter"></i></a> <a href="#"><i
-			class="fab fa-instagram"></i></a> <a href="#"><i
-			class="fas fa-envelope"></i></a>
+		<a href="#"><i class="fab fa-facebook"></i></a> 
+		<a href="#"><i class="fab fa-twitter"></i></a> <a href="#">
+		<i class="fab fa-instagram"></i></a>
+		<a href="#"><i class="fas fa-envelope"></i></a>
 	</div>
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">

@@ -19,5 +19,14 @@ import co.cod.app.admin.service.AdminService;
 	@RequestMapping("insertAdmin")
 	public String insertAdmin(AdminVO adminVO) {			
 		return "ad/admin/insertAdmin";
+	
+	}	
+	//e등로폼 
+	@RequestMapping("adminWorker")
+	public String adminWorker(AdminVO adminVO) {			
+		return "ad/adminManage/adminWorker";
+	
+	
+	
 	}	
 }

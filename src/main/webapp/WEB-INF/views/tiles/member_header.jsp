@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <header id="header">
    <h1>
-      <a href="/"><i class="fas fa-coffee"></i>    C O D</a>
+      <a href="home"><i class="fas fa-coffee"></i>    C O D</a>
    </h1>
    <nav class="links">
       <ul>
@@ -10,6 +10,7 @@
          <li><a href="#">지역별</a></li>
          <li><a href="#">즐겨찾기</a></li>
          <li><a href="#">로그인</a></li>
+         <li><a href="memberInsertForm">회원가입</a></li>
       </ul>
    </nav>
    <nav class="main">

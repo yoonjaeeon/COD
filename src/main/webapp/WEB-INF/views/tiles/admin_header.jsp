@@ -10,7 +10,7 @@
     <ul class="navbar-nav sidebar" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-coffee"></i>
         </div>

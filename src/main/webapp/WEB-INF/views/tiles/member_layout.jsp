@@ -20,13 +20,12 @@
 <body class="single is-preload">
 
 	<!-- Wrapper -->
-	<div id="wrapper">
+	<div >
 		<!-- Header -->
 		<tiles:insertAttribute name="header" />
 
 		<!-- Main -->
 		<div id="main">
-
 			<!-- Post -->
 			<article class="post">
 				<tiles:insertAttribute name="content" />

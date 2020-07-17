@@ -28,5 +28,9 @@ public class AdminNoticeController {
 		return "ad/adminOrder/adminSales";
 	}
 	
+	@RequestMapping("adminNotice")
+	public String adminnotice() {
+		return "ad/adminnotice/adminNotice";
+	}
 	
 }

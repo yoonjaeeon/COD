@@ -6,7 +6,7 @@
    </h1>
    <nav class="links">
       <ul>
-         <li><a href="#">테마별</a></li>
+         <li><a href="ThemaList">테마별</a></li>
          <li><a href="#">지역별</a></li>
          <li><a href="#">즐겨찾기</a></li>
          <li><a href="#">로그인</a></li>

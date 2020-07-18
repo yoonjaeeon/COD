@@ -71,7 +71,7 @@
 			<a href="#collapseCardExample" class="d-block card-header py-3"
 				data-toggle="collapse" role="button" aria-expanded="true"
 				aria-controls="collapseCardExample">
-				<h6 class="m-0 font-weight-bold text-primary">* 주문현황 * <span class="badge badge-danger badge-counter">7</span></h6>
+				<h6 class="m-0 font-weight-bold text-primary"> <i class="fa fa-bell-o"></i> * 주문현황 * <span class="badge badge-danger badge-counter">7</span></h6>
 			</a>
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardExample">

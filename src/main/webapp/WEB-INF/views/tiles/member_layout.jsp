@@ -8,14 +8,14 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/member/assets/css/main.css" />
 <!-- slick -->
 <link rel="stylesheet" type="text/css" href="resources/slick/slick.css" />
-<link rel="stylesheet" type="text/css"
-	href="resources/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css"href="resources/slick/slick-theme.css" />
 <script src="resources/slick/jquery-1.12.4.min.js"></script>
 <script src="resources/slick/slick.min.js"></script>
-
+<!-- bootstrap -->
 </head>
 <body class="single is-preload">
 

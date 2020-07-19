@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
+import vofile.BookmarksVO;
 
 @Controller
 public class MemberController {
@@ -34,10 +35,14 @@ public class MemberController {
 	   }
 	 //전체조회
 	   @RequestMapping("MemberMyPage")
-	   public String MemberMyPage() {
-	      
+	   public String MemberMyPage() {	      
 	      return "member/memberMyPage";
-
+	   }
+	   
+	   @RequestMapping("bookmarks")
+	   public String bookmarks(Model model, BookmarksVO bookmarksVO) {
+		   model.addAttribute("getBookmarks", memberService.getBookmarks(bookmarksVO));
+		   return "member/bookmark";
 	   }
 
 }

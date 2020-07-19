@@ -3,6 +3,7 @@ package co.cod.app.member.mapper;
 import java.util.List;
 
 import co.cod.app.member.MemberVO;
+import vofile.BookmarksVO;
 
 
 public interface MemberMapper {
@@ -13,4 +14,5 @@ public interface MemberMapper {
 	public void insertMember( MemberVO memberVO);
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
+	public List<BookmarksVO> getBookmarks();
 }

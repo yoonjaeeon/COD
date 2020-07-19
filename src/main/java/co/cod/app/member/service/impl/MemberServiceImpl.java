@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO) {
-		return memberMapper.getBookmarks(bookmarksVO);
+		return memberMapper.getBookmarks();
 	}
 	
 	

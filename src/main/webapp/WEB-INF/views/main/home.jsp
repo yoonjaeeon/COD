@@ -6,96 +6,151 @@
 <div class="main_slick">
 	<c:forEach var="index" begin="1" end="3">
 		<div>
-			<img src="resources/images/main${index}.jpg" alt="img" class="image fit" style="max-height:400px; overflow: hidden">
+			<img src="resources/images/main${index}.jpg" alt="img"
+				class="image fit" style="max-height: 400px; overflow: hidden">
 		</div>
 	</c:forEach>
 </div>
+
+<!-- Thema Icon -->
+<div class="main_feature text-center">
+	<div class="icon_slick">
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="far fa-thumbs-up"></i>
+			</div>
+			<h4>추천 카페</h4>
+		</div>
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="fab fa-fort-awesome"></i>
+			</div>
+			<h4>이색 카페</h4>
+		</div>
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="fas fa-birthday-cake"></i>
+			</div>
+			<h4>디저트 맛집</h4>
+		</div>
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="fab fa-envira"></i>
+			</div>
+			<h4>야외석 있는</h4>
+		</div>
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="fas fa-laptop"></i>
+			</div>
+			<h4>작업하기 좋은</h4>
+		</div>
+		<div class="single_feature">
+			<div class="single_feature_icon">
+				<i class="fas fa-coffee"></i>
+			</div>
+			<h4>핸드 드립</h4>
+		</div>
+	</div>
+</div>
+
 <!-- <i class="far fa-envelope"></i> <i class='far fa-envelope-open'></i> -->
 <!-- 아이콘/지도  -->
-<div class="row">
-	<!-- icon -->
-	<div class="col-6 padding1">
-		<div class="main_feature text-center">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="far fa-thumbs-up"></i>
-						</div>
-						<h4>추천 카페</h4>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fab fa-fort-awesome"></i>
-						</div>
-						<h4>이색 카페</h4>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="far fa-lemon"></i>
-						</div>
-
-						<h4>디저트 맛집</h4>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fab fa-envira"></i>
-						</div>
-						<h4>야외석 있는</h4>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fas fa-laptop"></i>
-						</div>
-						<h4>작업하기 좋은</h4>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fas fa-coffee"></i>
-						</div>
-						<h4>핸드 드립</h4>
-					</div>
-				</div>
+<div class="row" align="center" class="margin2">
+	<div class="col-lg-6">
+		<div>
+			<h2>지역별 리스트 보기 </h2>
+		</div>
+		<div class="main_slick" style="width: 70%">
+			<div>
+				<a href="#" class="image fit"> <img
+					src="resources/images/main1.jpg" class="image">
+				</a>
+			</div>
+			<div>
+				<a href="#" class="image fit"> <img
+					src="resources/images/main3.jpg" class="image">
+				</a>
+			</div>
+			<div>
+				<a href="#" class="image fit"> <img
+					src="resources/images/main2.jpg" class="image">
+				</a>
 			</div>
 		</div>
 	</div>
 	<!-- 지도 -->
-	<div class="col-6"></div>
-</div>
-
-<%-- <div class="padding2" align="center">
-	<h3> 신규 리스트 </h3>
-	<hr>
-	<div class="main_slicks">
-		<c:forEach begin="0" end="4">
-			<div class="col-lg-4 col-sm-6">
-			<div class="row">
-				<div class="col-6">
-					<a href="#" class="image fit">
-					<img src="resources/images/main1.jpg" class="image"></a>
-				</div>
-				<div class="col-6">
-					<h3>Yedam Cafe</h3>
-					<i class='fas fa-heart' style= 'color:red'></i> <b>4.3</b>
-					<h4>#해쉬태그</h4>
-				</div>
-			</div> 
+	<div class="col-lg-6">
+		<div class="maps">
+			<script type="text/javascript">
+				function changeImg(img) {
+					var mapimg = document.getElementById('map');
+					mapimg.src = img;
+				}
+			</script>
+			<img id="map" src="resources/images/map.png" border="0" usemap="#Map" />
+			<map name="Map">
+				<!-- 동구 -->
+				<area shape="poly" href="#"
+					coords="230,73,260,48,306,40,350,57,360,95,372,150,380,180,364,220,335,208,320,220,300,198,272,190,253,203,247,184,252,170,259,144,250,127,250,95"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_dg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 북구 -->
+				<area shape="poly" href="#"
+					coords="230,75,247,95,252,129,257,144,253,169,256,178,240,196,215,195,186,175,147,181,150,160,170,130,165,83"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_bg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 서구 -->
+				<area shape="poly" href="#"
+					coords="211,186,210,207,183,220,167,207,158,203,154,183,172,183,187,177"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_sg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 중구 -->
+				<area shape="poly" href="#"
+					coords="241,197,244,204,238,197,210,212,212,204,214,197"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_jg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 남구 -->
+				<area shape="poly" href="#"
+					coords="216,220,237,222,236,240,239,257,223,267,197,238"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_ng_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 달서구 -->
+				<area shape="poly" href="#"
+					coords="209,213,196,243,210,273,208,287,211,306,190,310,198,297,160,292,148,266,125,264,115,238,120,210,150,212,158,209,184,222"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_dsg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 수성구 -->
+				<area shape="poly" href="#"
+					coords="245,204,261,205,275,195,300,200,319,219,346,217,345,237,333,246,339,265,310,292,257,271,227,271,238,259,240,225"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_ssg_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<!-- 달성군1,2 -->
+				<area shape="poly" href="#"
+					coords="147,182,158,184,154,211,121,212,114,240,75,226,40,225,55,172,59,166,64,150,99,126,120,130,120,153,115,166,135,180"
+					target="_self"
+					onmouseover="changeImg('resources/images/map_dsg2_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+				<area shape="poly" href="#"
+					coords="227,275,240,280,257,274,309,294,309,306,322,325,316,347,319,360,291,372,277,386,258,398,250,350,228,360,200,357,173,380,176,408,158,455,115,460,66,490,33,493,60,463,12,388,80,396,89,367,40,335,72,277,124,263,149,269,160,292,184,300,192,314,212,307,213,288"
+					onmouseover="changeImg('resources/images/map_dsg2_on.png')"
+					onmouseout="changeImg('resources/images/map.png')">
+			</map>
 		</div>
-		</c:forEach>
 	</div>
-</div> --%>
+</div>
+<!-- 지도 end -->
+
+<!-- 신규List -->
 <div class="padding2" align="center">
-	<h3>신규업체 </h3>
+	<h3>신규업체</h3>
 	<hr>
 	<div class="main_slicks">
 		<c:forEach begin="0" end="4">
@@ -103,10 +158,10 @@
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
-						<h3>
-							<a href="single.html">yedam Cafe</a>
-						</h3>
-						<h4>#해쉬태그</h4>
+							<h3>
+								<a href="single.html">yedam Cafe</a>
+							</h3>
+							<h4>#해쉬태그</h4>
 						</div>
 						<div class="col-sm-2">
 							<i class="far fa-heart"></i>
@@ -120,8 +175,9 @@
 		</c:forEach>
 	</div>
 </div>
+<!-- 인기리스트 -->
 <div class="padding2" align="center">
-	<h3> 인기리스트 </h3>
+	<h3>인기리스트</h3>
 	<hr>
 	<div class="main_slicks">
 		<c:forEach begin="0" end="4">
@@ -129,10 +185,10 @@
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
-						<h3>
-							<a href="single.html">yedam Cafe</a>
-						</h3>
-						<h4>#해쉬태그</h4>
+							<h3>
+								<a href="single.html">yedam Cafe</a>
+							</h3>
+							<h4>#해쉬태그</h4>
 						</div>
 						<div class="col-sm-2">
 							<i class="far fa-heart"></i>
@@ -189,6 +245,25 @@
 			breakpoint : 480,
 			settings : {
 				slidesToShow : 1,
+				slidesToScroll : 1
+			}
+		} ]
+	});
+	$('.icon_slick').slick({
+		slidesToShow : 6,
+		slidesToScroll : 1,
+		autoplay : true,
+		autoplaySpeed : 2000,
+		responsive : [ {
+			breakpoint : 600,
+			settings : {
+				slidesToShow : 3,
+				slidesToScroll : 1
+			}
+		}, {
+			breakpoint : 480,
+			settings : {
+				slidesToShow : 3,
 				slidesToScroll : 1
 			}
 		} ]

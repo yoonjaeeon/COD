@@ -6587,5 +6587,40 @@ body.is-menu-visible #menu {
 .padding2{
 	padding:2em;
 }
+@media all and (max-width:1280px) {
+	
+}
 
+@media all and (max-width:1100px) {
+	.maps{ width:100% !important}
+}
 
+@media all and (max-width:950px) {
+	.maps{}
+}
+
+@media all and (max-width:650px) {
+	.maps{height:65%; width:96% !important}
+}
+
+@media all and (max-width:550px) {
+}
+
+@media all and (max-width:400px) {
+	.maps{height:50%; width:70% !important}
+}
+
+@media all and (max-width:360px) {
+	.maps{height:50%; width:60% !important}
+}
+
+.content{
+	margin: 5em;
+}
+
+.hovers h1:hover{
+	color: #2ebaae !important;
+}
+.hovers h2:hover{
+	color: #2ebaae !important;
+}

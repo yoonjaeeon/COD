@@ -2,21 +2,57 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="align-center">
-	<header class="align-center">
-		<br> <br>
-		<h2>* My Page *</h2>
-
-		<article>
-
-			<h2>${nickName }님</h2>
-			<h2><i class="fa fa-won"></i> ${milege } 1000 <b>P</b></h2>
-			<div></div>
-	</header>
+<div class="align-center hovers row">
+	<div class="col-lg-5">
+		<h1>* My Page *</h1>
+		<h2>${nickName }@@님</h2>
+		<h2>
+			<i class="fab fa-product-hunt" style='font-size: 24px'></i> ${milege }
+			1,000
+		</h2>
+	</div>
+	<div class="col-lg-7">
+		<div class="main_feature text-center margin1">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="single_feature">
+						<div class="single_feature_icon">
+							<i class="fas fa-comment"></i>
+						</div>
+						<h4>내가 쓴 리뷰</h4>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="single_feature">
+						<div class="single_feature_icon">
+							<i class="fab fa-fort-awesome"></i>
+						</div>
+						<h4>결제내역</h4>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="single_feature">
+						<div class="single_feature_icon">
+							<i class="fab fa-fort-awesome"></i>
+						</div>
+						<h4>결제내역</h4>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="single_feature">
+						<div class="single_feature_icon">
+							<i class="fab fa-fort-awesome"></i>
+						</div>
+						<h4>결제내역</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-</br>
-==
+<br />
 <div id="listpage">
+	<hr>
 	<section class="posts">
 		<article>
 			<header>
@@ -28,9 +64,7 @@
 					<a href="#collapseCardExample" class="d-block card-header py-3"
 						data-toggle="collapse" role="button" aria-expanded="true"
 						aria-controls="collapseCardExample">
-						<h3 class="m-0 font-weight-bold ">
-							 * 최근 결제 내역  * 
-						</h3>
+						<h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
 					</a>
 					<!-- Card Content - Collapse -->
 					<div class="collapse show" id="collapseCardExample">
@@ -39,24 +73,24 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>카페명 </th>
-											<th>결제금액 </th>
-											<th>결제날짜</th>											
+											<th>카페명</th>
+											<th>결제금액</th>
+											<th>결제날짜</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach begin="0" end="3">
-									<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-									<a href="#">
-									<tr>
-										<td>예담카페</td>
-										<td>12,000</td>
-										<td>2020/07/20</td>
-										<!-- onclick 메소드 필요 함 -->
-									
-									</tr>
-									</a>
-								</c:forEach>
+											<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
+											<a href="#">
+												<tr>
+													<td>예담카페</td>
+													<td>12,000</td>
+													<td>2020/07/20</td>
+													<!-- onclick 메소드 필요 함 -->
+
+												</tr>
+											</a>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -76,9 +110,7 @@
 					<a href="#collapseCardExample" class="d-block card-header py-3"
 						data-toggle="collapse" role="button" aria-expanded="true"
 						aria-controls="collapseCardExample">
-						<h3 class="m-0 font-weight-bold ">
-							 * 최근 내가 작성한 리뷰   * 
-						</h3>
+						<h3 class="m-0 font-weight-bold ">* 최근 내가 작성한 리뷰 *</h3>
 					</a>
 					<!-- Card Content - Collapse -->
 					<div class="collapse show" id="collapseCardExample">
@@ -87,24 +119,24 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>카페명 </th>
-											<th>카페주 </th>
-											<th>등록날짜</th>											
+											<th>카페명</th>
+											<th>카페주</th>
+											<th>등록날짜</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach begin="0" end="3">
-									<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-									<a href="#">
-									<tr>
-										<td>예담카페</td>
-										<td>12,000</td>
-										<td>2020/07/20</td>
-										<!-- onclick 메소드 필요 함 -->
-									
-									</tr>
-									</a>
-								</c:forEach>
+											<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
+											<a href="#">
+												<tr>
+													<td>예담카페</td>
+													<td>12,000</td>
+													<td>2020/07/20</td>
+													<!-- onclick 메소드 필요 함 -->
+
+												</tr>
+											</a>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -128,5 +160,3 @@
 		</article>
 	</section>
 </div>
-
-

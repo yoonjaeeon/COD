@@ -76,32 +76,32 @@
 		}
 	}
 </script>
-</head>
-<body>
 
-		<h2>일반 회원가입</h2>
-	<form action="memberInsert" name="frm">
-		<br> EMAIL <span id="idCheck"></span> <input type="text" name="email"	id="email" placeholder="이메일" onchange="idDupCheck()" /> <br /> <br />
-		PW <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-		<span id="alert-danger"	style="display: none; color: #d92742; font-weight: bold;">
-			비밀번호가 일치하지 않습니다.</span> 
-			<input type="password" id="pw" name="pw" class="pw"
-			placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
-		pw(확인) 	<input type="password" id="pw2" class="pw"	placeholder="패스워드 확인  "> <br /> <br /> 
+<div class="content">
+<h2>일반 회원가입</h2>
+<form action="memberInsert" name="frm">
+	<br> EMAIL <span id="idCheck"></span> <input type="text"
+		name="email" id="email" placeholder="이메일" onchange="idDupCheck()" />
+	<br /> <br /> PW <span id="alert-success" style="display: none;">비밀번호가
+		일치합니다.</span> <span id="alert-danger"
+		style="display: none; color: #d92742; font-weight: bold;">
+		비밀번호가 일치하지 않습니다.</span> <input type="password" id="pw" name="pw" class="pw"
+		placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
+	pw(확인) <input type="password" id="pw2" class="pw"
+		placeholder="패스워드 확인  "> <br /> <br />
 	<!-- 	이름 <input type="text" name="name" id="name" /><br /> <br />  -->
-		닉네임 <input	type="text" name="nickname" /><br /> <br /> 
-		핸드폰 번호 <input type="text" name="phone" /><br /> <br /> 
-		생년월일<input type="date"	name="birthday" /><br /> <br />
+	닉네임 <input type="text" name="nickname" /><br /> <br /> 핸드폰 번호 <input
+		type="text" name="phone" /><br /> <br /> 생년월일<input type="date"
+		name="birthday" /><br /> <br />
+	<div class="align-center" style="margin-top: 30px">
+		<br> <br>
 		<div class="align-center" style="margin-top: 30px">
-			<br> <br>
-			<div class="align-center" style="margin-top: 30px">
-				<button type="button" onclick="validCheck()" >회원가입</button>
-				<input type="reset" value="지우기">
-			</div>
+			<button type="button" onclick="validCheck()">회원가입</button>
+			<input type="reset" value="지우기">
 		</div>
-	</form>
-</body>
-
+	</div>
+</form>
+</div>
 <script>
 	$('.pw').focusout(function() {
 		var pwd1 = $("#pw").val();

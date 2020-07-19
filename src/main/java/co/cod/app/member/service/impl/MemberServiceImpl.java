@@ -44,6 +44,4 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getBookmarks(bookmarksVO);
 	}
 	
-	
-	
 }

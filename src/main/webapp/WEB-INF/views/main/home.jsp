@@ -73,7 +73,7 @@
 	<div class="col-6"></div>
 </div>
 
-<div class="padding2" align="center">
+<%-- <div class="padding2" align="center">
 	<h3> 신규 리스트 </h3>
 	<hr>
 	<div class="main_slicks">
@@ -91,6 +91,32 @@
 				</div>
 			</div> 
 		</div>
+		</c:forEach>
+	</div>
+</div> --%>
+<div class="padding2" align="center">
+	<h3>신규업체 </h3>
+	<hr>
+	<div class="main_slicks">
+		<c:forEach begin="0" end="4">
+			<div>
+				<article class="mini-post">
+					<header class="row">
+						<div class="col-sm-10">
+						<h3>
+							<a href="single.html">yedam Cafe</a>
+						</h3>
+						<h4>#해쉬태그</h4>
+						</div>
+						<div class="col-sm-2">
+							<i class="far fa-heart"></i>
+							<h4>4.3</h4>
+						</div>
+					</header>
+					<a href="single.html" class="image"><img
+						src="resources/images/main2.jpg" alt=""></a>
+				</article>
+			</div>
 		</c:forEach>
 	</div>
 </div>

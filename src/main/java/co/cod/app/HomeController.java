@@ -32,7 +32,7 @@ public class HomeController {
 		return "ma/master/masterMain";
 	}
 	
-	@RequestMapping("adminLogin")
+	@RequestMapping("c")
 	public String Login() {
 			return "e/admin/adminLogin";
 	}

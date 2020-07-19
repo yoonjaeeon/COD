@@ -24,7 +24,7 @@
 	<select id="getBookmarks" parameterType="co.cod.app.member.MemberVO" resultType="vofile.BookmarksVO">
 	SELECT 
 	B.ADMIN_ID, C.CAFE_THUMBNAIL
-	FROM BOOKMARKS B JOIN CAFE C
+	FROM BOOKMARKS B JOIN CAFE C 
 	ON (B.ADMIN_ID = C.ADMIN_ID)
 	WHERE B.EMAIL= 'test'
 	</select>

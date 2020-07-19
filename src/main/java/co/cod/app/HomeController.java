@@ -36,5 +36,12 @@ public class HomeController {
 	public String Login() {
 			return "e/admin/adminLogin";
 	}
-	
+	@RequestMapping("Login")
+	public String aLogin() {
+			return "e/admin/Login";
+	}
+	@RequestMapping("ThemaList")
+	public String ThemaList() {
+			return "cafe/cafeThemaList";
+	}
 }

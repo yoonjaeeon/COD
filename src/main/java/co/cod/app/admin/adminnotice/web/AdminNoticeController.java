@@ -32,5 +32,13 @@ public class AdminNoticeController {
 	public String adminnotice() {
 		return "ad/adminnotice/adminNotice";
 	}
+	@RequestMapping("adminInventory")
+	public String adminInventory() {
+		return "ad/adminManage/adminInventory";
+	}
+	@RequestMapping("adminSeat")
+	public String adminSeat() {
+		return "ad/adminManage/adminSeat";
+	}
 	
 }

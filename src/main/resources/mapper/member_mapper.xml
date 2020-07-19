@@ -2,16 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.member.mapper.MemberMapper">
 
-<insert id="insertMember" parameterType="co.cod.app.member.MemberVO">
-	INSERT INTO MEMBER	(
-	EMAIL, PW, BIRTHDAY, PHONE, NICKNAME
-	)
-	VALUES(
-	#{email},
-	#{pw},
-	#{birthday},
-	#{phone},
-	#{nickname}
-	)
+	<insert id="insertMember"
+		parameterType="co.cod.app.member.MemberVO">
+		INSERT INTO MEMBER (
+		EMAIL, PW, BIRTHDAY, PHONE, NICKNAME
+		)
+		VALUES(
+		#{email},
+		#{pw},
+		#{birthday},
+		#{phone},
+		#{nickname}
 	</insert>
+
+	<select id="memberLogin"
+		parameterType="co.cod.app.member.MemberVO"
+		resultType="co.cod.app.member.MemberVO">
+		SELECT email, PW
+		FROM MEMBER
+		WHERE email = ${email} AND PW =${pw}
+	</select>
+
+	<select id="getBookmarks"
+		parameterType="co.cod.app.member.MemberVO"
+		resultType="vofile.BookmarksVO">
+		SELECT B.ADMIN_ID, C.CAFE_THUMBNAIL
+		FROM BOOKMARKS B JOIN CAFE C
+		ON(B.ADMIN_ID = C.ADMIN_ID)
+		WHERE B.EMAIL='test'
+	</select>
 </mapper>

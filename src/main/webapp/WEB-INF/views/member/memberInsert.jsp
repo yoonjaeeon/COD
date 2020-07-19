@@ -9,7 +9,7 @@
 			return;
 		}
 		if (frm.pw.value == "") {
-			alert("비밀번호를 입력하셔야 합니다.")
+			alert("비밀번호를 입력하세요.")
 			frm.pw.focus();
 			return;
 		}

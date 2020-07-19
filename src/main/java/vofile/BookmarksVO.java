@@ -9,4 +9,5 @@ public class BookmarksVO {
 	Integer bookmarkSeq;
 	String email;
 	String adminId;
+	String cafeThumbnail; //cafe 테이블에서 썸네일 조인해오기 위해 
 }

@@ -14,4 +14,12 @@
 	#{nickname}
 	)
 	</insert>
+	
+	
+	<select id = "getMemberList" parameterType="co.cod.app.member.MemberVO" resultType="co.cod.app.member.MemberVO">
+		
+		select * from member
+	</select>
+	
+	
 </mapper>

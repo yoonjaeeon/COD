@@ -27,9 +27,17 @@ public class MemberController {
 	}
 	
 	//전체조회
-	   @RequestMapping("/getMemberList")
+	   @RequestMapping("MemberList")
 	   public String getMemberList(MemberVO memberVO, Model model) {
-	      model.addAttribute( "MemberList", memberService.getMemberList(memberVO));
-	      return "/member/memberList";
+	      model.addAttribute( "MemberList", memberService.getMemberList());
+	      return "ma/member/memberList";
 	   }
+	 //전체조회
+	   @RequestMapping("MemberMyPage")
+	   public String MemberMyPage() {
+	      
+	      return "member/memberMyPage";
+
+	   }
+
 }

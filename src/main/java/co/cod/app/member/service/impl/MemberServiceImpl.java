@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> getMemberList(MemberVO memberVO) {		
-		return memberMapper.getMemberList(memberVO);
+	public List<MemberVO> getMemberList() {		
+		return memberMapper.getMemberList();
 	}
 
 	@Override

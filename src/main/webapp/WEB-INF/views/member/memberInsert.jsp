@@ -17,7 +17,6 @@
 			alert("이름를 입력해주세요");
 			frm.name.focus();
 			return;
-
 		} */
 		if (frm.pw2.value == "") {
 			alert("비밀번호를 확인해주세요!");
@@ -125,4 +124,3 @@
 		}
 	});
 </script>
-

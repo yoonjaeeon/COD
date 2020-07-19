@@ -11,6 +11,7 @@
          <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="Login">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
+         <li><a href="MemberMyPage">MyPage</a></li>
       </ul>
    </nav>
    <nav class="main">

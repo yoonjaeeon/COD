@@ -5,17 +5,17 @@
 <div class="align-center">
 	<header class="align-center">
 		<br> <br>
-		<h2>* 마이 리스트 *</h2>
+		<h2>* My Page *</h2>
 
 		<article>
 
 			<h2>${nickName }님</h2>
-			<h2>총 마일리지 {${milege }} 원</h2>
+			<h2><i class="fa fa-won"></i> ${milege } 1000 <b>P</b></h2>
 			<div></div>
 	</header>
 </div>
 </br>
-
+==
 <div id="listpage">
 	<section class="posts">
 		<article>

@@ -32,7 +32,7 @@ public class ReviewController {
 		
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출
-		return "main/home";
+		return "review/reviewList";
 	}
 
 	// 단건조회
@@ -46,10 +46,10 @@ public class ReviewController {
 	}
 
 	// 목록조회
-	@RequestMapping("reviewList")
+	@RequestMapping("memberReviewList")
 	public String reviewList(Model model, ReviewVO reviewVO) {
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
-		return "review/reviewList";
+		return "memberList/memberReviewList";
 	}
 
 	// review관리

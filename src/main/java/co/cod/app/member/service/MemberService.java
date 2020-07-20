@@ -13,4 +13,5 @@ public interface MemberService {
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
 	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);	
+	public MemberVO memberLogin(MemberVO memberVO);
 }

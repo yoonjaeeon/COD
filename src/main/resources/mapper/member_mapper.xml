@@ -29,4 +29,11 @@
 	WHERE B.EMAIL= 'test'
 	</select>
 	
+	<select id="memberLogin" parameterType="co.cod.app.member.MemberVO" resultType ="co.cod.app.member.MemberVO"> 
+	SELECT
+	EMAIL, PW
+	FROM MEMBER
+	WHERE EMAIL = ${email}
+	</select>
+	
 </mapper>

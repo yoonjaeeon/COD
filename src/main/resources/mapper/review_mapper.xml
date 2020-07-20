@@ -53,9 +53,9 @@
 	</select>
 
 	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">
-		INSERT INTO review (review_seq, review_content, stars)  
+		INSERT INTO review (review_seq, review_content, review_time, stars)  
 		
-		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, #{stars})
+		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars})
 	</insert>
 <!-- 		<select id ="getName" resultType="java.lang.String" parameterType="java.lang.Integer">
 			select first_name from employees where employee_id = #{employeeId}

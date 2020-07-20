@@ -9,7 +9,7 @@
          <li><a href="ThemaList">테마별</a></li>
          <li><a href="#">지역별</a></li>
          <li><a href="bookmarks">즐겨찾기</a></li>
-         <li><a href="Login">로그인</a></li>
+         <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
          <li><a href="MemberMyPage">MyPage</a></li>
       </ul>

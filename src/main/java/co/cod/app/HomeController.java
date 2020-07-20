@@ -40,12 +40,20 @@ public class HomeController {
 	public String aLogin() {
 			return "e/admin/Login";
 	}
-	@RequestMapping("ThemaList")
+	@RequestMapping("themeList")
 	public String ThemaList() {
-			return "cafe/cafeThemaList";
+			return "memberList/memberThemeList";
 	}
-	@RequestMapping("AreaList")
+	@RequestMapping("areaList")
 	public String AreaList() {
 			return "memberList/memberAreaList";
+	}
+	@RequestMapping("themeListTest")
+	public String ThemaListTest() {
+			return "cafe/cafeThemeList";
+	}
+	@RequestMapping("adminWorker")
+	public String adminWorker() {
+			return "ad/adminManage/adminWorker";
 	}
 }

@@ -29,7 +29,7 @@
 	}
 </script>
 <h3>리뷰 작성</h3>
-<form name="frm" action="insertReview" method="post">
+<form name="frm" action="insertReview">
 리뷰 내용:<br/>
 <textarea cols="30" rows="10"
           name="reviewContent" id="reviewContent"></textarea><br/>

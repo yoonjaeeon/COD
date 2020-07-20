@@ -5,6 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- <script>
+	function idDelete(deleteId){
+		var result = confirm("정말 삭제 하시겠습니까?");
+		if(result){
+			if("${vo.id}" == "${loginId}"||"${loginId}" == "admin"){ //trim함수
+				location.href="MemberDelete.do?id=" + deleteId;
+				return;
+			} else {
+				alert("본인이 아닙니다.")	
+			}
+		}	
+	}
+</script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
@@ -17,13 +30,13 @@
 	}
 	#outter {
 		display: block;
-		width: 60%;
+		width: 80%;
 		margin: auto;
 	}
 </style>
 <body>
  
-<h2>리뷰 목록</h2>
+<h2>내가 쓴 리뷰</h2>
 <div id="outter">
 	<table border="1">
 		<tr>
@@ -41,6 +54,8 @@
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
 				<td>${review.stars }</td>
+				<td><button type="button" onclick="idDelete('${vo.id}')">수정</button></td>
+				<td><button type="button" onclick="idDelete('${vo.id}')">삭제</button></td>
 			</tr>
 		</c:forEach>
 	</table>

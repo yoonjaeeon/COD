@@ -22,19 +22,16 @@ public class MessageServiceImpl implements MessageService{
 	}
 	//메세지 단건조회 (클릭시)
 	@Override
-	public MessageVO getMessage(Integer MessageSeq) { 
-		return messageMapper.getMessage(MessageSeq);
+	public MessageVO getMessage(MessageVO messageVO) {
+		MessageVO result = messageMapper.getMessage(messageVO);
+		if(result != null && result.getRead() ==1 )
+			messageMapper.updateMessage(messageVO.getMessageSeq());
+		return result;
 	}
 
 	@Override
 	public void insertMessage(MessageVO messageVO) {
 		messageMapper.insertMessage(messageVO);
-		
-	}
-
-	@Override
-	public void updateMessage(Integer messageSeq) {
-		messageMapper.updateMessage(messageSeq);
 		
 	}
 	@Override  //메세지 카운트

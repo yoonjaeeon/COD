@@ -58,7 +58,7 @@
    <!-- Actions -->
    <section>
       <ul class="actions stacked">
-         <li><a href="Login" class="button large fit">Log In</a></li>
+         <li><a href="memberLoginForm" class="button large fit">Log In</a></li>
       </ul>
    </section>
 

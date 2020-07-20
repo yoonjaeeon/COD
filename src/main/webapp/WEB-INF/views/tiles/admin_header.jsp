@@ -61,8 +61,8 @@
             <h6 class="collapse-header">관리</h6>
             <a class="collapse-item" href="adminMenuForm">메뉴관리</a>
             <a class="collapse-item" href="utilities-border.html">좌석관리</a>
-            <a class="collapse-item" href="utilities-animation.html">재고관리</a>
-            <a class="collapse-item" href="utilities-other.html">알바생관리</a>
+            <a class="collapse-item" href="adminInventory">재고관리</a>
+            <a class="collapse-item" href="adminWorker">알바생관리</a>
           </div>
         </div>
       </li>

@@ -66,15 +66,17 @@ public class MemberController {
 			   Model model, MemberVO memberVO, HttpSession session) {
 		   
 		   MemberVO result = memberService.memberLogin(memberVO);
-		   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {			   
-			   return "redirect:home";
-		   }else if(result.getPw().equals(null)) {
-		   model.addAttribute("msg", "잘못된 PW입니다.");
-		   	return "memberLoginForm";
-		   }else if(result.getEmail().equals(null)) {
-			   return "memberLoginForm";
+		   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {
+			   return "member";
 		   }
 		   
+			/*
+			 * if(result.getEmail().equals(memberVO.getEmail()) &&
+			 * result.getPw().equals(memberVO.getPw())) { return "redirect:home"; }else
+			 * if(result.getPw().equals(null)) { model.addAttribute("msg", "잘못된 PW입니다.");
+			 * return "memberLoginForm"; }else if(result.getEmail().equals(null)) { return
+			 * "memberLoginForm"; }
+			 */
 		   return null;
 		   
 		/*

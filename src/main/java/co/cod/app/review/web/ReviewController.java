@@ -32,7 +32,7 @@ public class ReviewController {
 		
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출
-		return "review/reviewList";
+		return "main/home";
 	}
 
 	// 단건조회
@@ -64,6 +64,17 @@ public class ReviewController {
 		return reviewService.getReviewList(reviewVO);
 	}
 	// 수정폼
+	@RequestMapping("updateFormReview")
+	public String updateFormreview(ReviewVO vo) {
+		return "review/updateReview";
+	}
 	// 수정처리
+	@RequestMapping("updateReview")
+	public String updatereview( ReviewVO reviewVO, Model model) {
+		
+		reviewService.updateReview(reviewVO);
+		// 서비스 호출
+		return "memberList/memberReviewList";
+	}
 	// 삭제처리
 }

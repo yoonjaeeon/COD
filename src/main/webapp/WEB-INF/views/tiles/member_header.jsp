@@ -7,7 +7,7 @@
    <nav class="links">
       <ul>
          <li><a href="ThemaList">테마별</a></li>
-         <li><a href="#">지역별</a></li>
+         <li><a href="AreaList">지역별</a></li>
          <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
@@ -27,7 +27,6 @@
 
 <!-- Menu -->
 <section id="menu">
-
    <!-- Search -->
    <section>
       <form class="search" method="get" action="#">
@@ -38,21 +37,20 @@
    <!-- Links -->
    <section>
       <ul class="links">
-         <li><a href="#">
-               <h3>Lorem ipsum</h3>
-               <p>Feugiat tempus veroeros dolor</p>
+         <li><a href="ThemaList">
+               <h3>테마별</h3>
+               <p>원하는 테마별로 카페를 검색해 보세요</p>
          </a></li>
-         <li><a href="#">
-               <h3>Dolor sit amet</h3>
-               <p>Sed vitae justo condimentum</p>
+         <li><a href="AreaList">
+               <h3>지역별</h3>
+               <p>원하는 위치의 카페를 검색해 보세요 </p>
          </a></li>
-         <li><a href="#">
-               <h3>Feugiat veroeros</h3>
-               <p>Phasellus sed ultricies mi congue</p>
+         <li><a href="bookmarks">
+               <h3>즐겨찾기</h3>
+               <p>맘에 드는 카페를 등록해 보세요</p>
          </a></li>
-         <li><a href="#">
-               <h3>Etiam sed consequat</h3>
-               <p>Porta lectus amet ultricies</p>
+         <li><a href="MemberMyPage">
+               <h3>MyPage</h3>
          </a></li>
       </ul>
    </section>
@@ -60,7 +58,7 @@
    <!-- Actions -->
    <section>
       <ul class="actions stacked">
-         <li><a href="#" class="button large fit">Log In</a></li>
+         <li><a href="Login" class="button large fit">Log In</a></li>
       </ul>
    </section>
 

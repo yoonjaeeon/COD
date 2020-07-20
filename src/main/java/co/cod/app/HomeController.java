@@ -44,5 +44,8 @@ public class HomeController {
 	public String ThemaList() {
 			return "cafe/cafeThemaList";
 	}
-	 
+	@RequestMapping("AreaList")
+	public String AreaList() {
+			return "memberList/memberAreaList";
+	}
 }

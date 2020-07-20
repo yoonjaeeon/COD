@@ -134,7 +134,7 @@ messageSeq = seq;
 	 $('#contentModal').on('show.bs.modal', function (e) {
 		console.log(e.target); 
 		$.ajax({
-			url : 'getMessage',
+			url : 'getMessage',  
 			method:'post',
 			data : {messageSeq:messageSeq},
 			dataType :'json',

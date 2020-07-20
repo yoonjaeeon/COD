@@ -30,6 +30,19 @@ public class MemberController {
 	return "redirect:home";
 	}
 	
+	//업테이트
+	@RequestMapping("memberUpdate")
+	public String updateMember(MemberVO memberVO) {
+	return "member/memberUpdate";
+	}
+	
+	//멤버 탈퇴 
+	@RequestMapping("memberDrop")
+	public String deleteMember(MemberVO memberVO) {
+	return "member/memberDrop";
+	}
+	
+	
 	//전체조회
 	   @RequestMapping("MemberList")
 	   public String getMemberList(MemberVO memberVO, Model model) {

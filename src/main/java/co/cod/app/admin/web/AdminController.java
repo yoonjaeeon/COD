@@ -28,9 +28,8 @@ import vofile.WorkerVO;
 		return "ad/adminManage/adminWorkerList";
 	
 	
-		
 	}	
-	//e등로폼 
+	//직원등록 
 	@RequestMapping("insertWorker")
 	public String insertWorker(WorkerVO WorkerVO) {			
 		return "ad/adminManage/insertWorker";	

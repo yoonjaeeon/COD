@@ -1,5 +1,8 @@
 package co.cod.app.cafe.web;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import co.cod.app.FileRenamePolicy;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 
@@ -18,7 +23,7 @@ public class CafeController {
 	CafeService cafeService;
 
 	@RequestMapping("insertCafe") // 등록폼
-	public String insertFormCafe(HttpSession session, HttpServletRequest request, CafeVO cafeVO, Model  model) {
+	public String insertFormCafe(HttpSession session, HttpServletRequest request, CafeVO cafeVO, Model  model) throws IOException {
 		cafeVO.setAdminId("lee");
 		cafeVO.setAnimal(1);
 		cafeVO.setBeam(1);
@@ -38,13 +43,24 @@ public class CafeController {
 		cafeVO.setWifi(1);
 		cafeVO.setCafeThumbnail("사진");
 		cafeVO.setPhtotGroup(1);
+		MultipartFile[] files = cafeVO.getUploadFile();
+		for(MultipartFile file : files) {
+			String filename="";
+			if (file != null && file.getSize() >0) {
+				File upFile = FileRenamePolicy.rename(new File("c:upload",filename));
+				filename = upFile.getName();
+				file.transferTo(upFile);
+			}
+			cafeVO.setProfile(filename);
+		}	
 		 cafeService.insertCafe(cafeVO);
 		return "redirect:ad/cafe/cafeInsert";
 	}
+		
 	
-	@RequestMapping("insertCafeForm")
+	@RequestMapping("cafeInsertForm")
 	public String insertCafeForm() {
-		return "ad/cafe/insertCafeForm";
+		return "ad/cafe/cafeInsertForm";
 	}
 
 }

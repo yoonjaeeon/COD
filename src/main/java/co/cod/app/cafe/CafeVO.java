@@ -1,5 +1,7 @@
 package co.cod.app.cafe;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,4 +27,6 @@ public class CafeVO {
 	Integer lend;
 	Integer bigSeat;
 	Integer phtotGroup;
+	MultipartFile [] uploadFile;
+	String profile;
 }

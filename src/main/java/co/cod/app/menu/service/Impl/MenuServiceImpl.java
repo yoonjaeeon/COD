@@ -3,37 +3,45 @@ package co.cod.app.menu.service.Impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import co.cod.app.menu.MenuVO;
+import co.cod.app.menu.mapper.MenuMapper;
 import co.cod.app.menu.service.MenuService;
 
+@Service
 public class MenuServiceImpl implements MenuService {
 
+	@Autowired
+	MenuMapper menuMapper;
+
 	@Override
-	public MenuVO getCafe(MenuVO MenuVO) {
+	public MenuVO getMenu(MenuVO MenuVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<MenuVO> getCafeList(MenuVO MenuVO) {
+	public List<MenuVO> getMenuList(MenuVO MenuVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertCafe(MenuVO MenuVO) {
+	public void insertMenu(MenuVO MenuVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateCafe(MenuVO MenuVO) {
+	public void updateMenu(MenuVO MenuVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteCafe(MenuVO MenuVO) {
+	public void deleteMenu(MenuVO MenuVO) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -43,7 +51,8 @@ public class MenuServiceImpl implements MenuService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
 	
 	
 }

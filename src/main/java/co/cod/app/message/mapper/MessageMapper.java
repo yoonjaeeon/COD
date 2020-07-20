@@ -9,5 +9,5 @@ public interface MessageMapper {
 	public MessageVO getMessage(Integer MessageSeq);   //메세지 단건조회(클릭시)
 	public void insertMessage(MessageVO messageVO);   //메세지 보내기
 	public void updateMessage(Integer messageSeq);    //메세지 읽음 표시
-	public int getMessageCount(MessageVO messageVO);  //메세지 카운트
+	public int getMessageCount(MessageVO messageVO);  //메세지 카운트 
 }

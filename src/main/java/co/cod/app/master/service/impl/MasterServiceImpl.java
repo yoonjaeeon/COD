@@ -36,13 +36,13 @@ public class MasterServiceImpl implements MasterService{
 
 	@Override
 	public void updateMaeter(MasterVO masterVO) {
-		// TODO Auto-generated method stub
+		masterMapper.updateMaster(masterVO);
 		
 	}
 
 	@Override
 	public void deleteMaeter(MasterVO masterVO) {
-		// TODO Auto-generated method stub
+		masterMapper.deleteMaster(masterVO);
 		
 	}
 	

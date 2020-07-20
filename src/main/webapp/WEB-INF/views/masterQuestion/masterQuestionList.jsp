@@ -1,16 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
-<h2>문의글 리스트</h2>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<article>
+	<div>
+	<div class="card shadow mb-4">
+	<!-- Card Header - Accordion -->
+	<a href="#collapseCardExample" class="d-block card-header py-3"
+		data-toggle="collapse" role="button" aria-expanded="true"
+		aria-controls="collapseCardExample">
+		<h3 class="m-0 font-weight-bold ">* 문의사항 리스트 *</h3>
+		</a>
+<h2>keyword</h2>
 <input name="p" value="1" type="hidden">
-<input type="text" name="name" id="name" placeholder="제목 "
-	class="two_third first">
+<input type="text" name="name" id="name" placeholder="문구를 입력하세요 "
+	>
 <button class="btn one_third">검색</button>
 <br>
 <br>
 <br>
-<table border="1">
+<table class="table table-hover" >
 	<thead>
 		<tr>
 			<th>이름</th>
@@ -21,7 +29,7 @@
 			<th>삭제</th>
 		</tr>
 	</thead>
-	<tbody>
+	<%-- <tbody>
 		<c:forEach items="${list}" var="vo">
 			<tr>
 				<td>${vo.adminid}</td>
@@ -35,7 +43,8 @@
 				</c:if>
 			</tr>
 		</c:forEach>
-	</tbody>
+	</tbody> --%>
 </table>
 <br>
 <br>
+</article>

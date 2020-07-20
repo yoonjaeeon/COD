@@ -3,6 +3,8 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- dumy_mapper.xml -->
 
+
+
 <!-- MESSAGE -->
 <mapper namespace="co.cod.app.message.mapper.MessageMapper">
 	<select id="messageList" resultType="co.cod.app.message.MessageVO">

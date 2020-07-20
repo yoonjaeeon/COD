@@ -17,7 +17,7 @@
 	<select id="getMessage"
 		resultType="vofile.MessageVO"
 		parameterType="vofile.MessageVO">
-		SELECT MESSAGE_CONTENT FROM
+		SELECT MESSAGE_TITLE, MESSAGE_CONTENT, READ FROM
 		MESSAGE WHERE MESSAGE_SEQ =
 		#{messageSeq}
 	</select>
@@ -41,8 +41,8 @@
 	<update id="updateMessage" parameterType="int">  <!-- 메세지 읽음, 읽지않음 -->
 		UPDATE MESSAGE
 		SET
-		read=0
-		WHERE MESSAGE_SEQ=#{messageSeq} AND ADMIN_ID=${adminId}
+		READ=0
+		WHERE MESSAGE_SEQ=#{messageSeq}
 	</update>
 
 	<select id="getMessageCount" parameterType="vofile.MessageVO" resultType="int">

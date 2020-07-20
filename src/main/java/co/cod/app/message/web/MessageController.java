@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +22,7 @@ public class MessageController {
 	@Autowired
 	MessageService messageService;
 	
-	@RequestMapping("getMessageCount")
+	@RequestMapping("getMessageCount")  //메세지 카운트
 	@ResponseBody
 	public int getMessageCount(MessageVO messageVO) {
 		 messageVO.setAdminId("ha");
@@ -45,18 +44,14 @@ public class MessageController {
 		return "redirect:adminMessage";
 	}
 	
-	@RequestMapping("updateMessage")
-	public String updateMessage(MessageVO messageVO, HttpServletRequest request, Model model) {	
-		return "redirect:adminMessage";
-	}
+	@RequestMapping("getMessage") /* 새로하기 */
+	@ResponseBody
+	public MessageVO getMessage(MessageVO messageVO) {
+		//messageVO.setMessageSeq(2);
+		
+		return messageService.getMessage(messageVO);		
+	}	
 	
-	@RequestMapping("getMessage/{getMessageContent}") /* 새로하기 */
-	public String getMessage(@PathVariable Integer messageSeq, Model model, MessageVO messageVO) {
-		Integer seq = messageVO.getMessageSeq();
-		model.addAttribute("getMessageContent", messageService.getMessage(messageSeq));
-		messageService.updateMessage(messageSeq);
-		return "redirect:adminMessage";		
-	}
 	
 	/*
 	 * @RequestMapping("getMessage") //메세지 한건조회 public MessageVO getMessage{

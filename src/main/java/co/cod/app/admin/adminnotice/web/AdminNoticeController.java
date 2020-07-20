@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.cod.app.admin.adminnotice.AdminNoticeVO;
 import co.cod.app.admin.adminnotice.service.AdminNoticeService;
+import vofile.OrderlineVO;
 
 @Controller
 public class AdminNoticeController {
@@ -39,6 +40,12 @@ public class AdminNoticeController {
 	@RequestMapping("adminSeat")
 	public String adminSeat() {
 		return "ad/adminManage/adminSeat";
+	}
+	
+	@RequestMapping("cafeOrderComplete")
+	public String cafeOrderComplete(Model model) {
+		
+		return "ad/cafe/cafeOrderComplete";
 	}
 	
 }

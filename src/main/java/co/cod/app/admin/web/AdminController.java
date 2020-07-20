@@ -33,7 +33,6 @@ import vofile.WorkerVO;
 	//e등로폼 
 	@RequestMapping("insertWorker")
 	public String insertWorker(WorkerVO WorkerVO) {			
-		return "ad/adminManage/insertWorker";
-	
+		return "ad/adminManage/insertWorker";	
 	}	
 }

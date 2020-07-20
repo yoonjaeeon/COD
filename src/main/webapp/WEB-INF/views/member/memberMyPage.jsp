@@ -35,7 +35,7 @@
 						<div class="single_feature_icon">
 							<i class="fab fa-fort-awesome"></i>
 						</div>
-						<h4>결제내역</h4>
+						<h4>정보수정</h4>
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -43,7 +43,7 @@
 						<div class="single_feature_icon">
 							<i class="fab fa-fort-awesome"></i>
 						</div>
-						<h4>결제내역</h4>
+						<h4>회원탈퇴</h4>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,6 @@
 													<td>12,000</td>
 													<td>2020/07/20</td>
 													<!-- onclick 메소드 필요 함 -->
-
 												</tr>
 											</a>
 										</c:forEach>
@@ -102,7 +101,7 @@
 		</article>
 		<article>
 			<header>
-				<h2>#분위기좋은 #동촌유원지</h2>
+				<h2>#여가단 뭐넣으면 좋을까??</h2>
 			</header>
 			<div>
 				<div class="card shadow mb-4">
@@ -120,7 +119,7 @@
 									<thead>
 										<tr>
 											<th>카페명</th>
-											<th>카페주</th>
+											<th>카페주소</th>
 											<th>등록날짜</th>
 										</tr>
 									</thead>
@@ -130,8 +129,8 @@
 											<a href="#">
 												<tr>
 													<td>예담카페</td>
-													<td>12,000</td>
-													<td>2020/07/20</td>
+													<td>대구 중구 국채보상 13-4</td>
+													<td>2020/07/19</td>
 													<!-- onclick 메소드 필요 함 -->
 
 												</tr>
@@ -148,15 +147,93 @@
 		</article>
 		<article>
 			<header>
-				<h2>#분위기좋은 #동촌유원지</h2>
+				<h2>#내가 자주가는  #카페목록</h2>
 			</header>
-			<div>3page</div>
+			<div>
+				<div class="card shadow mb-4">
+					<!-- Card Header - Accordion -->
+					<a href="#collapseCardExample" class="d-block card-header py-3"
+						data-toggle="collapse" role="button" aria-expanded="true"
+						aria-controls="collapseCardExample">
+						<h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
+					</a>
+					<!-- Card Content - Collapse -->
+					<div class="collapse show" id="collapseCardExample">
+						<div class="card-body">
+							<div class="order">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>카페명</th>
+											<th>결제금액</th>
+											<th>결제날짜</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach begin="0" end="3">
+											<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
+											<a href="#">
+												<tr>
+													<td>예담카페</td>
+													<td>12,000</td>
+													<td>2020/07/20</td>
+													<!-- onclick 메소드 필요 함 -->
+												</tr>
+											</a>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</article>
 		<article>
 			<header>
-				<h2>#분위기좋은 #동촌유원지</h2>
+				<h2>#분위기좋은 #카페 추천</h2>
 			</header>
-			<div>4page</div>
+			<div>
+				<div class="card shadow mb-4">
+					<!-- Card Header - Accordion -->
+					<a href="#collapseCardExample" class="d-block card-header py-3"
+						data-toggle="collapse" role="button" aria-expanded="true"
+						aria-controls="collapseCardExample">
+						<h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
+					</a>
+					<!-- Card Content - Collapse -->
+					<div class="collapse show" id="collapseCardExample">
+						<div class="card-body">
+							<div class="order">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>카페명</th>
+											<th>결제금액</th>
+											<th>결제날짜</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach begin="0" end="3">
+											<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
+											<a href="#">
+												<tr>
+													<td>예담카페</td>
+													<td>12,000</td>
+													<td>2020/07/20</td>
+													<!-- onclick 메소드 필요 함 -->
+												</tr>
+											</a>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</article>
 	</section>
 </div>

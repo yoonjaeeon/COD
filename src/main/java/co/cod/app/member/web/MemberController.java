@@ -1,9 +1,12 @@
 package co.cod.app.member.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
@@ -57,5 +60,37 @@ public class MemberController {
 		   model.addAttribute("getBookmarks", memberService.getBookmarks(bookmarksVO));
 		   return "member/bookmark";
 	   }
+	   
+	   @RequestMapping("memberLogin")
+	   public String memberLogin(
+			   Model model, MemberVO memberVO, HttpSession session) {
+		   
+		   MemberVO result = memberService.memberLogin(memberVO);
+		   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {			   
+			   return "redirect:home";
+		   }else if(result.getPw().equals(null)) {
+		   model.addAttribute("msg", "잘못된 PW입니다.");
+		   	return "memberLoginForm";
+		   }else if(result.getEmail().equals(null)) {
+			   return "memberLoginForm";
+		   }
+		   
+		   return null;
+		   
+		/*
+		 * if() { model.addAttribute("msg", email +"님 환영합니다");
+		 * session.setAttribute("sessionEmail", email); return "redirect:home"; }else
+		 * if( ) { model.addAttribute("msg", "잘못된 ID입니다."); return "memberLoginForm";
+		 * }else if(memberVO.getPw() != pw) { model.addAttribute("msg", "잘못된 PW입니다.");
+		 * return "memberLoginForm"; } return "redirect:home";
+		 */
+	   }
+	   
+	   @RequestMapping("memberLoginForm") 
+		  public String aLogin() { 
+			  return  "e/member/Login"; 
+			  }
+	 
+	 
 
 }

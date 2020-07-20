@@ -190,6 +190,7 @@ $(function(){
       </div>
      <div class="form-group">
       <label>썸네일:</label> 
+      <input type="file" name="uploadfile"/>
      </div>       
       <div class="form-group">
          <label>해시테그:</label>

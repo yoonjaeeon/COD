@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.cod.app.MasterService;
 import co.cod.app.master.MasterVO;
 import co.cod.app.master.mapper.MasterMapper;
-import co.cod.app.master.service.MasterService;
 
 
 @Service

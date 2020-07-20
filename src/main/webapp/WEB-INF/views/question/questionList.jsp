@@ -21,6 +21,7 @@
 <table class="table table-hover" >
 	<thead>
 		<tr>
+			<th>no.</th>
 			<th>이름</th>
 			<th>아이디 </th>
 			<th>제목 </th>
@@ -30,7 +31,7 @@
 		</tr>
 	</thead>
 	<%-- <tbody>
-		<c:forEach items="${list}" var="vo">
+		<c:forEach items="${list}" var="questionVO">
 			<tr>
 				<td>${vo.adminid}</td>
 				<td>${vo.cafe_state }</td>
@@ -43,7 +44,7 @@
 				</c:if>
 			</tr>
 		</c:forEach>
-	</tbody> --%>
+	</tbody>  --%>
 </table>
 <br>
 <br>

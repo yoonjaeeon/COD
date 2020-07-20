@@ -1,4 +1,4 @@
-package co.cod.app.master.service;
+package co.cod.app;
 
 import java.util.List;
 

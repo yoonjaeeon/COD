@@ -54,7 +54,7 @@
 	</div>
 </div>
 
-<!-- <i class="far fa-envelope"></i> <i class='far fa-envelope-open'></i> -->
+
 <!-- 아이콘/지도  -->
 <div class="row" align="center" class="margin2">
 	<div class="col-lg-6">

@@ -40,6 +40,9 @@
 </script>
 
 	<button onclick="send()" data-toggle="modal" data-target="#modalMessage">메세지 작성</button>
+	
+	
+	
 	<table border="1">
 		<tr>
 			<th>번호</th>
@@ -52,7 +55,15 @@
 		<tr  data-toggle="modal" data-target="#contentModal">
 			<td>${list.messageSeq }</td>
 			<td>${list.messageTitle }</td>
-			<td>${list.read }</td>
+			<td align="center">
+			<c:if test="${list.read == 1 }">
+			<i class="far fa-envelope"></i> 
+			</c:if>
+			<c:if test="${list.read == 0 }">
+			<i class='far fa-envelope-open'></i>
+			</c:if>
+			
+			</td>
 		</tr>
 		 </form> 
 		 </c:forEach>

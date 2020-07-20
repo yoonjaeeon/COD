@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.cod.app.message.MessageVO;
 import co.cod.app.message.mapper.MessageMapper;
 import co.cod.app.message.service.MessageService;
+import vofile.MessageVO;
 
 @Service
 public class MessageServiceImpl implements MessageService{
@@ -37,6 +37,13 @@ public class MessageServiceImpl implements MessageService{
 		messageMapper.updateMessage(messageSeq);
 		
 	}
+	@Override  //메세지 카운트
+	public int getMessageCount(MessageVO messageVO) {
+		return messageMapper.getMessageCount(messageVO);
+		
+	}
+	
+	
 	
 
 }

@@ -5,43 +5,6 @@
 
 <!-- MESSAGE -->
 <mapper namespace="co.cod.app.message.mapper.MessageMapper">
-	<select id="messageList" resultType="co.cod.app.message.MessageVO">
-		SELECT MESSAGE_SEQ,
-		MESSAGE_TITLE, 
-		MESSAGE_CONTENT, 
-		ADMIN_ID, 
-		SEND_RECEIVE,READ 
-		FROM MESSAGE 
-		WHERE ADMIN_ID = #{adminId}
-		ORDER BY MESSAGE_SEQ DESC
-	</select>
-
-	<select id="getMessage"
-		resultType="co.cod.app.message.MessageVO" parameterType="co.cod.app.message.MessageVO">
-		SELECT MESSAGE_CONTENT FROM
-		MESSAGE WHERE MESSAGE_SEQ = #{messageSeq}
-	</select>
-
-	<insert id="insertMessage" parameterType="co.cod.app.message.MessageVO">
-		INSERT INTO MESSAGE(
-		MESSAGE_SEQ, 
-		MESSAGE_TITLE,
-		MESSAGE_CONTENT, 
-		ADMIN_ID, 
-		SEND_RECEIVE)
-		VALUES  ((select nvl(max(message_seq),0)+1 from message), 
-		#{messageTitle},
-		#{messageContent}, 
-		#{adminId}, 
-		#{sendReceive}
-		)
-	</insert>
 	
-	<update id="updateMessage" parameterType="int" >  <!-- 메세지 읽음, 읽지않음 -->
-	UPDATE MESSAGE
-	SET
-	read=0
-	WHERE MESSAGE_SEQ=#{messageSeq} AND ADMIN_ID=${adminId}
-	</update>
 
 </mapper>

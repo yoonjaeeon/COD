@@ -30,7 +30,7 @@
 
 </head>
 <tiles:insertAttribute name="a_header" />
-<div style="padding :4em">
+<div>
 <tiles:insertAttribute name="a_content" />
 </div>
 

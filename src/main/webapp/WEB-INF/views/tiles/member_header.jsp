@@ -6,8 +6,8 @@
    </h1>
    <nav class="links">
       <ul>
-         <li><a href="ThemaList">테마별</a></li>
-         <li><a href="AreaList">지역별</a></li>
+         <li><a href="themeList">테마별</a></li>
+         <li><a href="areaList">지역별</a></li>
          <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
@@ -37,11 +37,11 @@
    <!-- Links -->
    <section>
       <ul class="links">
-         <li><a href="ThemaList">
+         <li><a href="themeList">
                <h3>테마별</h3>
                <p>원하는 테마별로 카페를 검색해 보세요</p>
          </a></li>
-         <li><a href="AreaList">
+         <li><a href="areaList">
                <h3>지역별</h3>
                <p>원하는 위치의 카페를 검색해 보세요 </p>
          </a></li>

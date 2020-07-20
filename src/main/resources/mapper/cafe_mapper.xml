@@ -49,4 +49,13 @@
   	ADMIN_ID =#{adminId}
   
   </delete>
+	<select id="getThemaList" resultType="co.cod.app.cafe.CafeVO" parameterType="String">
+		SELECT *
+		FROM CAFE
+		<where>
+			<if test="#{param1} != null">
+				WHERE CAFE_THEME IN (#{param1},#{param1},#{param1})
+			</if>
+		</where>
+	</select>
 </mapper>

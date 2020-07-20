@@ -34,3 +34,36 @@ ul.navvar{
 .card-header{
 	align:center;
 }
+.margin2{
+	margin:2em;
+}
+.margin3{
+	margin: 3em;
+}
+.container{
+	padding: 3em;	
+}
+
+
+@media all and (max-width:1100px) {
+	.contnet{ width:100% !important}
+}
+
+@media all and (max-width:950px) {
+	.contnet{}
+}
+
+@media all and (max-width:650px) {
+	.contnet{height:65%; width:96% !important}
+}
+
+@media all and (max-width:550px) {
+}
+
+@media all and (max-width:400px) {
+	.contnet{height:50%; width:70% !important}
+}
+
+@media all and (max-width:360px) {
+	.contnet{height:50%; width:60% !important}
+}

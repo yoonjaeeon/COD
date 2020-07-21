@@ -46,16 +46,6 @@ public class HomeController {
 	}
 	
 	
-	// admin Login 
-	@RequestMapping("adminLogin")
-	public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
-	AdminVO result = adminService.getAdmin(adminVO);		
-	if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
-		}
-	return "admin" ;
-	}
-
-	
 	@RequestMapping("themeList")
 	public String ThemaList() {
 			return "memberList/memberThemeList";

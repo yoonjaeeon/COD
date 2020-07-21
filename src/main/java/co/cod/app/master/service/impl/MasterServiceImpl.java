@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.cod.app.MasterService;
 import co.cod.app.master.MasterVO;
 import co.cod.app.master.mapper.MasterMapper;
+import co.cod.app.master.service.MasterService;
 
 
 @Service
@@ -15,36 +15,31 @@ public class MasterServiceImpl implements MasterService{
 
 	
 	@Autowired MasterMapper masterMapper;
-	
+
 	@Override
 	public MasterVO getMaster(MasterVO masterVO) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<MasterVO> getMasterList() {
-		// TODO Auto-generated method stub
-		return masterMapper.getMasterList();
+		return null;
 	}
 
 	@Override
-	public void insertMaeter(MasterVO masterVO) {
+	public void insertMaster(MasterVO masterVO) {
 		masterMapper.insertMaster(masterVO);
 		
 	}
 
 	@Override
-	public void updateMaeter(MasterVO masterVO) {
+	public void updateMaster(MasterVO masterVO) {
 		masterMapper.updateMaster(masterVO);
-		
 	}
 
 	@Override
-	public void deleteMaeter(MasterVO masterVO) {
+	public void deleteMaster(MasterVO masterVO) {
 		masterMapper.deleteMaster(masterVO);
-		
 	}
-	
 	
 }

@@ -85,5 +85,6 @@ public class HomeController {
 	@RequestMapping("cafe")
 	public String cafe() {
 		return "cafe/cafeMain";
-}
+
+	}
 }

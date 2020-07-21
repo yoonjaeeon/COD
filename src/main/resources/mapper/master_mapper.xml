@@ -9,4 +9,7 @@
 <mapper namespace="co.cod.app.message.mapper.MessageMapper">
 	
 
+
+
+<!--  마스터가 Admin 이 보낸 카페 등록 폼에서 승인을 누를시 cafe_state 가 0에서 2로 바꿈  -->
 </mapper>

@@ -38,16 +38,37 @@ import vofile.WorkerVO;
 			 return "ad/admin/adminLogin";
 	}
 	
+	
+	//로그인시 카페 스테이트가 0일 때 ( 카페 등록 인서트 폼 이동)
+		//	카페 스테이트가 1일때 ( 처리중 화면 )
+		// 카페 스테이트가 2 일때 (admin main 화면 )
+	//또한 
+	// 로그인시 admin_state가  0일때 일반 admin 
+	//  	로그인 admin_state 가 1일때 master 화면으로 이동 
+	
+	
 	//로그인 처리
 	@RequestMapping("adminLogin")
 	public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
 			AdminVO result = adminService.adminLogin(adminVO);		
+			String rt = "";
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
-				return "ad/admin/adminMain" ;
-			}
-		 return "ad/admin/adminLogin";
+				rt = "ad/admin/adminMain" ;				
+				if (result.getCafeState()== 0  ){	
+					rt = "ad/cafe/insertCafe" ;
+				}else if (result.getCafeState()== 1) {
+					rt = "ad/admin/loadding";					
+				}else if(result.getCafeState()== 2){
+					rt = "ad/admin/admin";	
+				}else if(result.getAdminState()==0) {
+					rt = "ad/admin/admin" ;
+				}else if(result.getAdminState()==1) {
+					rt =" ad/master/masterMain";
+				}				
+				
+				}
+			return rt;
 	}
-	
 	//업테이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {

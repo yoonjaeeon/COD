@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.cod.app.review.ReviewVO;
 import co.cod.app.review.service.ReviewService;
+import vofile.WorkerVO;
 
 
 
@@ -52,11 +53,7 @@ public class ReviewController {
 		return "memberList/memberReviewList";
 	}
 
-	// review관리
-	@RequestMapping("reviewClient")
-	public String reviewClient() {
-		return "review/reviewClient";
-	}
+	// review관리	
 
 	// ajax : 목록
 	@RequestMapping("ajaxReviewList")
@@ -77,4 +74,11 @@ public class ReviewController {
 		return "memberList/memberReviewList";
 	}
 	// 삭제처리
+	@RequestMapping("deleteReview")
+	public String deletereview( ReviewVO reviewVO, Model model) {
+		
+		reviewService.deleteReview(reviewVO);
+		// 서비스 호출
+		return "memberList/memberReviewList";
+	}
 }

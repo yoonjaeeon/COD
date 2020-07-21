@@ -37,11 +37,11 @@
 <body>
  
 <h2>내가 쓴 리뷰</h2>
-<div id="outter">
+<div id="outter"> 
 	<table border="1">
 		<tr>
 			<td>No.</td>
-			<td width="50%">제목</td>
+			<td>카페 이름</td>
 			<td>작성자</td>
 			<td>등록일</td>
 			<td>평 점</td>		
@@ -49,12 +49,12 @@
 		<c:forEach items="${reviewList }" var="review">
 			<tr>
 				<td>${review.reviewSeq }</td>
-				<td>${review.reviewContent }</td>
+				<td>${review.cafeName }</td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
 				<td>${review.stars }</td>
-				<td><button type="button" onclick="idDelete('${vo.id}')">수정</button></td>
+				<td><button onclick="location='updateFormReview'">수정</button></td>
 				<td><button type="button" onclick="idDelete('${vo.id}')">삭제</button></td>
 			</tr>
 		</c:forEach>

@@ -28,5 +28,13 @@ public class ReviewDAO {
 	   mybatis.insert("co.cod.app.member.review.mapper.ReviewDAO.insertReview", reviewVO);
 	   
    }
+   public void updateReview(ReviewVO reviewVO) {
+	   mybatis.update("co.cod.app.member.review.mapper.ReviewDAO.updateReview", reviewVO);
+	   
+   }
+   public void deleteReview(ReviewVO reviewVO) {
+	   mybatis.delete("co.cod.app.member.review.mapper.ReviewDAO.deleteReview", reviewVO);
+	   
+   }
      
 }

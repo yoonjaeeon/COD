@@ -151,7 +151,7 @@
             </div>
 
           <div id="listpage">
-	<hr>
+
 	<section class="posts">
 		<article>
 			<div>
@@ -241,8 +241,9 @@
                   </div>
                 </div>
               </div>
-
-             
+		<section>
+		<article>
+             <aside>
               <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -256,7 +257,9 @@
                   <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw →</a>
                 </div>
               </div>
-
+			</aside> 
+       		</article>
+     </section>
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -272,3 +275,4 @@
           </div>
 
         </div>  
+      

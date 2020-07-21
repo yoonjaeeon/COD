@@ -35,7 +35,7 @@ import vofile.WorkerVO;
 	// admin 로그인  
 	@RequestMapping("adminLoginForm")
 	public String adminLoginForm() {
-			 return "ad/admin/adminLogin";
+			 return "admin/adminLogin";
 	}
 	
 	//로그인 처리
@@ -45,7 +45,7 @@ import vofile.WorkerVO;
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
 				return "ad/admin/adminMain" ;
 			}
-		 return "ad/admin/adminLogin";
+		 return "admin/adminLogin";
 	}
 	
 	//업테이트

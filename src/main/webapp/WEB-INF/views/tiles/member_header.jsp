@@ -12,6 +12,7 @@
          <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
          <li><a href="MemberMyPage">MyPage</a></li>
+         <li><a href="adminLoginForm">A Login</a></li>
       </ul>
    </nav>
    <nav class="main">

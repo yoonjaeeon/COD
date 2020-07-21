@@ -1,4 +1,5 @@
 package co.cod.app;
+
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -45,29 +46,14 @@ public class HomeController {
 		return "e/admin/adminLogin";
 	}
 
-	// admin Login
-	/*
-	 * @RequestMapping("adminLogin") public String adminLogin(Model model, AdminVO
-	 * adminVO, HttpSession session) { AdminVO result =
-	 * adminService.getAdmin(adminVO); if
-	 * (result.getAdminId().equals(adminVO.getAdminId()) &&
-	 * result.getPw().equals(adminVO.getPw())) { } return "ad/admin/adminMain"; }
-	 */
-
-	/* 카페 테마 리스트 보여주게하기. */
-	/*
-	 * @RequestMapping("themeList") public String ThemaList(CafeVO cafeVO, Model
-	 * model) { List list = cafeService.getThemeList(cafeVO);
-	 * model.addAttribute("getTheme", list);
-	 * 
-	 * return "memberList/memberThemeList"; }
-	 */
-
 	@RequestMapping("areaList")
 	public String AreaList() {
 		return "memberList/memberAreaList";
 	}
-
+	@RequestMapping("themeList")
+	public String ThemaList() {
+		return "memberList/memberThemeList";
+	}
 	@RequestMapping("themeListTest")
 	public String ThemaListTest() {
 		return "cafe/cafeThemeList";

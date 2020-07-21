@@ -35,7 +35,7 @@ import vofile.WorkerVO;
 	// admin 로그인  
 	@RequestMapping("adminLoginForm")
 	public String adminLoginForm() {
-			 return "ad/admin/adminLogin";
+			 return "admin/adminLogin";
 	}
 	
 	
@@ -53,6 +53,7 @@ import vofile.WorkerVO;
 			AdminVO result = adminService.adminLogin(adminVO);		
 			String rt = "";
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
+
 				rt = "ad/admin/adminMain" ;				
 				if (result.getCafeState()== 0  ){	
 					rt = "ad/cafe/insertCafe" ;
@@ -68,7 +69,11 @@ import vofile.WorkerVO;
 				
 				}
 			return rt;
-	}
+
+		
+			}
+		
+
 	//업테이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {

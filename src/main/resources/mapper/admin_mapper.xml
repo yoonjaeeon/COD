@@ -5,26 +5,30 @@
 
 <!-- dumy_mapper.xml -->
 
-<mapper namespace="co.cod.app.admin.AdminMapper">
-	<insert id="adminInsert" parameterType="co.cod.app.admin.AdminVO" >
-		INSERT INTO ADMIN(
+<mapper namespace="co.cod.app.admin.mapper.AdminMapper">
+	<insert id="insertAdmin" parameterType="co.cod.app.admin.AdminVO" >
+		INSERT INTO ADMIN (
 		ADMIN_ID,
 		PW,
-		PW2,
+		PASS2,
 		ADMIN_PHONE,
-		CAFE_STATE,
-		ADMIN_STATE
-		VALUES ( #{ADMIN_ID}, 
-		#{PW},
-		#{PW2}, 
-		#{ADMIN_PHONE},
-		#{CAFE_STATE},
-		#{ADMIN_STATE}
+		CAFE_STATE, 
+		ADMIN_STATE)
+		VALUES ( 
+		#{adminId}, 
+		#{pw},
+		#{pass2}, 
+		#{adminPhone},	
+		0,	
+		0
 		)
 	</insert>
-	<select id="getAdminList" resultType="map">
+	
+	<select id="adminLogin" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO"> 
+	SELECT
+	ADMIN_ID, 	
+	PW
+	FROM ADMIN
+	WHERE ADMIN_ID = #{adminId}	
 	</select>	
-	
-	
 </mapper>
-

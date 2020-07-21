@@ -15,7 +15,7 @@ public class AdminVO {
 	@JsonProperty(value = "id")
 	String adminId;
 	String pw;
-	String pw2;
+	String pass2;
 	Integer cafeState;
 	String adminPhone;
 	Integer adminState;

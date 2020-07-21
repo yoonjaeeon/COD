@@ -51,6 +51,10 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public AdminVO adminLogin(AdminVO adminVO) {		
+		return adminMapper.adminLogin(adminVO);
+	}
 
 }
 

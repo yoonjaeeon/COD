@@ -2,48 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h1>카페 좌석 관리</h1>
-
-<div id="listpage">
-	<section class="posts">
-			<article class="mini-post">
-				<a href="#" class="image"><img src="resources/images/main2.jpg" style="max-width: 50%; height: auto;"
-					alt=""></a>
-						<header class="row">
-					<div class="col-sm-10">
-						<h3>
-							<a href="single.html">좌석 번호</a>
-						</h3>
-						<h4>1~2인 사용 가능</h4>
-						<h5>사용중</h5>
-					</div>
-				</header>
-			</article>
-	</section>
+<style>
+	div { text-align: center; }
+</style>
+<div class="container">
+	<div style="float:right;">
+       <button onclick="location='insertSeatForm'">좌석 등록</button>
+    </div>
+	<div id="listpage">
+		<section class="posts">
+				<article >
+						<div class="row"> 
+						<c:forEach begin="0" end="3">
+						<div class="col-md-6">
+						<a href="#" class="image fit"><img src="resources/images/main2.jpg"	alt="" style="width: 60%"></a>
+							<h3>
+								<a href="updateSeatForm">좌석 번호</a>
+							</h3>
+							<h4>1~2인이상</h4>
+							<h5>사용중</h5>
+						</div>				
+						</c:forEach>
+						</div>
+				</article>
+		</section>
+	</div>
 </div>
-<script>
-	$('.icon_slick').slick({
-		slidesToShow : 9,
-		slidesToScroll : 1,
-		autoplay : true,
-		autoplaySpeed : 2000,
-		responsive : [ {
-			breakpoint : 800,
-			settings : {
-				slidesToShow : 7,
-				slidesToScroll : 1
-			}
-		}, {
-			breakpoint : 600,
-			settings : {
-				slidesToShow : 5,
-				slidesToScroll : 1
-			}
-		}, {
-			breakpoint : 480,
-			settings : {
-				slidesToShow : 4,
-				slidesToScroll : 1
-			}
-		} ]
-	});
-</script>

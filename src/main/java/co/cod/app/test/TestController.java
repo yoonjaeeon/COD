@@ -3,10 +3,21 @@ package co.cod.app.test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import vofile.WorkerVO;
+
 @Controller
 public class TestController {
-
 	
+	
+	@RequestMapping("adminReviewList")
+	public String adminReviewList() {			
+		return "ad/adminCommunity/adminReviewList";
+	}
+
+	@RequestMapping("advertisementForm")
+	public String advertisementForm() {
+		return "ma/master/advertisement";
+	}
 	
 	@RequestMapping("insertMenuForm")
 	public String insertMenuForm () {

@@ -30,6 +30,7 @@
 </script>
 <h3>리뷰 작성</h3>
 <form name="frm" action="insertReview">
+카페 이름 : <input type="text" name="cafeName" id="cafeName"/><br/>
 리뷰 내용:<br/>
 <textarea cols="30" rows="10"
           name="reviewContent" id="reviewContent"></textarea><br/>

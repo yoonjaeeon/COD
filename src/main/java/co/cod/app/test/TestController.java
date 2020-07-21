@@ -32,4 +32,10 @@ public class TestController {
 			return "ad/member/memberMyPage";
 		}
 	
+	@RequestMapping("cafeOrder")
+	public String cafeOrder() {
+		return "cafe/cafeOrder";
+	}
+	
+	
 }

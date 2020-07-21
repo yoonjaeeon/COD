@@ -56,4 +56,8 @@ public class HomeController {
 	public String adminWorker() {
 			return "ad/adminManage/adminWorker";
 	}
+	@RequestMapping("cafe")
+	public String cafe() {
+		return "cafe/cafeMain";
+}
 }

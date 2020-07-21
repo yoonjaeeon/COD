@@ -32,4 +32,3 @@
 	WHERE ADMIN_ID = #{adminId}	
 	</select>	
 </mapper>
-

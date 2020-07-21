@@ -1,5 +1,6 @@
 package co.cod.app;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.cod.app.cafe.CafeVO;
+import co.cod.app.cafe.service.CafeService;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 
@@ -20,6 +23,8 @@ public class HomeController {
 	@Autowired AdminService adminService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	CafeService cafeService;
 
 	
 	@RequestMapping("home")
@@ -46,10 +51,25 @@ public class HomeController {
 	}
 	
 	
+//	// admin Login 
+//	@RequestMapping("adminLogin")
+//	public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
+//	AdminVO result = adminService.getAdmin(adminVO);		
+//	if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
+//		}
+//	return "admin";
+//	
+//	/* 카페 테마 리스트 보여주게하기. */
+
 	@RequestMapping("themeList")
-	public String ThemaList() {
+	public String ThemaList(CafeVO cafeVO, Model model) {
+		List list = cafeService.getThemeList(cafeVO);
+		model.addAttribute("getTheme", list);
+		
 			return "memberList/memberThemeList";
 	}
+	
+	
 	@RequestMapping("areaList")
 	public String AreaList() {
 			return "memberList/memberAreaList";

@@ -24,7 +24,11 @@
 		)
 	</insert>
 	
-	<select id="getAdmin" resultType="map">			
+	<select id="adminLogin" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO"> 
+	SELECT
+	ADMIN_ID, 	
+	PW
+	FROM ADMIN
+	WHERE ADMIN_ID = #{adminId}	
 	</select>	
 </mapper>
-

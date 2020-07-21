@@ -1,14 +1,16 @@
 package co.cod.app.admin.web;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import co.cod.app.member.MemberVO;
 import vofile.WorkerVO;
 
 @Controller class AdminController {
@@ -28,6 +30,22 @@ import vofile.WorkerVO;
 	public String insertAdmin(AdminVO adminVO, Model model) {
 	adminService.insertAdmin(adminVO);
 	return "redirect:admin";
+	}
+	
+	// admin 로그인  
+	@RequestMapping("adminLoginForm")
+	public String adminLoginForm() {
+			 return "ad/admin/adminLogin";
+	}
+	
+	//로그인 처리
+	@RequestMapping("adminLogin")
+	public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
+			AdminVO result = adminService.adminLogin(adminVO);		
+			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
+				return "ad/admin/adminMain" ;
+			}
+		 return "ad/admin/adminLogin";
 	}
 	
 	//업테이트

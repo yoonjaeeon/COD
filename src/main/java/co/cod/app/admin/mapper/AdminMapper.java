@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import co.cod.app.admin.AdminVO;
-
+import co.cod.app.member.MemberVO;
 
 public interface AdminMapper {
-	
-	
+		
 	public AdminVO getAdmin(AdminVO adminVO);
 	public List<AdminVO> getAdminList(AdminVO empVO);
 	public void insertAdmin(AdminVO adminVO);
@@ -17,5 +16,6 @@ public interface AdminMapper {
 	public String getName(Integer adminid);
 	public List<Map<String, Object>> getAdminMap();
 	public List<Map<String, Object>> getDeptAdminCnt();
+	public AdminVO adminLogin(AdminVO adminVO);
 }
 

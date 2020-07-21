@@ -1,18 +1,24 @@
 package co.cod.app;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import co.cod.app.cafe.CafeVO;
+import co.cod.app.cafe.service.CafeService;
 
 @Controller
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	CafeService cafeService;
 
 	@RequestMapping("home")
 	public String home(Locale locale, Model model) {
@@ -40,10 +46,17 @@ public class HomeController {
 	public String aLogin() {
 			return "e/admin/Login";
 	}
+	
+	/* 카페 테마 리스트 보여주게하기. */
 	@RequestMapping("themeList")
-	public String ThemaList() {
+	public String ThemaList(CafeVO cafeVO, Model model) {
+		List list = cafeService.getThemeList(cafeVO);
+		model.addAttribute("getTheme", list);
+		
 			return "memberList/memberThemeList";
 	}
+	
+	
 	@RequestMapping("areaList")
 	public String AreaList() {
 			return "memberList/memberAreaList";

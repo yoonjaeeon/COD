@@ -14,12 +14,12 @@
 		ADMIN_PHONE,
 		CAFE_STATE,
 		ADMIN_STATE
-		VALUES ( #{ADMIN_ID}, 
-		#{PW},
-		#{PW2}, 
-		#{ADMIN_PHONE},
-		#{CAFE_STATE},
-		#{ADMIN_STATE}
+		VALUES ( #{adminId}, 
+		#{pw},
+		#{pw2}, 
+		#{cafeState},
+		#{adminPhone},
+		#{adminState}
 		)
 	</insert>
 	<select id="getAdminList" resultType="map">

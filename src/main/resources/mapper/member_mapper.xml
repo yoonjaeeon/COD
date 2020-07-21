@@ -33,7 +33,7 @@
 	SELECT
 	EMAIL, PW
 	FROM MEMBER
-	WHERE EMAIL = ${email}
+	WHERE EMAIL = #{email}
 	</select>
 	
 </mapper>

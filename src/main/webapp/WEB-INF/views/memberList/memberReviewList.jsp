@@ -49,11 +49,12 @@
 		<c:forEach items="${reviewList }" var="review">
 			<tr>
 				<td>${review.reviewSeq }</td>
-				<td><a href="updateFormReview?email=${review.email}">${review.cafeName }</a></td>
+				<td>${review.cafeName }</td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
 				<td>${review.stars }</td>
+				<td><button onclick="location='updateFormReview'">수정</button></td>
 				<td><button type="button" onclick="idDelete('${vo.id}')">삭제</button></td>
 			</tr>
 		</c:forEach>

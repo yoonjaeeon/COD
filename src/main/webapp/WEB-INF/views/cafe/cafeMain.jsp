@@ -140,47 +140,10 @@
 					</article>
 				</section>
 			</div>
-			<!-- end detail -->
-			
-			<!-- review -->
-			<div>
-				<article class="mini-post">
-						<header>
-							<h3>Review</h3>
-							<span class="author"> <button class="btn_toggle">more</button></span>
-						</header>
-				</article>
-				<div class="toggleView">
-				   <div class="padding2 row" align="center" >
-					      <c:forEach begin="0" end="4">
-					         <div class="col-lg-6 col-sm-12">
-					         <div class="container row">
-					            <div class="col-6">
-					               <a href="#" class="image fit">
-					               <img src="resources/images/main1.jpg" class="image"></a>
-					            </div>
-					            <div class="col-4">
-					               <h6 class="published">분위기 넘넘 좋고 짱짱 맛있어요 최고에용! 사장님도 친절 하시고 다음에 또 가고 싶ㅇㅓ요</h6>
-					            </div>
-					            <div class="col-2">
-									<b>4.3</b>
-					               	<h6 class="published">2020.07.21</h6>
-					            </div>
-					         </div> 
-					      </div>
-					      </c:forEach>
-					   </div>
-					</div> 
-	
-				</div>
-			</div>
-
+	</article>
+</div>
 
 <script type="text/javascript">
-	$(".btn_toggle").click(function(){
-	    $(".toggleView").collapse('toggle');
-	  });
-
 	$("div.main_slick").slick({
 		infinite : true,
 		speed : 400,

@@ -14,11 +14,6 @@ import vofile.MessageVO;
 
 @Controller
 public class MessageController {
-
-	
-	 
-	 
-	
 	@Autowired
 	MessageService messageService;
 	

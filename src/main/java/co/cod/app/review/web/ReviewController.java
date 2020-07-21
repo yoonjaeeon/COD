@@ -46,7 +46,7 @@ public class ReviewController {
 		return "main/home";
 	}
 
-	// 내가 쓴 리뷰 리스트
+	// 목록조회
 	@RequestMapping("memberReviewList")
 	public String reviewList(Model model, ReviewVO reviewVO) {
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));

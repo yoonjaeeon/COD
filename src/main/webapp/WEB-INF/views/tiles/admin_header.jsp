@@ -60,10 +60,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">관리</h6>
             <a class="collapse-item" href="adminMenuForm">메뉴관리</a>
-            <a class="collapse-item" href="adminSeat">좌석관리</a>
+            <a class="collapse-item" href="utilities-border.html">좌석관리</a>
             <a class="collapse-item" href="adminInventory">재고관리</a>
             <a class="collapse-item" href="adminWorker">알바생관리</a>
-            <a class="collapse-item" href="adminReviewList">리뷰조회</a>
           </div>
         </div>
       </li>
@@ -84,7 +83,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="adminLoginForm">Login</a>
+            <a class="collapse-item" href="login.html">Login</a>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>

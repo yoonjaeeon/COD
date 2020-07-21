@@ -18,8 +18,6 @@ public class CafeVO {
 	String cafeHashtag;
 	String cafeTheme;
 	String cafeThumbnail;
-	String bookmarks;
-	double stars;
 	Integer wifi;
 	Integer nokid;
 	Integer parking;
@@ -29,6 +27,8 @@ public class CafeVO {
 	Integer lend;
 	Integer bigSeat;
 	Integer phtotGroup;
+	String bookmarks;
+	double stars; //별점
 	MultipartFile [] uploadFile;
 	String profile;
 }

@@ -12,3 +12,4 @@ public interface MasterService {
 	public void updateMaster( MasterVO masterVO);
 	public void deleteMaster( MasterVO masterVO);
 }
+

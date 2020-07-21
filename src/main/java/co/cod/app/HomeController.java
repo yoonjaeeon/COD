@@ -20,69 +20,72 @@ import co.cod.app.admin.service.AdminService;
 @Controller
 public class HomeController {
 
-	@Autowired AdminService adminService;
-	
+	@Autowired
+	AdminService adminService;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	CafeService cafeService;
 
-	
 	@RequestMapping("home")
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		System.out.println("main");
 		return "main/home";
 	}
-	
+
 	@RequestMapping("admin")
 	public String adminHome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "ad/admin/adminMain";
 	}
+
 	@RequestMapping("master")
 	public String masterHome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "ma/master/masterMain";
 	}
-	
+
 	@RequestMapping("c")
 	public String Login() {
-			return "e/admin/adminLogin";
+		return "e/admin/adminLogin";
 	}
-	
-	
-	// admin Login 
+
+	// admin Login
 	@RequestMapping("adminLogin")
 	public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
-	AdminVO result = adminService.getAdmin(adminVO);		
-	if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
+		AdminVO result = adminService.getAdmin(adminVO);
+		if (result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {
 		}
-	return "admin" ;
-	
+		return "ad/admin/adminMain";
+	}
+
 	/* 카페 테마 리스트 보여주게하기. */
 	@RequestMapping("themeList")
 	public String ThemaList(CafeVO cafeVO, Model model) {
 		List list = cafeService.getThemeList(cafeVO);
 		model.addAttribute("getTheme", list);
-		
-			return "memberList/memberThemeList";
+
+		return "memberList/memberThemeList";
 	}
-	
-	
+
 	@RequestMapping("areaList")
 	public String AreaList() {
-			return "memberList/memberAreaList";
+		return "memberList/memberAreaList";
 	}
+
 	@RequestMapping("themeListTest")
 	public String ThemaListTest() {
-			return "cafe/cafeThemeList";
+		return "cafe/cafeThemeList";
 	}
+
 	@RequestMapping("adminWorker")
 	public String adminWorker() {
-			return "ad/adminManage/adminWorker";
+		return "ad/adminManage/adminWorker";
 	}
+
 	@RequestMapping("cafe")
 	public String cafe() {
 		return "cafe/cafeMain";
-}
+	}
 }

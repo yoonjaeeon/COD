@@ -3342,7 +3342,7 @@ body, input, select, textarea {
 
 @media screen and (max-width: 980px) {
 	body, input, select, textarea {
-		font-size: 14pt;
+		font-size: 13pt;
 	}
 }
 
@@ -3354,7 +3354,7 @@ body, input, select, textarea {
 
 @media screen and (max-width: 480px) {
 	body, input, select, textarea {
-		font-size: 12pt;
+		font-size: 8pt;
 	}
 }
 

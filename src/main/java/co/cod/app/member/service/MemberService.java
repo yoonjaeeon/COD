@@ -2,6 +2,7 @@ package co.cod.app.member.service;
 
 import java.util.List;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
 import vofile.BookmarksVO;
 
@@ -13,5 +14,5 @@ public interface MemberService {
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
 	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);	
-	public MemberVO memberLogin(MemberVO memberVO);
+	public MemberVO memberLogin(MemberVO memberVO);	
 }

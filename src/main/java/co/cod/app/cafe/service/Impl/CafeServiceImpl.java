@@ -49,5 +49,11 @@ public class CafeServiceImpl implements CafeService{
 		return cafeMapper.getCafeMap();
 	}
 
+	@Override
+	public List<CafeVO> getThemeList(CafeVO cafeVO) {
+		return cafeMapper.getThemeList(cafeVO);
+	}
+
+	
 
 }

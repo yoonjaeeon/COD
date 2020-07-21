@@ -12,4 +12,5 @@ public interface CafeService {
 	public void updateCafe(CafeVO cafeVO);
 	public void deleteCafe(CafeVO cafeVO);
 	public List<Map<String, Object>> getCafeMap();
+	public List<CafeVO> getThemeList(CafeVO cafeVO);
 }

@@ -1,5 +1,6 @@
 package co.cod.app;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.admin.service.AdminService;
 
@@ -19,6 +21,7 @@ public class HomeController {
 	AdminService adminService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@Autowired
 	CafeService cafeService;
 
@@ -50,15 +53,14 @@ public class HomeController {
 	public String AreaList() {
 		return "memberList/memberAreaList";
 	}
+	
 	@RequestMapping("themeList")
-	public String ThemaList() {
-		return "memberList/memberThemeList";
+	public String ThemaList(CafeVO cafeVO, Model model) {
+		List list = cafeService.getThemeList(cafeVO);
+		model.addAttribute("getTheme", list);		
+			return "memberList/memberThemeList";
 	}
-	@RequestMapping("themeListTest")
-	public String ThemaListTest() {
-		return "cafe/cafeThemeList";
-	}
-
+	
 	@RequestMapping("adminWorker")
 	public String adminWorker() {
 		return "ad/adminManage/adminWorker";

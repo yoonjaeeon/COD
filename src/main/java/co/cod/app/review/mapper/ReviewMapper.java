@@ -10,6 +10,8 @@ public interface ReviewMapper {
 	public ReviewVO getReview(ReviewVO reviewVO);
 	public List<ReviewVO> getReviewList(ReviewVO reviewVO);
 	public void insertReview(ReviewVO reviewVO);
+	public void updateReview(ReviewVO reviewVO);
+	public void deleteReview(ReviewVO reviewVO);
 //	public String getName(Integer Id);
 //	public List<Map<String, Object>> getEmpMap();
 //	public List<Map<String, Object>> getDeptEmpCnt();

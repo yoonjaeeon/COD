@@ -12,4 +12,5 @@ public class ReviewVO {
 	String reviewContent;
 	Integer stars;
 	String reviewTime;
+	String cafeName;
 }

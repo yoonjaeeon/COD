@@ -37,13 +37,13 @@ public class ReviewServiceImpl implements ReviewService {
 	// 삭제
 	@Override
 	public void deleteReview(ReviewVO reviewVO) {
-
+		reviewMapper.deleteReview(reviewVO);
 	}
 
 	// 수정
 	@Override
 	public void updateReview(ReviewVO reviewVO) {
-
+		reviewMapper.updateReview(reviewVO);
 	}
 
 }

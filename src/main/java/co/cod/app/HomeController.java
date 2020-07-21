@@ -1,10 +1,5 @@
-
 package co.cod.app;
-
-import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
-import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 
 @Controller
@@ -53,13 +46,13 @@ public class HomeController {
 	}
 
 	// admin Login
-	@RequestMapping("adminLogin")
-	public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
-		AdminVO result = adminService.getAdmin(adminVO);
-		if (result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {
-		}
-		return "ad/admin/adminMain";
-	}
+	/*
+	 * @RequestMapping("adminLogin") public String adminLogin(Model model, AdminVO
+	 * adminVO, HttpSession session) { AdminVO result =
+	 * adminService.getAdmin(adminVO); if
+	 * (result.getAdminId().equals(adminVO.getAdminId()) &&
+	 * result.getPw().equals(adminVO.getPw())) { } return "ad/admin/adminMain"; }
+	 */
 
 	/* 카페 테마 리스트 보여주게하기. */
 	/*

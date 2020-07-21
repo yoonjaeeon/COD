@@ -110,7 +110,7 @@
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 중구 -->
 				<area shape="poly" href="#"
-					coords="241,197,244,204,238,197,210,212,212,204,214,197"
+					coords="212,196,238,196,243,202,238,290,236,219,220,220,211,216,207,211,211,205"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_jg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
@@ -159,7 +159,7 @@
 					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="single.html">yedam Cafe</a>
+								<a href="single.html"></a>
 							</h3>
 							<h4>#해쉬태그</h4>
 						</div>

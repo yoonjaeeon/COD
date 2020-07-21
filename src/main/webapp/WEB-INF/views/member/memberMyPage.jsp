@@ -15,12 +15,15 @@
 		<div class="main_feature text-center margin1">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fas fa-comment"></i>
+					<a href="memberReviewList">
+						<div class="single_feature">
+							<div class="single_feature_icon">
+								<i class="fas fa-comment"></i>
+							</div>
+							
+							<h4>내가 쓴 리뷰</h4>
 						</div>
-						<h4>내가 쓴 리뷰</h4>
-					</div>
+					</a>
 				</div>
 				<div class="col-sm-3">
 					<div class="single_feature">

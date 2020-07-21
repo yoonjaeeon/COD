@@ -27,8 +27,6 @@ public class CafeVO {
 	Integer lend;
 	Integer bigSeat;
 	Integer phtotGroup;
-	String bookmarks;
-	double stars; //별점
 	MultipartFile [] uploadFile;
 	String profile;
 }

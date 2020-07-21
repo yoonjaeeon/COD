@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script> 
-	</script>
+
 <div class="main_slick">
 	<c:forEach var="index" begin="1" end="3">
 		<div>

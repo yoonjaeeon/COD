@@ -3,34 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" >
 	$(function(){
-		
-		
-//slick slider 초기화
-	$('.icon_slick').slick({
-		slidesToShow : 6,
-		slidesToScroll : 1,
-		autoplay : true,
-		autoplaySpeed : 2000,
-		responsive : [ {
-			breakpoint : 600,
-			settings : {
-				slidesToShow : 3,
-				slidesToScroll : 1
-			}
-		}, {
-			breakpoint : 480,
-			settings : {
-				slidesToShow : 3,
-				slidesToScroll : 1
-			}
-		} ]
+		UP();
+		T1();
+		T2();
+		T3();	
+		T4();
+		T5();		
 	});
- //slick slider 이벤트 추가	
-	$('.icon_slick').on('afterChange', function(event, slick, currentSlide){
-    		console.log(currentSlide);
-		});
-	});
-
+	
 	function T1() {
 		//테마1
 		$('body').on('click','#iconT1',function(){
@@ -75,46 +55,45 @@
 		});
 		$("#ThemaListView").html(htmls);
 	}//userListResult
-	
 </script>
+
 
 
 
 <!-- 테마 아이콘  -->
 <div class="main_feature text-center">
 	<div class="icon_slick">
-		<div class="single_feature" id="iconT" >
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t'">
+		<div class="single_feature" id="iconT">
+			<div class="single_feature_icon">
 				<i class="far fa-thumbs-up"></i>
 			</div>
 			<h4>COD 추천 카페</h4>
 		</div>
-		
-		<div class="single_feature" id="iconT1" onclick="location.href='themeList?cafeTheme=t1'">
+		<div class="single_feature" id="iconT1">
 			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature" id="iconT2" onclick="location.href='themeList?cafeTheme=t2'">
+		<div class="single_feature" id="iconT2">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
-		<div class="single_feature" id="iconT3" onclick="location.href='themeList?cafeTheme=t3'">
+		<div class="single_feature" id="iconT3">
 			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
-		<div class="single_feature" id="iconT4" onclick="location.href='themeList?cafeTheme=t4'">
+		<div class="single_feature" id="iconT4">
 			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
-		<div class="single_feature" id="iconT5" onclick="location.href='themeList?cafeTheme=t5'">
+		<div class="single_feature" id="iconT5">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
@@ -124,25 +103,9 @@
 </div>
 <div id="listpage">
 	<section class="posts">
-	
-		<%-- <c:forEach items="${getTheme }" var="theme">
-		<article class="mini-post" id="ThemaListView">	
-			<header class="row">
-						<div class="col-sm-10">
-							<h3>
-								<a href="single.html">${theme.cafeName }
-								<img src="resources/images/'${theme.cafeThumbnail }'.jpg" alt="">
-								</a>
-							</h3>							
-							<h4>#해쉬태그</h4>
-						</div>
-						<div class="col-sm-2">
-							<i class="far fa-heart"></i>
-							<h4>${theme. }</h4>
-						</div>
-					</header>
+		<article class="mini-post" id="ThemaListView">
+		
 		</article>
-		</c:forEach> --%>
 		<%-- <c:forEach begin="0" end="3">
 			<article class="mini-post">
 				<header class="row align-center">
@@ -164,3 +127,24 @@
 		</c:forEach> --%>
 	</section>
 </div>
+<script>
+	$('.icon_slick').slick({
+		slidesToShow : 6,
+		slidesToScroll : 1,
+		autoplay : true,
+		autoplaySpeed : 2000,
+		responsive : [ {
+			breakpoint : 600,
+			settings : {
+				slidesToShow : 3,
+				slidesToScroll : 1
+			}
+		}, {
+			breakpoint : 480,
+			settings : {
+				slidesToShow : 3,
+				slidesToScroll : 1
+			}
+		} ]
+	});
+</script>

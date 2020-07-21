@@ -6,37 +6,37 @@
 <div class="main_feature text-center">
 	<div class="icon_slick">
 		<div class="single_feature">
-			<div class="single_feature_icon" >
+			<div class="single_feature_icon">
 				<i class="far fa-thumbs-up"></i>
 			</div>
 			<h4>추천 카페</h4>
 		</div>
 		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t1'">
+			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
 		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t2'">
+			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
 		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t3'">
+			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
 		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t4'">
+			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
 		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t5'">
+			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
 			<h4>핸드 드립</h4>
@@ -45,28 +45,23 @@
 </div>
 <div id="listpage">
 	<section class="posts">
-		<c:forEach items="${getTheme }" var="theme">
-		<article class="mini-post" id="ThemaListView">	
-			<header class="row">
+		<c:forEach begin="0" end="3">
+			<article class="mini-post">
+					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="single.html">${theme.cafeName }
-								<img src="resources/images/'${theme.cafeThumbnail }'.jpg" alt="">
-								</a>
-							</h3>							
+								<a href="single.html">yedam Cafe</a>
+							</h3>
 							<h4>#해쉬태그</h4>
 						</div>
 						<div class="col-sm-2">
-						<c:if test="${not empty theme.bookmarks}">
-							<i class="far fa-heart" style="color:red"></i>
-						</c:if>
-						<c:if test="${empty theme.bookmarks}">
 							<i class="far fa-heart"></i>
-						</c:if>
-							<h4>${theme.stars }</h4>
+							<h4>4.3</h4>
 						</div>
 					</header>
-		</article>
+					<a href="#" class="image"><img
+						src="resources/images/main2.jpg" alt=""></a>
+				</article>
 		</c:forEach>
 	</section>
 </div>

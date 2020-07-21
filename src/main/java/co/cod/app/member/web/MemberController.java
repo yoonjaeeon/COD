@@ -66,23 +66,8 @@ public class MemberController {
 			   Model model, MemberVO memberVO, HttpSession session) {
 		   
 		   MemberVO result = memberService.memberLogin(memberVO);
-		   if(result != null) {
-			   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {
-				   session.setAttribute("loginEmail", memberVO.getEmail());
-				   model.addAttribute("msg", "환영합니다.");
-				   System.out.println();
-				   return "redirect:home";
-			   
-			   }else if(result.getEmail().equals(memberVO.getEmail()) && !result.getPw().equals(memberVO.getPw())) {
-				   model.addAttribute("msg", "잘못된 비밀번호입니다.");
-				   return "e/member/Login";
-			   }else if(!result.getEmail().equals(memberVO.getEmail())) {
-				   model.addAttribute("msg", "잘못된 이메일입니다.");
-				   return "e/member/Login";
-			   }		   
-		   }else {
-			   model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요");
-			   return "e/member/Login";
+		   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {
+			   return "member";
 		   }
 		   
 			/*
@@ -104,13 +89,10 @@ public class MemberController {
 	   }
 	   
 	   @RequestMapping("memberLoginForm") 
-		  public String aLogin(Model model) {
+		  public String aLogin() { 
 			  return  "e/member/Login"; 
 			  }
 	 
-	   @RequestMapping("memberMain")
-	   public String memberMain(Model model) {
-		   return "";
-	   }
+	 
 
 }

@@ -16,6 +16,12 @@
 		frm.submit();
     }
     </script>
+    
+    <script type="text/javascript"> 
+		var message = '${msg}'; 
+		alert(mag); 
+	</script>
+    
 <div class="container">
 
     <div class="row justify-content-center">

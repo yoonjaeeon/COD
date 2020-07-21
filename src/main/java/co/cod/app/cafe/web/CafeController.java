@@ -2,7 +2,6 @@ package co.cod.app.cafe.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -63,5 +62,5 @@ public class CafeController {
 	public String insertCafeForm() {
 		return "ad/cafe/cafeInsertForm";
 	}
-	
+
 }

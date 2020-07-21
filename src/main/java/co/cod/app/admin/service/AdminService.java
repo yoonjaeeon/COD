@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.cod.app.admin.AdminVO;
+import co.cod.app.member.MemberVO;
 
 public interface AdminService {
 
@@ -13,9 +14,7 @@ public interface AdminService {
 	public void updateAdmin(AdminVO adminVO);
 	public void deleteAdmin(AdminVO adminVO);
 	public List<Map<String, Object>> getAdminMap();
-	
-	
-	
+	public AdminVO adminLogin(AdminVO adminVO);
 	
 
 }

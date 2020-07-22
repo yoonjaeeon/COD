@@ -73,6 +73,15 @@ import vofile.WorkerVO;
 			return rt;
 			}		
 
+	//관리자 리스트 조회
+	@RequestMapping("cafeStateList")
+	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {		
+		adminVO.setAdminId((String)session.getAttribute("adminId"));
+		model.addAttribute("cafeStateList",adminService.getAdminList(adminVO));		
+		return "ma/master/cafeStateList";
+	
+	
+	}
 	//업테이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {
@@ -81,7 +90,7 @@ import vofile.WorkerVO;
 	
 	//직원 리스트 
 	@RequestMapping("adminWorkerList")
-	public String adminWorker(WorkerVO WorkerVO) {			
+	public String adminWorker(WorkerVO workerVO) {			
 		return "ad/adminManage/adminWorkerList";
 	
 	

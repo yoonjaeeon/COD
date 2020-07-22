@@ -247,6 +247,65 @@
 		</div>
 	</div>
 
+<div id="listpage">
+
+			<section class="posts">
+				<article>
+					<div>
+						<div class="card shadow mb-4">
+
+							<aside>
+								<!-- Card Header - Accordion -->
+								<a href="#collapseCardExample" class="d-block card-header py-3"
+									data-toggle="collapse" role="button" aria-expanded="true"
+									aria-controls="collapseCardExample">
+									<h3 class="m-0 font-weight-bold ">광고주 리스트</h3>
+								</a>
+								<!-- Card Content - Collapse -->
+								<div class="collapse show" id="collapseCardExample">
+									<div class="card-body">
+										<div class="order">
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>업체명</th>
+														<th>업체주소</th>
+														<th>연락처</th>
+														<th>광고 단가</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach begin="0" end="3">
+														<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
+														<a href="#">
+															<tr>
+																<td>갓성전자</td>
+																<td>서울시 강남구 테헤란로</td>
+																<td>031)223-2333</td>
+																<td>87,000,000</td>
+																<td></td>
+																<!-- onclick 메소드 필요 함 -->
+															</tr>
+														</a>
+													</c:forEach>
+												</tbody>
+											</table>
+											<div class="btn-group">
+												<input type="submit" class="btn btn-primary" value="등록" />
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+				</article>
+
+			</section>
+		</div>
+	</div>
+
 	<!-- Content Row -->
 	<div class="row">
 

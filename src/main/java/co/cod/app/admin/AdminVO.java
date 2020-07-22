@@ -18,7 +18,7 @@ public class AdminVO {
 	String pass2;
 	Integer cafeState;
 	String adminPhone;
-	Integer adminState;
-	
-	
+	Integer adminState;	
+	String cafeName;
+	String cafeAddress;
 }

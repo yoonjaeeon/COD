@@ -29,7 +29,7 @@ import vofile.WorkerVO;
 	@RequestMapping("adminInsert")
 	public String insertAdmin(AdminVO adminVO, Model model) {
 	adminService.insertAdmin(adminVO);
-	return "redirect:admin";
+	return "redirect:home";
 	}
 	
 	// admin 로그인  

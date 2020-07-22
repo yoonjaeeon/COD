@@ -11,10 +11,17 @@ public class MasterController {
 
 	@Autowired MasterService masterService;
 	
-	@RequestMapping("masterMain")
+//	@RequestMapping("masterMain")
+//	public String masterMain() {
+//		return "ma/master/masterMain";
+//	}
+	
+	@RequestMapping("loading")
 	public String masterMain() {
-		return "ma/master/masterMain";
+		return "admin/loading";
 	}
+	
+	
 	
 }
 	

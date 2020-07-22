@@ -54,30 +54,24 @@ import vofile.WorkerVO;
 			
 			String rt = "";
 			System.out.println(result);
+			
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
 
 				rt = "ad/admin/adminMain" ;				
-								
-				if (result.getCafeState()== 0  ){	
-					rt = "ad/cafe/home" ;
+			if(result.getAdminState()==0) {
+				if (result.getCafeState()== 0 ){	
+						rt = "e/cafe/cafeInsertForm" ;
+				}else if (result.getCafeState()== 1) {
+						rt = "admin/loading";					
+				}else if(result.getCafeState()== 2){
+						rt = "ad/admin/admin";	
 				}
-				if (result.getCafeState()== 1) {
-					rt = "ad/admin/loadding";					
-				}
-				if(result.getCafeState()== 2){
-					rt = "ad/admin/admin";	
-				}
-				if(result.getAdminState()==0) {
-					rt = "ad/admin/admin" ;
-				}
-				if(result.getAdminState()==1) {
-					rt =" ad/master/masterMain";
-				}											
+			}else { 
+				rt ="ma/master/masterMain";
+			}											
 			}
 			return rt;
-	
-			}
-		
+			}		
 
 	//업테이트
 	@RequestMapping("adminUpdate")

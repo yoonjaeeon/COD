@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
@@ -56,8 +55,9 @@ public class MemberController {
 	   }
 	   
 	   @RequestMapping("bookmarks")
-	   public String bookmarks(Model model, BookmarksVO bookmarksVO) {
-		   model.addAttribute("getBookmarks", memberService.getBookmarks(bookmarksVO));
+	   public String bookmarks(Model model, BookmarksVO bookmarksVO, HttpSession session) {
+		  bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
+		  model.addAttribute("getBookmarks", memberService.getBookmarks(bookmarksVO)) ;
 		   return "member/bookmark";
 	   }
 	   
@@ -70,7 +70,6 @@ public class MemberController {
 			   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {				   
 				   session.setAttribute("loginEmail", memberVO.getEmail());		
 				   model.addAttribute("msg", "환영합니다.");
-				   System.out.println();
 				   return "redirect:home";
 			   
 			   }else if(result.getEmail().equals(memberVO.getEmail()) && !result.getPw().equals(memberVO.getPw())) {

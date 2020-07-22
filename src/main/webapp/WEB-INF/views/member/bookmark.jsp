@@ -6,19 +6,39 @@
 	<h1>즐겨찾는 카페 리스트</h1>
 </div>
 
-
 <div id="listpage">
 	<section class="posts">
-		<c:forEach begin="0" end="3" items="${getBookmarks}" var="bookmark">
-			<article>
-				<a href="#" class="image fit"><img
-					src="resources/images/main1.jpg" alt=""></a>
+		<c:forEach items="${getBookmarks}" var="bookmark">
+			<%-- <article>
+				<a href="#" class="image fit"><img src="resources/upload/main1.jpg" alt=""></a>
 				<header>
 					<h2>${bookmark.adminId }</h2>
 					<h4>${bookmark.cafeThumbnail }</h4>
 				</header>
 				<i class='far fa-heart' style='font-size: 24px;'></i>
 				<h2>4.3</h2>
+			</article> --%>
+			
+				<article class="mini-post">
+				<header class="row">
+					<div class="col-sm-10">
+						<h3>
+							<a href="single.html">${bookmark.cafeName }</a>
+						</h3>
+						<h4>#해쉬태그</h4>
+					</div>
+					<div class="col-sm-2">
+						<c:if test="${not empty bookmark.bookmarks}">
+							<i class="far fa-heart" style="color: red"></i>
+						</c:if>
+						<c:if test="${empty bookmark.bookmarks}">
+							<i class="far fa-heart"></i>
+						</c:if>
+						<h4>${theme.stars }</h4>
+					</div>
+				</header>
+				<a href="#" class="image"><img
+					src="resources/upload/${bookmark.cafeThumbnail }" alt=""></a>
 			</article>
 		</c:forEach>
 	</section>

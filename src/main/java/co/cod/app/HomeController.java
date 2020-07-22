@@ -63,7 +63,9 @@ public class HomeController {
 //	/* 카페 테마 리스트 보여주게하기. */
 	
 	@RequestMapping("areaList")
-	public String AreaList() {
+	public String AreaList(CafeVO cafeVO, Model model) {
+		List list = cafeService.AreaList(cafeVO);
+		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";
 	}
 	
@@ -72,7 +74,6 @@ public class HomeController {
 		List list = cafeService.getThemeList(cafeVO);
 		model.addAttribute("getTheme", list);		
 			return "memberList/memberThemeList";
-
 	}
 
 	@RequestMapping("adminWorker")

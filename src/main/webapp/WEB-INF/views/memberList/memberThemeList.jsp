@@ -51,7 +51,7 @@
 						<div class="col-sm-10">
 							<h3>
 								<a href="single.html">${theme.cafeName }
-								<img src="resources/images/'${theme.cafeThumbnail }'.jpg" alt="">
+								<img src="resources/images/'${theme.cafeThumbnail }'" alt="">
 								</a>
 							</h3>							
 							<h4>#해쉬태그</h4>

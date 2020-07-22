@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script> 
-	</script>
 <div class="main_slick">
 	<c:forEach var="index" begin="1" end="3">
 		<div>
@@ -111,7 +109,7 @@
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 중구 -->
 				<area shape="poly" href="#"
-					coords="241,197,244,204,238,197,210,212,212,204,214,197"
+					coords="212,196,238,196,243,202,238,290,236,219,220,220,211,216,207,211,211,205"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_jg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">

@@ -58,6 +58,12 @@ public class CafeServiceImpl implements CafeService{
 	public List<CafeVO> ThemeList(CafeVO cafeVO) {
 		return cafeMapper.getThemeList(cafeVO);
 	}
+
+	@Override
+	public List<CafeVO> AreaList(CafeVO cafeVO) {
+		// TODO Auto-generated method stub
+		return cafeMapper.getAreaList(cafeVO);
+	}
 	
 
 }

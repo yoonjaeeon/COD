@@ -14,15 +14,18 @@
 	<div class="col-lg-7">
 		<div class="main_feature text-center margin1">
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="single_feature">
-						<div class="single_feature_icon">
-							<i class="fas fa-comment"></i>
+				<div class="col-sm-2">
+					<a href="memberReviewList">
+						<div class="single_feature">
+							<div class="single_feature_icon">
+								<i class="fas fa-comment"></i>
+							</div>
+							
+							<h4>내가 쓴 리뷰</h4>
 						</div>
-						<h4>내가 쓴 리뷰</h4>
-					</div>
+					</a>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="single_feature">
 						<div class="single_feature_icon">
 							<i class="fab fa-fort-awesome"></i>
@@ -30,7 +33,7 @@
 						<h4>결제내역</h4>
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="single_feature">
 						<div class="single_feature_icon">
 							<i class="fab fa-fort-awesome"></i>
@@ -38,12 +41,20 @@
 						<h4>정보수정</h4>
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="single_feature">
 						<div class="single_feature_icon">
 							<i class="fab fa-fort-awesome"></i>
 						</div>
 						<h4>회원탈퇴</h4>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="single_feature">
+						<div class="single_feature_icon">
+							<i class="fab fa-fort-awesome"></i>
+						</div>
+						<a href="insertFormReview"><h4>리뷰작성주소</h4></a>
 					</div>
 				</div>
 			</div>

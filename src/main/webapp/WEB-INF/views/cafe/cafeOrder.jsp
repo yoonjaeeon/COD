@@ -2,6 +2,92 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+	function test(obj){
+		var atid = obj.getAttribute('atrid')
+		console.log(atid)
+		
+		$.ajax({
+			url: "menuList/"+menuName,
+			success: function(result) {
+				result.menuName;
+				result.price;
+			}
+		});
+		var menu_name = $('input:text[name="menuName"]').val(menuList.menuName);
+		var menu_price = 2500;
+		var table = document.createElement('table');
+		
+		<table class="table text-center">
+		<thead>
+		<tr>
+			<td>메뉴</td>
+			<td>수량</td>
+			<td>좌석번호</td>
+			<td>가격</td>
+		</tr>
+			<tr>
+			<td id="test">아메리카노</td>
+			<td>1</td>
+			<td>t1</td>
+			<td>2500</td>
+		</thead>
+		</table>
+		</div>	
+	</table>
+	}
+</script>
+
+
+
+<script type="text/javascript">
+	$("div.main_slick").slick({
+		infinite : true,
+		speed : 400,
+		slidesToShow : 1,
+		adaptiveHeight : true,
+		dot : true
+	});
+
+	$(document).ready(function() {
+		var max_h = 0;
+		$("div.boxs ").each(function() {
+			var h = parseInt($(this).css("height"));
+			if (max_h < h) {
+				max_h = h;
+			}
+		});
+		$(".boxs ").each(function() {
+			$(this).css({
+				height : max_h
+			});
+		});
+	});
+	$('.icon_slick').slick({
+		slidesToShow : 7,
+		slidesToScroll : 1,
+		autoplay : true,
+		autoplaySpeed : 2000,
+		responsive : [ {
+			breakpoint : 600,
+			settings : {
+				slidesToShow : 3,
+				slidesToScroll : 1
+			}
+		}, {
+			breakpoint : 480,
+			settings : {
+				slidesToShow : 2,
+				slidesToScroll : 1
+			}
+		} ]
+	});
+</script>
+
+
+
+
+
 		<!-- 기본정보 -->
 		<div class="align-center">
 			<div class="row">
@@ -77,9 +163,9 @@
 					<article class="col-lg-6">
 							<h3>menu</h3>
 						<ul class="list-group list-group-flush">
-						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
+						    <li  class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
 						    <c:forEach begin="0" end="4">
-						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published">아메리카노</div><div class="col-lg-3 col-md-2 published">2000</div><div class="col-lg-3 col-md-2 published">2500</div></li>
+						    <li atrid='aa' onclick="test(this)" class="list-group-item row" ><div class="col-lg-6 col-md-8 published" atrid='ddd'>아메리카노</div><div class="col-lg-3 col-md-2 published">2000</div><div class="col-lg-3 col-md-2 published">2500</div></li>
 							</c:forEach>
 						</ul>
 					</article>
@@ -88,7 +174,8 @@
 	</article>
 </div>
 
-<div class="container">
+<div class="container" id="showResult">
+
 	<h2>주문확인서</h2>
 	<table class="table text-center">
 		<thead>
@@ -99,7 +186,7 @@
 			<td>가격</td>
 		</tr>
 			<tr>
-			<td>아메리카노</td>
+			<td id="test">아메리카노</td>
 			<td>1</td>
 			<td>t1</td>
 			<td>2500</td>
@@ -109,46 +196,3 @@
 	</table>
 <div align="right"><input type="button" value="결제" id="price"/></div>
 
-<script type="text/javascript">
-	$("div.main_slick").slick({
-		infinite : true,
-		speed : 400,
-		slidesToShow : 1,
-		adaptiveHeight : true,
-		dot : true
-	});
-
-	$(document).ready(function() {
-		var max_h = 0;
-		$("div.boxs ").each(function() {
-			var h = parseInt($(this).css("height"));
-			if (max_h < h) {
-				max_h = h;
-			}
-		});
-		$(".boxs ").each(function() {
-			$(this).css({
-				height : max_h
-			});
-		});
-	});
-	$('.icon_slick').slick({
-		slidesToShow : 7,
-		slidesToScroll : 1,
-		autoplay : true,
-		autoplaySpeed : 2000,
-		responsive : [ {
-			breakpoint : 600,
-			settings : {
-				slidesToShow : 3,
-				slidesToScroll : 1
-			}
-		}, {
-			breakpoint : 480,
-			settings : {
-				slidesToShow : 2,
-				slidesToScroll : 1
-			}
-		} ]
-	});
-</script>

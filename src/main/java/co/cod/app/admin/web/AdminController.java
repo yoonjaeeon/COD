@@ -43,6 +43,7 @@ import vofile.WorkerVO;
 	public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
 			AdminVO result = adminService.adminLogin(adminVO);		
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
+				session.setAttribute("adminId", result.getAdminId());
 				return "ad/admin/adminMain" ;
 			}
 		 return "ad/admin/adminLogin";

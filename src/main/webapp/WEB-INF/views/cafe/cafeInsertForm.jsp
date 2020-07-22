@@ -174,7 +174,7 @@ $(function(){
       </div>   
       <div class="form-group">
          <label>카페주소:</label>
-         <input type="text"  class="form-control"  name=address" >
+         <input type="text"  class="form-control"  name="address" >
       </div>
       <div class="form-group">
          <label>전화번호:</label>
@@ -199,19 +199,19 @@ $(function(){
       <div class="form-group">
          <label >테마:</label>
          <div class="checkbox">
-            <label><input type="checkbox"  name="theme"  value="작업하기좋">작업하기좋은</label>
+            <label><input type="checkbox"  name="theme"  value="t4">작업하기좋은</label>
          </div>
          <div class="checkbox">
-            <label><input type="checkbox"  name="theme"  value="핸드드립">핸드드립</label>
+            <label><input type="checkbox"  name="theme"  value="t5">핸드드립</label>
          </div>
          <div class="checkbox">
-            <label><input type="checkbox"  name="theme"  value="야외석있는">야외석있는</label>
+            <label><input type="checkbox"  name="theme"  value="t3">야외석있는</label>
          </div>  
          <div class="checkbox">
-            <label><input type="checkbox"  name="theme"  value="이색카페">이색카페</label>
+            <label><input type="checkbox"  name="theme"  value="t1">이색카페</label>
          </div>  
          <div class="checkbox">
-            <label><input type="checkbox"  name="theme"  value="디저트">디저트</label>
+            <label><input type="checkbox"  name="theme"  value="t2">디저트</label>
          </div>     
          <br>
          <div>
@@ -232,9 +232,9 @@ $(function(){
          <div class="form-group">
          <label >키즈존 여부</label>
          <div class="radio">
-            <label><input type="radio"  name=nokid"  value="Yes">Yes</label>
+            <label><input type="radio"  name="nokid"  value="Yes">Yes</label>
          </div>
-         <div class="radio">
+         <div class="radio"> 
             <label><input type="radio"  name="nokid"  value="No">No</label>
          </div> 
          </div><br>

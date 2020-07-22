@@ -61,13 +61,13 @@ public class HomeController {
 //	
 //	/* 카페 테마 리스트 보여주게하기. */
 
-	@RequestMapping("themeList")
-	public String ThemaList(CafeVO cafeVO, Model model) {
-		List list = cafeService.getThemeList(cafeVO);
-		model.addAttribute("getTheme", list);
-		
-			return "memberList/memberThemeList";
-	}
+//	@RequestMapping("themeList")
+//	public String ThemaList(CafeVO cafeVO, Model model) {
+//	List list = cafeService.getThemeList(cafeVO);
+//		model.addAttribute("getTheme", list);
+//		
+//			return "memberList/memberThemeList";
+//	}
 	
 	
 	@RequestMapping("areaList")

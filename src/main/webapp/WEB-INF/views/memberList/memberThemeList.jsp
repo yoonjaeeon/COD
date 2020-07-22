@@ -17,7 +17,7 @@
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2'">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>

@@ -77,11 +77,11 @@ import vofile.WorkerVO;
 	@RequestMapping("cafeStateList")
 	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {		
 		adminVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("cafeStateList",adminService.getAdminList(adminVO));		
+		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
 		return "ma/master/cafeStateList";
-	
-	
 	}
+	
+	
 	//업테이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {

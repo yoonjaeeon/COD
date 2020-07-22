@@ -4,8 +4,9 @@
 
 <script>
 	function submit(param) {
-	frm.id.value = param
+		frm.id.value = param
 	if (confirm("정말 승인 하시겠습니까?")) {
+		cafeState = cafeState + 2;
 		frm.submit();
 	}
 	}	
@@ -24,18 +25,15 @@
 <div id="listpage">
 	<section class="posts">
 		<article>
-			<div>
 				<div class="card shadow mb-4">			
-						Card Header - Accordion
 						<a href="#collapseCardExample" class="d-block card-header py-3"
 							data-toggle="collapse" role="button" aria-expanded="true"
-							aria-controls="collapseCardExample">
-							<h3 class="m-0 font-weight-bold ">관리자리스트</h3>
-						</a>
-						Card Content - Collapse
+							aria-controls="collapseCardExample"></a>
+						<form id="frm">
+						<h3 class="m-0 font-weight-bold ">관리자리스트</h3>				
 						<div class="collapse show" id="collapseCardExample">
 							<div class="card-body">
-								<div class="order"> -->
+								<div class="order"> 
 									<table class="table table-hover">
 										<thead>
 											<tr>
@@ -49,7 +47,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${getAdminList}" var="list">
+											<c:forEach items="${cafeStateList}" var="list">
 												<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
 												<tr>													
 													<td>${list.adminId}</td>
@@ -57,14 +55,14 @@
 													<td>${list.cafeAddress}</td>
 													<td>${list.adminPhone}</td>
 													<td>${list.cafeState}</td>
-													<td><button class="btn1" type="button"
-															onclick="Submit('${adminId }')">승인</button></td>
+													<td><button class="btn1" type="button" onclick="Submit('${adminId }')">승인</button></td>
 													<td><button class="btn2" type="button" onclick="del('${adminId }')">삭제</button></td>
 													<!-- onclick 메소드 필요 함 -->
 												</tr>
 											</c:forEach>
 										</tbody> 
 									</table>
+									</form>
 									<div class="btn-group">
 									<input type="submit" class="btn btn-primary" value="등록" />
 							</div>

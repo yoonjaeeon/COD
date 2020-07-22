@@ -6,7 +6,7 @@
 <html>
 <head>
 <h3>리뷰 수정</h3>
-<form name="frm" action="updateReview">
+<form name="frm" action="updateFormReview">
 리뷰 내용:<br/>
 <textarea cols="30" rows="10"
           name="reviewContent" id="reviewContent">${review.reviewContent}</textarea><br/>

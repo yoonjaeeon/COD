@@ -52,14 +52,9 @@ public class ReviewController {
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		return "memberList/memberReviewList";
 	}
-
 	// review관리	
-
 	// ajax : 목록
-	@RequestMapping("ajaxReviewList")
-	public @ResponseBody List<ReviewVO> ajaxReviewList(ReviewVO reviewVO) {
-		return reviewService.getReviewList(reviewVO);
-	}
+
 	// 수정폼
 	@RequestMapping("updateFormReview")
 	public String updateFormreview(ReviewVO vo) {

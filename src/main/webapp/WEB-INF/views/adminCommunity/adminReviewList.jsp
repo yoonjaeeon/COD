@@ -44,7 +44,7 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-												<th>가게이름</th>
+												<th>카페이름</th>
 												<th>작성자</th>
 												<th>리뷰내용</th>
 												<th>등록일자</th>

@@ -4,6 +4,7 @@
    <h1>
       <a href="home"><i class="fas fa-coffee"></i>    C O D</a>
    </h1>
+   ${sessionScope.loginEmail }
    <nav class="links">
       <ul>
          <li><a href="themeList">테마별</a></li>

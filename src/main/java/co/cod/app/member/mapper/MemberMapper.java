@@ -14,6 +14,6 @@ public interface MemberMapper {
 	public void insertMember( MemberVO memberVO);
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
-	public List<BookmarksVO> getBookmarks();
+	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);
 	public MemberVO memberLogin(MemberVO memberVO);
 }

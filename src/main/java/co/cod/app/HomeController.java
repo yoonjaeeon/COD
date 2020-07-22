@@ -63,7 +63,9 @@ public class HomeController {
 //	/* 카페 테마 리스트 보여주게하기. */
 	
 	@RequestMapping("areaList")
-	public String AreaList(CafeVO cafeVO, Model model) {
+	public String AreaList(CafeVO cafeVO, Model model,HttpSession session) {
+		System.out.println(session.getAttribute("loginId"));
+		System.out.println("===============");
 		List list = cafeService.AreaList(cafeVO);
 		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";

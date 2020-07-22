@@ -46,7 +46,7 @@
 <div id="listpage">
 	<section class="posts">
 		<c:forEach items="${getTheme }" var="theme">
-		<article class="mini-post" id="ThemaListView">	
+<%-- 		<article class="mini-post" id="ThemaListView">	
 			<header class="row">
 						<div class="col-sm-10">
 							<h3>
@@ -66,7 +66,29 @@
 							<h4>${theme.stars }</h4>
 						</div>
 					</header>
-		</article>
+		</article> --%>
+
+			<article class="mini-post">
+				<header class="row">
+					<div class="col-sm-10">
+						<h3>
+							<a href="single.html">${theme.cafeName }</a>
+						</h3>
+						<h4>#해쉬태그</h4>
+					</div>
+					<div class="col-sm-2">
+						<c:if test="${not empty theme.bookmarks}">
+							<i class="far fa-heart" style="color: red"></i>
+						</c:if>
+						<c:if test="${empty theme.bookmarks}">
+							<i class="far fa-heart"></i>
+						</c:if>
+						<h4>${theme.stars }</h4>
+					</div>
+				</header>
+				<a href="#" class="image"><img
+					src="resources/upload/${theme.cafeThumbnail }" alt=""></a>
+			</article>
 		</c:forEach>
 	</section>
 </div>

@@ -18,7 +18,4 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		adminNoticeMapper.insertAdminNotice(adminNoticeVO);		
 	}
 	
-	
-	
-	
 }

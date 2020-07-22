@@ -21,15 +21,15 @@
 		select * from member
 	</select>
 	
-	<select id="getBookmarks" parameterType="co.cod.app.member.MemberVO" resultType="vofile.BookmarksVO">
-	SELECT TQ.* 
+	<select id="getBookmarks" parameterType="vofile.BookmarksVO" resultType="vofile.BookmarksVO">
+	SELECT TQ.*, EMAIL
 	  FROM (SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL, C.CAFE_HASHTAG, S.STARS 
 	  FROM (SELECT ADMIN_ID, TRUNC(AVG(STARS),1) STARS
 	  FROM REVIEW
 	 GROUP BY ADMIN_ID)S , CAFE C
 	 WHERE S.ADMIN_ID(+) = C.ADMIN_ID) TQ, BOOKMARKS B
 	 WHERE B.ADMIN_ID = TQ.ADMIN_ID
-	   AND B.EMAIL = #{email};
+	   AND B.EMAIL = #{email}
 
 	
 	</select>

@@ -29,6 +29,9 @@
 	ADMIN_ID, 	
 	PW
 	FROM ADMIN
-	WHERE ADMIN_ID = #{adminId}	
+	WHERE ADMIN_ID = #{adminId}			
 	</select>	
+	
+	
+	
 </mapper>

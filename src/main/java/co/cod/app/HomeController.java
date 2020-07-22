@@ -23,6 +23,7 @@ public class HomeController {
 	@Autowired AdminService adminService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@Autowired
 	CafeService cafeService;
 
@@ -60,24 +61,20 @@ public class HomeController {
 //	return "admin";
 //	
 //	/* 카페 테마 리스트 보여주게하기. */
-
-//	@RequestMapping("themeList")
-//	public String ThemaList(CafeVO cafeVO, Model model) {
-//	List list = cafeService.getThemeList(cafeVO);
-//		model.addAttribute("getTheme", list);
-//		
-//			return "memberList/memberThemeList";
-//	}
-	
 	
 	@RequestMapping("areaList")
 	public String AreaList() {
-			return "memberList/memberAreaList";
+		return "memberList/memberAreaList";
 	}
-	@RequestMapping("themeListTest")
-	public String ThemaListTest() {
-			return "cafe/cafeThemeList";
+	
+	@RequestMapping("themeList")
+	public String getThemeList(CafeVO cafeVO, Model model) {
+		List list = cafeService.getThemeList(cafeVO);
+		model.addAttribute("getTheme", list);		
+			return "memberList/memberThemeList";
+
 	}
+
 	@RequestMapping("adminWorker")
 	public String adminWorker() {
 			return "ad/adminManage/adminWorker";
@@ -85,5 +82,6 @@ public class HomeController {
 	@RequestMapping("cafe")
 	public String cafe() {
 		return "cafe/cafeMain";
-}
+
+	}
 }

@@ -26,14 +26,14 @@
 				<div class="card-body p-0">
 					<!-- Nested Row within Card Body -->
 					<div class="row">
-						<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+						<div class="*/image/admin.jpg"></div>
 						<div class="col-lg-6">
 							<div class="text-right">
-								<a class="small" href="home">메인</a>
-							</div>
+                    <a class="small" href="memberLoginForm">일반회원</a> / <a class="small" href="home">홈</a>
+                  			</div>
 							<div class="p-5">
 								<div class="text-center">
-									<h1 class="h4 text-gray-900 mb-4">환영합니다</h1>
+									<h1 class="h4 text-gray-900 mb-4">관리자 로그인 </h1>
 								</div>
 								<form class="adminLogin" action="adminLogin" method="post"
 									name="frm">
@@ -55,7 +55,7 @@
 									</div>
 									<button type="button" onclick="validCheck()"
 										class="btn btn-info btn-user btn-block" onclick="validCheck()"
-										value="로그인">로그인</button>
+										value="로그인">LOGIN</button>
 									<hr>
 									<a href="index.html" class="btn btn-warning btn-user btn-block">
 										<i class="fab fa-kickstarter-k"></i> 카카오톡 로그인
@@ -66,7 +66,7 @@
 									<a class="small" href="forgot-password.html">패스워드 찾기</a>
 								</div>
 								<div class="text-center">
-									<a class="small" href="register.html">회원가입</a>
+									<a class="small" href="adminInsertForm"> 관리자 회원가입</a>
 								</div>
 							</div>
 						</div>

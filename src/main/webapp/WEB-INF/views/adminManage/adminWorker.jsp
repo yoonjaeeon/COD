@@ -23,8 +23,10 @@
 			</div>
 			<div class="btn-group">
 				<input type="button" class="btn btn-primary" value="등록"
-					id="btnInsert" /> <input type="button" class="btn btn-primary"
-					value="수정" id="btnUpdate" /> <input type="button"
+					id="btnInsert" />
+				<input type="button" class="btn btn-primary"
+					value="수정" id="btnUpdate" /> 
+				<input type="button"
 					class="btn btn-primary" value="초기화" id="btnInit" />
 			</div>
 		</form>
@@ -35,12 +37,32 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
+					<th class="text-center">직원번호</th>
 					<th class="text-center">이름</th>
 					<th class="text-center">시급</th>
 					<th class="text-center">생일</th>
 					<th class="text-center">상태</th>
+					<th class="text-center">수정</th>			
+					<th class="text-center">삭제</th>	
 				</tr>
 			</thead>
+				<tbody>
+ 					<c:forEach items="${list}" var="WorkerVO">
+					<tr>
+					<td>${list.workerSeq}</td>
+					<td>${list.workerName }</td>
+					<td>${list.workerBirthday }</td>
+					<td>${list.pay }</td>
+					<td>${list.workerGrade }</td>
+					<td><input type="button" class="btn btn-primary" value="수정"
+					id="btnUpdate" />
+					<td><input type="button" class="btn btn-primary"
+					value="삭제" id="btnDelete" /></td>
+					<td>
+					</tr>
+					</c:forEach>
+                  
+                    
 			<tbody></tbody>
 		</table>
 	</div>

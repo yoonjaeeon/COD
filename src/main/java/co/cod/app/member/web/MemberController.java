@@ -67,8 +67,8 @@ public class MemberController {
 		   
 		   MemberVO result = memberService.memberLogin(memberVO);
 		   if(result != null) {
-			   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {
-				   session.setAttribute("loginEmail", memberVO.getEmail());
+			   if(result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {				   
+				   session.setAttribute("loginEmail", memberVO.getEmail());		
 				   model.addAttribute("msg", "환영합니다.");
 				   System.out.println();
 				   return "redirect:home";

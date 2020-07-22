@@ -56,7 +56,7 @@ import vofile.WorkerVO;
 			System.out.println(result);
 			
 			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
-
+				session.setAttribute("adminId", adminVO.getAdminId());
 				rt = "ad/admin/adminMain" ;				
 			if(result.getAdminState()==0) {
 				if (result.getCafeState()== 0 ){	

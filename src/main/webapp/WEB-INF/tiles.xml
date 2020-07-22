@@ -31,10 +31,6 @@ Configuration 2.1//EN"
 		<put-attribute name="m_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="ma/*/*/*" extends="masterTemplate">
-		<put-attribute name="m_content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	</definition>
-	
 	<!--  사용자  -->
 	<definition name="*/*" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

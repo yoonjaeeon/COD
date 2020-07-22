@@ -30,18 +30,18 @@
 
 </head>
 <tiles:insertAttribute name="m_header" />
+<div>
+<tiles:insertAttribute name="m_content" />
+</div>
 
-        <tiles:insertAttribute name="m_content" />
-        </div>
-        
 <!-- End of Main Content -->
 
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
 	<div class="icon" align="center">
-		<a href="#"><i class="fab fa-facebook"></i></a>  
-		<a href="#"><i class="fab fa-twitter" ></i></a>  
-		<a href="#"><i class="fab fa-instagram"></i></a>
+		<a href="#"><i class="fab fa-facebook"></i></a> 
+		<a href="#"><i class="fab fa-twitter"></i></a> <a href="#">
+		<i class="fab fa-instagram"></i></a>
 		<a href="#"><i class="fas fa-envelope"></i></a>
 	</div>
 	<div class="container my-auto">
@@ -74,7 +74,7 @@
 				to end your current session.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				<a class="btn btn-primary" href="login.html">Logout</a>
+				<a class="btn btn-outline-info" href="login.html">Logout</a>
 			</div>
 		</div>
 	</div>
@@ -85,11 +85,6 @@
 <!-- Custom scripts for all pages-->
 <script src="resources/admin/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="resources/admin/vendor/chart.js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="resources/admin/js/demo/chart-area-demo.js"></script>
-<script src="resources/admin/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

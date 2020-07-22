@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container-fluid">
 	<!-- Page Heading -->
-
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800">마스터 페이지</h1>
 
@@ -352,3 +351,10 @@
 	</div>
 
 </div>
+
+<!-- Page level plugins -->
+<script src="resources/admin/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="resources/admin/js/demo/chart-area-demo.js"></script>
+<script src="resources/admin/js/demo/chart-pie-demo.js"></script>

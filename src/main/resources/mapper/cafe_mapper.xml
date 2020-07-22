@@ -21,15 +21,17 @@
 	</select>
   
   	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
-  		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
-			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
-			nokid, parking, animal, beam, charger, big_seat, lend)
+  		INSERT INTO CAFE (ADMIN_ID, CAFE_NAME, CAFE_ADDRESS, CAFE_PHONE,
+			CAFE_TIME, CAFE_CLOSEDAY, CAFE_THUMBNAIL, 
+			CAFE_HASHTAG, CAFE_THEME, CAFE_ASK_CONTENT, WIFI,
+			NOKID, PARKING, ANIMAL, BEAM, CHARGER, BIG_SEAT, LEND
+			)
 			VALUES(
 				#{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
-				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{phtotGroup},
+				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},
 				#{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
-				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend})
+				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend}
+				)
   	</insert>
   
   <update id="updateCafe" parameterType="co.cod.app.cafe.CafeVO">

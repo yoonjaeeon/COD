@@ -73,12 +73,17 @@
 						<h4>#해쉬태그</h4>
 					</div>
 					<div class="col-sm-2">
-						<c:if test="${not empty area.bookmarks}">
-							<i class="far fa-heart" style="color:red"></i>
-						</c:if>
-						<c:if test="${empty area.bookmarks}">
-							<i class="far fa-heart"></i>
-						</c:if>
+						<div class="heart">
+							<c:if test="${empty sessionScope.loginEmail}">
+								<i class="far fa-heart"></i>
+							</c:if>
+							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
+								<i class="far fa-heart" style="color:red"></i>
+							</c:if>
+							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail ne area.bookmarks) }">
+								<i class="far fa-heart"></i>
+							</c:if>
+						</div>
 						<h4>${area.stars }</h4>
 					</div>
 				</header>

@@ -35,5 +35,16 @@
 	</select>	
 	
 	
+	<!-- 관리자 등록 대기 리스트 조회  -->
+	
+	
+	<select id="getAdminList" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
+
+	SELECT A.ADMIN_ID, A.ADMIN_PHONE, A.CAFE_STATE, C.CAFE_NAME,
+	C.CAFE_ADDRESS
+	FROM ADMIN A , CAFE C
+	WHERE A.ADMIN_ID =C.ADMIN_ID	
+	</select>
+	
 	
 </mapper>

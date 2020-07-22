@@ -3,7 +3,7 @@
 <script>
 	function validCheck() {
 		/* not null 값 무조건 들어가야하니까 비면 경고창  */
-		if (frm.id.value == "") {
+		if (frm.adminId.value == "") {
 			alert("id를 입력해주세요");
 			frm.id.focus();
 			return;

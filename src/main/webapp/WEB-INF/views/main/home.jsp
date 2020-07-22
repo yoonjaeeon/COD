@@ -20,31 +20,31 @@
 			</div>
 			<h4>추천 카페</h4>
 		</div>
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t1'">
 			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2'">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t3'">
 			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t4'">
 			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t5'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
@@ -90,49 +90,49 @@
 			<img id="map" src="resources/images/map.png" border="0" usemap="#Map" />
 			<map name="Map">
 				<!-- 동구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=동구"
 					coords="230,73,260,48,306,40,350,57,360,95,372,150,380,180,364,220,335,208,320,220,300,198,272,190,253,203,247,184,252,170,259,144,250,127,250,95"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_dg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 북구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=북구"
 					coords="230,75,247,95,252,129,257,144,253,169,256,178,240,196,215,195,186,175,147,181,150,160,170,130,165,83"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_bg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 서구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=서구"
 					coords="211,186,210,207,183,220,167,207,158,203,154,183,172,183,187,177"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_sg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 중구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=중구"
 					coords="212,196,238,196,243,202,238,290,236,219,220,220,211,216,207,211,211,205"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_jg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 남구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=남구"
 					coords="216,220,237,222,236,240,239,257,223,267,197,238"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_ng_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 달서구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=달서구"
 					coords="209,213,196,243,210,273,208,287,211,306,190,310,198,297,160,292,148,266,125,264,115,238,120,210,150,212,158,209,184,222"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_dsg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 수성구 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=수성구"
 					coords="245,204,261,205,275,195,300,200,319,219,346,217,345,237,333,246,339,265,310,292,257,271,227,271,238,259,240,225"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_ssg_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
 				<!-- 달성군1,2 -->
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=달성군"
 					coords="147,182,158,184,154,211,121,212,114,240,75,226,40,225,55,172,59,166,64,150,99,126,120,130,120,153,115,166,135,180"
 					target="_self"
 					onmouseover="changeImg('resources/images/map_dsg2_on.png')"

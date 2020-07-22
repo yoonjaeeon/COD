@@ -11,32 +11,32 @@
 			</div>
 			<h4>추천 카페</h4>
 		</div>
-		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t1'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t1'">
+			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t2'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2">
+			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
-		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t3'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t3'">
+			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
-		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t4'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t4'">
+			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
-		<div class="single_feature">
-			<div class="single_feature_icon" onclick="location.href='themeList?cafeTheme=t5'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t5'">
+			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
 			<h4>핸드 드립</h4>

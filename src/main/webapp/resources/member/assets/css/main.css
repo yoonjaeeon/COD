@@ -5130,6 +5130,8 @@ input[type="radio"]+label:before {
 
 .image img {
 	display: block;
+	max-height: 320px;
+	overflow: hidden;
 }
 
 .image.left, .image.right {

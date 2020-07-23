@@ -142,7 +142,7 @@ if(message.length>0){
 					target="_self"
 					onmouseover="changeImg('resources/images/map_dsg2_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">
-				<area shape="poly" href="#"
+				<area shape="poly" href="areaList?cafeAddress=달성군"
 					coords="227,275,240,280,257,274,309,294,309,306,322,325,316,347,319,360,291,372,277,386,258,398,250,350,228,360,200,357,173,380,176,408,158,455,115,460,66,490,33,493,60,463,12,388,80,396,89,367,40,335,72,277,124,263,149,269,160,292,184,300,192,314,212,307,213,288"
 					onmouseover="changeImg('resources/images/map_dsg2_on.png')"
 					onmouseout="changeImg('resources/images/map.png')">

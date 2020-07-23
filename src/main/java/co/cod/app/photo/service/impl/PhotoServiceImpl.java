@@ -2,9 +2,11 @@ package co.cod.app.photo.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
-
+@Service
 public class PhotoServiceImpl implements PhotoService{
 
 	@Override

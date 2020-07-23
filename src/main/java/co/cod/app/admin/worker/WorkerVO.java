@@ -1,4 +1,4 @@
-package vofile;
+package co.cod.app.admin.worker;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,4 +11,5 @@ public class WorkerVO {
 	String workerBirthday;
 	Integer pay;
 	String adminId;
+
 }

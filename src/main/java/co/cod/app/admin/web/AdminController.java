@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import vofile.WorkerVO;
+import co.cod.app.admin.worker.WorkerVO;
 
 @Controller class AdminController {
 		
@@ -28,7 +28,8 @@ import vofile.WorkerVO;
 	//등록처리
 	@RequestMapping("adminInsert")
 	public String insertAdmin(AdminVO adminVO, Model model) {
-	adminService.insertAdmin(adminVO);
+		
+		adminService.insertAdmin(adminVO);
 	return "redirect:home";
 	}
 	
@@ -79,8 +80,15 @@ import vofile.WorkerVO;
 		adminVO.setAdminId((String)session.getAttribute("adminId"));
 		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
 		return "ma/master/cafeStateList";
-	}
 	
+	}
+	//카페스테이트 업데이트
+	@RequestMapping("cafeStateUpdate")
+	public String cafeStateUpdate(Model model, AdminVO adminVO) {		
+		adminService.cafeStateUpdate(adminVO);
+		return "admin/cafeStateUpdate";
+		
+	}
 	
 	//업테이트
 	@RequestMapping("adminUpdate")

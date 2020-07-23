@@ -20,11 +20,30 @@
 		frm2.id.value = param;
 		frm2.submit();
 	}
+	
+/* 	
+	ajax({
+        type : "post",
+        url : "http://192.168.8.45:8099/webprac/ajax/AjaxController",
+        data : serData,
+        dataType : "json",
+        success : function(obj) {
+            showempinfo(obj);
+        },
+        complete : function(xhr,status) {
+        
+        },
+        error : function(xhr, status, error) {
+            console.log(error);
+        }
+    });
+ */
+
 </script>
 
 <div id="listpage">
 	<section class="posts">
-		<article>
+		
 				<div class="card shadow mb-4">			
 						<a href="#collapseCardExample" class="d-block card-header py-3"
 							data-toggle="collapse" role="button" aria-expanded="true"
@@ -55,23 +74,19 @@
 													<td>${list.cafeAddress}</td>
 													<td>${list.adminPhone}</td>
 													<td>${list.cafeState}</td>
-													<td><button class="btn1" type="button" onclick="Submit('${adminId }')">승인</button></td>
-													<td><button class="btn2" type="button" onclick="del('${adminId }')">삭제</button></td>
+													<td><button class="btn btn-primary" type="button" onclick="Submit('${adminId }')">승인</button></td>
+													<td><button class="btn btn-primary" type="button" onclick="del('${adminId }')">삭제</button></td>
 													<!-- onclick 메소드 필요 함 -->
 												</tr>
 											</c:forEach>
 										</tbody> 
 									</table>
 									</form>
-									<div class="btn-group">
-									<input type="submit" class="btn btn-primary" value="등록" />
+									<div class="btn-group">							
 							</div>
 							</div>
 						</div>
-				</div>
-			</div>
-		</article>
-	</section>
-</div> 
+			
+
 
 

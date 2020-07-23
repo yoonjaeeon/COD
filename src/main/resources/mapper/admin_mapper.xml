@@ -46,5 +46,14 @@
 	WHERE A.ADMIN_ID =C.ADMIN_ID	
 	</select>
 	
+	<!--  cafe_state 업테이트 -->
+	<update id="cafeStateUpdate" parameterType="co.cod.app.admin.AdminVO" >
 	
+	UPDATE ADMIN
+	SET
+	CAFE_STATE = 2
+	WHERE
+	ADMIN_ID = #{adminId}
+	
+	</update>
 </mapper>

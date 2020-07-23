@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- dumy_mapper.xml -->
-<mapper namespace="mapper.photo_mapper">   
+<mapper namespace="co.cod.app.photo.mapper.PhotoMapper">   
 	<select id="getPhoto" parameterType="co.cod.app.photo.PhotoVO" resultType="co.cod.app.photo.PhotoVO">
 		SELECT
 		*
@@ -20,7 +19,7 @@
 	<insert id="insertPhoto" parameterType="co.cod.app.photo.PhotoVO" >
 		INSERT INTO PHOTO(photo_seq, photo_name, photo_group, photo_use)
 			VALUES(
-				#{photoSeq},#{photoName),#{photoGroup},#{photoUse})
+				#{photoSeq},#{photoName},#{photoGroup},#{photoUse})
 	</insert>
 	
 	<update id="updatePhoto" parameterType="co.cod.app.photo.PhotoVO">

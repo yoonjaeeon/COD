@@ -17,12 +17,12 @@
   
   	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
   		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
+			cafe_time, cafe_closeday, cafe_thumbnail, 
 			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
 			nokid, parking, animal, beam, charger, big_seat, lend)
 			VALUES(
 				#{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
-				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{phtotGroup},
+				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},
 				#{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
 				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend})
   	</insert>

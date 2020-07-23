@@ -122,9 +122,13 @@
          <input type="text"  class="form-control" id="close" name="cafeCloseday" >
       </div>
      <div class="form-group">
-      <label>썸네일:</label> 
+      <label>카페등록사진:</label> 
       <input type="file" id="uploadFile" name="uploadFile"/>
-     </div>     
+     </div>
+        <div class="form-group">
+      <label>썸네일:</label> 
+      <input type="file" id="upload" name="upload"/>
+     </div>   
       <div class="form-group">
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" >

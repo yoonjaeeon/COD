@@ -1,5 +1,10 @@
 package co.cod.app.menu;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class MenuVO {
 	Integer menuSeq;
 	String menuSort;

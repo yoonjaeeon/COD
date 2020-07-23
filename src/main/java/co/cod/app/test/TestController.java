@@ -51,5 +51,10 @@ public class TestController {
 	public String memberMyPage() {
 		return "ad/member/memberMyPage";
 	}
+	
+	@RequestMapping("cafeWaiting")
+	public String cafeWaiting() {
+		return "ad/cafe/cafeWaiting";
+	}
 
 }

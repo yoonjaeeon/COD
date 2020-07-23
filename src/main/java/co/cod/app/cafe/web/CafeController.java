@@ -103,5 +103,10 @@ public class CafeController {
       System.out.println(cafeName + " : " + adminId);
       return "main/home";
    }
+   
+   @RequestMapping("cafeOrder")
+	public String cafeOrder() {		
+		return "cafe/cafeOrder";
+	}
 
 }

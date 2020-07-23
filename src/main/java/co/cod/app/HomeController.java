@@ -85,6 +85,10 @@ public class HomeController {
 	@RequestMapping("cafe")
 	public String cafe() {
 		return "cafe/cafeMain";
-
+	}
+	@RequestMapping("memberLogout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main/home";
 	}
 }

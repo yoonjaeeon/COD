@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="header">
+<script>
+function logoutCheck(){
+	var value = confirm("정말 로그아웃 하시겠습니까?");
+	if(value){
+		logout.submit();
+	}else{
+		return;
+	}
+}
+</script>
+<form name="logout" action="memberLogout" method="post"></form>
    <h1>
       <a href="home"><i class="fas fa-coffee"></i>    C O D</a>
    </h1>
@@ -9,10 +21,15 @@
       <ul>
          <li><a href="themeList">테마별</a></li>
          <li><a href="areaList">지역별</a></li>
-         <li><a href="bookmarks">즐겨찾기</a></li>
+         <c:if test="${empty sessionScope.loginEmail }">
          <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
+         </c:if>         
+         <c:if test="${not empty sessionScope.loginEmail }">
+         <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="MemberMyPage">MyPage</a></li>
+         <li><a href="#" onclick="logoutCheck()">로그아웃</a></li>
+         </c:if>
       </ul>
    </nav>
    <nav class="main">

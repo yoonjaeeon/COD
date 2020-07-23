@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PhotoVO {
 	Integer photoSeq;
-	String photoName;
+	String  photoName;
 	Integer photoGroup;
 	Integer photoUse;
 }

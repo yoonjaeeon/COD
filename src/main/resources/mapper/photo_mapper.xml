@@ -9,7 +9,30 @@
 		FROM PHOTO
 		WHERE photo_group = #{photoGroup} 
 	</select>
-	<select id="get" resultType="map">
-			
+	<select id="getPhotoList" resultType="co.cod.app.photo.PhotoVO" parameterType="co.cod.app.photo.PhotoVO">
+			<where>
+				<if test="photo_group !=null">
+					photo_group = #{photoGroup}
+				</if>
+			</where>
 	</select>
+	
+	<insert id="insertPhoto" parameterType="co.cod.app.photo.PhotoVO" >
+		INSERT INTO PHOTO(photo_seq, photo_name, photo_group, photo_use)
+			VALUES(
+				#{photoSeq},#{photoName),#{photoGroup},#{photoUse})
+	</insert>
+	
+	<update id="updatePhoto" parameterType="co.cod.app.photo.PhotoVO">
+			UPDATE PHOTO
+			SET
+			photo_name = #{photoName}, photo_group = #{photoGroup}, photo_use =#{photoUse}
+			WHERE
+			photo_group = #{photoGroup}
+	</update>
+	
+	<delete id="deletePhoto" parameterType="co.cod.app.photo.PhotoVO">
+		DELETE FROM PHOTO WHERE
+		PHOTO_GROUP =#{photoGroup}
+	</delete>
 </mapper>

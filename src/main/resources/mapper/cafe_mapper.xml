@@ -34,7 +34,7 @@
 				cafe_time = #{cafeTime},cafe_closeday = #{cafeCloseday},cafe_thumbnail = #{cafeThumbnail},phtot_group = #{phtotGroup},
 				cafe_hashtag = #{cafeHashtag},cafe_theme = #{cafeTheme},cafe_ask_content = #{cafeAskContent},wifi = #{wifi},
 				nokid = #{nokid},parking = #{parking},animal = #{animal},beam = #{beam},
-				charger = #{charger},big_seat = #{bigSeat},lend = #{lend})
+				charger = #{charger},big_seat = #{bigSeat},lend = #{lend}
   		WHERE
   		ADMIN_ID = #{adminId}
   </update>

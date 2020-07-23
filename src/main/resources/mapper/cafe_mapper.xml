@@ -3,10 +3,7 @@
 <mapper namespace="co.cod.app.cafe.mapper.CafeMapper" >
 	<select id="getCafe" parameterType="co.cod.app.cafe.CafeVO" resultType="co.cod.app.cafe.CafeVO">
 			SELECT 
-			admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
-			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
-			nokid, parking, animal, beam, charger, big_seat, lend
+			*
 			FROM cafe
 			WHERE admin_id = #{adminId}
 	</select>	

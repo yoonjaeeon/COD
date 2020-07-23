@@ -83,7 +83,9 @@ public class HomeController {
 			return "ad/adminManage/adminWorker";
 	}
 	@RequestMapping("cafe")
-	public String cafe() {
+	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
 		return "cafe/cafeMain";
 	}
 	@RequestMapping("memberLogout")

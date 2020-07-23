@@ -17,10 +17,10 @@
 		<div class="align-center">
 			<div class="row">
 				<div class="col-lg-4 boxs" style="padding: 2em">
-					<h2>카페이름</h2>
+					<h2>${cafeDetail.cafeName }</h2>
 					<i class='far fa-heart' style='font-size: 24px'></i><br> <br>
 					<button>
-						<i class='fas fa-map-marker-alt'></i> 위치보기
+						<i class='fas fa-map-marker-alt'></i> ${cafeDetail.cafeAddress }
 					</button>
 					<button>
 						<i class="fas fa-shopping-cart"> </i> 주문하기
@@ -37,9 +37,9 @@
 					<article class="mini-post">
 						<header>
 							<h3>기본 정보</h3>
-							<h4 class="published">영업시간 : am10:00~ pm07:00</h4>
+							<h4 class="published">영업시간 : {${cafeDetail.cafeTime } </h4>
 							<h4 class="published">
-								쉬는 날 : <b style="color: red">매주 일요일</b>
+								쉬는 날 : <b style="color: red">${cafeDetail.cafeCloseday}</b>
 							</h4>
 						</header>
 					</article>
@@ -54,48 +54,69 @@
 					<h2>서비스</h2>
 					<div class="main_feature text-center">
 						<div class="icon_slick">
+						<c:if test="${'1' == cafeDetail.wifi }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fas fa-wifi"></i>
 								</div>
 								<h4>와이파이</h4>
 							</div>
+						</c:if>
+							
+						<c:if test="${'1' == cafeDetail.animal }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fas fa-dog"></i>
 								</div>
 								<h4>애완동물동반가능</h4>
 							</div>
+						</c:if>
+							
+						<c:if test="${'1' == cafeDetail.nokid}">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fa fa-times"></i>
 								</div>
 								<h4>노키즈존</h4>
 							</div>
+						</c:if>
+							
+						<c:if test="${'1' == cafeDetail.parking }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fas fa-car-alt"></i>
-								</div>
+								</div>								
 								<h4>주차가능</h4>
 							</div>
+						</c:if>
+						
+						<c:if test="${'1' == cafeDetail.charger }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fa fa-plug"></i>
 								</div>
 								<h4>충전기 대여</h4>
 							</div>
+						</c:if>
+							
+						<c:if test="${'1' == cafeDetail.bigSeat}">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fas fa-users"></i>
 								</div>
 								<h4>단체석</h4>
 							</div>
+						</c:if>
+							
+						<c:if test="${'1' == cafeDetail.lend }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
 									<i class="fa fa-registered"></i>
 								</div>
 								<h4>대관가능</h4>
 							</div>
+						</c:if>
+							
 						</div>
 					</div>
 				</header>

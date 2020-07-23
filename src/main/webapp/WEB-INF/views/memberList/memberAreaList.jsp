@@ -68,7 +68,7 @@
 				<header class="row">
 					<div class="col-sm-10">
 						<h3>
-							<a href="cafe?adminId=${theme.adminId }">${area.cafeName }</a>
+							<a href="cafe?adminId=${area.adminId }">${area.cafeName }</a>
 						</h3>
 						<h4>#해쉬태그</h4>
 					</div>
@@ -87,7 +87,7 @@
 						<h4>${area.stars }</h4>
 					</div>
 				</header>
-				<a href="cafe?adminId=${theme.adminId }" class="image"><img src="resources/upload/${area.cafeThumbnail }"
+				<a href="cafe?adminId=${area.adminId }" class="image"><img src="resources/upload/${area.cafeThumbnail }"
 					alt=""></a>
 			</article>
 		</c:forEach>

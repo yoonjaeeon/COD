@@ -28,10 +28,10 @@
 						<h4>#해쉬태그</h4>
 					</div>
 					<div class="col-sm-2">
-						<c:if test="${not empty bookmark.bookmarks}">
+						<c:if test="${not empty bookmark.email}">
 							<i class="far fa-heart" style="color: red"></i>
 						</c:if>
-						<c:if test="${empty bookmark.bookmarks}">
+						<c:if test="${empty bookmark.email}">
 							<i class="far fa-heart"></i>
 						</c:if>
 						<h4>${theme.stars }</h4>

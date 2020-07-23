@@ -48,6 +48,21 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberLogin(MemberVO memberVO) {
 		return memberMapper.memberLogin(memberVO);
 	}
+
+	@Override
+	public void insertBookmark(BookmarksVO bookmarksVO) {
+		memberMapper.insertBookmark(bookmarksVO);
+		
+	}
+
+	@Override
+	public void deleteBookmark(BookmarksVO bookmarksVO) {
+		memberMapper.deleteBookmark(bookmarksVO);
+		
+	}
+
+	
+	
 	
 	
 	

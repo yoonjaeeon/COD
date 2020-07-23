@@ -111,5 +111,20 @@ public class MemberController {
 	   public String memberMain(Model model) {
 		   return "";
 	   }
+	   
+	   @RequestMapping("insertBookmark")
+	   public String insertBookmark(Model model, BookmarksVO bookmarksVO,HttpSession session) {
+		   bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
+		   return "";
+	   }
+	   
+	   @RequestMapping("deleteBookmark")
+	   public String deleteBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {
+		   bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
+		   
+		   
+		   return "";
+		   
+	   }
 
 }

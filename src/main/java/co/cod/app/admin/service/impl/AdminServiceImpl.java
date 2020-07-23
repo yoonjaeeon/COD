@@ -55,6 +55,12 @@ public class AdminServiceImpl implements AdminService{
 	public AdminVO adminLogin(AdminVO adminVO) {		
 		return adminMapper.adminLogin(adminVO);
 	}
+	
+	@Override
+	public void cafeStateUpdate(AdminVO adminVO) {
+		adminMapper.cafeStateUpdate(adminVO);
+		
+	}
 
 }
 

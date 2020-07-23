@@ -78,10 +78,10 @@ public class HomeController {
 			return "memberList/memberThemeList";
 	}
 
-	@RequestMapping("adminWorker")
-	public String adminWorker() {
-			return "ad/adminManage/adminWorker";
-	}
+//	@RequestMapping("adminWorker")
+//	public String adminWorker() {
+//			return "ad/adminManage/adminWorker";
+//	}
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));

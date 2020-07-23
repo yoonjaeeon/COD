@@ -78,7 +78,7 @@
 					</div>
 					<div class="col-sm-2">
 						<c:if test="${not empty theme.bookmarks}">
-							<i class="far fa-heart" style="color: red"></i>
+							<i class="far fa-heart" style="color: red" ></i><%-- id='bookmark${theme.bookmarkSeq }' --%>
 						</c:if>
 						<c:if test="${empty theme.bookmarks}">
 							<i class="far fa-heart"></i>

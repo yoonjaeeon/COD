@@ -130,7 +130,7 @@ messageSeq = seq;
 		
 	}
 } */
-
+	
 	 $('#contentModal').on('show.bs.modal', function (e) {
 		console.log(e.target); 
 		$.ajax({

@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="getBookmarks" parameterType="vofile.BookmarksVO" resultType="vofile.BookmarksVO">
-	SELECT TQ.*, EMAIL
+	SELECT TQ.*, EMAIL, B.BOOKMARK_SEQ
 	  FROM (SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL, C.CAFE_HASHTAG, S.STARS 
 	  FROM (SELECT ADMIN_ID, TRUNC(AVG(STARS),1) STARS
 	  FROM REVIEW
@@ -48,7 +48,7 @@
 	
 	<delete id="deleteBookmark" parameterType="vofile.BookmarksVO">
 	DELETE FROM BOOKMARKS
-	WHERE EMAIL=#{email} AND ADMIN_ID=#{adminId} 
+	WHERE BOOKMARK_SEQ=#{bookmarkSeq} 
 	</delete>
 	
 </mapper>

@@ -48,14 +48,14 @@
 	<select id="getThemeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
 		SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL , NVL(R.STARS,0) AS
 		STARS, (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND
-		EMAIL ='test') AS BOOKMARKS
-		FROM CAFE C LEFT OUTER JOIN (SELECT
-		ADMIN_ID, TRUNC((SUM(STARS))/
-		COUNT(STARS),1) STARS
-		FROM REVIEW
-		GROUP BY
-		ADMIN_ID) R
-		ON (C.ADMIN_ID = R.ADMIN_ID)
+				EMAIL ='test') AS BOOKMARKS
+				FROM CAFE C LEFT OUTER JOIN (SELECT
+				ADMIN_ID, TRUNC((SUM(STARS))/
+			COUNT(STARS),1) STARS
+			FROM REVIEW
+			GROUP BY
+					ADMIN_ID) R
+					ON (C.ADMIN_ID = R.ADMIN_ID)
 		<where>
 			<if test="cafeTheme != null">
 				CAFE_THEME = #{cafeTheme}

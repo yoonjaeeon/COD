@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
@@ -119,11 +120,10 @@ public class MemberController {
 	   }
 	   
 	   @RequestMapping("deleteBookmark")
+	   @ResponseBody
 	   public String deleteBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {
-		   bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
-		   
-		   
-		   return "";
+		   memberService.deleteBookmark(bookmarksVO);
+		   return "true";
 		   
 	   }
 

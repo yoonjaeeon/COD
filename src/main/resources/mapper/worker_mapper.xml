@@ -18,7 +18,7 @@
 	</insert>	
 	
 	<select id="getWorkerList" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">		
-		SELECT * FROM WORKER
+		SELECT * FROM WORKER where admin_id = #{adminId}
 	</select>
 	
 	

@@ -16,7 +16,6 @@ function logoutCheck(){
    <h1>
       <a href="home"><i class="fas fa-coffee"></i>    C O D</a>
    </h1>
-   ${sessionScope.loginEmail }
    <nav class="links">
       <ul>
          <li><a href="themeList">테마별</a></li>
@@ -28,7 +27,7 @@ function logoutCheck(){
          <c:if test="${not empty sessionScope.loginEmail }">
          <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="MemberMyPage">MyPage</a></li>
-         <li><a href="#" onclick="logoutCheck()">로그아웃</a></li>
+         <li><a href="#" onclick="logoutCheck()">${sessionScope.loginEmail }님 로그아웃</a></li>
          </c:if>
       </ul>
    </nav>

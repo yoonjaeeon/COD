@@ -1,4 +1,6 @@
 package co.cod.app.review;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
  
@@ -10,7 +12,11 @@ public class ReviewVO {
 	String adminId;
 	Integer orderSeq;
 	String reviewContent;
-	Integer stars;
+	double stars;
 	String reviewTime;
 	String cafeName;
+	Integer photoGroup; // 원본
+	String gdsThumbImg; // 썸네일
+	MultipartFile upload;
+	MultipartFile [] uploadFile;
 }

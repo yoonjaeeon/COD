@@ -12,11 +12,13 @@
 				review_time,
 				stars,
 				order_seq,
+				photo_group,
+				gdsThumbImg,
 				admin_id
 						
 		 		
-		FROM employees
-		WHERE email = #{email}
+		FROM review
+		WHERE review_seq = #{reviewSeq}
 	</select>
 
 	<!-- <resultMap type="#modelname" id="YourResultSet">
@@ -27,7 +29,7 @@
 
 	<!-- 전체조회  -->
 	<select id="getReviewList" resultType="co.cod.app.review.ReviewVO">
-		SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group
+		SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group, r.gdsThumbImg
         from orders o, cafe c, review r 
         where c.admin_id= o.admin_id 
         and c.admin_id = r.admin_id
@@ -35,16 +37,18 @@
 	</select>
 
 	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">
-		INSERT INTO review (review_seq, review_content, review_time, stars)  
+		INSERT INTO review (review_seq, review_content, review_time, stars, gdsThumbImg)  
 		
-		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars})
+		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars}, #{gdsThumbImg})
 	</insert>
 
  	<update id="updateReview" parameterType="co.cod.app.review.ReviewVO">
 		UPDATE review 
 		SET
-		review_content = #{reviewContent}, stars = #{stars}
-		review_seq = #{reviewSeq}
+			    review_content = #{reviewContent}, 
+			    stars = #{stars},
+			    gdsThumbImg = #{gdsThumbImg}
+		where   review_seq = #{reviewSeq}
 	</update>
 
 	<delete id="deleteReview" parameterType="co.cod.app.review.ReviewVO">

@@ -64,7 +64,20 @@ public class CafeController {
 	// 카페등록
 	@RequestMapping("insertCafe")
 	public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO) throws IOException {
+		MultipartFile cafeThumbnail = cafeVO.getUpload();
+		if(cafeThumbnail != null) {
+			String filename = cafeThumbnail.getOriginalFilename();
+			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
+				File upFile = FileRenamePolicy.rename(new 
+						File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				filename = upFile.getName();
+				cafeThumbnail.transferTo(upFile);
 
+			}
+
+			cafeVO.setCafeThumbnail(filename);
+		
+		}
 		MultipartFile[] files = cafeVO.getUploadFile();
 		if (files != null) {
 			for (MultipartFile file : files) {

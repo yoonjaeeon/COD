@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- dumy_mapper.xml -->
 <mapper namespace="mapper.photo_mapper">   
-	<select id="getPhoto" parameterType="co.cod.app.photo.PhtotVO" resultType="co.cod.app.photo.PhtotVO">
+	<select id="getPhoto" parameterType="co.cod.app.photo.PhotoVO" resultType="co.cod.app.photo.PhotoVO">
 		SELECT
 		*
 		FROM PHOTO

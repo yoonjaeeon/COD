@@ -29,6 +29,7 @@ public class CafeVO {
 	Integer phtotGroup;
 	String bookmarks;
 	double stars; //별점
+	MultipartFile upload;
 	MultipartFile [] uploadFile;
 	String profile;
 }

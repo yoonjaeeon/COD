@@ -6,16 +6,12 @@
 <!DOCTYPE html>
 <script>
 	function idDelete(deleteId){
-	/* 	var result = confirm("정말 삭제 하시겠습니까?"); */
-		location.href="deleteReview?reviewSeq=" + deleteId;
-/* 		if(result){
-			if("${reivew.reivewSeq}" == "${loginId}"||"${loginId}" == "admin"){ //trim함수
-				location.href="deleteReview?reviewSeq=" + deleteId;
-				return;
-			} else {
-				alert("본인이 아닙니다.")	
-			}
-		}	 */
+		var result = confirm("정말 삭제 하시겠습니까?");
+		if(result){
+			location.href="deleteReview?reviewSeq=" + deleteId;
+		}else{
+			return;
+		}
 	}
 </script>
 
@@ -35,8 +31,7 @@
 			<tr>
 				<td>${review.reviewSeq }</td>
 				<td><a href="updateFormReview?reviewSeq=${review.reviewSeq}">${review.cafeName }</a></td>
-				<%-- <td>${review.gdsThumbImg }</td> --%>
-				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 80px"></td>
+				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
@@ -45,12 +40,12 @@
 			</tr>
 		</c:forEach>
 	</table>
-<%-- 	<script type="text/javascript">
+	<script type="text/javascript">
 	function gopage(p) {
-		document.searchfrm.p.value = p;
-/* 		document.searchfrm.submit();
-		location.href="memberReviewList?p="+p; */
+		location.href="memberReviewList?p="+p;
+		//document.searchfrm.p.value = p; 검색
+ 		//document.searchfrm.submit();
 	}
 </script>
-<my:paging paging="${paging}" jsfunc="gopage" /> --%>
+<my:paging paging="${paging}" jsfunc="gopage" />
 </div>

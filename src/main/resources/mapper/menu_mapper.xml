@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dumy_mapper.xml -->
+<mapper namespace="co.cod.app.menu.mapper.MenuMapper">   
+
+	<select id="getMenuList" resultType="menu" parameterType="menu">
+		select *
+		from menu
+		where admin_id =  #{adminId}
+	</select>
+	
+	<select id="getMenu" parameterType="menu" resultType="menu">
+		select *
+		from menu
+		where menu_seq=#{MenuSeq}
+	</select>
+	
+	<select id="getmenuListMap" parameterType="menu" resultType="map">
+		select menu_seq   "menuSeq", 
+		       menu_sort  "menuSort", 
+		       price      "price", 
+		       price_add   "priceAdd",
+		       menu_name	"manuName",
+		       admin_id		"adminId"
+		from menu
+	</select>
+
+	<!-- 등록 -->
+	<insert id="insertMenu" parameterType="menu">
+		insert into menu (menu_seq, menu_sort, menu_name, price, menu_state,
+						 price_add, new_menu, popular_menu, signiture, admin_id)
+		values ((select nvl(max(menu_seq),0)+1 from menu) ,
+		#{menuSort},
+		#{menuName},
+		#{price},
+		#{menuState},
+		#{priceAdd},
+		#{newMenu},
+		#{popularMenu},
+		#{signiture},
+		#{adminId}
+		)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="updateMenu" parameterType="menu">
+		update menu set
+		menu_sort = #{menuSort},
+		menu_name = #{menuName},
+		price = #{price},
+		menu_state = #{menuState},
+		price_add = #{priceAdd},
+		new_menu = #{newMenu},
+		popular_menu = #{popularMenu},
+		signiture = #{signiture}
+		where menu_seq = #{menuSeq}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="deleteMenu" parameterType="menu">
+		delete from menu
+		where menu_seq = #{menuSeq}
+	</delete>
+
+</mapper>

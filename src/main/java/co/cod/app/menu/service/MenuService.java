@@ -7,10 +7,10 @@ import co.cod.app.menu.MenuVO;
 
 public interface MenuService {
 
-	public MenuVO getMenu(MenuVO MenuVO);
-	public List<MenuVO> getMenuList(MenuVO MenuVO);
-	public void insertMenu(MenuVO MenuVO); 
-	public void updateMenu(MenuVO MenuVO);
-	public void deleteMenu(MenuVO MenuVO);
+	public MenuVO getMenu(MenuVO menuVO);
+	public List<MenuVO> getMenuList(MenuVO menuVO);
+	public int insertMenu(MenuVO menuVO); 
+	public int updateMenu(MenuVO menuVO);
+	public int deleteMenu(MenuVO menuVO);
 	public List<Map<String, Object>> getCafeMap();
 }

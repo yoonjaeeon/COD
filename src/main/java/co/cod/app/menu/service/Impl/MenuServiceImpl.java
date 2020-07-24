@@ -17,38 +17,32 @@ public class MenuServiceImpl implements MenuService {
 	MenuMapper menuMapper;
 
 	@Override
-	public MenuVO getMenu(MenuVO MenuVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public MenuVO getMenu(MenuVO menuVO) {
+		return menuMapper.getMenu(menuVO);
 	}
 
 	@Override
-	public List<MenuVO> getMenuList(MenuVO MenuVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MenuVO> getMenuList(MenuVO menuVO) {
+		return menuMapper.getMenuList(menuVO);
 	}
 
 	@Override
-	public void insertMenu(MenuVO MenuVO) {
-		// TODO Auto-generated method stub
-		
+	public int insertMenu(MenuVO menuVO) {
+		return menuMapper.insertMenu(menuVO);
 	}
 
 	@Override
-	public void updateMenu(MenuVO MenuVO) {
-		// TODO Auto-generated method stub
-		
+	public int updateMenu(MenuVO menuVO) {
+		return menuMapper.updateMenu(menuVO);
 	}
 
 	@Override
-	public void deleteMenu(MenuVO MenuVO) {
-		// TODO Auto-generated method stub
-		
+	public int deleteMenu(MenuVO menuVO) {
+		return menuMapper.deleteMenu(menuVO);		
 	}
 
 	@Override
 	public List<Map<String, Object>> getCafeMap() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

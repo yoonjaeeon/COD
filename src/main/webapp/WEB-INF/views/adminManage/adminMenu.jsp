@@ -45,7 +45,7 @@ function menuInsert(){
 function menuDelete() {
    //삭제 버튼 클릭
    $('body').on('click','#btnDelete',function(){
-      var menuSeq = $(this).closest('tr').find('#hidden_menuSeq').val();
+      var menuSeq = $(this).closest('tr').find('#menuSeq').val();
       var result = confirm("정말로 삭제하시겠습니까?");
       if(result) {
          $.ajax({
@@ -66,7 +66,7 @@ function menuDelete() {
 //메뉴 조회 요청
 function menuSelect() {
    $('body').on('click','#btnSelect',function(){
-      var menuSeq = $(this).closest('tr').find('#hidden_menuSeq').val();
+      var menuSeq = $(this).closest('tr').find('#menuSeq').val();
       $.ajax({
          url:'menu/'+menuSeq,
          type:'GET',
@@ -91,15 +91,13 @@ function menuSelectResult(menu) {
 //메뉴 수정 요청
 function menuUpdate() {
    $('#btnUpdate').on('click',function(){
-      var menu_seq = $('input:text[name="id"]').val();
-      var name = $('input:text[name="name"]').val();
-      var password = $('input:text[name="password"]').val();
-      var role = $('select[name="role"]').val();      
+	   var menuSeq = $(this).closest('tr').find('#menuSeq').val();
+	   console.log(JSON.stringify($("#menuform").serializeObject()));
       $.ajax({ 
-          url: "menu", 
+          url: "menu/"+menuSeq, 
           type: 'PUT', 
           dataType: 'json', 
-          data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+          data: JSON.stringify($("#menuform").serializeObject()),
           contentType: 'application/json',
           success: function(data) { 
               menuList();
@@ -137,7 +135,7 @@ function menuListResult(data) {
       .append($('<td>').html(item.priceAdd))
       .append($('<td>').html('<button id="btnSelect" class="btn btn-outline-info"\'>조회</button>'))
       .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
-      .append($('<input type=\'hidden\' id=\'hidden_menuSeq\'>').val(item.menuSeq))
+      .append($('<input type=\'hidden\' id=\'menuSeq\'>').val(item.menuSeq))
       .appendTo('tbody');
    });//each
 }//menuListResult
@@ -146,6 +144,7 @@ function menuListResult(data) {
          <h4>메뉴 등록 및 수정</h4><br>
    <form name="menuform" id="menuform" class="form-horizontal row">
       <div class="col-lg-6" >
+      	 <input type="hidden" name="menuSeq">
          <select class="form-control" id="menuSort" name="menuSort">
               <option value="Coffee">Coffee</option>
               <option value="Non Coffee">Non Coffee</option>

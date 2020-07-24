@@ -21,8 +21,7 @@
 	<script src="resources/slick/slick.min.js"></script>
 	<script src="resources/member/assets/js/browser.min.js"></script>
 	<script src="resources/member/assets/js/breakpoints.min.js"></script>
-	<script src="resources/member/assets/js/util.js"></script>
-	<script src="resources/member/assets/js/main.js"></script>
+	
 <!-- bootstrap -->
 </head>
 <body class="single is-preload">
@@ -59,5 +58,6 @@
 			</p>
 		</section>
 	</div>
-
+	<script src="resources/member/assets/js/util.js"></script>
+	<script src="resources/member/assets/js/main.js"></script>
 </html>

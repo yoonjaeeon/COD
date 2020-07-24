@@ -76,25 +76,25 @@
 
 			<article class="mini-post">
 				<header class="row">
-					<div class="col-sm-10">
+					<div class="col-sm-9">
 						<h3>
 							<a href="cafe?adminId=${theme.adminId }">${theme.cafeName }</a>
 						</h3>
 						<h4>#해쉬태그</h4>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 					<div class="heart" data-class="${theme.bookmarks}">
 						<c:if test="${not empty theme.bookmarks}">
-							<i class="far fa-heart" style="color: red" data-placement="top" title="즐겨찾기  취소"	data-toggle="tooltip"						
+							<i class="far fa-heart" style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
 							id="bookmarkDelete${theme.bookmarkSeq}" 
-							></i><%-- id='bookmark${theme.bookmarkSeq }' --%>
+							></i>
 						</c:if>
 						<c:if test="${empty theme.bookmarks}">
-							<i class="far fa-heart" data-id='${theme.adminId}' style="color:black" data-placement="top" title="즐겨찾기  등록"	
+							<i class="far fa-heart" data-id='${theme.adminId}' style="color:black" data-placement="top" title="즐겨찾기 "	
 							data-toggle="tooltip" id="bookmarkInsert"></i>
 						</c:if> 
 						</div>
-						<h4>${theme.stars }</h4>
+						<h4><i class='fas fa-star'></i>${theme.stars }</h4>
 					</div>
 				</header>
 				<a href="cafe?adminId=${theme.adminId }" class="image"><img
@@ -145,8 +145,8 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     			dataType :'json' ,
     			success:function(){
     				$("#bookmarkDelete"+seq).css('color','black');
-    				$(this).find('i').removeAttr( 'id' )
-    				$(this).find('i').addAttr("id","bookmarkInsert")
+    				$(this).find('i').removeAttr( 'id' );
+    				$(this).find('i').addAttr("id","bookmarkInsert");
     				i.toggleClass('red');
 					//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
     				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
@@ -166,7 +166,7 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     			dataType :'json' ,
     			success:function(data){
     				result.attr('style', 'color:red')
-    				.attr('id', 'bookmarkDelete'+data.bookmarkSeq)    				
+    				.attr('id', 'bookmarkDelete'+data.bookmarkSeq);
     			} 
     		})
     	}

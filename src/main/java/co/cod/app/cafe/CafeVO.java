@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class CafeVO {
+	String email;
    String adminId;
    String cafeName;
    String cafeAddress;
@@ -27,6 +28,7 @@ public class CafeVO {
    Integer lend;
    Integer bigSeat;
    Integer phtotGroup;
+   Integer bookmarkSeq;
    String bookmarks;
    double stars; //별점
    MultipartFile upload;

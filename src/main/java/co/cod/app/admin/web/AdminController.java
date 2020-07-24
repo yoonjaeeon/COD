@@ -6,8 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
@@ -65,7 +68,7 @@ import co.cod.app.admin.worker.WorkerVO;
 				}else if (result.getCafeState()== 1) {
 						rt = "admin/loading";					
 				}else if(result.getCafeState()== 2){
-						rt = "ad/admin/admin";	
+						rt = "ad/admin/adminMain";	
 				}
 			}else { 
 				rt ="ma/master/masterMain";
@@ -74,29 +77,44 @@ import co.cod.app.admin.worker.WorkerVO;
 			return rt;
 			}		
 
+	// 관리자 목록 조회
 	@RequestMapping("adminList")
 	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {		
 		adminVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
+		model.addAttribute("adminList", adminService.getAdminList(adminVO));		
 		return "ma/master/adminList";
 	
 	}
+	//관리자 단건 조회
+	// 단건조회
+		@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
+		public String getAdmin(@PathVariable String adminId,HttpSession session ) {
+			
+			System.out.println(adminId);			
+			return "ma/master/adminList";
+		}
+	
 	
 	//카페대기리스트 조회
 	@RequestMapping("cafeStateList")
 	public String cafeStateList(AdminVO adminVO, Model model, HttpSession session) {		
 		adminVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
+		model.addAttribute("cafeStateList", adminService.cafeStateList(adminVO));		
 		return "ma/master/cafeStateList";
 	
 	}
-	//카페스테이트 업데이트
-	@RequestMapping("cafeStateUpdate")
-	public String cafeStateUpdate(Model model, AdminVO adminVO) {		
-		adminService.cafeStateUpdate(adminVO);
-		return "admin/cafeStateUpdate";
-		
-	}
+
+	//수정
+	
+	@RequestMapping(value="/UpdateCafeState"
+					,method=RequestMethod.PUT
+			 		,consumes="application/json"      //요청헤더	   
+	)@ResponseBody
+	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model, HttpSession session ) {
+		adminVO.setAdminId((String)session.getAttribute("adminId"));
+		adminService.updateCafeState(adminVO);
+		return  adminVO;
+			}	
 	
 	//업테이트
 	@RequestMapping("adminUpdate")

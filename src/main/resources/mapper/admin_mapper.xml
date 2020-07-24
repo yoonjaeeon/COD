@@ -34,17 +34,23 @@
 	WHERE ADMIN_ID = #{adminId}			
 	</select>	
 	
+	<!--관리자 리스트 조회   -->
+	<select id="adminList" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
+	SELECT * FROM ADMIN
 	
-	<!-- 관리자 등록 대기 리스트 조회  -->
 	
-	
-	<select id="getAdminList" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
-
-	SELECT A.ADMIN_ID, A.ADMIN_PHONE, A.CAFE_STATE, C.CAFE_NAME,
-	C.CAFE_ADDRESS
-	FROM ADMIN A , CAFE C
-	WHERE A.ADMIN_ID =C.ADMIN_ID	
 	</select>
+	<!-- 카페 대기 등록 대기 리스트 조회  -->
+
+	
+<!-- 	<select id="updateCafeState" resultType="co.cod.app.admin.adminVO">
+      update admin set cafe_state=#{cafeState}
+      <where>
+         <if test="admin_id != null && admin_id !='' ">
+            admin_id = #{adminId}
+         </if>
+      </where>
+   	</select> -->
 	
 	<!--  cafe_state 업테이트 -->
 	<update id="cafeStateUpdate" parameterType="co.cod.app.admin.AdminVO" >

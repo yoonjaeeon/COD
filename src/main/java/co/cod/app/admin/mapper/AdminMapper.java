@@ -17,9 +17,8 @@ public interface AdminMapper {
 	public List<Map<String, Object>> getAdminMap();
 	public List<Map<String, Object>> getDeptAdminCnt();
 	public AdminVO adminLogin(AdminVO adminVO);
-	public void cafeStateUpdate(AdminVO adminVO);
 	public  List<AdminVO>cafeStateList(AdminVO adminVO);
-
+	public void updateCafeState(AdminVO adminVO);
 
 }
 

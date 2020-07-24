@@ -50,8 +50,7 @@ public class WorkerController {
 	//수정
 		@RequestMapping(value="/adminWorker"
 				,method=RequestMethod.PUT
-		 		,consumes="application/json"      //요청헤더
-	   
+		 		,consumes="application/json"      //요청헤더	   
 		)@ResponseBody
 		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model, HttpSession session ) {
 			workerVO.setAdminId((String)session.getAttribute("adminId"));

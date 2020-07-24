@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<style>
+.fa-heart {cursor:pointer;}.
+</style>
+
+
 <div align="center">
 	<h1>즐겨찾는 카페 리스트</h1>
 </div>
@@ -34,7 +39,9 @@
 						<!-- onMouseOver="this.innerHTML='즐겨찾기 해제'"
 								onMouseOut="this.innerHTML='ABOUT STYLE'" -->
 								
-							<i class="far fa-heart" style="color: red" id="bookmark${bookmark.bookmarkSeq}"></i>
+							<i class="far fa-heart" style="color: red" 
+							data-placement="top" title="즐겨찾기  취소"	data-toggle="tooltip"						
+							id="bookmark${bookmark.bookmarkSeq}" ></i>
 						<%-- </c:if>
 						<c:if test="${empty bookmark.email}">
 							<i class="far fa-heart" id="insertBookmark"></i>
@@ -61,7 +68,15 @@
 </div>
 
 <script>
+
+
 						$(function(){ /* bookmark로 시작하는 id에 접근 */
+							
+							//tooltip 지정
+						    $('[data-toggle="tooltip"]').tooltip()
+						    
+						    
+						    //bookmark 삭제
 							$('[id^="bookmark"]').on('click', function(){
 								if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
 									return
@@ -78,9 +93,7 @@
 									} 
 								})
 							})
-						})
-						
-						$}
+						});
 						
 						/* $(function(){
 							$('#insertBookmark').on('click', function(){
@@ -116,4 +129,4 @@
 								});
 							});
 						}); */
-						</script>
+</script>

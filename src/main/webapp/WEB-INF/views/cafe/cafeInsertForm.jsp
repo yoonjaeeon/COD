@@ -121,34 +121,34 @@
          <label>휴무일:</label>
          <input type="text"  class="form-control" id="close" name="cafeCloseday" >
       </div>
-   <!--   <div class="form-group">
-      <label>카페등록사진:</label> 
-      <input type="file" id="uploadFile" name="uploadFile"/>
-     </div> -->
         <div class="form-group">
       <label>썸네일:</label> 
       <input type="file" id="upload" name="upload"/>
-     </div>   
+     </div>  
+     	<div class="form-group">
+      <label>카페등록사진:</label> 
+      <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
+     	</div> 
       <div class="form-group">
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" >
       </div>
       <div class="form-group">
          <label >테마:</label>
-         <div class="checkbox">
-            <label><input type="checkbox"  name="cafeTheme" id="theme" value="t4">작업하기좋은</label>
+         <div class="radio">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t4" checked="checked" >작업하기좋은</label>
          </div>
          <div class="checkbox">
-            <label><input type="checkbox"  name="cafeTheme" id="theme" value="t5">핸드드립</label>
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5">핸드드립</label>
          </div>
          <div class="checkbox">
-            <label><input type="checkbox"  name="cafeTheme" id="theme" value="t3">야외석있는</label>
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t3">야외석있는</label>
          </div>  
          <div class="checkbox">
-            <label><input type="checkbox"  name="cafeTheme" id="theme" value="t1">이색카페</label>
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t1">이색카페</label>
          </div>  
          <div class="checkbox">
-            <label><input type="checkbox"  name="cafeTheme" id="theme" value="t2">디저트</label>
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
          </div>     
         	 <br>
          <div>

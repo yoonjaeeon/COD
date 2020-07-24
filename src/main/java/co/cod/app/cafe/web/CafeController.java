@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,12 +16,16 @@ import org.springframework.web.multipart.MultipartFile;
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
+import co.cod.app.photo.PhotoVO;
+import co.cod.app.photo.service.PhotoService;
 
 @Controller
 public class CafeController {
 
 	@Autowired
 	CafeService cafeService;
+	@Autowired
+	PhotoService photoService;
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
@@ -57,7 +60,7 @@ public class CafeController {
 
 	// 카페등록
 	@RequestMapping("insertCafe")
-	public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO) throws IOException {
+	public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO, PhotoVO photoVO) throws IOException {
 		MultipartFile cafeThumbnail = cafeVO.getUpload();
 		if (cafeThumbnail != null) {
 			String filename = cafeThumbnail.getOriginalFilename();
@@ -69,8 +72,10 @@ public class CafeController {
 			}
 			cafeVO.setCafeThumbnail(filename);
 		}
-		MultipartFile[] files = cafeVO.getUploadFile();
+		
+		MultipartFile[] files = photoVO.getUploadFile();
 		if (files != null) {
+			PhotoVO photoMaxVO = photoService.getPhotoMax();
 			for (MultipartFile file : files) {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
@@ -79,11 +84,15 @@ public class CafeController {
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}
-				cafeVO.setCafeThumbnail(filename);
+				photoVO.setPhotoName(filename);
+				photoVO.setPhotoUse(1);
+				photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+				photoService.insertPhoto(photoVO);
 			}
+			cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 		}
 		cafeService.insertCafe(cafeVO);
-		return "ad/cafe/cafeWaiting";
+		return "e/cafe/cafeWaiting"; 
 	}
 
 	// 단건조회

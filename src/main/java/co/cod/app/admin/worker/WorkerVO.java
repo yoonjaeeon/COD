@@ -8,7 +8,7 @@ public class WorkerVO {
 	Integer workerSeq;
 	Integer workerGrade;
 	String workerName;
-	String workerBirthday;
+	String workerBirth;
 	Integer pay;
 	String adminId;
 

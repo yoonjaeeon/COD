@@ -15,10 +15,6 @@
 	<!-- <task:scheduler id="jobScheduler" pool-size="10" /> -->
 	<!-- <task:annotation-driven scheduler="jobScheduler" /> -->   
 	
-<!-- 		업로드 패스 설정 -->
-	<bean class="java.lang.String" id="uploadPath">
-		<constructor-arg
-			value= "D:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\cod\resources" />
-	</bean>
+
 	  
 </beans>

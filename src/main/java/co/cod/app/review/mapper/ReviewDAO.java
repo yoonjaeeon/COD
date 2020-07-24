@@ -36,5 +36,5 @@ public class ReviewDAO {
 	   mybatis.delete("co.cod.app.member.review.mapper.ReviewDAO.deleteReview", reviewVO);
 	   
    }
-     
+  
 }

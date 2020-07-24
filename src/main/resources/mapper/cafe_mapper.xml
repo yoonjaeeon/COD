@@ -17,12 +17,12 @@
   
   	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
   		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, 
+			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
 			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
 			nokid, parking, animal, beam, charger, big_seat, lend)
 			VALUES(
 				#{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
-				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},
+				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{photoGroup},
 				#{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
 				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend})
   	</insert>
@@ -46,16 +46,19 @@
   </delete>
   	<!-- 테마리스트 -->
 	<select id="getThemeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-		SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL , NVL(R.STARS,0) AS
-		STARS, (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND
-				EMAIL ='test') AS BOOKMARKS
-				FROM CAFE C LEFT OUTER JOIN (SELECT
-				ADMIN_ID, TRUNC((SUM(STARS))/
-			COUNT(STARS),1) STARS
-			FROM REVIEW
-			GROUP BY
-					ADMIN_ID) R
-					ON (C.ADMIN_ID = R.ADMIN_ID)
+		  SELECT 
+         C.ADMIN_ID, 
+         C.CAFE_NAME, 
+         C.CAFE_THUMBNAIL , 
+         NVL(R.STARS,0) AS		STARS, 
+         (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND	EMAIL =#{email}) AS BOOKMARKS, 
+         (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
+      FROM CAFE C 
+      LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
+                                  FROM REVIEW
+                                  GROUP BY
+                                	ADMIN_ID) R
+                                  ON (C.ADMIN_ID = R.ADMIN_ID)
 		<where>
 			<if test="cafeTheme != null">
 				CAFE_THEME = #{cafeTheme}

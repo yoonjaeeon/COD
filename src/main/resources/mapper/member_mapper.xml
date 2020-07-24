@@ -42,8 +42,11 @@
 	</select>
 	
 	<insert id="insertBookmark" parameterType="vofile.BookmarksVO">
-	INSERT INTO BOOKMARKS(BOOKMAKR_SEQ, EMAIL, ADMIN_ID) 
-	VALUES(SELECT NVL(MAX(BOOKMAKR_SEQ),0) FROM BOOKMAKRS, #{email}, #{adminId})
+	<selectKey resultType="int" keyProperty="bookmarkSeq" order="BEFORE">
+        SELECT NVL(MAX(BOOKMARK_SEQ),0)+1 FROM BOOKMARKS
+    </selectKey> 
+	INSERT INTO BOOKMARKS(BOOKMARK_SEQ, EMAIL, ADMIN_ID) 
+	VALUES(#{bookmarkSeq}, #{email}, #{adminId})
 	</insert>
 	
 	<delete id="deleteBookmark" parameterType="vofile.BookmarksVO">

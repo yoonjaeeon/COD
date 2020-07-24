@@ -114,9 +114,11 @@ public class MemberController {
 	   }
 	   
 	   @RequestMapping("insertBookmark")
-	   public String insertBookmark(Model model, BookmarksVO bookmarksVO,HttpSession session) {
+	   @ResponseBody
+	   public BookmarksVO insertBookmark(Model model, BookmarksVO bookmarksVO,HttpSession session) {
 		   bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
-		   return "";
+		   memberService.insertBookmark(bookmarksVO);
+		   return bookmarksVO;
 	   }
 	   
 	   @RequestMapping("deleteBookmark")

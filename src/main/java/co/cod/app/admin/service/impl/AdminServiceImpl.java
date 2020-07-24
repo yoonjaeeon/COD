@@ -56,10 +56,15 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.adminLogin(adminVO);
 	}
 	
+	
 	@Override
-	public void cafeStateUpdate(AdminVO adminVO) {
-		adminMapper.cafeStateUpdate(adminVO);
-		
+	public List<AdminVO> cafeStateList(AdminVO adminVO) {
+		// TODO Auto-generated method stub
+		return adminMapper.cafeStateList(adminVO);
+	}
+	@Override
+	public void updateCafeState(AdminVO adminVO) {
+		//return adminMapper.updateCafeState(adminVO);
 	}
 
 }

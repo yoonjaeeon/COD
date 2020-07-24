@@ -17,6 +17,9 @@ public class ReviewVO {
 	String cafeName;
 	Integer photoGroup; // 원본
 	String gdsThumbImg; // 썸네일
-	MultipartFile upload;
-	MultipartFile [] uploadFile;
+	MultipartFile upload; //한장
+	MultipartFile [] uploadFile; //여러장
+	String start;
+	String end;
+	String p;
 }

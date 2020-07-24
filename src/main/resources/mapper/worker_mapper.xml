@@ -6,20 +6,53 @@
 <insert id="insertWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
 	
 	INSERT INTO WORKER	(
-	WORKER_SEQ, WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY
+	ADMIN_ID,WORKER_SEQ, WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY
 	)
 	VALUES(
-	#{workerSeq},
+	#{adminId},
+	(select nvl(max(worker_seq),0)+1 from worker),
 	#{workerName},
-	#{workerBirthday},
+	#{workerBirth},
 	#{workerGrade},
 	#{pay}
 	)
+	
 	</insert>	
 	
 	<select id="getWorkerList" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">		
+	
+	
 		SELECT * FROM WORKER where admin_id = #{adminId}
+	
 	</select>
+	
+	<select id="getWorker" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">
+	
+		SELECT WORKER_SEQ,
+		WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY,
+		FROM WORKER
+		WHERE WORKER_SEQ=#{workerSeq}
+	
+	</select>
+	
+	
+	
+	
+	<update id="updateWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
+	 	
+	 	UPDATE WORKER
+		SET
+		WORKER_NAME = #{workerName},
+		WORKER_BIRTH = #{workerBirth},
+		PAY = #{pay}
+		WHERE ADMIN_ID = #{adminId}
+			
+	
+	</update>
+	
+	
+	
+	
 	
 	
 </mapper>

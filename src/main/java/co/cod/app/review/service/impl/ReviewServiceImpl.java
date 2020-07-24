@@ -27,6 +27,12 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("getReviewList 서비스 호출");
 		return reviewMapper.getReviewList(reviewVO);
 	}
+	
+	// 페이징 카운트
+	@Override
+	public int getCount(ReviewVO reviewVO) {
+		return reviewMapper.getCount(reviewVO);
+	}
  
 	// 등록
 	@Override
@@ -45,5 +51,4 @@ public class ReviewServiceImpl implements ReviewService {
 	public void updateReview(ReviewVO reviewVO) {
 		reviewMapper.updateReview(reviewVO);
 	}
-
 }

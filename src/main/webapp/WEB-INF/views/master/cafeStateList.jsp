@@ -49,7 +49,7 @@
 							data-toggle="collapse" role="button" aria-expanded="true"
 							aria-controls="collapseCardExample"></a>
 						<form id="frm">
-						<h3 class="m-0 font-weight-bold ">관리자리스트</h3>				
+						<h3 class="m-0 font-weight-bold ">카페 승인 대기 리스트</h3>				
 						<div class="collapse show" id="collapseCardExample">
 							<div class="card-body">
 								<div class="order"> 

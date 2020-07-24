@@ -2,17 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script src="resources/json.min.js"></script>
 <script type="text/javascript" >
+
 	$(function(){
 		workerList();
 
-		workerSelect();
+	 	workerSelect();
 		
 		workerDelete();
 		
 		workerInsert();
 	
-		workerUpdate();
+		workerUpdate(); 
 		
 		init();
 	});
@@ -26,25 +28,25 @@
 			});
 		});
 	}//init
+	
 	//사용자 등록 요청
 	function workerInsert(){
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
-			$("#workform")
-			
+			console.log($("#workform").serialize());
 			$.ajax({ 
 			    url: "adminWorker",  
 			    type: 'POST',  
 			    dataType: 'json', 
-			    data :  $("#workform").serialize(),
-			    contentType:'application/json;charset=utf-8',
+			    data : $("#workform").serialize(),			    
 			    success: function(response) {
+			    	console.log(response.kkk)
 			    	if(response.result == true) {
 			    		workerList();
 			    	}
 			    }, 
 			    error:function(xhr, status, message) { 
-			        alert(" 상태: "+status+" 에러:"+message);
+			        alert(""+ status+" 정보를 입력해주세요 "+message);
 			    } 
 			 });  
 		});//등록 버튼 클릭
@@ -72,26 +74,49 @@
 		}); //삭제 버튼 클릭
 	}//userDelete
 	
+	//사용자 조회 요청
+	function workerSelect() {
+		//조회 버튼 클릭
+		$('body').on('click','#btnSelect',function(){
+			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
+			//특정 사용자 조회
+			$.ajax({
+				url:'adminWorker',
+				type:'GET',
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				error:function(xhr,status,msg){
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:workerSelectResult
+			});
+		}); //조회 버튼 클릭
+	}//userSelect
+	
+	//사용자 조회 응답
+	function workerSelectResult(worker) {
+		$('input:text[name="workerName"]').val(worker.workerName);
+		$('input:text[name="workerBirth"]').val(worker.workerBirth);
+		$('input:text[name="pay"]').val(worker.password);
+		$('select[name="role"]').val(worker.role).attr("selected", "selected");
+	}//userSelectResult
+	
 	
 	//사용자 수정 요청
 	function workerUpdate() {
 		//수정 버튼 클릭
-		$('#btnUpdate').on('click',function(){
-			var workerName= $('input:text[name="workerName"]').val();
-			var workerGrade = $('input:text[name="workerGrade"]').val();
-			var pay = $('input:number[name="pay"]').val();
-			var role = $('select[name="role"]').val();		
+		$('#btnUpdate').on('click', function(){									
 			$.ajax({ 
-			    url: "adminWorkerForm", 
+			    url: "adminWorker", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data: JSON.stringify({ workerName: workerName, workerGrade:workerGrade, pay: pay, role: role }),
-			    contentType: 'application/json',
+			    data : JSON.stringify($("#workform").serializeObject()),
+			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			       workerList();
 			    },
 			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
+			        alert(" status: "+status+" 에러:"+message);
 			    }
 			});
 		});//수정 버튼 클릭
@@ -101,29 +126,26 @@
 	//사용자 목록 조회 요청
 	function workerList() {
 		$.ajax({
-			url:'adminWorkerForm',
-			type:'GET',
-			contentType:'application/json;charset=utf-8',
+			url:'adminWorker',
+			type:'GET',			
 			dataType:'json',
-			success: function(){
-				
-			},
 			error:function(xhr,status,msg){
-				alert("상태값 :" + status + " Http에러메시지111 :"+msg);
+				alert("상태값 :" + status + " 에러 메세지:"+msg);
 			},
 			success:workerListResult
 		});
-	}//userList
+	}//직원 리스트 조회
 	
 	//사용자 목록 조회 응답
 	function workerListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
-			$('<tr>')
+			$('<tr>')			
 			.append($('<td>').html(item.workerName))
 			.append($('<td>').html(item.pay))
 			.append($('<td>').html(item.workerGrade))
 			.append($('<td>').html(item.workerBirth))
+			.append($('<td>').html(item.role))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_workerSeq\'>').val(item.workerSeq))
@@ -131,24 +153,23 @@
 		});//each
 	}//userListResult
 </script>
-
+<body>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6">
 		<form id="workform"  class="form-horizontal">
 			<h2>직원 등록 및 수정</h2>
-			
 			<div class="form-group">		
 				<label >직원이름 :</label>
-				<input type="text"  class="form-control" name="workerName" >
+				<input type="text"  class="form-control" name="workerName" id="workerName">
 			</div>	
 			<div class="form-group">
 				<label>직원생일:</label>
-				<input type="text"  class="form-control"  name="workerBirthday" >
+				<input type="text"  class="form-control"  name="workerBirth" id="workerBirth">
 			</div>	
 			<div class="form-group">
 				<label>직원급여:</label>
-				<input type="text"  class="form-control"  name="pay" >
+				<input type="text"  class="form-control"  name="pay" id="pay">
 			</div>			
 			<div class="form-group">   
 				<label>등급:</label>
@@ -159,10 +180,10 @@
 					</select>
 			</div>  
 			<div class="btn-group">      
-					<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
-					<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-					<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />
-			</div>
+				<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
+				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
+				<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+					</div>
 		</form>
 		</div>
 	<hr/>		
@@ -170,11 +191,13 @@
 		<h2>직원목록</h2>
 		<table class="table text-center">
 			<thead>
-			<tr>
+			<tr>				
 				<th class="text-center">직원이름</th>
 				<th class="text-center">월급/시급</th>
 				<th class="text-center">직원등급</th>
 				<th class="text-center">직원생일</th>
+				<th class="text-center">직원조회</th>
+				<th class="text-center">직원삭제</th>
 			</tr>
 			</thead>
 			<tbody></tbody>
@@ -182,3 +205,4 @@
 	</div>
 </div>
 </div>
+</body>

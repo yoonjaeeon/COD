@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.mapper.AdminMapper;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.mapper.CafeMapper;
 import co.cod.app.cafe.service.CafeService;
@@ -16,6 +18,9 @@ public class CafeServiceImpl implements CafeService{
 
 	@Autowired 
 	CafeMapper cafeMapper;
+	
+	@Autowired
+	AdminMapper adminMapper;
 	
 	@Override
 	public CafeVO getCafe(CafeVO cafeVO) {
@@ -61,9 +66,14 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public List<CafeVO> AreaList(CafeVO cafeVO) {
-		// TODO Auto-generated method stub
 		return cafeMapper.getAreaList(cafeVO);
 	}
-	
 
+	@Override
+	public void updateCafeState(AdminVO adminVO) {
+		adminMapper.updateCafeState(adminVO);
+		
+	}
+	
+	
 }

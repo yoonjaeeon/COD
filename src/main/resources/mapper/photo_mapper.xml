@@ -16,10 +16,14 @@
 			</where>
 	</select>
 	
+	<select id="getPhotoMax" resultType="co.cod.app.photo.PhotoVO" >
+		select nvl(max(photo_group),0)+1 photo_group from photo
+	</select>	
+
 	<insert id="insertPhoto" parameterType="co.cod.app.photo.PhotoVO" >
 		INSERT INTO PHOTO(photo_seq, photo_name, photo_group, photo_use)
 			VALUES(
-				#{photoSeq},#{photoName},#{photoGroup},#{photoUse})
+				(select nvl(max(photo_seq),0)+1 from photo),#{photoName},#{photoGroup}, #{photoUse})
 	</insert>
 	
 	<update id="updatePhoto" parameterType="co.cod.app.photo.PhotoVO">
@@ -34,4 +38,6 @@
 		DELETE FROM PHOTO WHERE
 		PHOTO_GROUP =#{photoGroup}
 	</delete>
+	
+	
 </mapper>

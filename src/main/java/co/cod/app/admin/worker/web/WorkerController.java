@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+
+
 import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.admin.worker.service.WorkerService;
 
@@ -37,8 +39,7 @@ public class WorkerController {
 		@RequestMapping(value="/adminWorker"
 				,method=RequestMethod.POST)	            
 		@ResponseBody
-		public Map insertWorker( WorkerVO workerVO, Model model,HttpSession session) {
-		
+		public Map insertWorker( WorkerVO workerVO, Model model,HttpSession session) {		
 			Map<String, Object> map = new HashMap<String, Object>();
 			workerVO.setAdminId((String)session.getAttribute("adminId"));
 			workerService.insertWorker(workerVO);
@@ -50,8 +51,10 @@ public class WorkerController {
 	//수정
 		@RequestMapping(value="/adminWorker"
 				,method=RequestMethod.PUT
-		 		,consumes="application/json"      //요청헤더	   
-		)@ResponseBody
+		 		,headers = {"Content-type=application/json" })
+		//요청헤더	   
+		@ResponseBody
+		
 		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model, HttpSession session ) {
 			workerVO.setAdminId((String)session.getAttribute("adminId"));
 			workerService.updateWorker(workerVO);
@@ -70,6 +73,13 @@ public class WorkerController {
 
 			return result;
 		}
+	
+		//단건조회
+		@RequestMapping(value="/adminWorker/{id}",  method=RequestMethod.GET)
+		public WorkerVO getWorker(@PathVariable String id, WorkerVO workerVO, Model model) {
+			workerVO.setAdminId(id);
+			return  workerService.getWorker(workerVO);
+		}
 		
 		
 	//전체조회
@@ -79,6 +89,9 @@ public class WorkerController {
 		workerVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
 		return  workerService.getWorkerList(workerVO);	
 	}	
+	
+	
+	
 	
 	//
 	@RequestMapping(value="/respAPI")

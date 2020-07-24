@@ -162,7 +162,7 @@
             <label><input type="radio"  name="wifi" id="wifi" value="1" checked="checked">Yes</label>
          </div>
          <div class="radio">
-            <label><input type="radio"  name="wifi" id="wifi  value="0">No</label>
+            <label><input type="radio"  name="wifi" id="wifi"  value="0">No</label>
          </div>
          </div> <br>
         
@@ -192,7 +192,7 @@
             <label><input type="radio"  name="animal" id="animal" value="1" checked="checked">Yes</label>
          </div>
          <div class="radio">
-            <label><input type="radio"  name="animal" id="animal" value="">No</label>
+            <label><input type="radio"  name="animal" id="animal" value="0">No</label>
          </div>
          </div> <br>
          

@@ -18,7 +18,7 @@
 	</settings>
 	
 	<typeAliases>
-		<!-- <typeAlias type="com.dbal.app.users.UserVO" alias="user"/> -->
+		<typeAlias type="co.cod.app.admin.AdminVO" alias="admins"/>
 	</typeAliases>
 
 </configuration>

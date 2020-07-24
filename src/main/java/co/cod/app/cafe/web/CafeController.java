@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
+import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.service.AdminService;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.photo.PhotoVO;
@@ -26,6 +28,8 @@ public class CafeController {
 	CafeService cafeService;
 	@Autowired
 	PhotoService photoService;
+	@Autowired
+	AdminService adminService;
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
@@ -61,8 +65,12 @@ public class CafeController {
 
 	// 카페등록
 	@RequestMapping("insertCafe")
-	   public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO, PhotoVO photoVO) throws IOException {
-	      MultipartFile cafeThumbnail = cafeVO.getUpload();
+	   public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO, PhotoVO photoVO,HttpSession session) throws IOException {
+	    cafeVO.setAdminId((String)session.getAttribute("adminId")); 
+	    AdminVO adminVO = new AdminVO();
+	    adminVO.setAdminId((String)session.getAttribute("adminId"));
+	    adminVO.setCafeState(1);
+		MultipartFile cafeThumbnail = cafeVO.getUpload();
 	      if (cafeThumbnail != null) {
 	         String filename = cafeThumbnail.getOriginalFilename();
 	         if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
@@ -93,6 +101,7 @@ public class CafeController {
 	         cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 	      }
 	      cafeService.insertCafe(cafeVO);
+	      adminService.updateCafeState(adminVO);
 	      return "e/cafe/cafeWaiting"; 
 	   }
 

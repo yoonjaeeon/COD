@@ -53,13 +53,8 @@
    	</select> -->
 	
 	<!--  cafe_state 업테이트 -->
-	<update id="cafeStateUpdate" parameterType="co.cod.app.admin.AdminVO" >
-	
-	UPDATE ADMIN
-	SET
-	CAFE_STATE = 2
-	WHERE
-	ADMIN_ID = #{adminId}
-	
-	</update>
+	<select id="updateCafeState" parameterType="admins">
+		UPDATE admin SET cafe_state = #{cafeState}
+		WHERE admin_id = #{adminId}
+	</select>
 </mapper>

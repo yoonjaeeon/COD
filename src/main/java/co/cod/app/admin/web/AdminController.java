@@ -74,9 +74,17 @@ import co.cod.app.admin.worker.WorkerVO;
 			return rt;
 			}		
 
-	//관리자 리스트 조회
-	@RequestMapping("cafeStateList")
+	@RequestMapping("adminList")
 	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {		
+		adminVO.setAdminId((String)session.getAttribute("adminId"));
+		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
+		return "ma/master/adminList";
+	
+	}
+	
+	//카페대기리스트 조회
+	@RequestMapping("cafeStateList")
+	public String cafeStateList(AdminVO adminVO, Model model, HttpSession session) {		
 		adminVO.setAdminId((String)session.getAttribute("adminId"));
 		model.addAttribute("cafeStateList", adminService.getAdminList(adminVO));		
 		return "ma/master/cafeStateList";

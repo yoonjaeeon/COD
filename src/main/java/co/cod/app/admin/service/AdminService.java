@@ -14,7 +14,7 @@ public interface AdminService {
 	public void updateAdmin(AdminVO adminVO);
 	public void deleteAdmin(AdminVO adminVO);
 	public List<Map<String, Object>> getAdminMap();
-	public AdminVO adminLogin(AdminVO adminVO);
+	public AdminVO adminLogin(AdminVO adminVO);	
 	public void cafeStateUpdate(AdminVO adminVO);
-
+	public  List<AdminVO>cafeStateList(AdminVO adminVO);
 }

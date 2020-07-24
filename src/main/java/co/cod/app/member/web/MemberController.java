@@ -116,14 +116,14 @@ public class MemberController {
 	   @RequestMapping("insertBookmark")
 	   public String insertBookmark(Model model, BookmarksVO bookmarksVO,HttpSession session) {
 		   bookmarksVO.setEmail((String)session.getAttribute("loginEmail"));
-		   return "";
+		   memberService.insertBookmark(bookmarksVO);
+		   return "true";
 	   }
 	   
 	   @RequestMapping("deleteBookmark")
 	   @ResponseBody
-	   public String deleteBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {
-		   memberService.deleteBookmark(bookmarksVO);
-		   return "true";
+	   public void deleteBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {
+		   memberService.deleteBookmark(bookmarksVO);		   
 		   
 	   }
 

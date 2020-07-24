@@ -132,7 +132,7 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     $('.heart').on('click', function(){
     	var i = $(this).find('i')
     	console.log($(this).data('class')) 
-    	if($(this).data('class') != ""){
+    	if(i.css('color')=='rgb(255, 0, 0)'){
     		if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
     			return
     		}else
@@ -144,9 +144,9 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     			method : 'post',
     			dataType :'json' ,
     			success:function(){
-    				$("#bookmarkDelete${theme.bookmarkSeq}").attr('style', 'color:black');
-    				$(this).find('i').removeAttr( 'id' );
-    				$(this).find('i').addAttr("id","bookmarkInsert");
+    				$("#bookmarkDelete"+seq).css('color','black');
+    				$(this).find('i').removeAttr( 'id' )
+    				$(this).find('i').addAttr("id","bookmarkInsert")
     				i.toggleClass('red');
 					//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
     				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
@@ -156,16 +156,17 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     		if(!confirm("즐겨찾기목록에 등록하시겠습니까?")){
     			return
     		}
-    		var id = $(this).data('id')
+    		var result = $(this).find('i');
+    		
+    		var id = $(this).find('i').data('id')
     		$.ajax({
-    			url :'insertBookmark?', 
+    			url :'insertBookmark', 
     			data : {adminId:id },
     			method : 'post',
     			dataType :'json' ,
-    			success:function(){
-    				$("#bookmark"+seq).closest('article').remove() 
-    				$("#bookmarkInsert").attr('style', 'color:red')
-    									.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
+    			success:function(data){
+    				result.attr('style', 'color:red')
+    				.attr('id', 'bookmarkDelete'+data.bookmarkSeq)    				
     			} 
     		})
     	}

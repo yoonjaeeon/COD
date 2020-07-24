@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
+import co.cod.app.photo.PhotoVO;
+import co.cod.app.photo.service.PhotoService;
 
 @Controller
 public class CafeController {
@@ -24,7 +25,7 @@ public class CafeController {
 	@Autowired
 	CafeService cafeService;
 	@Autowired
-	PhotoService photoService
+	PhotoService photoService;
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")

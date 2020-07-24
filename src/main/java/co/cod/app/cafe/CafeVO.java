@@ -27,11 +27,10 @@ public class CafeVO {
    Integer charger;
    Integer lend;
    Integer bigSeat;
-   Integer phtotGroup;
+   Integer photoGroup;
    Integer bookmarkSeq;
    String bookmarks;
    double stars; //별점
    MultipartFile upload;
-   MultipartFile [] uploadFile;
    String profile;
 }

@@ -61,6 +61,11 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.cafeStateUpdate(adminVO);
 		
 	}
+	@Override
+	public List<AdminVO> cafeStateList(AdminVO adminVO) {
+		// TODO Auto-generated method stub
+		return adminMapper.cafeStateList(adminVO);
+	}
 
 }
 

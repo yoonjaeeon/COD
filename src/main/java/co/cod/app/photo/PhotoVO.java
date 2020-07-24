@@ -1,5 +1,7 @@
 package co.cod.app.photo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,4 +12,5 @@ public class PhotoVO {
 	String  photoName;
 	Integer photoGroup;
 	Integer photoUse;
+	MultipartFile [] uploadFile;
 }

@@ -10,4 +10,5 @@ public interface PhotoService {
 	public void insertPhoto(PhotoVO photoVO);
 	public void updatePhoto(PhotoVO photoVO);
 	public void deletePhoto(PhotoVO photoVO);
+	public PhotoVO getPhotoMax();
 }

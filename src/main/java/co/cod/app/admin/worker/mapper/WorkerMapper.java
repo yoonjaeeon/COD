@@ -8,7 +8,7 @@ import co.cod.app.admin.worker.WorkerVO;
 public interface WorkerMapper {
 
 	public WorkerVO getWorker( WorkerVO workerVO);
-	public List< WorkerVO> getWorkerList();
+	public List< WorkerVO> getWorkerList(WorkerVO workerVO);
 	public void insertWorker( WorkerVO workerVO);
 	public void updateWorker( WorkerVO workerVO);
 	public void deleteWorker( WorkerVO workerVO);

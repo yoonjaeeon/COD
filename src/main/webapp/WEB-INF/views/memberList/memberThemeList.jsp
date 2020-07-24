@@ -82,7 +82,7 @@
 						</c:if>
 						<c:if test="${empty theme.bookmarks}">
 							<i class="far fa-heart"></i>
-						</c:if>
+						</c:if> 
 						<h4>${theme.stars }</h4>
 					</div>
 				</header>

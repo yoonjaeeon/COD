@@ -66,25 +66,27 @@
 		<c:forEach items="${getArea}" var="area">
 			<article class="mini-post">
 				<header class="row">
-					<div class="col-sm-10">
+					<div class="col-sm-9">
 						<h3>
 							<a href="cafe?adminId=${area.adminId }">${area.cafeName }</a>
 						</h3>
 						<h4>#해쉬태그</h4>
 					</div>
-					<div class="col-sm-2">
-						<div class="heart">
+					<div class="col-sm-3">
+						<div class="heart" data-class="${area.bookmarks}">
 							<c:if test="${empty sessionScope.loginEmail}">
 								<i class="far fa-heart"></i>
 							</c:if>
 							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
-								<i class="far fa-heart" style="color:red"></i>
+								<i class="far fa-heart" style="color:red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
+							id="bookmarkDelete${area.bookmarkSeq}" ></i>
 							</c:if>
 							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail ne area.bookmarks) }">
-								<i class="far fa-heart"></i>
+								<i class="far fa-heart" data-id='${area.adminId}' style="color:black" data-placement="top" title="즐겨찾기 "	
+							data-toggle="tooltip" id="bookmarkInsert"></i>
 							</c:if>
 						</div>
-						<h4>${area.stars }</h4>
+						<h4><i class='fas fa-star'></i>${area.stars }</h4>
 					</div>
 				</header>
 				<a href="cafe?adminId=${area.adminId }" class="image"><img src="resources/upload/${area.cafeThumbnail }"
@@ -94,6 +96,49 @@
 	</section>
 </div>
 <script>
+$('[data-toggle="tooltip"]').tooltip()
+$('.heart').on('click', function(){
+	var i = $(this).find('i')
+	console.log($(this).data('class')) 
+	if(i.css('color')=='rgb(255, 0, 0)'){
+		if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
+			return
+		}else
+		/* 클린한 곳에서 id를 찾아서 8번째 문자를 반환시켜줌 */
+		var seq = $(this).find('i').attr('id').substr(14);
+		$.ajax({
+			url :'deleteBookmark?', 
+			data : {bookmarkSeq:seq},
+			method : 'post',
+			dataType :'json' ,
+			success:function(){
+				$("#bookmarkDelete"+seq).css('color','black');
+				$(this).find('i').removeAttr( 'id' )
+				$(this).find('i').addAttr("id","bookmarkInsert")
+				i.toggleClass('red');
+				//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
+				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
+			} 
+		})
+	}else{
+		if(!confirm("즐겨찾기목록에 등록하시겠습니까?")){
+			return
+		}
+		var result = $(this).find('i');
+		
+		var id = $(this).find('i').data('id')
+		$.ajax({
+			url :'insertBookmark', 
+			data : {adminId:id },
+			method : 'post',
+			dataType :'json' ,
+			success:function(data){
+				result.attr('style', 'color:red')
+				.attr('id', 'bookmarkDelete'+data.bookmarkSeq)    				
+			} 
+		})
+	}	  
+})
 	$('.icon_slick').slick({
 		slidesToShow : 9,
 		slidesToScroll : 1,

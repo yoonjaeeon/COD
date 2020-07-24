@@ -5,15 +5,16 @@
 <mapper namespace="co.cod.app.menu.mapper.MenuMapper">   
 
 	<select id="getMenuList" resultType="menu" parameterType="menu">
-		select *
-		from menu
-		where admin_id =  #{adminId}
+		SELECT *
+		FROM menu
+		WHERE admin_id =  #{adminId}
+		ORDER BY menu_seq
 	</select>
 	
 	<select id="getMenu" parameterType="menu" resultType="menu">
 		select *
 		from menu
-		where menu_seq=#{MenuSeq}
+		where menu_seq=#{menuSeq}
 	</select>
 	
 	<select id="getmenuListMap" parameterType="menu" resultType="map">

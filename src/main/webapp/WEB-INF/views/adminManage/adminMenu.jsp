@@ -24,7 +24,6 @@ function init() {
 
 //메뉴 등록 요청 등록
 function menuInsert(){
-   console.log($("#menuform").serialize());
    $('#btnInsert').on('click',function(){
       $.ajax({ 
           url: "menu",  
@@ -47,7 +46,7 @@ function menuDelete() {
    //삭제 버튼 클릭
    $('body').on('click','#btnDelete',function(){
       var menuSeq = $(this).closest('tr').find('#hidden_menuSeq').val();
-      var result = confirm(menuSeq +" 를 정말로 삭제하시겠습니까?");
+      var result = confirm("정말로 삭제하시겠습니까?");
       if(result) {
          $.ajax({
             url:'menu/'+menuSeq,  
@@ -69,7 +68,7 @@ function menuSelect() {
    $('body').on('click','#btnSelect',function(){
       var menuSeq = $(this).closest('tr').find('#hidden_menuSeq').val();
       $.ajax({
-         url:'menus/'+menuSeq,
+         url:'menu/'+menuSeq,
          type:'GET',
          contentType:'application/json;charset=utf-8',
          dataType:'json',
@@ -79,14 +78,14 @@ function menuSelect() {
          success:menuSelectResult
       });
    }); //조회 버튼 클릭
-}//menuSelect
+}
 
 //메뉴 조회 응답
 function menuSelectResult(menu) {
-   $('input:text[name="id"]').val(menu.menuSort);
-   $('input:text[name="name"]').val(menu.menuName);
-   $('input:text[name="password"]').val(menu.password);
-   $('select[name="role"]').val(menu.role).attr("selected", "selected");
+	$('select[name="menuSort"]').val(menu.menuSort).attr("selected", "selected");
+	$('input:text[name="menuName"]').val(menu.menuName);
+	$('input:text[name="price"]').val(menu.price);
+	$('input:text[name="priceAdd"]').val(menu.priceAdd);
 }//menuSelectResult
 
 //메뉴 수정 요청
@@ -112,8 +111,6 @@ function menuUpdate() {
    });
 }//menuUpdate
 
-
-
 //메뉴 목록 조회 요청
 function menuList() {
    $.ajax({
@@ -138,8 +135,8 @@ function menuListResult(data) {
       .append($('<td>').html(item.price))
       .append($('<td>').html(item.menuState))
       .append($('<td>').html(item.priceAdd))
-      .append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-      .append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+      .append($('<td>').html('<button id="btnSelect" class="btn btn-outline-info"\'>조회</button>'))
+      .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
       .append($('<input type=\'hidden\' id=\'hidden_menuSeq\'>').val(item.menuSeq))
       .appendTo('tbody');
    });//each
@@ -170,20 +167,20 @@ function menuListResult(data) {
                Hot <input type="radio"  name="menuState" value="0">
             </div>
             <div class="col-2">
-               ICE <input type="radio"  name="menuState" value="1"> 
-               Yes <input type="radio"  name="signiture" value="1">
-               Yes <input type="radio"  name="popularMenu" value="1">   
-               Yes <input type="radio"  name="newMenu" value="1">
-               Yes <input type="radio"  name="" value="1">
+               ICE <input type="radio"  name="menuState" value="1"> <br>
+               Yes <input type="radio"  name="signiture" value="1"><br>
+               Yes <input type="radio"  name="popularMenu" value="1">   <br>
+               Yes <input type="radio"  name="newMenu" value="1"><br>
+               Yes <input type="radio"  name="" value="1"><br>
             </div>
             <div class="col-2">
-                 ALL <input type="radio"  name="menuState" value="2">
-              	 N o <input type="radio"  name="signiture" value="0">
-               	 N o <input type="radio"  name="popularMenu" value="0">
-               	 N o <input type="radio"  name="newMenu" value="0">
-                 N o <input type="radio"  name="" value="0">
+                 ALL <input type="radio"  name="menuState" checked="checked" value="2" ><br>
+              	 N o <input type="radio"  name="signiture" checked="checked" value="0"><br>
+               	 N o <input type="radio"  name="popularMenu" checked="checked" value="0"><br>
+               	 N o <input type="radio"  name="newMenu" checked="checked" value="0"><br>
+                 N o <input type="radio"  name="" checked="checked" value="0"><br>
             </div>
-            <input type="text" class="form-control" name="priceAdd"   placeholder="아이스추가금">
+            <input type="text" class="form-control" name="priceAdd"   placeholder="아이스추가금" value="0">
 
       </div>
       <div class= "container" align="center">
@@ -203,6 +200,8 @@ function menuListResult(data) {
                <th class="text-center">단가</th>
                <th class="text-center">메뉴판매상태</th>
                <th class="text-center">추가금</th>
+               <th class="text-center"> 조회 </th>
+               <th class="text-center"> 삭제 </th>
             </tr>
          </thead>
          <tbody></tbody>

@@ -34,8 +34,7 @@ public class CafeController {
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
 	public String AreaList(CafeVO cafeVO, Model model, HttpSession session) {
-		System.out.println(session.getAttribute("loginId"));
-		System.out.println("===============");
+		cafeVO.setEmail((String)session.getAttribute("loginEmail"));
 		List list = cafeService.AreaList(cafeVO);
 		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";

@@ -46,15 +46,16 @@
 	</select>
 
 	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">
-		INSERT INTO review (review_seq, review_content, review_time, stars, gdsThumbImg)  
+		INSERT INTO review (review_seq, review_content, review_time, stars, photo_group, gdsThumbImg)  
 		
-		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars}, #{gdsThumbImg})
+		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars}, #{photoGroup}, #{gdsThumbImg})
 	</insert>
 
  	<update id="updateReview" parameterType="co.cod.app.review.ReviewVO">
 		UPDATE review 
 		SET
-			    review_content = #{reviewContent}, 
+			    review_content = #{reviewContent},
+			    photo_group = #{photo_group},
 			    stars = #{stars},
 			    gdsThumbImg = #{gdsThumbImg}
 		where   review_seq = #{reviewSeq}

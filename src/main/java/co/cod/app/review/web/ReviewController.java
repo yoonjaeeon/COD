@@ -1,6 +1,7 @@
 package co.cod.app.review.web;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.photo.PhotoVO;
+import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
 import co.cod.app.review.service.ReviewService;
 
@@ -20,6 +23,8 @@ public class ReviewController {
 
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	PhotoService photoService;
 	
 	// 등록폼
 	@RequestMapping("insertFormReview")
@@ -29,30 +34,35 @@ public class ReviewController {
 
 	// 등록처리
 	@RequestMapping("insertReview")
-	public String insertreview(ReviewVO reviewVO) throws Exception{
-//		    MultipartFile cafeThumbnail = reviewVO.getUpload();
-//		      if(cafeThumbnail != null) {
-//		         String filename = cafeThumbnail.getOriginalFilename();
-//		         if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
-//		            File upFile = FileRenamePolicy.rename(new 
-//		                  File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-//		            filename = upFile.getName();
-//		            cafeThumbnail.transferTo(upFile);
-//		         }
-//		         reviewVO.setGdsThumbImg(filename);		      
-//		      }
-		      MultipartFile[] files = reviewVO.getUploadFile();
+	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO) throws IOException{
+		    MultipartFile cafeThumbnail = reviewVO.getUpload();
+		      if(cafeThumbnail != null) {
+		         String filename = cafeThumbnail.getOriginalFilename();
+		         if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
+		            File upFile = FileRenamePolicy.rename(new 
+		                  File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+		            filename = upFile.getName();
+		            cafeThumbnail.transferTo(upFile);
+		         }
+		         reviewVO.setGdsThumbImg(filename);		      
+		      }
+		      MultipartFile[] files = photoVO.getUploadFile();
 		      if (files != null) {
+		         PhotoVO photoMaxVO = photoService.getPhotoMax();
 		         for (MultipartFile file : files) {
 		            String filename = file.getOriginalFilename();
 		            if (file != null && file.getSize() > 0) {
-		               File upFile = FileRenamePolicy.rename(new 
-		                     File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+		               File upFile = FileRenamePolicy
+		                     .rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 		               filename = upFile.getName();
 		               file.transferTo(upFile);
 		            }
-		            reviewVO.setGdsThumbImg(filename);
+		            photoVO.setPhotoName(filename);
+		            photoVO.setPhotoUse(1);
+		            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+		            photoService.insertPhoto(photoVO);
 		         }
+		         reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 		      }
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출

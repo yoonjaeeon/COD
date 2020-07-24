@@ -13,11 +13,16 @@
           name="reviewContent" id="reviewContent">${review.reviewContent}</textarea><br/>
 평 점 : <input type="text" name="stars" id="stars" value="${review.stars}"/><br/>
 <div class="inputArea">
- <p>리뷰 사진</p>
+ <p>대표 사진</p>
  <img src="resources/upload/${review.gdsThumbImg}"style="width: 500px"/>
+ <p>리뷰 사진</p>
+ <img src="resources/upload/${review.photoGroup}"style="width: 500px"/>
 </div>
+대표 사진 <br>
+      <input type="file" id="gdsThumbImg" name="upload" value="${review.gdsThumbImg }"/>
+ <br><br>
 첨부 사진 <br>
-      <input multiple="multiple" type="file" id="gdsThumbImg" name="uploadFile" value="${review.gdsThumbImg }"/>
+      <input multiple="multiple" type="file" id="photoGroup" name="uploadFile" value="${review.photoGroup }"/>
  <br><br>
 <button type="submit">수정</button>
 <input type="reset" value="지우기" />

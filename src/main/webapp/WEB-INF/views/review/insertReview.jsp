@@ -24,6 +24,9 @@
 	리뷰 내용:<br />
 	<textarea cols="30" rows="10" name="reviewContent" id="reviewContent"></textarea> <br /> 
 	평점 : <input type="text" name="stars" id="stars" /><br />
+	대표 사진<br>
+      <input type="file" id="upload" name="upload"/>
+      <br><br>
      첨부 사진<br>
       <input multiple="multiple" type="file" id="uploadFile" name="uploadFile"/>
       <br><br>

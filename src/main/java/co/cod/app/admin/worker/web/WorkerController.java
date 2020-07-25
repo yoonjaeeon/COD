@@ -51,7 +51,8 @@ public class WorkerController {
 	//수정
 		@RequestMapping(value="/adminWorker"
 				,method=RequestMethod.PUT
-		 		,headers = {"Content-type=application/json"})
+				,consumes="application/json" )
+		 		//,headers = {"Content-type=application/json"})
 		//요청헤더	   
 		@ResponseBody
 		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
@@ -63,12 +64,11 @@ public class WorkerController {
 		//삭제
 		@RequestMapping(value="/adminWorker/{workerSeq}", method=RequestMethod.DELETE)
 		@ResponseBody
-		public Map  getWorkerList( @PathVariable String id, WorkerVO workerVO, Model model) {
-			workerVO.setAdminId(id);
+		public Map<String, Object>deleteWorker( @PathVariable Integer workerSeq, WorkerVO workerVO, Model model) {
+			workerVO.setWorkerSeq(workerSeq);
 			workerService.deleteWorker(workerVO);
-			Map result = new HashMap<String, Object>();
+			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("result", Boolean.TRUE);
-
 			return result;
 		}
 	
@@ -89,10 +89,7 @@ public class WorkerController {
 		workerVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
 		return  workerService.getWorkerList(workerVO);	
 	}	
-	
-	
-	
-	
+		
 	//
 	@RequestMapping(value="/respAPI")
 	@ResponseBody

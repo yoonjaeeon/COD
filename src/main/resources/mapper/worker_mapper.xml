@@ -44,13 +44,15 @@
 		SET
 		WORKER_NAME = #{workerName},
 		WORKER_BIRTH = #{workerBirth},
-		PAY = #{pay}
+		PAY = #{pay},
+		WORKER_GRADE = #{workerGrade}
 		WHERE WORKER_SEQ = #{workerSeq}
 	</update>
 	
-	
-	
-	
+	<delete id="deleteWorker" parameterType="co.cod.app.admin.worker.WorkerVO">		
+		DELETE FROM WORKER WHERE WORKER_SEQ = #{workerSeq}
+		
+	</delete>
 	
 	
 </mapper>

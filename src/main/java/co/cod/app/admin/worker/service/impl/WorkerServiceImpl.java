@@ -34,13 +34,13 @@ public class WorkerServiceImpl implements WorkerService{
 
 	@Override
 	public void updateWorker(WorkerVO workerVO) {
-		// TODO Auto-generated method stub
+		workerMapper.updateWorker(workerVO);
 		
 	}
 
 	@Override
 	public void deleteWorker(WorkerVO workerVO) {
-		// TODO Auto-generated method stub
+		workerMapper.deleteWorker(workerVO);
 		
 	}
 

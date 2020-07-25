@@ -17,8 +17,7 @@
 		workerUpdate(); 
 		
 		init();
-	});
-	
+	});	
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
@@ -27,8 +26,7 @@
 				this.reset();
 			});
 		});
-	}//init
-	
+	}//init	
 	//사용자 등록 요청
 	function workerInsert(){
 		//등록 버튼 클릭
@@ -50,17 +48,16 @@
 			    } 
 			 });  
 		});//등록 버튼 클릭
-	}//userInsert
-	
+	}//userInsert	
 	//사용자 삭제 요청
 	function workerDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
-			var userId = $(this).closest('tr').find('#hidden_workerSeq').val();
+			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
 			var result = confirm(workerSeq +" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
-					url:'adminWorkerForm/'+worker_seq,  
+					url:'adminWorker/'+ workerSeq,  
 					type:'DELETE',
 					contentType:'application/json;charset=utf-8',
 					dataType:'json',
@@ -106,16 +103,17 @@
 	//사용자 수정 요청
 	function workerUpdate() {
 		//수정 버튼 클릭
-		$('#btnUpdate').on('click', function(){		
+		$('#btnUpdate').on('click', function(){	
+			var workerSeq = $('tbody').find('#hidden_workerSeq').val();
 			var workerName = $('input:text[name="workerName"]').val();
 			var workerBirth = $('input:text[name="workerBirth"]').val();
 			var pay = $('input:text[name="pay"]').val();
-			var workerGrade = $('select[name="role"]').val();			
+			var workerGrade = $('select[name="workerGrade"]').val();			
 			$.ajax({ 
 			    url: "adminWorker", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify({ workerName: workerName, workerBirth:workerBirth, pay: pay, workerGrade: workerGrade }),
+			    data : JSON.stringify({workerSeq:workerSeq, workerName: workerName, workerBirth:workerBirth,workerGrade: workerGrade, pay: pay}),
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			       workerList();
@@ -145,7 +143,7 @@
 	function workerListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
-			$('<tr>')			
+			$('<tr>')
 			.append($('<td>').html(item.workerName))
 			.append($('<td>').html(item.pay))
 			.append($('<td>').html(item.workerGrade))

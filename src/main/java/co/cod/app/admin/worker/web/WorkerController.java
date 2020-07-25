@@ -51,12 +51,10 @@ public class WorkerController {
 	//수정
 		@RequestMapping(value="/adminWorker"
 				,method=RequestMethod.PUT
-		 		,headers = {"Content-type=application/json" })
+		 		,headers = {"Content-type=application/json"})
 		//요청헤더	   
 		@ResponseBody
-		
-		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model, HttpSession session ) {
-			workerVO.setAdminId((String)session.getAttribute("adminId"));
+		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
 			workerService.updateWorker(workerVO);
 			return  workerVO;
 		}	
@@ -75,9 +73,11 @@ public class WorkerController {
 		}
 	
 		//단건조회
-		@RequestMapping(value="/adminWorker/{id}",  method=RequestMethod.GET)
-		public WorkerVO getWorker(@PathVariable String id, WorkerVO workerVO, Model model) {
-			workerVO.setAdminId(id);
+		@RequestMapping(value="/adminWorker/{workerSeq}",  method=RequestMethod.GET)
+		@ResponseBody
+		public WorkerVO getWorker(@PathVariable Integer workerSeq, WorkerVO workerVO, Model model) {
+//			workerVO.setAdminId((String)session.getAttribute("adminId"));
+			workerVO.setWorkerSeq(workerSeq);
 			return  workerService.getWorker(workerVO);
 		}
 		

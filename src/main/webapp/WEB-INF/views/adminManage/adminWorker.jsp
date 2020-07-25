@@ -81,7 +81,7 @@
 			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
 			//특정 사용자 조회
 			$.ajax({
-				url:'adminWorker',
+				url:'adminWorker/' + workerSeq,
 				type:'GET',
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
@@ -97,20 +97,25 @@
 	function workerSelectResult(worker) {
 		$('input:text[name="workerName"]').val(worker.workerName);
 		$('input:text[name="workerBirth"]').val(worker.workerBirth);
-		$('input:text[name="pay"]').val(worker.password);
-		$('select[name="role"]').val(worker.role).attr("selected", "selected");
+		$('input:text[name="pay"]').val(worker.pay);
+		$('select[name="workerGrade"]').val(worker.workerGrade).attr("selected", "selected","selected");
+		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
 	}//userSelectResult
 	
 	
 	//사용자 수정 요청
 	function workerUpdate() {
 		//수정 버튼 클릭
-		$('#btnUpdate').on('click', function(){									
+		$('#btnUpdate').on('click', function(){		
+			var workerName = $('input:text[name="workerName"]').val();
+			var workerBirth = $('input:text[name="workerBirth"]').val();
+			var pay = $('input:text[name="pay"]').val();
+			var workerGrade = $('select[name="role"]').val();			
 			$.ajax({ 
 			    url: "adminWorker", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify($("#workform").serializeObject()),
+			    data : JSON.stringify({ workerName: workerName, workerBirth:workerBirth, pay: pay, workerGrade: workerGrade }),
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			       workerList();
@@ -145,7 +150,7 @@
 			.append($('<td>').html(item.pay))
 			.append($('<td>').html(item.workerGrade))
 			.append($('<td>').html(item.workerBirth))
-			.append($('<td>').html(item.role))
+			//.append($('<td>').html(item.role))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_workerSeq\'>').val(item.workerSeq))

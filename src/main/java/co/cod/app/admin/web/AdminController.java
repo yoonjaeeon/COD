@@ -134,4 +134,12 @@ import co.cod.app.admin.worker.WorkerVO;
 	public String insertWorker(WorkerVO WorkerVO) {			
 		return "ad/adminManage/insertWorker";	
 	}	
+	
+	
+	@RequestMapping("adminLogout")
+	   public String logout(HttpSession session) {
+	      session.invalidate();
+	      return "main/home";
+	   }
+
 }

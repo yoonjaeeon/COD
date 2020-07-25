@@ -17,8 +17,7 @@ public class WorkerServiceImpl implements WorkerService{
 	
 	@Override
 	public WorkerVO getWorker(WorkerVO workerVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return workerMapper.getWorker(workerVO);
 	}
 
 	@Override

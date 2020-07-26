@@ -19,4 +19,7 @@ public interface AdminService {
 	public AdminVO adminLogin(AdminVO adminVO);	
 	public  List<AdminVO>cafeStateList(AdminVO adminVO);
 	public void updateCafeState(AdminVO adminVO);
+	public void updateAdminListCafe1(AdminVO adminVO);
+	public void updateAdminListCafe2(AdminVO adminVO);
+
 }

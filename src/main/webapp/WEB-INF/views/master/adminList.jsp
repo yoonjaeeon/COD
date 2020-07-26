@@ -10,11 +10,11 @@
 		
 	//	adminList2();
 
-	 	adminSelect1();
+	// 	adminSelect1();
 	 	
 	// 	adminSelect2();
 		
-		adminDelete1();
+	//	adminDelete1();
 		
 	//	adminDelete2();
 			
@@ -86,18 +86,14 @@
 	}//userSelectResul */t
 		
 	//대기상태 수정 요청
-	function workerUpdate() {
+	function cafeStateUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-		//	var adminId = $('tbody').find('#hidden_adminId').val();
-			var adminId = $('input:text[name="adminId"]').val();
-			var cafeState = $('input:text[name="cafeState"]').val();
-			var adminPhone = $('input:text[name="adminPhone"]').val();			
-			$.ajax({ 
-			    url: "adminList", 
+			var cafeState = $('input:text[name="cafeState"]').val();				
+			    url: "adminList",
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify({adminId:adminId, cafeState: cafeState, adminPhone:adminPhone}),
+			    data : JSON.stringify({cafeState: cafeState}),
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			       adminList();

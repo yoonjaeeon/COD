@@ -43,7 +43,17 @@
 		SELECT * FROM ADMIN WHERE CAFE_STATE = 2
 	</select>
 	
+	<update id="updateAdminListCafe1" parameterType="co.cod.app.admin.AdminVO" >
+			
+	UPDATE ADMIN SET CAFE_STATE=2 WHERE ADMIN_ID = #{ADMIN_ID} 
+	
+	</update>
 
+	<update id="updateAdminListCafe2" parameterType="co.cod.app.admin.AdminVO" >
+			
+	UPDATE ADMIN SET CAFE_STATE=0 WHERE ADMIN_ID = #{ADMIN_ID} 
+	
+	</update>
 
 	
 	<!-- 카페 대기 등록 대기 리스트 조회  -->

@@ -78,6 +78,18 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.getAdminListCafe2(adminVO);
 	}
 
+	@Override
+	public void updateAdminListCafe1(AdminVO adminVO) {
+		adminMapper.updateAdminListCafe1(adminVO);
+		
+	}
+
+	@Override
+	public void updateAdminListCafe2(AdminVO adminVO) {
+		adminMapper.updateAdminListCafe2(adminVO);
+		
+	}
+
 }
 
 

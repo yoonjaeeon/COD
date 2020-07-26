@@ -117,6 +117,19 @@ class AdminController {
 		return "ad/admin/adminList";
 	}
 
+	
+	// 관리자 상태 승인 버튼 컨트롤러 
+	@RequestMapping(value="/adminList"
+			,method=RequestMethod.PUT
+			,consumes="application/json" )
+	 		//,headers = {"Content-type=application/json"})
+	//요청헤더	   
+	@ResponseBody
+	public AdminVO updateAdminListCafe1(@RequestBody AdminVO adminVO, Model model) {
+		adminService.updateAdminListCafe1(adminVO);
+		return  adminVO;
+	
+	}
 	// 수정
 
 	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")

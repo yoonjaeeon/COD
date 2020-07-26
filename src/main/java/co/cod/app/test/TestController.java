@@ -27,10 +27,7 @@ public class TestController {
 	}
 
 	// 광고
-	@RequestMapping("advertisementForm")
-	public String advertisementForm() {
-		return "ma/master/advertisement";
-	}
+
 
 	@RequestMapping("insertMenuForm")
 	public String insertMenuForm() {

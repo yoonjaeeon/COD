@@ -73,7 +73,7 @@
    	
    	<!--  cafe_state 업테이트 -->
 	<select id="updateCafeState" parameterType="admins">
-		UPDATE admin SET cafe_state = #{cafeState}
+		UPDATE admin SET cafe_state = 1
 		WHERE admin_id = #{adminId}
 	</select>
 </mapper>

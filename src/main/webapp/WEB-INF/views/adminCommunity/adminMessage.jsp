@@ -23,33 +23,121 @@
 			$()
 		})
 	};
-</script>
-<script>
+	
 var messageSeq ;
 function messageUpdate(seq){
 messageSeq = seq;
 	/* 1 안읽음, 0 읽음	 */
 }
+
+//보낸 메세지함 
+ function sendMessage(){
+	$.ajax({
+		url : 'sendMessage', 
+		type : 'post',
+		contentType: 'application/json;charset=utf-8',
+		dataType : 'json',
+		async : true,
+		success : function(data){
+			$('#date').text('발신일자')
+			$('#th').text('수신');
+			$("#testBoardTable tr:gt(0)").empty();
+				  $.each(data, function (index, item) {
+	                    let html = '';
+	                    html += '<tr>';
+	                    html += '<td>'+item.messageTitle+'</td>';	 
+	                    html += '<td>'+item.messageDate+'</td>';    
+	                    if(item.masterRead === 1){
+	                    	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+	                        }else{
+	                        	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+	                        }
+	                    html += '</tr>';
+	                    $("#testBoardTable").append(html);
+	                });
+				
+				
+				/* html += '<tr>';
+				html += '<td>'+data[key].messageSeq+'</td>';
+				html += '<td>'+data[key].messageTitle+'</td>';
+				html += '</tr>'; */
+				
+			/* var html="";
+					html += '<table border="1">';
+			for(key in data){
+								html += '<tr>';
+								html += '<td>'+data[key].messageTitle+'</td>';
+								html += '</tr>';
+							}
+					html += '</table>';  *//* 
+			$("#th").remove();
+			$('.readClass').removeClass(); */
+			$('#messageTitle').html(data.messageTitle);
+			}
+				
+	})
+} //end of sendMessage 
+
+//받은 메세지함
+ function receiveMessage(){
+	$.ajax({
+		url : 'receiveMessage',
+		type : 'POST',
+		contentType: 'application/json;charset=utf-8',
+		dataType : 'json',
+		async : false,
+		success : function(data){
+			$.each(data, function (index, item) {
+				$('#th').text('읽음');
+				$('#date').text('수신일자')
+				$("#testBoardTable tr:gt(0)").empty();
+                let html = '';
+                html += '<tr>';
+                html += '<td>'+item.messageTitle+'</td>';    
+                html += '<td>'+item.messageDate+'</td>';    
+                if(item.read === 1){
+            	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+                }else{
+                	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+                }
+                html += '</tr>';
+                $("#testBoardTable").append(html);
+            });
+		}
+				/* $('#tr').append( $('<th/>', {text : '읽음'}) )
+				for(key in data){
+					html += '<tr>';
+					html += '<td>'+data[key].messageTitle+'</td>';
+					html += '<td>' + data[key].read+'<td>';
+					html += '</tr>'; 
+				}*/
+				
+		
+	})
+} 
 </script>
 
-<button onclick="send()" data-toggle="modal" data-target="#modalMessage">메세지
-	작성</button>
+	<button onclick="receiveMessage()">받은 메세지</button>
+	<button onclick="sendMessage()">보낸 메세지</button>
+	<button onclick="send()" data-toggle="modal" data-target="#modalMessage">메세지 작성</button>
 
 
 
-<table border="1">
-	<tr>
-		<th>번호</th>
+<table border="1" id="testBoardTable">
+	<tr id='tr'>
+		<!-- <th><input type="checkBox" id="chkAll"></th> -->
 		<th>메세지 제목</th>
-		<th>읽음</th>
+		<th id="date">보낸 날짜</th>
+		<th id="th">읽음</th>
 		<!-- data-toggle="modal" data-target="#exampleModal" -->
 	</tr>
 	<c:forEach items="${messageList}" var="list">
-
-		<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }">
-			<td>${list.messageSeq }</td>
-			<td>${list.messageTitle }</td>
-			<td align="center">
+	<tbody id="tbody">
+		<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
+			<!-- <td><input type="checkbox" name="check"></td> -->
+			<td><span id="messageSeq"></span>${list.messageSeq }</td>
+			<td><span id="messageTitle"></span>${list.messageTitle }</td>
+			<td align="center" class="readClass" id="messageRead"> <!-- 메세지 읽음표시  -->
 			<span id="messageUpdate"> 
 			
 			<c:if test="${list.read == 1 }">
@@ -58,13 +146,14 @@ messageSeq = seq;
 			<c:if test="${list.read == 0 }">
 				<i class='far fa-envelope-open'></i>
 			</c:if>
-			</span>
-			
+			</span>			
 			</td>
 		</tr>
-
+	</tbody>
 	</c:forEach>
 </table>
+
+
 <!-- 페이징 처리하기 -->
 <form action="" id="modal" method="post"></form>
 
@@ -130,7 +219,7 @@ messageSeq = seq;
 		
 	}
 } */
-	
+	//모달창 메세지 받기
 	 $('#contentModal').on('show.bs.modal', function (e) {
 		console.log(e.target); 
 		$.ajax({
@@ -151,5 +240,7 @@ messageSeq = seq;
 			}
 		})
 
-	})         
+	})  
+	
+	
     </script>

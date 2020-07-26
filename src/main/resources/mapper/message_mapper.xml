@@ -4,22 +4,20 @@
 
 	<select id="messageList"
 		resultType="vofile.MessageVO">
-		SELECT MESSAGE_SEQ,
-		MESSAGE_TITLE,
-		MESSAGE_CONTENT,
-		ADMIN_ID,
-		SEND_RECEIVE,READ
+		SELECT *
 		FROM MESSAGE
-		WHERE ADMIN_ID = #{adminId}
+		WHERE ADMIN_ID = #{adminId} AND SEND_RECEIVE=0
 		ORDER BY MESSAGE_SEQ DESC
 	</select>
 
 	<select id="getMessage"
 		resultType="vofile.MessageVO"
 		parameterType="vofile.MessageVO">
-		SELECT MESSAGE_TITLE, MESSAGE_CONTENT, READ FROM
-		MESSAGE WHERE MESSAGE_SEQ =
-		#{messageSeq}
+		SELECT
+			MESSAGE_TITLE, 
+			MESSAGE_CONTENT, 
+			READ 
+		  FROM MESSAGE WHERE MESSAGE_SEQ =#{messageSeq}
 	</select>
 
 	<insert id="insertMessage"
@@ -50,5 +48,21 @@
 		WHERE READ=1 AND ADMIN_ID=#{adminId}
 	</select>
 
+	<select id="sendMessage" resultType="vofile.MessageVO">
+		SELECT * 
+		  FROM MESSAGE
+		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=1
+		 ORDER BY MESSAGE_SEQ DESC
+	</select>
+	
+	<select id="receiveMessage" resultType="vofile.MessageVO">
+		SELECT * 
+		  FROM MESSAGE
+		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
+		 ORDER BY MESSAGE_SEQ DESC
+	</select>
+	
+	
 
+	
 </mapper>

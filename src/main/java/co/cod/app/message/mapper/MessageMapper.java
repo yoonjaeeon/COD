@@ -10,4 +10,6 @@ public interface MessageMapper {
 	public void insertMessage(MessageVO messageVO);   //메세지 보내기
 	public void updateMessage(Integer messageSeq);    //메세지 읽음 표시
 	public int getMessageCount(MessageVO messageVO);  //메세지 카운트 
+	public List<MessageVO> sendMessage(MessageVO messageVO);
+	public List<MessageVO> receiveMessage(MessageVO messageVO);
 }

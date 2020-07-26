@@ -39,6 +39,16 @@ public class MessageServiceImpl implements MessageService{
 		return messageMapper.getMessageCount(messageVO);
 		
 	}
+	@Override
+	public List<MessageVO>sendMessage(MessageVO messageVO) {
+		return messageMapper.sendMessage(messageVO);
+	}
+	@Override
+	public List<MessageVO> receiveMessage(MessageVO messageVO) {
+		return messageMapper.receiveMessage(messageVO);
+	}
+	
+	
 	
 	
 	

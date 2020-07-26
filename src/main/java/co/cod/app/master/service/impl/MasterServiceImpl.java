@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.cod.app.master.MasterVO;
 import co.cod.app.master.mapper.MasterMapper;
 import co.cod.app.master.service.MasterService;
+import vofile.MasterVO;
+import vofile.MessageVO;
 
 
 @Service
@@ -41,5 +42,25 @@ public class MasterServiceImpl implements MasterService{
 	public void deleteMaster(MasterVO masterVO) {
 		masterMapper.deleteMaster(masterVO);
 	}
+
+	@Override
+	public List<MessageVO> masterMessage() {
+		return masterMapper.masterMessage();
+	}
+
+	@Override
+	public int getMasterMessageCount() {
+		return masterMapper.getMasterMessageCount();
+	}
+
+	@Override
+	public MasterVO getMasterMessage(MasterVO masterVO) {
+		MasterVO result = masterMapper.getMasterMessage(masterVO);
+		if(result != null && result.getRead() ==1 )
+			masterMapper.updateMessage(masterVO.getMessageSeq());
+		return result;
+	}
+	
+	
 	
 }

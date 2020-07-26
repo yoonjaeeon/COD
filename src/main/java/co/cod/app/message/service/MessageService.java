@@ -9,4 +9,6 @@ public interface MessageService {
 	public MessageVO getMessage(MessageVO messageVO);   //메세지 단건조회(클릭시)
 	public void insertMessage(MessageVO messageVO);   //메세지 보내기	
 	public int getMessageCount(MessageVO messageVO); //메세지 카운트
+	public List<MessageVO> sendMessage(MessageVO messageVO);  //보낸메세지
+	public List<MessageVO> receiveMessage(MessageVO messageVO); //받은메세지
 }

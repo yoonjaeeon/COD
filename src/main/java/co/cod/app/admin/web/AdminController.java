@@ -1,5 +1,8 @@
 package co.cod.app.admin.web;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
@@ -73,15 +77,38 @@ class AdminController {
 		return rt;
 	}
 
-	// 관리자 목록 조회
-	@RequestMapping("adminList")
-	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {
-		adminVO.setAdminId((String) session.getAttribute("adminId"));
-		model.addAttribute("adminList", adminService.getAdminList(adminVO));
-		return "ad/admin/adminList";
-
+//	// 관리자 목록 조회 전체 조회 
+//	
+//	@RequestMapping("adminList")
+//	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {
+//		adminVO.setAdminId((String) session.getAttribute("adminId"));
+//		model.addAttribute("adminList", adminService.getAdminList(adminVO));
+//		return "ma/master/adminList";
+//
+//	}
+//	
+	
+	@RequestMapping("adminCafeStateForm")
+	public String adminCafeStateForm() {
+		return "ma/master/adminList";
 	}
 
+	// 관리자 카페 상태 1조회
+		@RequestMapping(value="/adminList", method=RequestMethod.GET)
+		@ResponseBody
+		public List<AdminVO> getAdminListCafe1(Model model, AdminVO adminVO,HttpSession session) {
+			adminVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
+			return  adminService.getAdminListCafe1(adminVO);	
+		}	
+//	//관리자 카페 스테이트가 2인 사람 조회 
+//		@RequestMapping("adminList")
+//		public String getAdminListCafe2(AdminVO adminVO, Model model, HttpSession session) {
+//			adminVO.setAdminId((String) session.getAttribute("adminId"));
+//			model.addAttribute("adminList", adminService.getAdminList(adminVO));
+//			return "ma/master/adminList";
+//		}
+	
+	
 	// 관리자 단건 조회
 	// 단건조회
 	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
@@ -124,5 +151,13 @@ class AdminController {
 		session.invalidate();
 		return "main/home";
 	}
-
+	
+	@RequestMapping(value="/adminrespAPI")
+	@ResponseBody
+	public Map respAPI() {
+		RestTemplate rest = new RestTemplate();
+		return rest.getForObject("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713", Map.class);
+	}
+	
+	
 }

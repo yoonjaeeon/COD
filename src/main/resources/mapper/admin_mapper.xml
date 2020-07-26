@@ -51,8 +51,11 @@
          </if>
       </where>
    	</select> -->
-	
-	<!--  cafe_state 업테이트 -->
+   
+   	
+   	
+   	
+   	<!--  cafe_state 업테이트 -->
 	<select id="updateCafeState" parameterType="admins">
 		UPDATE admin SET cafe_state = #{cafeState}
 		WHERE admin_id = #{adminId}

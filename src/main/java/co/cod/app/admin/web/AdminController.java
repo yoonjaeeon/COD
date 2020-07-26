@@ -78,7 +78,7 @@ class AdminController {
 	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {
 		adminVO.setAdminId((String) session.getAttribute("adminId"));
 		model.addAttribute("adminList", adminService.getAdminList(adminVO));
-		return "ma/master/adminList";
+		return "ad/admin/adminList";
 
 	}
 
@@ -87,16 +87,7 @@ class AdminController {
 	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
 	public String getAdmin(@PathVariable String adminId, HttpSession session) {
 		System.out.println(adminId);
-		return "ma/master/adminList";
-	}
-
-	// 카페대기리스트 조회
-	@RequestMapping("cafeStateList")
-	public String cafeStateList(AdminVO adminVO, Model model, HttpSession session) {
-		adminVO.setAdminId((String) session.getAttribute("adminId"));
-		model.addAttribute("cafeStateList", adminService.cafeStateList(adminVO));
-		return "ma/master/cafeStateList";
-
+		return "ad/admin/adminList";
 	}
 
 	// 수정

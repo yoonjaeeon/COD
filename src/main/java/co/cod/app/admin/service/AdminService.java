@@ -9,7 +9,7 @@ import co.cod.app.member.MemberVO;
 public interface AdminService {
 
 	public AdminVO getAdmin(AdminVO adminVO);
-	public List<AdminVO> getAdminList(AdminVO empVO);
+	public List<AdminVO> getAdminList(AdminVO adminVO);
 	public void insertAdmin(AdminVO adminVO);
 	public void updateAdmin(AdminVO adminVO);
 	public void deleteAdmin(AdminVO adminVO);

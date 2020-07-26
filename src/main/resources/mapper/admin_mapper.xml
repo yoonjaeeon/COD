@@ -34,12 +34,18 @@
 	WHERE ADMIN_ID = #{adminId}			
 	</select>	
 	
-	<!--관리자 리스트 조회   -->
-	<select id="adminList" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
-	SELECT * FROM ADMIN
 	
-	
+	<select id="getAdminListCafe1" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
+	SELECT * FROM ADMIN WHERE CAFE_STATE = 1
 	</select>
+	
+	<select id="getAdminListCafe2" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
+		SELECT * FROM ADMIN WHERE CAFE_STATE = 2
+	</select>
+	
+
+
+	
 	<!-- 카페 대기 등록 대기 리스트 조회  -->
 
 	

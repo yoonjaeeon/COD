@@ -22,11 +22,12 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.getAdmin(adminVO);
 	}
 	// 전테 조호 
-	@Override
-	public List<AdminVO> getAdminList(AdminVO adminVO) {
-		// TODO Auto-generated method stub
-		return adminMapper.getAdminList(adminVO);
-	}
+//	@Override
+//	public List<AdminVO> getAdminList(AdminVO adminVO) {
+//		// TODO Auto-generated method stub
+//		return adminMapper.getAdminList(adminVO);
+//	}
+	
 	//등록 
 	@Override
 	public void insertAdmin(AdminVO adminVO) {
@@ -65,6 +66,16 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void updateCafeState(AdminVO adminVO) {
 		//return adminMapper.updateCafeState(adminVO);
+	}
+	@Override
+	public List<AdminVO> getAdminListCafe1(AdminVO adminVO) {
+		
+		return adminMapper.getAdminListCafe1(adminVO);
+	}
+	@Override
+	public List<AdminVO> getAdminListCafe2(AdminVO adminVO) {
+		// TODO Auto-generated method stub
+		return adminMapper.getAdminListCafe2(adminVO);
 	}
 
 }

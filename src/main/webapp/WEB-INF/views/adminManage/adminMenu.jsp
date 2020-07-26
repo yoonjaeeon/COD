@@ -82,10 +82,16 @@ function menuSelect() {
 
 //메뉴 조회 응답
 function menuSelectResult(menu) {
+	$('input:hidden[name="menuSeq"]').val(menu.menuSeq);
 	$('select[name="menuSort"]').val(menu.menuSort).attr("selected", "selected");
 	$('input:text[name="menuName"]').val(menu.menuName);
 	$('input:text[name="price"]').val(menu.price);
 	$('input:text[name="priceAdd"]').val(menu.priceAdd);
+	$('input:radio[name="menuState"]').filter("[value="+menu.menuState+"]").prop("checked",true);
+	$('input:radio[name="signiture"]').filter("[value="+menu.signiture+"]").prop("checked",true);
+	$('input:radio[name="popularMenu"]').filter("[value="+menu.popularMenu+"]").prop("checked",true);
+	$('input:radio[name="newMenu"]').filter("[value="+menu.newMenu+"]").prop("checked",true);
+
 }//menuSelectResult
 
 //메뉴 수정 요청
@@ -94,7 +100,7 @@ function menuUpdate() {
 	   var menuSeq = $(this).closest('tr').find('#menuSeq').val();
 	   console.log(JSON.stringify($("#menuform").serializeObject()));
       $.ajax({ 
-          url: "menu/"+menuSeq, 
+          url: "menu/", 
           type: 'PUT', 
           dataType: 'json', 
           data: JSON.stringify($("#menuform").serializeObject()),
@@ -132,6 +138,9 @@ function menuListResult(data) {
       .append($('<td>').html(item.menuName))
       .append($('<td>').html(item.price))
       .append($('<td>').html(item.menuState))
+      .append($('<td>').html(item.newMenu))
+      .append($('<td>').html(item.signiture))
+      .append($('<td>').html(item.popularMenu))
       .append($('<td>').html(item.priceAdd))
       .append($('<td>').html('<button id="btnSelect" class="btn btn-outline-info"\'>조회</button>'))
       .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
@@ -177,7 +186,7 @@ function menuListResult(data) {
               	 N o <input type="radio"  name="signiture" checked="checked" value="0"><br>
                	 N o <input type="radio"  name="popularMenu" checked="checked" value="0"><br>
                	 N o <input type="radio"  name="newMenu" checked="checked" value="0"><br>
-                 N o <input type="radio"  name="" checked="checked" value="0"><br>
+                 N o <input type="radio"  name="addState" checked="checked" value="0"><br>
             </div>
             <input type="text" class="form-control" name="priceAdd"   placeholder="아이스추가금" value="0">
 
@@ -198,6 +207,9 @@ function menuListResult(data) {
                <th class="text-center">메뉴명</th>
                <th class="text-center">단가</th>
                <th class="text-center">메뉴판매상태</th>
+               <th class="text-center">신메뉴</th>
+               <th class="text-center">시그니처</th>
+               <th class="text-center">신메뉴</th>
                <th class="text-center">추가금</th>
                <th class="text-center"> 조회 </th>
                <th class="text-center"> 삭제 </th>

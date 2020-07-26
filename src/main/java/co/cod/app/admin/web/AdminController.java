@@ -1,6 +1,5 @@
 package co.cod.app.admin.web;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,130 +15,123 @@ import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.admin.worker.WorkerVO;
 
-@Controller class AdminController {
-		
+@Controller
+class AdminController {
+
 	@Autowired
 	AdminService adminService;
-	
-	//e등로폼 
+
+	// e등로폼
 	@RequestMapping("adminInsertForm")
-	public String insertAdmin(AdminVO adminVO) {			
+	public String insertAdmin(AdminVO adminVO) {
 		return "admin/adminInsert";
-	
+
 	}
 
-	//등록처리
+	// 등록처리
 	@RequestMapping("adminInsert")
 	public String insertAdmin(AdminVO adminVO, Model model) {
-		
 		adminService.insertAdmin(adminVO);
-	return "redirect:home";
+		return "redirect:home";
 	}
-	
-	// admin 로그인  
+
+	// admin 로그인
 	@RequestMapping("adminLoginForm")
 	public String adminLoginForm() {
-			 return "admin/adminLogin";
+		return "admin/adminLogin";
 	}
-	
-	
-	//로그인시 카페 스테이트가 0일 때 ( 카페 등록 인서트 폼 이동)
-		//	카페 스테이트가 1일때 ( 처리중 화면 )
-		// 카페 스테이트가 2 일때 (admin main 화면 )
-	//또한 
-		// 로그인시 admin_state가  0일때 일반 admin 
-		//  	로그인 admin_state 가 1일때 master 화면으로 이동 
-	
-	
-	//로그인 처리
+
+	/*
+	 * 관리자 로그인
+	 * cafeState	== 0 ( 카페 등록 인서트 폼 이동) 
+	 * 				== 1 ( 처리중 화면 )
+	 * 				== 2 (admin main 화면)
+	 *  admin_state == 0 (일반 admin) 
+	 *  			== 1 (master 화면)
+	 */
+
+	// 로그인 처리
 	@RequestMapping("adminLogin")
-	public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
-			AdminVO result = adminService.adminLogin(adminVO);		
-			
-			String rt = "";
-			System.out.println(result);
-			
-			if(result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {	
-				session.setAttribute("adminId", adminVO.getAdminId());
-				rt = "ad/admin/adminMain" ;				
-			if(result.getAdminState()==0) {
-				if (result.getCafeState()== 0 ){	
-						rt = "e/cafe/cafeInsertForm" ;
-				}else if (result.getCafeState()== 1) {
-						rt = "admin/loading";					
-				}else if(result.getCafeState()== 2){
-						rt = "ad/admin/adminMain";	
+	public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
+		AdminVO result = adminService.adminLogin(adminVO);
+		String rt = "";
+		if (result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {
+			session.setAttribute("adminId", adminVO.getAdminId());
+			rt = "ad/admin/adminMain";
+			if (result.getAdminState() == 0) {
+				if (result.getCafeState() == 0) {
+					rt = "e/cafe/cafeInsertForm";
+				} else if (result.getCafeState() == 1) {
+					rt = "admin/loading";
+				} else if (result.getCafeState() == 2) {
+					rt = "ad/admin/adminMain";
 				}
-			}else { 
-				rt ="ma/master/masterMain";
-			}											
+			} else {
+				rt = "ma/master/masterMain";
 			}
-			return rt;
-			}		
+		}
+		return rt;
+	}
 
 	// 관리자 목록 조회
 	@RequestMapping("adminList")
-	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {		
-		adminVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("adminList", adminService.getAdminList(adminVO));		
+	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {
+		adminVO.setAdminId((String) session.getAttribute("adminId"));
+		model.addAttribute("adminList", adminService.getAdminList(adminVO));
 		return "ma/master/adminList";
-	
-	}
-	//관리자 단건 조회
-	// 단건조회
-		@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
-		public String getAdmin(@PathVariable String adminId,HttpSession session ) {
-			
-			System.out.println(adminId);			
-			return "ma/master/adminList";
-		}
-	
-	
-	//카페대기리스트 조회
-	@RequestMapping("cafeStateList")
-	public String cafeStateList(AdminVO adminVO, Model model, HttpSession session) {		
-		adminVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("cafeStateList", adminService.cafeStateList(adminVO));		
-		return "ma/master/cafeStateList";
-	
+
 	}
 
-	//수정
-	
-	@RequestMapping(value="/UpdateCafeState"
-					,method=RequestMethod.PUT
-			 		,consumes="application/json"      //요청헤더	   
-	)@ResponseBody
-	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model, HttpSession session ) {
-		adminVO.setAdminId((String)session.getAttribute("adminId"));
+	// 관리자 단건 조회
+	// 단건조회
+	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
+	public String getAdmin(@PathVariable String adminId, HttpSession session) {
+		System.out.println(adminId);
+		return "ma/master/adminList";
+	}
+
+	// 카페대기리스트 조회
+	@RequestMapping("cafeStateList")
+	public String cafeStateList(AdminVO adminVO, Model model, HttpSession session) {
+		adminVO.setAdminId((String) session.getAttribute("adminId"));
+		model.addAttribute("cafeStateList", adminService.cafeStateList(adminVO));
+		return "ma/master/cafeStateList";
+
+	}
+
+	// 수정
+
+	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")
+	@ResponseBody
+	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model, HttpSession session) {
+		adminVO.setAdminId((String) session.getAttribute("adminId"));
 		adminService.updateCafeState(adminVO);
-		return  adminVO;
-			}	
-	
-	//업테이트
+		return adminVO;
+	}
+
+	// 업테이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {
-	return "admin/adminUpdate";
+		return "admin/adminUpdate";
 	}
-	
-	//직원 리스트 
+
+	// 직원 리스트
 	@RequestMapping("adminWorkerList")
-	public String adminWorker(WorkerVO workerVO) {			
+	public String adminWorker(WorkerVO workerVO) {
 		return "ad/adminManage/adminWorkerList";
-	
-	
-	}	
-	//직원등록 
+
+	}
+
+	// 직원등록
 	@RequestMapping("insertWorker")
-	public String insertWorker(WorkerVO WorkerVO) {			
-		return "ad/adminManage/insertWorker";	
-	}	
-	
-	
+	public String insertWorker(WorkerVO WorkerVO) {
+		return "ad/adminManage/insertWorker";
+	}
+
 	@RequestMapping("adminLogout")
-	   public String logout(HttpSession session) {
-	      session.invalidate();
-	      return "main/home";
-	   }
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main/home";
+	}
 
 }

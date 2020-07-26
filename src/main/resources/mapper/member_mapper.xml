@@ -2,56 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.member.mapper.MemberMapper">
 
-<insert id="insertMember" parameterType="co.cod.app.member.MemberVO">
-	INSERT INTO MEMBER	(
-	EMAIL, PW, BIRTHDAY, PHONE, NICKNAME
-	)
-	VALUES(
-	#{email},
-	#{pw},
-	#{birthday},
-	#{phone},
-	#{nickname}
-	)
+	<insert id="insertMember"
+		parameterType="co.cod.app.member.MemberVO">
+		INSERT INTO MEMBER (
+			EMAIL, PW, BIRTHDAY, PHONE, NICKNAME
+		)
+		VALUES(
+		#{email},
+		#{pw},
+		#{birthday},
+		#{phone},
+		#{nickname}
+		)
 	</insert>
-	
-	
-	<select id = "getMemberList" parameterType="co.cod.app.member.MemberVO" resultType="co.cod.app.member.MemberVO">
-		
+	<select id="getMember" parameterType="members" resultType="members">
+		SELECT *
+		  FROM member
+		 WHERE email = #{email} 
+	</select>
+
+	<select id="getMemberList"
+		parameterType="co.cod.app.member.MemberVO"
+		resultType="co.cod.app.member.MemberVO">
 		select * from member
 	</select>
-	
-	<select id="getBookmarks" parameterType="vofile.BookmarksVO" resultType="vofile.BookmarksVO">
-	SELECT TQ.*, EMAIL, B.BOOKMARK_SEQ
-	  FROM (SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL, C.CAFE_HASHTAG, S.STARS 
-	  FROM (SELECT ADMIN_ID, TRUNC(AVG(STARS),1) STARS
-	  FROM REVIEW
-	 GROUP BY ADMIN_ID)S , CAFE C
-	 WHERE S.ADMIN_ID(+) = C.ADMIN_ID) TQ, BOOKMARKS B
-	 WHERE B.ADMIN_ID = TQ.ADMIN_ID
-	   AND B.EMAIL = #{email}
 
-	
+	<select id="getBookmarks" parameterType="vofile.BookmarksVO"
+		resultType="vofile.BookmarksVO">
+		SELECT TQ.*, EMAIL, B.BOOKMARK_SEQ
+		  FROM (SELECT C.ADMIN_ID, C.CAFE_NAME, C.CAFE_THUMBNAIL, C.CAFE_HASHTAG, S.STARS
+				  FROM (SELECT ADMIN_ID, TRUNC(AVG(STARS),1) STARS
+						  FROM REVIEW
+					  	  GROUP BY ADMIN_ID)S , CAFE C
+				 WHERE S.ADMIN_ID(+) = C.ADMIN_ID) TQ, BOOKMARKS B
+		 WHERE B.ADMIN_ID = TQ.ADMIN_ID
+		   AND B.EMAIL = #{email}
 	</select>
-	
-	<select id="memberLogin" parameterType="co.cod.app.member.MemberVO" resultType ="co.cod.app.member.MemberVO"> 
-	SELECT
-	EMAIL, PW
-	FROM MEMBER
-	WHERE EMAIL = #{email}
+
+	<select id="memberLogin"
+		parameterType="co.cod.app.member.MemberVO"
+		resultType="co.cod.app.member.MemberVO">
+		SELECT
+		EMAIL, PW
+		FROM MEMBER
+		WHERE EMAIL = #{email}
 	</select>
-	
+
 	<insert id="insertBookmark" parameterType="vofile.BookmarksVO">
-	<selectKey resultType="int" keyProperty="bookmarkSeq" order="BEFORE">
-        SELECT NVL(MAX(BOOKMARK_SEQ),0)+1 FROM BOOKMARKS
-    </selectKey> 
-	INSERT INTO BOOKMARKS(BOOKMARK_SEQ, EMAIL, ADMIN_ID) 
-	VALUES(#{bookmarkSeq}, #{email}, #{adminId})
+		<selectKey resultType="int" keyProperty="bookmarkSeq" order="BEFORE">
+			SELECT NVL(MAX(BOOKMARK_SEQ),0)+1 
+			  FROM BOOKMARKS
+		</selectKey>
+		INSERT INTO BOOKMARKS(BOOKMARK_SEQ, EMAIL, ADMIN_ID)
+		VALUES (#{bookmarkSeq}, #{email}, #{adminId})
 	</insert>
-	
+
 	<delete id="deleteBookmark" parameterType="vofile.BookmarksVO">
-	DELETE FROM BOOKMARKS
-	WHERE BOOKMARK_SEQ=#{bookmarkSeq} 
+		DELETE FROM BOOKMARKS
+		WHERE BOOKMARK_SEQ=#{bookmarkSeq}
 	</delete>
-	
+
 </mapper>

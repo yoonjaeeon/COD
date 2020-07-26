@@ -5,9 +5,9 @@
 <div class="align-center hovers row">
 	<div class="col-lg-5">
 		<h1>* My Page *</h1>
-		<h2>${nickName }@@님</h2>
+		<h2>${member.nickname } 님</h2>
 		<h2>
-			<i class="fab fa-product-hunt" style='font-size: 24px'></i> ${milege }
+			<i class="fab fa-product-hunt" style='font-size: 24px'></i> ${ member.milege}
 			1,000
 		</h2>
 	</div>

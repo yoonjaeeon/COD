@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public void updateCafeState(AdminVO adminVO) {
-		//return adminMapper.updateCafeState(adminVO);
+		adminMapper.updateCafeState(adminVO);
 	}
 	@Override
 	public List<AdminVO> getAdminListCafe1(AdminVO adminVO) {

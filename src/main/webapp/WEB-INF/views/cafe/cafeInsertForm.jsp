@@ -149,7 +149,8 @@
          </div>  
          <div class="checkbox">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
-         </div>     
+         </div>
+       </div>     
         	 <br>
          <div>
          <label>문의사항:</label><br>

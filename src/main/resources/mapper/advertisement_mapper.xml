@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.cod.app.master.advertisement.mapper.AdvertisementMapper">
+
+<mapper namespace="co.cod.app.advertisement.mapper.AdvertisementMapper">
+
+	<select id="getAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO" resultType="co.cod.app.advertisement.AdvertisementVO">
+		SELECT * FROM ADVERTISEMENT
+		WHERE ADVERTISE_SEQ = #{advertiseSeq}
+	</select>
+
+	<select id="getAdvertisementList" parameterType="co.cod.app.advertisement.AdvertisementVO" resultType="co.cod.app.advertisement.AdvertisementVO">		
+		SELECT * FROM ADVERTISEMENT
+	</select>
+	
+	
+	<insert id="insertAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">
+		INSERT INTO ADVERTISEMENT	(
+		ADVERTISE_SEQ,
+		ADVERTISE_MONEY,
+		<!-- ADVERTISE_FILE, -->
+		ADVERTISER,
+		ADVERTISER_PHONE,
+		SITE,
+		CONTRACT_PERIOD
+		)
+		VALUES(
+		(SELECT NVL(MAX(ADVERTISE_SEQ),0)+1 FROM ADVERTISEMENT),
+		#{advertiseMoney},
+	<!-- 	#{advertiseFile}, -->
+		#{advertiser},
+		#{advertiserPhone},
+		#{site},
+		#{contractPeriod}
+		)
+	</insert>
 
 
+	<update id="updateAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">
+	 	UPDATE ADVERTISEMENT
+		SET
+		ADVERTISE_MONEY = #{advertiseMoney} ,
+		<!-- ADVERTISE_FILE = #{advertiseFile}, -->
+		ADVERTISER = #{advertiser},
+		ADVERTISER_PHONE = #{advertiserPhone},
+		SITE = #{site},
+		CONTRACT_PERIOD = #{contractPeriod}
+		WHERE ADVERTISE_SEQ = #{advertiseSeq}
+	</update>
+	
+	<delete id="deleteAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">		
+		DELETE FROM ADVERTISEMENT WHERE ADVERTISE_SEQ = #{advertiseSeq}
+		
+	</delete>
+	
 </mapper>

@@ -46,18 +46,18 @@ public class AdvertisementController {
 		@RequestMapping(value="/advert", method=RequestMethod.POST, headers = ("content-type=multipart/*"))	            
 		@ResponseBody
 		public Map<String, Object> insertAdvertisement(AdvertisementVO advertisementVO, Model model
-				//,@RequestParam("upload")MultipartFile uploadfile
+				,@RequestParam("upload")MultipartFile uploadfile
 				) throws IOException {		
 			Map<String, Object> map = new HashMap<String, Object>();
-//			MultipartFile file = advertisementVO.getUpload();
-//	        String filename = file.getOriginalFilename();
-//	        if (file != null && file.getSize() > 0) {
-//	            File upFile = FileRenamePolicy
-//	                  .rename(new File("C:\\Users\\User\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-//	            filename = upFile.getName();
-//	            file.transferTo(upFile);
-//	            advertisementVO.setAdvertiseFile(filename);
-//	         }
+			MultipartFile file = advertisementVO.getUpload();
+	        String filename = file.getOriginalFilename();
+	        if (file != null && file.getSize() > 0) {
+	            File upFile = FileRenamePolicy
+	                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+	            filename = upFile.getName();
+	            file.transferTo(upFile);
+	         }
+	        advertisementVO.setAdvertiseFile(filename);
 		    advertisementService.insertAdvertisement(advertisementVO);
 		    map.put("result", true);
 		    map.put("kkk","재수없어");	

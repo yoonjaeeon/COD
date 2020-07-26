@@ -31,6 +31,7 @@
 	function advertInsert(){
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
+			console.log($("#advertform").serialize());
 			var form = $('#advertform')[0];
 			var data = new FormData(form);
 			$.ajax({ 
@@ -106,7 +107,7 @@
 		$('input:text[name="advertiseMoney"]').val(advertisement.advertiseMoney);
 		$('input:text[name="site"]').val(advertisement.site);
 		$('select[name="contractPeriod"]').val(advertisement.contractPeriod).attr("selected", "selected","selected");
-		//$('input[file="advertiseFile"]').val(advertisement.advertiseFile);
+		$('input[file="advertiseFile"]').val(advertisement.advertiseFile);
 		
 		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
 	}//userSelectResult
@@ -122,7 +123,7 @@
 			var advertiseMoney = $('input:text[name="advertiseMoney"]').val();
 			var site = $('input:text[name="site"]').val();
 			var contractPeriod = $('select[name="contractPeriod"]').val();
-			//var advertiseFile = $('input:file[name="upload"]').val();
+			var advertiseFile = $('input:file[name="upload"]').val();
 			
 			$.ajax({ 
 			    url: "advert", 
@@ -163,9 +164,9 @@
 			.append($('<td>').html(item.advertiser))
 			.append($('<td>').html(item.advertiserPhone))		
 			.append($('<td>').html(item.advertiseMoney))
+			.append($('<td>').html(item.advertiseFile))
 			.append($('<td>').html(item.site))
 			.append($('<td>').html(item.contractPeriod))
-			//.append($('<td>').html(item.advertiseFile))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.appendTo('tbody');
@@ -202,14 +203,14 @@
 					<div class="form-group">   
 						<label>계약기간:</label>
 						<select class="form-control" name="contractPeriod">
-							   		<option value="0">1달</option>
-							   		<option value="1">3달</option>
-							   		<option value="2">6달</option>
+							   		<option value="1달">1달</option>
+							   		<option value="3달">3달</option>
+							   		<option value="6달">6달</option>
 						</select>
 					</div>  
- 					<!-- <div class="form-group">
+ 					 <div class="form-group">
 					<label>첨부파일:</label> <input type="file" name="upload" id="upload" />
-					</div> -->
+					</div> 
 					<div class="btn-group">      
 						<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
 						<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
@@ -226,8 +227,8 @@
 				<th class="text-center">광고번호</th>
 				<th class="text-center">광고주</th>
 				<th class="text-center">광고주연락처</th>
-				<!-- <th class="text-center">첨부파일</th> -->
 				<th class="text-center">금액</th>
+			    <th class="text-center">첨부파일</th>
 				<th class="text-center">사이트</th>
 				<th class="text-center">계약기간</th>
 			</tr>

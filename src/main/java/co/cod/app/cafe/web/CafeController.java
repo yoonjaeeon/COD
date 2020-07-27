@@ -131,9 +131,6 @@ public class CafeController {
 		return "main/home";
 	}
 
-	@RequestMapping("cafeOrder")
-	public String cafeOrder() {
-		return "cafe/cafeOrder";
-	}
+	
 
 }

@@ -88,111 +88,114 @@
 
 
 
-		<!-- 기본정보 -->
-		<div class="align-center">
-			<div class="row">
-				<div class="col-lg-4 boxs" style="padding: 2em">
-					<h2>카페이름</h2>
-					<i class='far fa-heart' style='font-size: 24px'></i><br> <br>
-					<button>
-						<i class='fas fa-map-marker-alt'></i> 위치보기
-					</button>
-					<button>
-						<i class="fas fa-shopping-cart"> </i> 주문하기
-					</button>
-				</div>
-				<div class="col-lg-8 boxs">
-					<article class="mini-post">
-						<header>
-							<h3>공지사항</h3>
-							<p class="published">07월21일 09:00am 소독 완료 ! 편하게 놀러오세요 :)</p>
-							<a href="#" class="author"><i class='far fa-heart'></i> <!-- <img src="resources/images/avatar.jpg" alt=""> --></a>
-						</header>
-					</article>
-					<article class="mini-post">
-						<header>
-							<h3>기본 정보</h3>
-							<h4 class="published">영업시간 : am10:00~ pm07:00</h4>
-							<h4 class="published">
-								쉬는 날 : <b style="color: red">매주 일요일</b>
-							</h4>
-						</header>
-					</article>
+<!-- 기본정보 -->
+<div class="align-center">
+	<div align="center">
 
-				</div>
-			</div>
-		</div>
-		
-		<!-- 서비스 -->
-			<article class="mini-post">
-				<header>
-					<h2 align="center">주문하기</h2>
-			
-				</header>
-			</article>
-			<br>
-			<!-- end service -->
-			
-			<!-- detail -->
-			<div id="listpage">
-				<section class="posts row">
-					<!-- 좌석선택 -->
-					<div class="main_slick col-lg-6">
-						<c:forEach begin="0" end="3">
-							<div>
-								<article class="mini-post">
-									<header class="row">
-										<div class="col-sm-9">
-											<h3>
-												<a href="single.html">T1</a>
-											</h3>
-											<h4>2~4인</h4>
-										</div>
-										<div class="col-sm-3">
-											<i class="far fa-heart"></i>
-											<h4>예약가능</h4>
-										</div>
-									</header>
-									<a href="#" class="image"><img
-										src="resources/images/main2.jpg" alt=""></a>
-								</article>
-							</div>
-						</c:forEach>
+		<h2>카페93.4C</h2>
+
+
+		<article class="mini-post">
+			<header>
+				<h3>이벤트</h3>
+				<h4 class="published">
+					구매후 다른 각도의 음료 사진 2장을 인스타 업로드 후 <br /> 직원에게 보여주시면 쿠기 무료 제공
+				</h4>
+			</header>
+		</article>
+
+	</div>
+
+
+	<!-- 서비스 -->
+	<article class="mini-post">
+		<header>
+			<h2 align="center">주문하기</h2>
+
+		</header>
+	</article>
+	<br>
+	<!-- end service -->
+
+	<!-- detail -->
+	<div id="listpage">
+		<section class="posts row">
+			<!-- 좌석선택 -->
+			<div class="main_slick col-lg-6">
+				<c:forEach begin="0" end="3">
+					<div>
+						<article class="mini-post">
+							<header class="row">
+								<div class="col-sm-9">
+									<h3>
+										<a href="single.html">T1</a>
+									</h3>
+									<h4>2~4인</h4>
+								</div>
+								<div class="col-sm-3">
+									<i class="far fa-heart"></i>
+									<h4>예약가능</h4>
+								</div>
+							</header>
+							<a href="#" class="image"><img
+								src="resources/images/main2.jpg" alt=""></a>
+						</article>
 					</div>
-					<!-- 메뉴판 -->
-					<article class="col-lg-6">
-							<h3>menu</h3>
-						<ul class="list-group list-group-flush">
-						    <li  class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
-						    <c:forEach begin="0" end="4">
-						    <li atrid='aa' onclick="test(this)" class="list-group-item row" ><div class="col-lg-6 col-md-8 published" atrid='ddd'>아메리카노</div><div class="col-lg-3 col-md-2 published">2000</div><div class="col-lg-3 col-md-2 published">2500</div></li>
-							</c:forEach>
-						</ul>
-					</article>
-				</section>
+				</c:forEach>
 			</div>
+			<!-- 메뉴판 -->
+			<article class="col-lg-6">
+				<h3>menu</h3>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item row"><div
+							class="col-lg-6 col-md-8 published">
+							<b>메뉴명</b>
+						</div>
+						<div class="col-lg-3 col-md-2 published">
+							<b>hot</b>
+						</div>
+						<div class="col-lg-3 col-md-2 published">
+							<b>ice</b>
+						</div></li>
+					<c:forEach begin="0" end="4">
+						<li atrid='aa' onclick="test(this)" class="list-group-item row"><div
+								class="col-lg-6 col-md-8 published" atrid='ddd'>아메리카노</div>
+							<div class="col-lg-3 col-md-2 published">2000</div>
+							<div class="col-lg-3 col-md-2 published">2500</div></li>
+					</c:forEach>
+				</ul>
+			</article>
+		</section>
+		<br><br><br>
+		
+		<div class="container" id="showResult">
+	<h2>주문확인</h2>
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<td>메뉴</td>
+				<td>수량</td>
+				<td>좌석번호</td>
+				<td>가격</td>
+			</tr>
+			<tr>
+				<td id="test">아메리카노</td>
+				<td>1</td>
+				<td>t1</td>
+				<td>2500</td>
+		</thead>
+	</table>
+</div>
+</table>
+<div align="right">
+	<input type="button" value="결제" id="price" />
+
+</div>
+		
+		
+	</div>
 	</article>
 </div>
 
-<div class="container" id="showResult">
 
-	<h2>주문확인서</h2>
-	<table class="table text-center">
-		<thead>
-		<tr>
-			<td>메뉴</td>
-			<td>수량</td>
-			<td>좌석번호</td>
-			<td>가격</td>
-		</tr>
-			<tr>
-			<td id="test">아메리카노</td>
-			<td>1</td>
-			<td>t1</td>
-			<td>2500</td>
-		</thead>
-		</table>
-		</div>	
-	</table>
-<div align="right"><input type="button" value="결제" id="price"/></div>
 

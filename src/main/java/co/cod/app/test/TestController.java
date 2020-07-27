@@ -8,17 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
 
-	// 좌석 수정폼
-	@RequestMapping("updateSeatForm")
-	public String updateSeatForm() {
-		return "ad/adminManage/updateSeat";
-	}
-
-	// 좌석 등록폼
-	@RequestMapping("insertSeatForm")
-	public String insertSeat() {
-		return "ad/adminManage/insertSeat";
-	}
+	
 
 	// 관리자 리뷰 리스트
 	@RequestMapping("adminReviewList")
@@ -38,7 +28,7 @@ public class TestController {
 	public String adminMenuForm() {
 		return "ad/adminManage/adminMenu";
 	}
-
+	//회원 최근 결제 내역 보기
 	@RequestMapping("memberOrderListForm")
 	public String memberOrderListForm() {
 		return "ad/memberList/memberOrderList";
@@ -52,6 +42,15 @@ public class TestController {
 	@RequestMapping("cafeWaiting")
 	public String cafeWaiting() {
 		return "ad/cafe/cafeWaiting";
+	}
+	@RequestMapping("cafeList")
+	public String cafeList() {
+		return "ad/cafe/cafeList";
+	}
+	//마스터 매출
+	@RequestMapping("masterSales")
+	public String masterSales() {
+		return "ma/master/masterSales";
 	}
 
 }

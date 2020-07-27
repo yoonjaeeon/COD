@@ -41,7 +41,7 @@
         from orders o, cafe c, review r 
         where c.admin_id= o.admin_id 
         and c.admin_id = r.admin_id
-        order by review_seq
+        order by review_seq desc
          ) A ) B WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 
@@ -53,11 +53,16 @@
 
  	<update id="updateReview" parameterType="co.cod.app.review.ReviewVO">
 		UPDATE review 
-		SET
+		<set>
 			    review_content = #{reviewContent},
-			    photo_group = #{photo_group},
+			    <if test = "photoGroup != null">
+			    	photo_group = #{photoGroup},
+			    </if>
 			    stars = #{stars},
-			    gdsThumbImg = #{gdsThumbImg}
+			    <if test = "gdsThumbImg != null and gdsThumbImg != ''">
+			    	gdsThumbImg = #{gdsThumbImg}
+			    </if>
+		</set>  
 		where   review_seq = #{reviewSeq}
 	</update>
 

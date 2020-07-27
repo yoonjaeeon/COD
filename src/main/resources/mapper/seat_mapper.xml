@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.cod.app.seat.mapper.SeatMapper">
+	<!-- 페이징 카운트 갯수 -->
+	<select id ="getCount" resultType="int">
+	SELECT count(*)
+        from orders o, cafe c, Seat r 
+        where c.admin_id= o.admin_id 
+        and c.admin_id = r.admin_id
+	</select>
+	<!-- 단건조회  -->
+	<select id="getSeat" parameterType="co.cod.app.seat.SeatVO" resultType="co.cod.app.seat.SeatVO">
+		SELECT 
+		        Seat_seq,
+		        email,
+				Seat_content,
+				Seat_time,
+				stars,
+				order_seq,
+				photo_group,
+				gdsThumbImg,
+				admin_id
+						
+		 		
+		FROM Seat
+		WHERE Seat_seq = #{SeatSeq}
+	</select>
+
+	<!-- <resultMap type="#modelname" id="YourResultSet">
+		<id property="param1" column="columnname1" />
+		<result property="param2" column="columnname2" />
+		<result property="param3" column="columnname3" />
+	</resultMap> -->  
+	
+	<!-- 전체조회  -->
+	<select id="getSeatList"  resultType="co.cod.app.seat.SeatVO">
+	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+		SELECT c.cafe_name, o.*, r.Seat_seq, r.Seat_content, r.Seat_time, r.stars, r.photo_group, r.gdsThumbImg
+        from orders o, cafe c, Seat r 
+        where c.admin_id= o.admin_id 
+        and c.admin_id = r.admin_id
+        order by Seat_seq
+         ) A ) B WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+
+	<insert id="insertSeat" parameterType="co.cod.app.seat.SeatVO">
+		INSERT INTO Seat (Seat_seq, Seat_content, Seat_time, stars, photo_group, gdsThumbImg)  
+		
+		VALUES ((select nvl(max(Seat_seq),0)+1 from Seat), #{SeatContent}, sysdate, #{stars}, #{photoGroup}, #{gdsThumbImg})
+	</insert>
+
+ 	<update id="updateSeat" parameterType="co.cod.app.seat.SeatVO">
+		UPDATE Seat 
+		SET
+			    Seat_content = #{SeatContent},
+			    photo_group = #{photo_group},
+			    stars = #{stars},
+			    gdsThumbImg = #{gdsThumbImg}
+		where   Seat_seq = #{SeatSeq}
+	</update>
+
+	<delete id="deleteSeat" parameterType="co.cod.app.seat.SeatVO">
+		DELETE FROM Seat 
+		WHERE
+		Seat_seq = #{SeatSeq}
+	</delete>
+</mapper>

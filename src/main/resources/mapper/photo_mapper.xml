@@ -6,14 +6,14 @@
 		SELECT
 		*
 		FROM PHOTO
-		WHERE photo_group = #{photoGroup} 
+		WHERE photo_seq = #{photoSeq} 
 	</select>
 	<select id="getPhotoList" resultType="co.cod.app.photo.PhotoVO" parameterType="co.cod.app.photo.PhotoVO">
-			<where>
-				<if test="photo_group !=null">
-					photo_group = #{photoGroup}
-				</if>
-			</where>
+			SELECT
+			*
+			FROM PHOTO
+			where
+				photo_group = #{photoGroup}
 	</select>
 	
 	<select id="getPhotoMax" resultType="co.cod.app.photo.PhotoVO" >

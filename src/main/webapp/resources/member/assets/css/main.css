@@ -79,7 +79,7 @@ body {
 
 @media screen and (max-width: 480px) {
 	html, body {
-		min-width: 320px;
+		max-width: 320px;
 	}
 }
 
@@ -5133,7 +5133,6 @@ input[type="radio"]+label:before {
 	max-height: 320px;
 	overflow: hidden;
 }
-
 .image.left, .image.right {
 	max-width: 40%;
 }

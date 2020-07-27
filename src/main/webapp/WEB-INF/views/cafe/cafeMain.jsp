@@ -197,6 +197,7 @@
 					</div> 
 	
 				</div>
+				</article>
 			</div>
 
 

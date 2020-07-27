@@ -11,7 +11,7 @@ if(message.length>0){
 	<c:forEach var="index" begin="1" end="3">
 		<div>
 			<img src="resources/images/main${index}.jpg" alt="img"
-				class="image fit" style="max-height: 400px; overflow: hidden">
+				class="image fit" style="max-height: 600px; overflow: hidden">
 		</div>
 	</c:forEach>
 </div>

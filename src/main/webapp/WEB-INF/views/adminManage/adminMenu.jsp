@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+
 <script src="resources/json.min.js"></script>
 <script type="text/javascript" >
 $(function(){
@@ -142,12 +143,20 @@ function menuListResult(data) {
       .append($('<td>').html(item.signiture))
       .append($('<td>').html(item.popularMenu))
       .append($('<td>').html(item.priceAdd))
-      .append($('<td>').html('<button id="btnSelect" class="btn btn-outline-info"\'>조회</button>'))
+      .append($('<td>').html('<i id="btnSelect" class="fas fa-eye"style="font-size:24px"\'></button>'))
       .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
       .append($('<input type=\'hidden\' id=\'menuSeq\'>').val(item.menuSeq))
       .appendTo('tbody');
    });//each
 }//menuListResult
+$(document).ready(function(){
+	  $("#searchMenu").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#menuTbl tr").filter(function() {
+	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
 </script>
 <div class="container">
          <h4>메뉴 등록 및 수정</h4><br>
@@ -200,7 +209,12 @@ function menuListResult(data) {
    </form>
    <div>
       <h4>메뉴</h4>
-      <table class="table text-center">
+      <div class="row" style="margin-bottom: 1em">
+      	<div class="col-6"></div>
+      	<input class="form-control col-5" id="searchMenu" type="text" placeholder="Search..">
+      	<i class="fa fa-search col-1" style="font-size:24px;" ></i>
+      </div>
+      <table class="table text-center" id="menuTbl">
          <thead>
             <tr>
                <th class="text-center">메뉴분류</th>

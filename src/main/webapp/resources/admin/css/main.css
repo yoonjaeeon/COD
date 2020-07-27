@@ -17,6 +17,9 @@ a:hover{
 .wrapper{
    color: #646464 !importance;
 }
+i:hover{
+	color: #2ebaae !important
+}
 ul.navvar{
    color:#646464 !importance;
 }

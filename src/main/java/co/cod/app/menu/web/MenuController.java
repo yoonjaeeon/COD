@@ -27,8 +27,8 @@ public class MenuController {
 	
 	//메뉴리스트 목록조회
 	@RequestMapping("menuList")
-	public String menuList(Model model, MenuVO menuVO) {
-		model.addAttribute("menuList", menuService.getMenuList(menuVO));
+	public String menuList(Model model, String adminId) {
+		model.addAttribute("menuList", menuService.getMenuList(adminId));
 		return "cafe/cafeOrder";
 	}
 	
@@ -40,9 +40,9 @@ public class MenuController {
 	//전체조회
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MenuVO> getMenuList(Model model, MenuVO vo, HttpSession session) {
-		vo.setAdminId((String) session.getAttribute("adminId"));
-		return  menuService.getMenuList(vo);
+	public List<MenuVO> getMenuList(Model model, HttpSession session) {
+		String adminId = (String)session.getAttribute("adminId");
+		return  menuService.getMenuList(adminId);
 	}
 	
 	//단건조회

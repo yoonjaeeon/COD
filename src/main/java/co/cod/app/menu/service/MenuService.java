@@ -8,7 +8,7 @@ import co.cod.app.menu.MenuVO;
 public interface MenuService {
 
 	public MenuVO getMenu(MenuVO menuVO);
-	public List<MenuVO> getMenuList(MenuVO menuVO);
+	public List<MenuVO> getMenuList(String adminId);
 	public int insertMenu(MenuVO menuVO); 
 	public int updateMenu(MenuVO menuVO);
 	public int deleteMenu(MenuVO menuVO);

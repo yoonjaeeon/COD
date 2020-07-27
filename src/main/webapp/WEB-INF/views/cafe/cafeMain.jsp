@@ -37,7 +37,7 @@
 					<article class="mini-post">
 						<header>
 							<h3>기본 정보</h3>
-							<h4 class="published">영업시간 : {${cafeDetail.cafeTime } </h4>
+							<h4 class="published">영업시간 : ${cafeDetail.cafeTime } </h4>
 							<h4 class="published">
 								쉬는 날 : <b style="color: red">${cafeDetail.cafeCloseday}</b>
 							</h4>
@@ -155,8 +155,8 @@
 							<h3>menu</h3>
 						<ul class="list-group list-group-flush">
 						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
-						    <c:forEach begin="0" end="4">
-						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published">아메리카노</div><div class="col-lg-3 col-md-2 published">2000</div><div class="col-lg-3 col-md-2 published">2500</div></li>
+						    <c:forEach items="${cafeMenu}" var="menu">
+						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published">${menu.menuName }</div><div class="col-lg-3 col-md-2 published">${menu.price }</div><div class="col-lg-3 col-md-2 published">${menu.price+menu.priceAdd }</div></li>
 							</c:forEach>
 						</ul>
 					</article>
@@ -231,6 +231,12 @@
 		autoplay : true,
 		autoplaySpeed : 2000,
 		responsive : [ {
+			breakpoint : 900,
+			settings : {
+				slidesToShow : 4,
+				slidesToScroll : 1
+			}
+		},{
 			breakpoint : 600,
 			settings : {
 				slidesToShow : 3,
@@ -239,7 +245,7 @@
 		}, {
 			breakpoint : 480,
 			settings : {
-				slidesToShow : 2,
+				slidesToShow : 3,
 				slidesToScroll : 1
 			}
 		} ]

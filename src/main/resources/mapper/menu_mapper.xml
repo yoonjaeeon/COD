@@ -4,7 +4,7 @@
 <!-- dumy_mapper.xml -->
 <mapper namespace="co.cod.app.menu.mapper.MenuMapper">   
 
-	<select id="getMenuList" resultType="menu" parameterType="menu">
+	<select id="getMenuList" parameterType="String" resultType="menu" >
 		SELECT *
 		FROM menu
 		WHERE admin_id =  #{adminId}

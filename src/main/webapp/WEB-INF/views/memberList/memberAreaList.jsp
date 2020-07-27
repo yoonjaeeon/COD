@@ -89,7 +89,7 @@
 						<h4><i class='fas fa-star'></i>${area.stars }</h4>
 					</div>
 				</header>
-				<a href="cafe?adminId=${area.adminId }" class="image"><img src="resources/upload/${area.cafeThumbnail }"
+				<a href="cafe?adminId=${area.adminId}" class="image"><img src="resources/upload/${area.cafeThumbnail }"
 					alt=""></a>
 			</article>
 		</c:forEach>

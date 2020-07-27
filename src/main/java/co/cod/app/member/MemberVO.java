@@ -10,4 +10,5 @@ String pw;
 String birthday;
 String phone;
 String nickname;
+Integer mileage;
 }

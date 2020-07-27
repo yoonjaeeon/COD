@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberVO getMember(MemberVO memberVO) {		
-		return null;
+		return memberMapper.getMember(memberVO);
 	}
 
 	@Override

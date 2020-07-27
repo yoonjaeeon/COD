@@ -22,8 +22,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuVO> getMenuList(MenuVO menuVO) {
-		return menuMapper.getMenuList(menuVO);
+	public List<MenuVO> getMenuList(String adminId) {
+		return menuMapper.getMenuList(adminId);
 	}
 
 	@Override

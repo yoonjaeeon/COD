@@ -19,6 +19,7 @@ public class CafeVO {
    String cafeHashtag;
    String cafeTheme;
    String cafeThumbnail;
+   String menuName;
    Integer wifi;
    Integer nokid;
    Integer parking;

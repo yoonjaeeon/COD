@@ -7,8 +7,7 @@
 		<h1>* My Page *</h1>
 		<h2>${member.nickname } 님</h2>
 		<h2>
-			<i class="fab fa-product-hunt" style='font-size: 24px'></i> ${ member.milege}
-			1,000
+			<i class="fab fa-product-hunt" style='font-size: 24px'></i> ${ member.mileage} 원
 		</h2>
 	</div>
 	<div class="col-lg-7">

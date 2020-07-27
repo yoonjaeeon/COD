@@ -29,7 +29,6 @@ class AdminController {
 	@RequestMapping("adminInsertForm")
 	public String insertAdmin(AdminVO adminVO) {
 		return "admin/adminInsert";
-
 	}
 
 	// 등록처리
@@ -66,7 +65,7 @@ class AdminController {
 				if (result.getCafeState() == 0) {
 					rt = "e/cafe/cafeInsertForm";
 				} else if (result.getCafeState() == 1) {
-					rt = "admin/loading";
+					rt = "e/admin/loading";
 				} else if (result.getCafeState() == 2) {
 					rt = "ad/admin/adminMain";
 				}
@@ -131,7 +130,6 @@ class AdminController {
 	
 	}
 	// 수정
-
 	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
 	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model, HttpSession session) {
@@ -140,7 +138,7 @@ class AdminController {
 		return adminVO;
 	}
 
-	// 업테이트
+	// 업데이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {
 		return "admin/adminUpdate";
@@ -171,6 +169,4 @@ class AdminController {
 		RestTemplate rest = new RestTemplate();
 		return rest.getForObject("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713", Map.class);
 	}
-	
-	
 }

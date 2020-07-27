@@ -7,14 +7,14 @@
 			FROM cafe
 			WHERE admin_id = #{adminId}
 	</select>	
-	<select id="getCafeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
+<!-- 	<select id="getCafeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
 		<where>
 			<if test="adminId != null">
 				admin_id = #{adminId}
 			</if>
 		</where>
 	</select>
-  
+-->
   	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
   		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
 			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,

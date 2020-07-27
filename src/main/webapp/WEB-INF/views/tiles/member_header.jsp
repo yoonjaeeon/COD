@@ -18,8 +18,8 @@ function logoutCheck(){
    </h1>
    <nav class="links">
       <ul><c:if test="${empty sessionScope.loginEmail }">
-         <li><a href="themeList">테마별</a></li>
-         <li><a href="areaList">지역별</a></li>
+         <li><a href="memberThemeList">테마별</a></li>
+         <li><a href="memberAreaList">지역별</a></li>
          </c:if>      
       	<c:if test="${not empty sessionScope.loginEmail }">
          <li><a href="themeList">테마별</a></li>

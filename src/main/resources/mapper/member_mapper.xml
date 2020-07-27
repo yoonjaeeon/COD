@@ -38,10 +38,10 @@
 		 WHERE B.ADMIN_ID = TQ.ADMIN_ID
 		   AND B.EMAIL = #{email}
 	</select>
-
+ 
 	<select id="memberLogin"
 		parameterType="co.cod.app.member.MemberVO"
-		resultType="co.cod.app.member.MemberVO">
+		resultType="co.cod.app.member.MemberVO"> 
 		SELECT
 		EMAIL, PW
 		FROM MEMBER

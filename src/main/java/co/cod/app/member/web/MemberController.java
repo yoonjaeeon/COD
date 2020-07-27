@@ -67,7 +67,6 @@ public class MemberController {
 	//회원로그인
 	@RequestMapping("memberLogin")
 	public String memberLogin(Model model, MemberVO memberVO, HttpSession session) {
-
 		MemberVO result = memberService.memberLogin(memberVO);
 		if (result != null) {
 			if (result.getEmail().equals(memberVO.getEmail()) && result.getPw().equals(memberVO.getPw())) {

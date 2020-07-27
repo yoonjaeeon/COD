@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script type="text/javascript">
+var message = '${msg}';
+if(message.length>0){
+	alert(message);
+}
+
+
 	function validCheck() {
 		if (frm.adminId.value == "") {
 			alert("id를 입력해주세요");

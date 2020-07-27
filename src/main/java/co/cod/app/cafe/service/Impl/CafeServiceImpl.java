@@ -74,6 +74,18 @@ public class CafeServiceImpl implements CafeService{
 		adminMapper.updateCafeState(adminVO);
 		
 	}
+
+	@Override
+	public List<CafeVO> memberThemeList(CafeVO cafeVO) {
+		return cafeMapper.memberThemeList(cafeVO);
+	}
+
+	@Override
+	public List<CafeVO> memberAreaList(CafeVO cafeVO) {
+		return cafeMapper.memberAreaList(cafeVO);
+	}
+	
+	
 	
 	
 }

@@ -55,14 +55,14 @@ public class CafeController {
 	//비회원 리스트 보여주기
 	@RequestMapping("memberThemeList")
 	public String MemberThemeList(HttpSession session, CafeVO cafeVO, Model model) {
-		List list = cafeService.getThemeList(cafeVO);
+		List list = cafeService.memberThemeList(cafeVO);
 		model.addAttribute("getTheme", list);
 		return "memberList/memberThemeList";
 	}
 	
 	@RequestMapping("memberAreaList")
 	public String MemberAreaList(CafeVO cafeVO, Model model, HttpSession session) {
-		List list = cafeService.AreaList(cafeVO);
+		List list = cafeService.memberAreaList(cafeVO);
 		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";
 	}

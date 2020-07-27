@@ -23,7 +23,7 @@ import co.cod.app.admin.worker.WorkerVO;
 class AdminController {
 
 	@Autowired
-	AdminService adminService;
+	AdminService adminService;    
 
 	// e등로폼
 	@RequestMapping("adminInsertForm")

@@ -39,6 +39,10 @@ messageSeq = seq;
 		dataType : 'json',
 		async : true,
 		success : function(data){
+			 if(typeof data.length == 0 || data == ""){
+		    	 alert("보낸 메세지가 없습니다.");		 
+				 $('#testBoardTable tr:gt(0)').empty();
+       }else{
 			$('#date').text('발신일자')
 			$('#th').text('수신');
 			$("#testBoardTable tr:gt(0)").empty();
@@ -74,7 +78,7 @@ messageSeq = seq;
 			$('.readClass').removeClass(); */
 			$('#messageTitle').html(data.messageTitle);
 			}
-				
+		}
 	})
 } //end of sendMessage 
 
@@ -87,6 +91,11 @@ messageSeq = seq;
 		dataType : 'json',
 		async : false,
 		success : function(data){
+           if(typeof data.length == 0 || data == ""){
+			    	 alert("받은 메세지가 없습니다.");		 
+					 $('#testBoardTable tr:gt(0)').empty();
+           }else{
+			    	  console.log(data)
 			$.each(data, function (index, item) {
 				$('#th').text('읽음');
 				$('#date').text('수신일자')
@@ -95,7 +104,8 @@ messageSeq = seq;
                 html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
                 html += '<td>'+item.messageTitle+'</td>';    
                 html += '<td>'+item.messageDate+'</td>';    
-                if(item.read === 1){
+			    	  
+			    if(item.read === 1){
             	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
                 }else{
                 	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
@@ -103,6 +113,7 @@ messageSeq = seq;
                 html += '</tr>';
                 $("#testBoardTable").append(html);
             });
+           }
 		}
 				/* $('#tr').append( $('<th/>', {text : '읽음'}) )
 				for(key in data){
@@ -127,7 +138,7 @@ messageSeq = seq;
 	<tr id='tr'>
 		<!-- <th><input type="checkBox" id="chkAll"></th> -->
 		<th>메세지 제목</th>
-		<th id="date">보낸 날짜</th>
+		<th id="date">수신 날짜</th>
 		<th id="th">읽음</th>
 		<!-- data-toggle="modal" data-target="#exampleModal" -->
 	</tr>
@@ -135,8 +146,8 @@ messageSeq = seq;
 	<tbody id="tbody">
 		<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
 			<!-- <td><input type="checkbox" name="check"></td> -->
-			<td><span id="messageSeq"></span>${list.messageSeq }</td>
 			<td><span id="messageTitle"></span>${list.messageTitle }</td>
+			<td><span id="messageDate"></span>${list.messageDate}</td>
 			<td align="center" class="readClass" id="messageRead"> <!-- 메세지 읽음표시  -->
 			<span id="messageUpdate"> 
 			
@@ -228,16 +239,16 @@ messageSeq = seq;
 			data : {messageSeq:messageSeq},
 			dataType :'json',
 			success:function(data){
-				if(data == null){
-					alert("data=0");
-					data=0;
-				}else{
+				/* if(data.Data.response.length == 0 ){
+			    	  alert("받은 메세지가 없습니다.");
+			    	  return false;
+				}else{ */
 					$('#getMessageTitle').html(data.messageTitle);
 					$('#getMessageContent').html(data.messageContent);
 					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 					$('#messageCount').load("getMessageCount");
 					
-				}
+				/* } */
 			}
 		})
 

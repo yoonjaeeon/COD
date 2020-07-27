@@ -129,9 +129,15 @@ function sendAjax(){
 	$.ajax({
 		url :'insertMasterMessage',
 		method : 'post',
-		data :  JSON.stringify($("#sendModal").serializeObject()),
-		dataType : 'json'
+        data :  $("#sendModal").serialize(),
+		dataType : 'json',
+		success:function(data){
+			alert("전송완료");
+			$("#modalMessage .close").click();
+			//$('#modalMessage').modal('hide');
+		}
 	})
+	
 	}
 	//모달창 메세지 받기
 	 $('#contentModal').on('show.bs.modal', function (e) {

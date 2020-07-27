@@ -46,9 +46,9 @@ public class MasterController {
 	
 	@RequestMapping("insertMasterMessage")
 	@ResponseBody
-	public ResponseEntity insertMasterMessage(MasterVO masterVO) {
+	public String insertMasterMessage(MasterVO masterVO) {
 		masterService.insertMasterMessage(masterVO);
-		return new ResponseEntity(HttpStatus.OK);
+		return "true";
 	}
 	
 //	@RequestMapping("loading")

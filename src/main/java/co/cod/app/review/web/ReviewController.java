@@ -17,7 +17,6 @@ import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
 import co.cod.app.review.service.ReviewService;
 
-
 @Controller // @Component 빈등록 , 디스패쳐서블릿이 인식할수 있는 컨트롤러로 변환
 public class ReviewController {
 
@@ -25,7 +24,7 @@ public class ReviewController {
 	ReviewService reviewService;
 	@Autowired
 	PhotoService photoService;
-	
+
 	// 등록폼
 	@RequestMapping("insertFormReview")
 	public String insertFormreview(ReviewVO vo) {
@@ -34,36 +33,36 @@ public class ReviewController {
 
 	// 등록처리
 	@RequestMapping("insertReview")
-	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO) throws IOException{
-		    MultipartFile reviewThumbnail = reviewVO.getUpload();
-		      if(reviewThumbnail != null) {
-		         String filename = reviewThumbnail.getOriginalFilename();
-		         if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
-		            File upFile = FileRenamePolicy.rename(new 
-		                  File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-		            filename = upFile.getName();
-		            reviewThumbnail.transferTo(upFile);
-		         }
-		         reviewVO.setGdsThumbImg(filename);		      
-		      }
-		      MultipartFile[] files = photoVO.getUploadFile();
-		      if (files != null) {
-		         PhotoVO photoMaxVO = photoService.getPhotoMax();
-		         for (MultipartFile file : files) {
-		            String filename = file.getOriginalFilename();
-		            if (file != null && file.getSize() > 0) {
-		               File upFile = FileRenamePolicy
-		                     .rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-		               filename = upFile.getName();
-		               file.transferTo(upFile);
-		            }
-		            photoVO.setPhotoName(filename);
-		            photoVO.setPhotoUse(1);
-		            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-		            photoService.insertPhoto(photoVO);
-		         }
-		         reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-		      }
+	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO) throws IOException {
+		MultipartFile reviewThumbnail = reviewVO.getUpload();
+		if (reviewThumbnail != null) {
+			String filename = reviewThumbnail.getOriginalFilename();
+			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
+				File upFile = FileRenamePolicy
+						.rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				filename = upFile.getName();
+				reviewThumbnail.transferTo(upFile);
+			}
+			reviewVO.setGdsThumbImg(filename);
+		}
+		MultipartFile[] files = photoVO.getUploadFile();
+		if (files != null) {
+			PhotoVO photoMaxVO = photoService.getPhotoMax();
+			for (MultipartFile file : files) {
+				String filename = file.getOriginalFilename();
+				if (file != null && file.getSize() > 0) {
+					File upFile = FileRenamePolicy
+							.rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+					filename = upFile.getName();
+					file.transferTo(upFile);
+				}
+				photoVO.setPhotoName(filename);
+				photoVO.setPhotoUse(1);
+				photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+				photoService.insertPhoto(photoVO);
+			}
+			reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+		}
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출
 		return "redirect:memberReviewList";
@@ -94,19 +93,19 @@ public class ReviewController {
 		paging.setTotalRecord(reviewService.getCount(reviewVO)); // 전체 레코드 건수 조회
 		model.addAttribute("paging", paging);
 
-		reviewVO.setStart(Integer.toString(paging.getFirst())); //start
-		reviewVO.setEnd(Integer.toString(paging.getLast())); //end
-		
+		reviewVO.setStart(Integer.toString(paging.getFirst())); // start
+		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
+
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		return "memberList/memberReviewList";
 	}
-	
+
 	// 수정폼
 	@RequestMapping("updateFormReview")
 	public String updateFormreview(ReviewVO reviewVO, Model model, PhotoVO photoVO) {
-			reviewVO = reviewService.getReview(reviewVO);
-			model.addAttribute("review", reviewVO);
-		if(reviewVO.getPhotoGroup() != null) {
+		reviewVO = reviewService.getReview(reviewVO);
+		model.addAttribute("review", reviewVO);
+		if (reviewVO.getPhotoGroup() != null) {
 			photoVO.setPhotoGroup(reviewVO.getPhotoGroup());
 			model.addAttribute("fileList", photoService.getPhotoList(photoVO));
 		}
@@ -116,38 +115,39 @@ public class ReviewController {
 	// 수정처리
 	@RequestMapping("updateReview")
 	public String updatereview(ReviewVO reviewVO, PhotoVO photoVO) throws Exception {
-	    MultipartFile reviewThumbnail = reviewVO.getUpload();
-	      if(reviewThumbnail != null) {
-	         String filename = reviewThumbnail.getOriginalFilename();
-	         if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
-	            File upFile = new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+		MultipartFile reviewThumbnail = reviewVO.getUpload();
+		if (reviewThumbnail != null) {
+			String filename = reviewThumbnail.getOriginalFilename();
+			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
+				File upFile = new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
 				/*
 				 * FileRenamePolicy.rename(new
 				 * File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				 */
-	            filename = upFile.getName();
-	            reviewThumbnail.transferTo(upFile);
-	         }
-	         reviewVO.setGdsThumbImg(filename);		      
-	      }
-	      MultipartFile[] files = photoVO.getUploadFile();
-	      if (files != null) {
-	         PhotoVO photoMaxVO = photoService.getPhotoMax();
-	         for (MultipartFile file : files) {
-	            String filename = file.getOriginalFilename();
-	            if (file != null && file.getSize() > 0) {
-	               File upFile = new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
-	               //FileRenamePolicy.rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-	               filename = upFile.getName();
-	               file.transferTo(upFile);
-	                photoVO.setPhotoName(filename);
-		            photoVO.setPhotoUse(1);
-		            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-		            photoService.insertPhoto(photoVO);
-		            reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-	            }            
-	         }
-	      }
+				filename = upFile.getName();
+				reviewThumbnail.transferTo(upFile);
+			}
+			reviewVO.setGdsThumbImg(filename);
+		}
+		MultipartFile[] files = photoVO.getUploadFile();
+		if (files != null) {
+			PhotoVO photoMaxVO = photoService.getPhotoMax();
+			for (MultipartFile file : files) {
+				String filename = file.getOriginalFilename();
+				if (file != null && file.getSize() > 0) {
+					File upFile = new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+					// FileRenamePolicy.rename(new
+					// File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+					filename = upFile.getName();
+					file.transferTo(upFile);
+					photoVO.setPhotoName(filename);
+					photoVO.setPhotoUse(1);
+					photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+					photoService.insertPhoto(photoVO);
+					reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+				}
+			}
+		}
 		reviewService.updateReview(reviewVO);
 		// 서비스 호출
 		return "redirect:memberReviewList";

@@ -2,84 +2,118 @@ package co.cod.app.seat.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
-import co.cod.app.photo.PhotoVO;
-import co.cod.app.photo.service.PhotoService;
 import co.cod.app.seat.SeatVO;
 import co.cod.app.seat.service.SeatService;
+import co.cod.app.photo.service.PhotoService;
 
-
-@Controller // @Component 빈등록 , 디스패쳐서블릿이 인식할수 있는 컨트롤러로 변환
+@Controller
 public class SeatController {
 
 	@Autowired
 	SeatService seatService;
 	@Autowired
 	PhotoService photoService;
-	
+
 	// 등록폼
-	@RequestMapping("insertSeatForm")
-	public String insertFormSeat(SeatVO vo) {
-		return "seat/insertSeat";
+	@RequestMapping("seatForm")
+	public String SeatForm() {
+		return "adminManage/adminSeat";
 	}
 
-	// 등록처리
-	@RequestMapping("insertSeat")
-	public String insertSeat(SeatVO seatVO, PhotoVO photoVO) throws IOException{
-		    MultipartFile SeatThumbnail = seatVO.getUpload();
-		      if(SeatThumbnail != null) {
-		         String filename = SeatThumbnail.getOriginalFilename();
-		         if (SeatThumbnail != null && SeatThumbnail.getSize() > 0) {
-		            File upFile = FileRenamePolicy.rename(new 
-		                  File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-		            filename = upFile.getName();
-		            SeatThumbnail.transferTo(upFile);
-		         }
-		         seatVO.setSeatThumbImg(filename);		      
-		      }
-		      MultipartFile[] files = photoVO.getUploadFile();
-		      if (files != null) {
-		         PhotoVO photoMaxVO = photoService.getPhotoMax();
-		         for (MultipartFile file : files) {
-		            String filename = file.getOriginalFilename();
-		            if (file != null && file.getSize() > 0) {
-		               File upFile = FileRenamePolicy
-		                     .rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-		               filename = upFile.getName();
-		               file.transferTo(upFile);
-		            }
-		            photoVO.setPhotoName(filename);
-		            photoVO.setPhotoUse(1);
-		            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-		            photoService.insertPhoto(photoVO);
-		         }
-		         seatVO.setPhotogroup(photoMaxVO.getPhotoGroup());
-		      }
+	// 등록
+	@RequestMapping(value = "/seat", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
+	@ResponseBody
+	public Map<String, Object> insertSeat(SeatVO seatVO, Model model, @RequestParam("upload") MultipartFile uploadfile,
+			HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("resources/upload");
+		Map<String, Object> map = new HashMap<String, Object>();
+		MultipartFile seatimg = seatVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = FileRenamePolicy.rename(new File(path, filename));
+				filename = upFile.getName();
+				seatimg.transferTo(upFile);
+			}
+			seatVO.setSeatImg(filename);
+		}
 		seatService.insertSeat(seatVO);
-		// 서비스 호출
-		return "redirect:adminSeat";
+		map.put("result", true);
+		map.put("kkk", "재수없어");
+		return map;
+	}
+
+	// 수정 폼
+		@RequestMapping("UpdateSeatForm")
+		public String UpdateSeatForm() {
+			return "adminManage/adminSeat";
+		}
+	
+	// 수정
+	@RequestMapping(value = "/seat", method = RequestMethod.PUT, headers = ("content-type=multipart/*"))
+	// 요청헤더
+	@ResponseBody
+	public SeatVO updateSeat(@RequestBody SeatVO seatVO, Model model, @RequestParam("upload") MultipartFile uploadfile,
+			HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("resources/upload");
+		Map<String, Object> map = new HashMap<String, Object>();
+		MultipartFile seatimg = seatVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = new File(path, filename);/* FileRenamePolicy.rename(new File(path, filename)); */
+				filename = upFile.getName();
+				seatimg.transferTo(upFile);
+			}
+			seatVO.setSeatImg(filename);
+		}
+		seatService.updateSeat(seatVO);
+		return seatVO;
+	}
+
+	// 삭제
+	@RequestMapping(value = "/seat/{seatSeq}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object> deleteSeat(@PathVariable Integer seatSeq, SeatVO seatVO, Model model) {
+		seatVO.setSeatSeq(seatSeq);
+		seatService.deleteSeat(seatVO);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
 	}
 
 	// 단건조회
-	@RequestMapping("getSeat/{seatSeq}/{email}") // getSeat? Seatseq=aaaa
-	public String getSeat(@PathVariable Integer seatSeq, @PathVariable String email) {
-		System.out.println(seatSeq);
-		System.out.println(email);
-		return "main/home";
+	@RequestMapping(value = "/seat/{seatSeq}", method = RequestMethod.GET)
+	@ResponseBody
+	public SeatVO getSeat(@PathVariable Integer seatSeq, SeatVO seatVO, Model model) {
+		seatVO.setSeatSeq(seatSeq);
+		return seatService.getSeat(seatVO);
 	}
 
-	// 목록조회
-	@RequestMapping("adminSeatList")
-	public String SeatList(Model model, SeatVO seatVO) {
+	// 전체조회
+	@RequestMapping(value = "/seat", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SeatVO> getSeatList(Model model, SeatVO seatVO, HttpSession session) {
+//			SeatVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
 		// 페이징 처리
 		// (현재 페이지 파라미터 받기)
 		int p = 1;
@@ -94,47 +128,17 @@ public class SeatController {
 		paging.setTotalRecord(seatService.getCount(seatVO)); // 전체 레코드 건수 조회
 		model.addAttribute("paging", paging);
 
-		seatVO.setStart(Integer.toString(paging.getFirst())); //start
-		seatVO.setEnd(Integer.toString(paging.getLast())); //end
-		
-		model.addAttribute("seatList", seatService.getSeatList(seatVO));
-		return "adminManage/adminSeat";
-	}
-	
-	// 수정폼
-	@RequestMapping("updateSeatForm")
-	public String updateFormSeat(SeatVO seatVO, Model model) {
-		model.addAttribute("seat", seatService.getSeat(seatVO));
-		return "seat/updateSeat";
+		seatVO.setStart(Integer.toString(paging.getFirst())); // start
+		seatVO.setEnd(Integer.toString(paging.getLast())); // end
+		return seatService.getSeatList(seatVO);
 	}
 
-	// 수정처리
-	@RequestMapping("updateSeat")
-	public String updateSeat(SeatVO seatVO) throws Exception {
-		  MultipartFile[] files = seatVO.getUploadFile();
-	      if (files != null) {
-	         for (MultipartFile file : files) {
-	            String filename = file.getOriginalFilename();
-	            if (file != null && file.getSize() > 0) {
-	               File upFile = FileRenamePolicy.rename(new 
-	                     File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-	               filename = upFile.getName();
-	               file.transferTo(upFile);
-	            }
-	            seatVO.setSeatThumbImg(filename);
-	         }
-	      }
-		seatService.updateSeat(seatVO);
-		// 서비스 호출
-		return "redirect:adminSeat";
-	}
-
-	// 삭제처리
-	@RequestMapping("deleteSeat")
-	public String deleteSeat(SeatVO seatVO, Model model) {
-
-		seatService.deleteSeat(seatVO);
-		// 서비스 호출
-		return "redirect:adminSeat";
-	}
+	/*
+	 * @RequestMapping(value="/respAPI")
+	 * 
+	 * @ResponseBody public Map respAPI() { RestTemplate rest = new RestTemplate();
+	 * return rest.getForObject(
+	 * "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713",
+	 * Map.class); }
+	 */
 }

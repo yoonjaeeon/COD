@@ -6,26 +6,19 @@
 	<!-- 페이징 카운트 갯수 -->
 	<select id ="getCount" resultType="int">
 	SELECT count(*)
-        from orders o, cafe c, Seat r 
-        where c.admin_id= o.admin_id 
-        and c.admin_id = r.admin_id
+        from seat
 	</select>
 	<!-- 단건조회  -->
 	<select id="getSeat" parameterType="co.cod.app.seat.SeatVO" resultType="co.cod.app.seat.SeatVO">
 		SELECT 
-		        Seat_seq,
-		        email,
-				Seat_content,
-				Seat_time,
-				stars,
-				order_seq,
-				photo_group,
-				gdsThumbImg,
-				admin_id
-						
-		 		
+		        seat_seq,
+		        seat_name,
+				seat_img,
+				seat_reserve,
+				admin_id,
+				seat_size		 		
 		FROM Seat
-		WHERE Seat_seq = #{SeatSeq}
+		WHERE Seat_seq = #{seatSeq}
 	</select>
 
 	<!-- <resultMap type="#modelname" id="YourResultSet">
@@ -37,33 +30,33 @@
 	<!-- 전체조회  -->
 	<select id="getSeatList"  resultType="co.cod.app.seat.SeatVO">
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
-		SELECT c.cafe_name, o.*, r.Seat_seq, r.Seat_content, r.Seat_time, r.stars, r.photo_group, r.gdsThumbImg
-        from orders o, cafe c, Seat r 
-        where c.admin_id= o.admin_id 
-        and c.admin_id = r.admin_id
-        order by Seat_seq
+		SELECT *
+        from seat
+        order by seat_seq desc
          ) A ) B WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 
 	<insert id="insertSeat" parameterType="co.cod.app.seat.SeatVO">
-		INSERT INTO Seat (Seat_seq, Seat_content, Seat_time, stars, photo_group, gdsThumbImg)  
+		INSERT INTO Seat (seat_seq, seat_name, seat_img, seat_size, admin_id)  
 		
-		VALUES ((select nvl(max(Seat_seq),0)+1 from Seat), #{SeatContent}, sysdate, #{stars}, #{photoGroup}, #{gdsThumbImg})
+		VALUES ((select nvl(max(seat_seq),0)+1 from seat), #{seatName}, #{seatImg}, #{seatSize}, #{adminId})
 	</insert>
 
  	<update id="updateSeat" parameterType="co.cod.app.seat.SeatVO">
 		UPDATE Seat 
-		SET
-			    Seat_content = #{SeatContent},
-			    photo_group = #{photo_group},
-			    stars = #{stars},
-			    gdsThumbImg = #{gdsThumbImg}
-		where   Seat_seq = #{SeatSeq}
+		<set>
+			    seat_name = #{seatName},
+			    seat_size = #{seatSize},
+			   <if test = "seatImg != null and seatImg != ''">
+			    	seat_img = #{seatImg}
+			   </if>
+		</set>	    
+		where seat_seq = #{seatSeq}
 	</update>
 
 	<delete id="deleteSeat" parameterType="co.cod.app.seat.SeatVO">
-		DELETE FROM Seat 
+		DELETE FROM seat 
 		WHERE
-		Seat_seq = #{SeatSeq}
+		Seat_seq = #{seatSeq}
 	</delete>
 </mapper>

@@ -16,7 +16,10 @@
  <p>대표 사진</p>
  <img src="resources/upload/${review.gdsThumbImg}"style="width: 500px"/>
  <p>리뷰 사진</p>
- <img src="resources/upload/${review.photoGroup}"style="width: 500px"/>
+ <c:forEach items="${fileList}" var="file">
+   <img src="resources/upload/${file.photoName}"style="width: 500px"/>
+ </c:forEach>
+
 </div>
 대표 사진 <br>
       <input type="file" id="gdsThumbImg" name="upload" value="${review.gdsThumbImg }"/>

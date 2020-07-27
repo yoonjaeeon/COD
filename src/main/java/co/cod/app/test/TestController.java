@@ -8,17 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
 
-	// 좌석 수정폼
-	@RequestMapping("updateSeatForm")
-	public String updateSeatForm() {
-		return "ad/adminManage/updateSeat";
-	}
-
-	// 좌석 등록폼
-	@RequestMapping("insertSeatForm")
-	public String insertSeat() {
-		return "ad/adminManage/insertSeat";
-	}
 
 	// 관리자 리뷰 리스트
 	@RequestMapping("adminReviewList")

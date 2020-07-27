@@ -12,9 +12,9 @@
 	WHERE SEND_RECEIVE =1
 	</select>	
 
-	<select id="getMasterMessageCount" parameterType="vofile.MessageVO" resultType="int">
-		SELECT NVL(COUNT(MASTER_READ),0) FROM MESSAGE
-		WHERE MASTER_READ=1
+	<select id="getMasterMessageCount" resultType="int">
+		 SELECT NVL(COUNT(MASTER_READ),0) FROM MESSAGE
+		WHERE MASTER_READ=1 AND SEND_RECEIVE =1
 	</select>
 	
 	<select id="getMasterMessage" resultType="vofile.MasterVO" parameterType="vofile.MasterVO">
@@ -31,6 +31,28 @@
 		MASTER_READ=0
 		WHERE MESSAGE_SEQ=#{messageSeq}
 	</update>
+	
+	<insert id="insertMasterMessage" parameterType="vofile.MessageVO">
+		INSERT INTO MESSAGE(
+						MESSAGE_SEQ,
+						MESSAGE_TITLE,
+						MESSAGE_CONTENT,
+						SEND_RECEIVE,
+						MESSAGE_DATE,
+						ADMIN_ID,
+						READ,
+						MASTER_READ)
+		VALUES (
+						(select nvl(max(message_seq),0)+1 from message),
+						#{messageTitle},
+						#{messageContent},
+						0,
+						SYSDATE,
+						#{adminId},
+						1,
+						0
+		)
+	</insert>
 
 
 <!--  마스터가 Admin 이 보낸 카페 등록 폼에서 승인을 누를시 cafe_state 가 0에서 2로 바꿈  -->

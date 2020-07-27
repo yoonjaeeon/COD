@@ -3,29 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-
-var messageSeq ;
-function messageUpdate(seq){
-messageSeq = seq;
-	/* 1 안읽음, 0 읽음	 */
-}
-
-	$(function() {
+/* 	$(function() {
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').trigger('focus')
 		})
 
 		$()
-	});
+	}); */
 	
-	function send() {
-		$(function() {
-			$('#myModal').on('shown.bs.modal', function() {
-				$('#myInput').trigger('focus')
-			})
-
-			$()
-		})
+	function sendMasterMessage(value) {	
+		$('#myModal').modal('show');		
+		$('#myInput').trigger('focus');
+		$('#adminId').val(value);		
 	};
 	
 	
@@ -38,15 +27,24 @@ messageSeq = seq;
 		<th>제목</th>
 		<th>아이디</th>
 		<th>답장</th>
+		<th>읽음</th>
 		<!-- data-toggle="modal" data-target="#exampleModal" -->
 	</tr>
 	<c:forEach items="${messageList}" var="list">
-		<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
+		<tr>
 			<!-- <td><input type="checkbox" name="check"></td> -->
-			<td><span id="messageTitle"></span>${list.messageTitle }</td>
-			<td><span id="messageAdminId"></span>${list.adminId }</td>
+			<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })"><span id="messageTitle"></span>${list.messageTitle }</td>
+			<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })"><span id="messageAdminId"></span>${list.adminId }</td>
+			<td><button data-toggle="modal" data-target="#modalMessage" onclick="sendMasterMessage('${list.adminId }')">답장</button></td>
 			<td align="center" class="readClass" id="messageRead"> <!-- 메세지 읽음표시  -->
-			<a>답장</a>
+			<span id="messageUpdate"> 			
+			<c:if test="${list.masterRead == 1 }">
+				<i class="far fa-envelope"></i>
+			</c:if> 
+			<c:if test="${list.masterRead == 0 }">
+				<i class='far fa-envelope-open'></i>
+			</c:if>
+			</span>	
 			</td>
 		</tr>
 	</c:forEach>
@@ -93,12 +91,12 @@ messageSeq = seq;
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="insertMessage">
-				<input type="text" id="messageTitle" name="messageTitle"
-					placeholder="제목 입력" /><br> <input type="text"
-					id="messageContent" name="messageContent" placeholder="메세지 입력" />
+			<form method="post" id="sendModal" name="sendModal">
+				<input type="text" name="messageTitle" placeholder="제목 입력" />
+				<input type="text" id="adminId" name="adminId" readonly ><br> 
+					<input type="text" name="messageContent" placeholder="메세지 입력" />
 				<div class="modal-footer">
-					<input type="submit" class="btn btn-danger" value="보내기">
+					<input type="button" onclick="sendAjax()" class="btn btn-danger" value="보내기">
 				</div>
 			</form>
 		</div>
@@ -110,7 +108,12 @@ messageSeq = seq;
 <script>
 
 
+var messageSeq ;
+function messageUpdate(seq){
+messageSeq = seq;
+	/* 1 안읽음, 0 읽음	 */
 
+}
 /* function modalContent(data){
 	$("tbody").empty();
 	$.each(data,function(idx,item)){
@@ -118,6 +121,18 @@ messageSeq = seq;
 		
 	}
 } */
+
+function sendAjax(){
+	var title = $('#sendtitle').val();
+	var content = $('#sendContent').val();
+	var adminId = $('#adminId').val();
+	$.ajax({
+		url :'insertMasterMessage',
+		method : 'post',
+		data :  JSON.stringify($("#sendModal").serializeObject()),
+		dataType : 'json'
+	})
+	}
 	//모달창 메세지 받기
 	 $('#contentModal').on('show.bs.modal', function (e) {
 		console.log(e.target); 
@@ -133,13 +148,13 @@ messageSeq = seq;
 				}else{
 					$('#getMessageTitle').html(data.messageTitle);
 					$('#getMessageContent').html(data.messageContent);
-					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 					$('#messageCount').load("getMasterMessageCount");
+					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 				}
 			}
 		})
 
 	})  
 	
-	
+
     </script>

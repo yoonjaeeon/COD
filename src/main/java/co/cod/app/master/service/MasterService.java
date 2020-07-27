@@ -8,18 +8,9 @@ import vofile.MessageVO;
 public interface MasterService {
 
 	public MasterVO getMaster(MasterVO masterVO);
-
-	public List<MasterVO> getMasterList();
-
-	public void insertMaster(MasterVO masterVO);
-
-	public void updateMaster(MasterVO masterVO);
-
 	public void deleteMaster(MasterVO masterVO);
-
-	public int getMasterMessageCount();
-
-	public List<MessageVO> masterMessage();
-
+	public void insertMasterMessage(MasterVO masterVO); //메세지보내기
+	public int getMasterMessageCount(); //메세지 카운트
+	public List<MessageVO> masterMessage(); //메세지 리스트
 	public MasterVO getMasterMessage(MasterVO masterVO);
 }

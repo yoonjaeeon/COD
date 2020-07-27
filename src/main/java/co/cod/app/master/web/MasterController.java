@@ -3,6 +3,8 @@ package co.cod.app.master.web;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +43,13 @@ public class MasterController {
 		
 		return masterService.getMasterMessage(masterVO);		
 	}	
+	
+	@RequestMapping("insertMasterMessage")
+	@ResponseBody
+	public ResponseEntity insertMasterMessage(MasterVO masterVO) {
+		masterService.insertMasterMessage(masterVO);
+		return new ResponseEntity(HttpStatus.OK);
+	}
 	
 //	@RequestMapping("loading")
 //	public String masterMain() {

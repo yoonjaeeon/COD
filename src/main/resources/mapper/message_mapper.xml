@@ -27,12 +27,16 @@
 		MESSAGE_TITLE,
 		MESSAGE_CONTENT,
 		ADMIN_ID,
-		SEND_RECEIVE)
+		SEND_RECEIVE,
+		MASTER_READ,
+		MESSAGE_DATE)
 		VALUES ((select nvl(max(message_seq),0)+1 from message),
 		#{messageTitle},
 		#{messageContent},
 		#{adminId},
-		#{sendReceive}
+		#{sendReceive},
+		1,
+		SYSDATE
 		)
 	</insert>
 
@@ -45,7 +49,7 @@
 
 	<select id="getMessageCount" parameterType="vofile.MessageVO" resultType="int">
 		SELECT NVL(COUNT(READ),0) FROM MESSAGE
-		WHERE READ=1 AND ADMIN_ID=#{adminId}
+		WHERE READ=1 AND ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
 	</select>
 
 	<select id="sendMessage" resultType="vofile.MessageVO">

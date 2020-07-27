@@ -22,22 +22,12 @@ public class MasterServiceImpl implements MasterService{
 		return null;
 	}
 
-	@Override
-	public List<MasterVO> getMasterList() {
-		return null;
-	}
 
 	@Override
-	public void insertMaster(MasterVO masterVO) {
-		masterMapper.insertMaster(masterVO);
+	public void insertMasterMessage(MasterVO masterVO) {
+		masterMapper.insertMasterMessage(masterVO);
 		
 	}
-
-	@Override
-	public void updateMaster(MasterVO masterVO) {
-		masterMapper.updateMaster(masterVO);
-	}
-
 	@Override
 	public void deleteMaster(MasterVO masterVO) {
 		masterMapper.deleteMaster(masterVO);

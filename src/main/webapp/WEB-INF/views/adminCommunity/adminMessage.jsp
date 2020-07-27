@@ -44,7 +44,7 @@ messageSeq = seq;
 			$("#testBoardTable tr:gt(0)").empty();
 				  $.each(data, function (index, item) {
 	                    let html = '';
-	                    html += '<tr>';
+	                    html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
 	                    html += '<td>'+item.messageTitle+'</td>';	 
 	                    html += '<td>'+item.messageDate+'</td>';    
 	                    if(item.masterRead === 1){
@@ -92,7 +92,7 @@ messageSeq = seq;
 				$('#date').text('수신일자')
 				$("#testBoardTable tr:gt(0)").empty();
                 let html = '';
-                html += '<tr>';
+                html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
                 html += '<td>'+item.messageTitle+'</td>';    
                 html += '<td>'+item.messageDate+'</td>';    
                 if(item.read === 1){
@@ -236,6 +236,7 @@ messageSeq = seq;
 					$('#getMessageContent').html(data.messageContent);
 					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 					$('#messageCount').load("getMessageCount");
+					
 				}
 			}
 		})

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 
 <div id="wrapper">
 	<article class="post">
@@ -152,14 +151,16 @@
 						</c:forEach>
 					</div>
 					<!-- 메뉴판 -->
-					<article class="col-lg-6">
+					<article class="col-lg-6" >
 							<h3>menu</h3>
-						<ul class="list-group list-group-flush">
-						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
-						    <c:forEach items="${cafeMenu}" var="menu">
-						    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published">${menu.menuName }</div><div class="col-lg-3 col-md-2 published">${menu.price }</div><div class="col-lg-3 col-md-2 published">${menu.price+menu.priceAdd }</div></li>
-							</c:forEach>
-						</ul>
+							<div class="menu" style="height: 350px; overflow:scroll;">
+								<ul class="list-group list-group-flush">
+								    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published"><b>메뉴명</b></div><div class="col-lg-3 col-md-2 published"><b>hot</b></div><div class="col-lg-3 col-md-2 published"><b>ice</b></div></li>
+								    <c:forEach items="${cafeMenu}" var="menu">
+								    <li class="list-group-item row"><div class="col-lg-6 col-md-8 published">${menu.menuName }</div><div class="col-lg-3 col-md-2 published">${menu.price }</div><div class="col-lg-3 col-md-2 published">${menu.price+menu.priceAdd }</div></li>
+									</c:forEach>
+								</ul>
+							</div>
 					</article>
 				</section>
 			</div>

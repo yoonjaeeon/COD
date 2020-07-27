@@ -6641,3 +6641,11 @@ body.is-menu-visible #menu {
 .hovers h2:hover{
 	color: #2ebaae !important;
 }
+
+.menu {
+	-ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.menu::-webkit-scrollbar {
+    display: none; !important;/* Chrome, Safari, Opera*/
+}

@@ -36,7 +36,7 @@ $.ajax({
 	 }
 	 }
 	 ,error: function(xhr,status, error){
-	 alert("에러발생"); // AJAX 호출 에러
+	 alert("에러발생"); // AJAX 호출 에러 
 	 }
 	});
 	

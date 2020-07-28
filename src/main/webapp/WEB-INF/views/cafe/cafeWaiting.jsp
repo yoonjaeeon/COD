@@ -7,50 +7,39 @@
     
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
  
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-  
-// 마커를 표시할 위치입니다 
-var position =  new kakao.maps.LatLng(33.450701, 126.570667);
-
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-  position: position,
-  clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-});
-
-// 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
-// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-// marker.setClickable(true);
-
-// 마커를 지도에 표시합니다.
-marker.setMap(map);
-
-// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
-// 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({
-    content : iwContent,
-    removable : iwRemoveable
-});
-
-// 마커에 클릭이벤트를 등록합니다
-kakao.maps.event.addListener(marker, 'click', function() {
-      // 마커 위에 인포윈도우를 표시합니다
-      infowindow.open(map, marker);  
-});
+$.ajax({
+	 url:"http://www.juso.go.kr/addrlink/addrCoordApiJsonp.do"
+	 ,type:"post"
+	 ,data:$("#form").serialize() // 요청변수 설정
+	 ,dataType:"jsonp" // 크로스도메인으로 인한 jsonp 이용
+	 ,crossDomain:true
+	 ,success:function(xmlStr){ // xmlStr : 좌표 검색 결과 XML 데이터
+	 if(navigator.appName.indexOf("Microsoft") > -1){
+	 // IE 환경에서 JSONP의 returnXml 결과 데이터 처리
+	 var xmlData= newActiveXObject("Microsoft.XMLDOM");
+	 xmlData.loadXML(xmlStr.returnXml)
+	 }else{
+	 // IE 이외 환경에서 처리
+	 var xmlData= xmlStr.returnXml;
+	 }
+	 $("#list").html("");
+	 var errCode= $(xmlData).find("errorCode").text();
+	var errDesc= $(xmlData).find("errorMessage").text();
+	 if(errCode != "0"){
+	 alert(errCode+"="+errDesc);
+	 }else{
+	 if(xmlStr!= null){
+	 makeList(xmlData); // XML 데이터 HTML 형태로 저장
+	 }
+	 }
+	 }
+	 ,error: function(xhr,status, error){
+	 alert("에러발생"); // AJAX 호출 에러 
+	 }
+	});
+	
 </script>
 </body>
 </html>

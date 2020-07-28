@@ -82,10 +82,7 @@ public class MasterController {
 		System.out.println(adminVO);
 		adminService.updateCafeState(adminVO);
 		return adminVO;
-	}
-	
-	
-	
+	}	
 	
 	// 관리자 단건 조회
 	// 단건조회

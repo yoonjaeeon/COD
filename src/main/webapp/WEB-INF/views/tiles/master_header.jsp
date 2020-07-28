@@ -63,7 +63,8 @@
             <a class="collapse-item" href="adminInventory">재고관리</a>
             <a class="collapse-item" href="adminWorkerForm">알바생관리</a>
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>
-            <a class="collapse-item" href="adminCafeStateForm">관리자 리스트</a>
+            <a class="collapse-item" href="adminListForm">관리자 리스트</a>
+             <a class="collapse-item" href="advertisementForm">광고등록</a>
           </div>
         </div>
       </li>

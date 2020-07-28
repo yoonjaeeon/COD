@@ -48,4 +48,6 @@
 		UPDATE ADMIN SET CAFE_STATE=#{cafeState} WHERE ADMIN_ID = #{adminId} 
 	</update>
 
+
+
 </mapper>

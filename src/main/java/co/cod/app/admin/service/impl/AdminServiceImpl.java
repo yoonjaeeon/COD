@@ -47,8 +47,8 @@ public class AdminServiceImpl implements AdminService{
 
 	
 	@Override
-	public List<AdminVO> getAdminList(Integer cafeState) {
-		return adminMapper.getAdminList(cafeState);
+	public List<AdminVO> getAdminList(AdminVO adminVO) {
+		return adminMapper.getAdminList(adminVO);
 	}
 	// 카페 상태 수정
 	@Override

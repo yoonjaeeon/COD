@@ -1,6 +1,5 @@
 package co.cod.app.admin.web;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,10 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -92,65 +88,6 @@ class AdminController {
 		 */
 //		return rt;
 	return null;
-	}
-
-//	// 관리자 목록 조회 전체 조회 
-//	
-//	@RequestMapping("adminList")
-//	public String getAdminList(AdminVO adminVO, Model model, HttpSession session) {
-//		adminVO.setAdminId((String) session.getAttribute("adminId"));
-//		model.addAttribute("adminList", adminService.getAdminList(adminVO));
-//		return "ma/master/adminList";
-//
-//	}
-//	
-
-	@RequestMapping("adminCafeStateForm")
-	public String adminCafeStateForm() {
-		return "ma/master/adminList";
-	}
-
-	// 관리자 카페 상태 1조회
-	@RequestMapping(value = "/adminList", method = RequestMethod.GET)
-	@ResponseBody
-	public List<AdminVO> getAdminListCafe1(Model model, AdminVO adminVO, HttpSession session) {
-		adminVO.setAdminId((String) session.getAttribute("adminId")); // 세션수정 테스트
-		return adminService.getAdminListCafe1(adminVO);
-	}
-//	//관리자 카페 스테이트가 2인 사람 조회 
-//		@RequestMapping("adminList")
-//		public String getAdminListCafe2(AdminVO adminVO, Model model, HttpSession session) {
-//			adminVO.setAdminId((String) session.getAttribute("adminId"));
-//			model.addAttribute("adminList", adminService.getAdminList(adminVO));
-//			return "ma/master/adminList";
-//		}
-
-	// 관리자 단건 조회
-	// 단건조회
-	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
-	public String getAdmin(@PathVariable String adminId, HttpSession session) {
-		System.out.println(adminId);
-		return "ad/admin/adminList";
-	}
-
-	// 관리자 상태 승인 버튼 컨트롤러
-	@RequestMapping(value = "/adminList", method = RequestMethod.PUT, consumes = "application/json")
-	// ,headers = {"Content-type=application/json"})
-	// 요청헤더
-	@ResponseBody
-	public AdminVO updateAdminListCafe1(@RequestBody AdminVO adminVO, Model model) {
-		adminService.updateAdminListCafe1(adminVO);
-		return adminVO;
-
-	}
-
-	// 수정
-	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")
-	@ResponseBody
-	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model, HttpSession session) {
-		adminVO.setAdminId((String) session.getAttribute("adminId"));
-		adminService.updateCafeState(adminVO);
-		return adminVO;
 	}
 
 	// 업데이트

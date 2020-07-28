@@ -18,12 +18,9 @@ import co.cod.app.admin.service.AdminService;
 public class HomeController {
 
    @Autowired AdminService adminService;
+   @Autowired CafeService cafeService;
    
    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-   
-   @Autowired
-   CafeService cafeService;
-
    
    @RequestMapping("home")
    public String home(Locale locale, Model model) {

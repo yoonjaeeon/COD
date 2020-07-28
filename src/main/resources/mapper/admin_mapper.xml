@@ -35,45 +35,14 @@
 	</select>	
 	
 	
-	<select id="getAdminListCafe1" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
-	SELECT * FROM ADMIN WHERE CAFE_STATE = 1
+	<select id="getAdminList" parameterType="Integer" resultType ="co.cod.app.admin.AdminVO">
+	SELECT * FROM ADMIN WHERE CAFE_STATE = #{cafeState}
 	</select>
-	
-	<select id="getAdminListCafe2" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
-		SELECT * FROM ADMIN WHERE CAFE_STATE = 2
-	</select>
-	
-	<update id="updateAdminListCafe1" parameterType="co.cod.app.admin.AdminVO" >
+
+	<update id="updateCafeState" parameterType="co.cod.app.admin.AdminVO" >
 			
-	UPDATE ADMIN SET CAFE_STATE=2 WHERE ADMIN_ID = #{ADMIN_ID} 
+	UPDATE ADMIN SET CAFE_STATE=#{cafeState} WHERE ADMIN_ID = #{ADMIN_ID} 
 	
 	</update>
 
-	<update id="updateAdminListCafe2" parameterType="co.cod.app.admin.AdminVO" >
-			
-	UPDATE ADMIN SET CAFE_STATE=0 WHERE ADMIN_ID = #{ADMIN_ID} 
-	
-	</update>
-
-	
-	<!-- 카페 대기 등록 대기 리스트 조회  -->
-
-	
-<!-- 	<select id="updateCafeState" resultType="co.cod.app.admin.adminVO">
-      update admin set cafe_state=#{cafeState}
-      <where>
-         <if test="admin_id != null && admin_id !='' ">
-            admin_id = #{adminId}
-         </if>
-      </where>
-   	</select> -->
-   
-   	
-   	
-   	
-   	<!--  cafe_state 업테이트 -->
-	<select id="updateCafeState" parameterType="admins">
-		UPDATE admin SET cafe_state = 1
-		WHERE admin_id = #{adminId}
-	</select>
 </mapper>

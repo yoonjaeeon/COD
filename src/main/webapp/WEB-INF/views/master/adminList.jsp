@@ -6,41 +6,26 @@
 <script type="text/javascript" >
 
 	$(function(){
-		adminList1();
-		
-	//	adminList2();
-
-	// 	adminSelect1();
-	 	
-	// 	adminSelect2();
-		
-	//	adminDelete1();
-		
-	//	adminDelete2();
-			
-		adminUpdate1(); 
-		
-	//	adminUpdate2();  
-		
+		adminList();
+		adminUpdate(); 
 	});	
 	
 	//사용자 목록 조회 요청
-	function adminList1() {		
+	function adminList() {
 		$.ajax({
 			url:'adminList',
 			type:'GET',			
 			dataType:'json',
+			data : 1,
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " 에러 메세지:"+msg);
 			},
-			success:adminList1Result
+			success:adminListResult
 		});
 	}
-
-	// 관리자 아이디 조회 암댐 교수님 호출 //
 	
 	//관리자 목록 조회 응답
-	function adminList1Result(data) {
+	function adminListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
@@ -50,7 +35,6 @@
 			.append($('<td>').html(item.cafeState))
 			.append($('<td>').html(item.adminPhone))
 			.append($('<input type=\'hidden\' id=\'hidden_adminState\'>').val(item.adminState))
-			//.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnUpdate1\'>승인</button>'))
 			.append($('<td>').html('<button id=\'btnUpdate2\'>거절</button>'))
 			.appendTo('tbody');

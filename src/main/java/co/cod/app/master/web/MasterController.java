@@ -1,15 +1,20 @@
 package co.cod.app.master.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.service.AdminService;
 import co.cod.app.master.service.MasterService;
 import vofile.MasterVO;
 import vofile.MessageVO;
@@ -18,6 +23,9 @@ import vofile.MessageVO;
 public class MasterController {
 
 	@Autowired MasterService masterService;
+	@Autowired AdminService	adminService;
+
+	//마스터 메세지
 	
 	@RequestMapping("masterMain")
 	public String masterMain() {
@@ -51,10 +59,38 @@ public class MasterController {
 		return "true";
 	}
 	
-//	@RequestMapping("loading")
-//	public String masterMain() {
-//		return "admin/loading";
-//	}
+
+	// admin 조회
+	
+	@RequestMapping("adminList")
+	public String adminListForm() {
+		return "ma/master/adminList";
+	}
+
+	// 관리자 카페 상태 에 따른 조회 ( 0/1/2 )
+	@RequestMapping(value = "/adminList", method = RequestMethod.GET)
+	@ResponseBody
+	public List<AdminVO> getAdminList(Model model, Integer cafeState) {
+		return adminService.getAdminList(cafeState);
+	}
+	// 관리자 카페 상태 수정
+	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")
+	@ResponseBody
+	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Integer cafeState, Model model) {
+		adminVO.setCafeState(cafeState);
+		adminService.updateCafeState(adminVO);
+		return adminVO;
+	}
+	
+	// 관리자 단건 조회
+	// 단건조회
+	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
+	public String getAdmin(@PathVariable String adminId, HttpSession session) {
+		System.out.println(adminId);
+		return "ad/admin/adminList";
+	}
+
+	
 
 	
 

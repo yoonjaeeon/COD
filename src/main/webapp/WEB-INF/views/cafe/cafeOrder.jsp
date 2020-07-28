@@ -3,14 +3,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
+
+$('[data-toggle="tooltip"]').tooltip()
 function deleteValue(seq){
-	/* $(this).closest("tr").empty(); 
-	 $('#testBoardTable tr:gt(0)').empty();
-	*/
+	$.ajax({
+		success:function(){
+			$('#sum').val(
+					 parseInt($('#sum').val()) - 					
+					 parseInt($('#price').text()) 
+					);
+			
+			if($('#sum').val()=== null || $('#sum').val()==""){
+				$('#sum').val("0");
+			}
+		}
+	})
+	
 	$('#'+seq+'').empty();
+	
+	
 }
 	function test(name, price, ice, seq) {
-		//$('#').empty();
 		var sum = parseInt($('#sum').val()) + parseInt($('#price').text());		
 		var validCheck=$('#appendTest td:contains('+name+')');
 		//var sum2 =parseInt(validCheck=$('#appendTest td:contains('+name+')').next().next().next().text());
@@ -34,7 +47,7 @@ function deleteValue(seq){
 		else{			
 			var tr =							
 				'<tr id="'+seq+'">'  
-					+'<td align="center">'+ name+'</td>'  
+					+'<td align="center">'+ name+ seq+'</td>'  
 					+'<td>' + 1	+ '</td>'  
 					+'<td>선택</td>'
 					+'<td id="price">'+price+'</td>'
@@ -51,11 +64,6 @@ function deleteValue(seq){
 						}
 					})
 					
-					/* $('#sum').val(
-							parseInt($('#sum').val())
-							+
-							parseInt($('#price').html)
-							); */
 		}	
 	}
 
@@ -191,8 +199,8 @@ function deleteValue(seq){
 					<c:forEach items="${menuList}" var="menu">
 						<li id='aa' onclick="test('${menu.menuName }',${menu.price },${menu.price+menu.priceAdd },${menu.menuSeq})" class="list-group-item row" data-id='${menu.menuSeq}'>
 							<div class="col-lg-6 col-md-8 published" id='ddd'>${menu.menuName }</div>
-							<div class="col-lg-3 col-md-2 published">${menu.price }</div>
-							<div class="col-lg-3 col-md-2 published">${menu.price+menu.priceAdd }</div>
+							<div class="col-lg-3 col-md-2 published" data-placement="top" title="Hot선택 " data-toggle="tooltip">${menu.price }</div>
+							<div class="col-lg-3 col-md-2 published" data-placement="top" title="Ice선택"  data-toggle="tooltip">${menu.price+menu.priceAdd }</div>
 						</li>
 					</c:forEach>
 				</ul>
@@ -213,13 +221,6 @@ function deleteValue(seq){
 					</tr>
 				</thead>
 				<tbody id="appendTest">
-					<!-- 
-					<tr>
-						<td id="addMenuName">아메리카노</td>
-						<td id="addMenuAmount">1</td>
-						<td id="addSeat">t1</td>
-						<td id="addMenuPrice">2500</td>
-					</tr> -->
 				</tbody>
 			</table>
 		</div>		

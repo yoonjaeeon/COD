@@ -8,6 +8,7 @@
 		selectList(1);
 		cafeStateUpdate();
 		cafeStateUpdate1() 
+		adminSelect();
 	});
 
 	//사용자 목록 조회 요청
@@ -61,7 +62,7 @@
 		selectList(2);
 	}); //조회 버튼 클릭
 	$('body').on('click', '#state0', function() {
-		selectList(0);
+		selectList(0,1,2);
 	}); //조회 버
 
 	//대기상태 수정 요청
@@ -114,24 +115,36 @@
 		});//수정 버튼 클릭
 	}//userUpdate
 	
+	
+	
+	//admin 아이디 검색 
+	
+	$(document).ready(function(){
+		  $("#searchMenu").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#adminTbl tr").filter(function() {
+		    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+	});
+	
+	
 </script>
 <body>
-
-	<div class="container" align="center">
-		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 조회"
-			id="state1" /> &nbsp; 
-		<input type="button"
-			class="btn btn-outline-info" value="카페 관리자 조회 " id="state2" />
-			&nbsp; 
-		<input type="button" class="btn btn-outline-info"
-			value="전체 관리자 조회 " id="state0" />
-	</div>
-
 	<hr />
-
+	<div class="container" align="center">
+		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 조회" id="state1" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="카페 관리자 조회 " id="state2" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="대기 관리자 조회" id="state0" />
+	</div>
+      <div class="row" style="margin-bottom: 1em">
+      	<div class="col-6"></div>
+      	<input class="form-control col-5" id="searchMenu" type="text" placeholder="관리자 아이디 ">
+      	<i class="fa fa-search col-1" style="font-size:24px;" ></i>
+      </div>
 	<div class="col-lg">
 		<h2>관리자 리스트</h2>
-		<table class="table text-center">
+		<table class="table text-center" id="adminTbl">
 			<thead>
 				<tr>
 					<th class="text-center">관리자 아이디</th>

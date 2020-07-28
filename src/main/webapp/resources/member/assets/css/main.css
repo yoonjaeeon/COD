@@ -79,10 +79,14 @@ body {
 
 @media screen and (max-width: 480px) {
 	html, body {
+		max-width: 480px;
+	}
+}
+@media screen and (max-width: 320px) {
+	html, body {
 		max-width: 320px;
 	}
 }
-
 html {
 	box-sizing: border-box;
 }
@@ -142,6 +146,11 @@ body, input, select, textarea {
 @media screen and (max-width: 480px) {
 	body, input, select, textarea {
 		font-size: 8pt;
+	}
+}
+@media screen and (max-width: 320px) {
+	body, input, select, textarea {
+		font-size: 6pt;
 	}
 }
 
@@ -2742,10 +2751,12 @@ table.alt tfoot {
 	border-top: 0;
 }
 
-/* Header */
+
 body {
-	padding-top: 5em;
+	padding-top: 2em;
 }
+/* Header */
+
 
 #header {
 	display: -moz-flex;
@@ -5948,9 +5959,9 @@ table.alt tfoot {
 }
 
 /* Header */
-body {
+/* body {
 	padding-top: 5em;
-}
+} */
 
 #header {
 	display: -moz-flex;
@@ -6619,14 +6630,14 @@ body.is-menu-visible #menu {
 }
 
 @media all and (max-width:400px) {
-	.maps{height:50%; width:70% !important}
+	.maps>img{ max-width: 300px !important}
 	.tb{height:50%; width:70% !important;
 		font-size: 10px;
 	}
 }
 
-@media all and (max-width:360px) {
-	.maps{height:50%; width:60% !important}
+@media all and (max-width:320px) {
+	.maps>img{max-width: 280px !important}
 	.tb{height:50%; width:60% !important}
 }
 

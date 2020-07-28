@@ -65,7 +65,6 @@
             <a class="collapse-item" href="adminWorkerForm">알바생관리</a>
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>
             <a class="collapse-item" href="cafeInsertForm">카페등록</a>
-            <a class="collapse-item" href="advertisementForm">광고등록</a>
          	
           </div>
         </div>

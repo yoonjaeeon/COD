@@ -82,10 +82,7 @@ public class MasterController {
 		System.out.println(adminVO);
 		adminService.updateCafeState(adminVO);
 		return adminVO;
-	}
-	
-	
-	
+	}	
 	
 	// 관리자 단건 조회
 	// 단건조회
@@ -93,8 +90,12 @@ public class MasterController {
 	public String getAdmin(@PathVariable String adminId, HttpSession session) {
 		return "ad/admin/adminList";
 	}
-
-	
+	// 로그아웃
+	@RequestMapping("masterLogout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main/home";
+	}
 
 	
 

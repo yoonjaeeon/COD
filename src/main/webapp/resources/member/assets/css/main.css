@@ -6630,14 +6630,14 @@ body.is-menu-visible #menu {
 }
 
 @media all and (max-width:400px) {
-	.maps{height:50%; width:70% !important}
+	.maps>img{ max-width: 300px !important}
 	.tb{height:50%; width:70% !important;
 		font-size: 10px;
 	}
 }
 
 @media all and (max-width:320px) {
-	.maps{height:40%; width:60% !important}
+	.maps>img{max-width: 280px !important}
 	.tb{height:50%; width:60% !important}
 }
 

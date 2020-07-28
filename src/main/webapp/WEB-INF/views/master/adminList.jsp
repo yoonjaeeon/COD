@@ -62,7 +62,7 @@
 		selectList(2);
 	}); //조회 버튼 클릭
 	$('body').on('click', '#state0', function() {
-		selectList(0);
+		selectList(0,1,2);
 	}); //조회 버
 
 	//대기상태 수정 요청
@@ -116,36 +116,8 @@
 	}//userUpdate
 	
 	
-	//메뉴 조회 요청
-	function adminSelect() {
-	   $('body').on('click','#btnSelect',function(){
-	      var menuSeq = $(this).closest('tr').find('#menuSeq').val();
-	      $.ajax({
-	         url:'menu/'+menuSeq,
-	         type:'GET',
-	         contentType:'application/json;charset=utf-8',
-	         dataType:'json',
-	         error:function(xhr,status,msg){
-	            alert("상태값 :" + status + " Http에러메시지 :"+msg);
-	         },
-	         success:menuSelectResult
-	      });
-	   }); //조회 버튼 클릭
-	}
-
-	//메뉴 조회 응답
-	function menuSelectResult(menu) {
-		$('input:hidden[name="menuSeq"]').val(menu.menuSeq);
-		$('select[name="menuSort"]').val(menu.menuSort).attr("selected", "selected");
-		$('input:text[name="menuName"]').val(menu.menuName);
-		$('input:text[name="price"]').val(menu.price);
-		$('input:text[name="priceAdd"]').val(menu.priceAdd);
-		$('input:radio[name="menuState"]').filter("[value="+menu.menuState+"]").prop("checked",true);
-		$('input:radio[name="signiture"]').filter("[value="+menu.signiture+"]").prop("checked",true);
-		$('input:radio[name="popularMenu"]').filter("[value="+menu.popularMenu+"]").prop("checked",true);
-		$('input:radio[name="newMenu"]').filter("[value="+menu.newMenu+"]").prop("checked",true);
-
-	}//admin 아이디 검색 
+	
+	//admin 아이디 검색 
 	
 	$(document).ready(function(){
 		  $("#searchMenu").on("keyup", function() {
@@ -159,15 +131,12 @@
 	
 </script>
 <body>
-
+	<hr />
 	<div class="container" align="center">
 		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 조회" id="state1" /> &nbsp; 
 		<input type="button" class="btn btn-outline-info" value="카페 관리자 조회 " id="state2" /> &nbsp; 
-		<input type="button" class="btn btn-outline-info" value="전체 관리자 조회 " id="state0" />
+		<input type="button" class="btn btn-outline-info" value="대기 관리자 조회" id="state0" />
 	</div>
-
-	<hr />
-	<h4>메뉴</h4>
       <div class="row" style="margin-bottom: 1em">
       	<div class="col-6"></div>
       	<input class="form-control col-5" id="searchMenu" type="text" placeholder="관리자 아이디 ">

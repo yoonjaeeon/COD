@@ -90,8 +90,12 @@ public class MasterController {
 	public String getAdmin(@PathVariable String adminId, HttpSession session) {
 		return "ad/admin/adminList";
 	}
-
-	
+	// 로그아웃
+	@RequestMapping("masterLogout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main/home";
+	}
 
 	
 

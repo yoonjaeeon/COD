@@ -306,7 +306,7 @@ kakao.maps.event.addListener(marker, 'click', function() {
 		slidesToScroll : 1,
 		autoplay : true,
 		autoplaySpeed : 2000,
-		responsive : [ {
+		responsive : [ { 
 			breakpoint : 900,
 			settings : {
 				slidesToShow : 4,

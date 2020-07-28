@@ -54,40 +54,39 @@ class AdminController {
 			if (result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {
 				session.setAttribute("adminId", adminVO.getAdminId());
 //				rt = "ad/admin/adminMain";	
-				switch(result.getAdminState()) {
-				case 0: return "e/cafe/cafeInsertForm";
-				case 1: return "e/admin/loading";
-				case 2: return "ad/admin/adminMain";
-				}
-				
 				/*
-				 * if (result.getAdminState() == 0) { if (result.getCafeState() == 0) { // rt =
-				 * // "e/cafe/cafeInsertForm"; return "e/cafe/cafeInsertForm"; } else
-				 * if(result.getCafeState() == 1) { // rt = "e/admin/loading"; return
-				 * "e/admin/loading"; } else if (result.getCafeState() == 2) { // rt =
-				 * "ad/admin/adminMain"; return "ad/admin/adminMain"; } }
+				 * switch(result.getAdminState()) { case 0: return "e/cafe/cafeInsertForm"; case
+				 * 1: return "e/admin/loading"; case 2: return "ad/admin/adminMain"; }
 				 */
-			
-				 	
-				
-			}else if (result.getAdminId().equals(adminVO.getAdminId()) && !result.getPw().equals(adminVO.getPw())) {
+
+				if (result.getAdminState() == 0) {
+					if (result.getCafeState() == 0) {
+						return "e/cafe/cafeInsertForm";
+					} else if (result.getCafeState() == 1) {
+						return "e/admin/loading";
+					} else if (result.getCafeState() == 2) {
+						return "ad/admin/adminMain";
+					}
+				}
+
+			} else if (result.getAdminId().equals(adminVO.getAdminId()) && !result.getPw().equals(adminVO.getPw())) {
 				model.addAttribute("msg", "잘못된 비밀번호입니다.");
 				return "admin/adminLogin";
 			} else if (!result.getAdminId().equals(adminVO.getAdminId())) {
 				model.addAttribute("msg", "잘못된 이메일입니다.");
 				return "admin/adminLogin";
 			}
-		}else
+		} else
 
-	{
-		model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요");
-		return "admin/adminLogin";
-	} /*
-		 * else { model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요"); return
-		 * "ma/master/masterMain"; }
-		 */
+		{
+			model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요");
+			return "admin/adminLogin";
+		} /*
+			 * else { model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요"); return
+			 * "ma/master/masterMain"; }
+			 */
 //		return rt;
-	return null;
+		return null;
 	}
 
 	// 업데이트

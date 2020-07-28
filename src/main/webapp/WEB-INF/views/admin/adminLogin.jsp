@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <script type="text/javascript">
 var message = '${msg}';
 if(message.length>0){
 	alert(message);
 }
-
-
 	function validCheck() {
 		if (frm.adminId.value == "") {
 			alert("id를 입력해주세요");
@@ -21,7 +20,6 @@ if(message.length>0){
 		frm.submit();
 	}
 </script>
-
 <div class="container">
 
 	<div class="row justify-content-center">
@@ -35,7 +33,7 @@ if(message.length>0){
 						<div class="*/image/admin.jpg"></div>
 						<div class="col-lg-6">
 							<div class="text-right">
-                    <a class="small" href="memberLoginForm">일반회원</a> / <a class="small" href="home">홈</a>
+                    <a class="small" href="memberLoginForm">일반회원 로그인 </a> / <a class="small" href="home">홈 화면으로</a>
                   			</div>
 							<div class="p-5">
 								<div class="text-center">
@@ -63,9 +61,6 @@ if(message.length>0){
 										class="btn btn-info btn-user btn-block" onclick="validCheck()"
 										value="로그인">LOGIN</button>
 									<hr>
-									<a href="index.html" class="btn btn-warning btn-user btn-block">
-										<i class="fab fa-kickstarter-k"></i> 카카오톡 로그인
-									</a>
 								</form>
 								<hr>
 								<div class="text-center">
@@ -82,3 +77,5 @@ if(message.length>0){
 		</div>
 	</div>
 </div>
+
+

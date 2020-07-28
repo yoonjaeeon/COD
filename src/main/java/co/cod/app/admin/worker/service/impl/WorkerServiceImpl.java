@@ -21,9 +21,8 @@ public class WorkerServiceImpl implements WorkerService{
 	}
 
 	@Override
-	public List<WorkerVO> getWorkerList(WorkerVO wokerVO) {
-		// TODO Auto-generated method stub
-		return workerMapper.getWorkerList( wokerVO);
+	public List<WorkerVO> getWorkerList(String adminId) {
+		return workerMapper.getWorkerList( adminId);
 	}
 
 	@Override

@@ -32,8 +32,8 @@ Configuration 2.1//EN"
 	<definition name="*/*" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>	
-	<definition name="*" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
+	<definition name="*" >
+		<put-attribute name="content" value="/{1}" />
 	</definition>
 	<!--empty -->
 	<definition name="*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">

@@ -19,7 +19,7 @@
 	
 	</insert>	
 	
-	<select id="getWorkerList" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">		
+	<select id="getWorkerList" parameterType="String" resultType="co.cod.app.admin.worker.WorkerVO">		
 	
 	
 		SELECT * FROM WORKER where admin_id = #{adminId}

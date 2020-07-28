@@ -11,9 +11,9 @@
 			</div>
 			<div class="card-body">
 				<div class="row workericon" align="center">
-					<c:forEach begin="0" end="6">
+					<c:forEach items="${workerList }" var="w">
 						<div class="col-md-4 col-sm-6" style="padding: 0.3em">
-							<i class="fas fa-user fa-2x"></i> <br> 하준원
+							<i class="fas fa-user fa-2x"></i> <br> ${w.workerName }
 						</div>
 					</c:forEach>
 				</div>

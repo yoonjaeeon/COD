@@ -65,7 +65,7 @@ class AdminController {
 					} else if (result.getCafeState() == 1) {
 						return "e/admin/loading";
 					} else if (result.getCafeState() == 2) {
-						return "ad/admin/adminMain";
+						return "redirect:admin";
 					}
 				}else if(result.getAdminState() == 1) {
 					return "ma/master/masterMain";

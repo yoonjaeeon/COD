@@ -86,8 +86,7 @@ public class WorkerController {
 	@RequestMapping(value="/adminWorker", method=RequestMethod.GET)
 	@ResponseBody
 	public List<WorkerVO> getWorkerList(Model model, WorkerVO workerVO,HttpSession session) {
-		workerVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
-		return  workerService.getWorkerList(workerVO);	
+		return  workerService.getWorkerList((String)session.getAttribute("adminId"));	
 	}	
 		
 	//

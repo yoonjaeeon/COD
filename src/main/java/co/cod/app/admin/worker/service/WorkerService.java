@@ -8,7 +8,7 @@ import co.cod.app.admin.worker.WorkerVO;
 public interface WorkerService {
 	
 	public WorkerVO getWorker( WorkerVO workerVO);
-	public List< WorkerVO> getWorkerList(WorkerVO wokerVO);
+	public List< WorkerVO> getWorkerList(String adminId);
 	public void insertWorker( WorkerVO workerVO);
 	public void updateWorker( WorkerVO workerVO);
 	public void deleteWorker( WorkerVO workerVO);

@@ -14,6 +14,8 @@ public class MenuVO {
 	Integer menuState;
 	Integer priceAdd;
 	Integer newMenu;
+	Integer menuPrice;
 	String menuName;
 	String adminId;
+	
 }

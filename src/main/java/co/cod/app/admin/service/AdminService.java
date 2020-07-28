@@ -13,7 +13,7 @@ public interface AdminService {
 	public AdminVO adminLogin(AdminVO adminVO);	
 	
 	//adminList
-	public List<AdminVO> getAdminList(Integer cafeState);
+	public List<AdminVO> getAdminList(AdminVO adminVO);
 	public void updateCafeState(AdminVO adminVO);
 
 }

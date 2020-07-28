@@ -2,6 +2,7 @@ package co.cod.app.advertisement.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import co.cod.app.FileRenamePolicy;
 import co.cod.app.advertisement.AdvertisementVO;
 import co.cod.app.advertisement.service.AdvertisementService;
 import co.cod.app.photo.service.PhotoService;
+import co.cod.app.seat.SeatVO;
 
 @Controller
 public class AdvertisementController {
@@ -65,14 +67,26 @@ public class AdvertisementController {
 			}
 
 	//수정
-	@RequestMapping(value="/advert"
-			,method=RequestMethod.PUT
-			,consumes="application/json" )
+	@RequestMapping(value="/advertup"
+			, method = RequestMethod.POST, headers =("content-type=multipart/*"))
 	//요청헤더	   
 	@ResponseBody
-	public AdvertisementVO updateAdvertisement(@RequestBody AdvertisementVO advertisementVO, Model model) {
+	public Map<String, Object> updateAdvertisement(AdvertisementVO advertisementVO, Model model,
+			HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("resources/upload");
+		Map<String, Object> map = new HashMap<String, Object>();
+		MultipartFile seatimg = advertisementVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = new File(path, filename);/* FileRenamePolicy.rename(new File(path, filename)); */
+				filename = upFile.getName();
+				seatimg.transferTo(upFile);
+			}
+			advertisementVO.setAdvertiseFile(filename);
+		}
 		advertisementService.updateAdvertisement(advertisementVO);
-		return  advertisementVO;
+		return Collections.singletonMap("result", true);
 	}	
 			
 			

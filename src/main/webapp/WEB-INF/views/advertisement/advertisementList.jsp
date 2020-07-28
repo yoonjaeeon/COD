@@ -117,20 +117,27 @@
 	function advertUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-			var advertiseSeq = $('tbody').find('#sel_advertiseSeq').text();
+			/* var advertiseSeq = $('tbody').find('#sel_advertiseSeq').text();
 			var advertiser = $('input:text[name="advertiser"]').val();
 			var advertiserPhone = $('input:text[name="advertiserPhone"]').val();
 			var advertiseMoney = $('input:text[name="advertiseMoney"]').val();
 			var site = $('input:text[name="site"]').val();
 			var contractPeriod = $('select[name="contractPeriod"]').val();
 			var advertiseFile = $('input:file[name="upload"]').val();
+		 */	
+		 var form = $('#advertform')[0];
+			var data = new FormData(form);
 			
 			$.ajax({ 
-			    url: "advert", 
-			    type: 'PUT', 
+			    url: "advertup", 
+			    type: 'post', 
 			    dataType: 'json', 
-			    data : JSON.stringify({advertiseSeq:advertiseSeq, advertiser: advertiser, advertiserPhone:advertiserPhone,advertiseMoney:advertiseMoney, site:site,contractPeriod:contractPeriod }),
-			    contentType:'application/json;charset=utf-8',
+			    data : data, /* JSON.stringify({advertiseSeq:advertiseSeq, advertiser: advertiser, advertiserPhone:advertiserPhone,advertiseMoney:advertiseMoney, site:site,contractPeriod:contractPeriod }) */
+			   /*  contentType:'application/json;charset=utf-8', */	    
+			    enctype: 'multipart/form-data',
+			    contentType:false,
+			    processData: false,
+			    cache: false,
 			    success: function(data) { 
 			    	advertList();
 			    },

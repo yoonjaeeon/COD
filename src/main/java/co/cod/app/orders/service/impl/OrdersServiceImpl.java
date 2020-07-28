@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import co.cod.app.orders.OrdersVO;
 import co.cod.app.orders.mapper.OrdersMapper;
 import co.cod.app.orders.service.OrdersService;
+import co.cod.app.seat.SeatVO;
+import vofile.MenuVO;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
@@ -42,6 +44,16 @@ public class OrdersServiceImpl implements OrdersService {
 	public void deleteOrders(OrdersVO ordersVO) {
 		ordersMapper.deleteOrders(ordersVO);
 		
+	}
+
+	@Override
+	public List<MenuVO> getMenuList(String id) {
+		return ordersMapper.getMenuList(id);
+	}
+
+	@Override
+	public List<SeatVO> getSeatList(String id) {
+		return ordersMapper.getSeatList(id);
 	}
 	
 	

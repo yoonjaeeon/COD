@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- dumy_mapper.xml -->
+
+<mapper namespace="co.cod.app.orders.mapper.OrdersMapper">
+	<select id="getMenuList" resultType="vofile.MenuVO" parameterType="String">
+		SELECT * FROM MENU WHERE ADMIN_ID=#{adminId}
+	</select>
+	
+	<select id="getSeatList" resultType="co.cod.app.seat.SeatVO" parameterType="String">
+		SELECT * FROM SEAT WHERE ADMIN_ID=#{adminId}
+	</select>
+</mapper>

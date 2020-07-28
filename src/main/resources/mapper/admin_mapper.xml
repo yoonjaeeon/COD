@@ -35,14 +35,17 @@
 	</select>	
 	
 	
-	<select id="getAdminList" parameterType="Integer" resultType ="co.cod.app.admin.AdminVO">
-	SELECT * FROM ADMIN WHERE CAFE_STATE = #{cafeState}
+	<select id="getAdminList" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO">
+		SELECT * 
+		  FROM ADMIN 
+		 WHERE admin_state = '0'
+		<if test="cafeState != null">
+			AND CAFE_STATE = #{cafeState}
+		</if>
 	</select>
 
 	<update id="updateCafeState" parameterType="co.cod.app.admin.AdminVO" >
-			
-	UPDATE ADMIN SET CAFE_STATE=#{cafeState} WHERE ADMIN_ID = #{ADMIN_ID} 
-	
+		UPDATE ADMIN SET CAFE_STATE=#{cafeState} WHERE ADMIN_ID = #{adminId} 
 	</update>
 
 </mapper>

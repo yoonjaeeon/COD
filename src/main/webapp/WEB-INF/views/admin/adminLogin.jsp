@@ -5,8 +5,6 @@ var message = '${msg}';
 if(message.length>0){
 	alert(message);
 }
-
-
 	function validCheck() {
 		if (frm.adminId.value == "") {
 			alert("id를 입력해주세요");
@@ -20,6 +18,22 @@ if(message.length>0){
 		}
 		frm.submit();
 	}
+	
+	$(function() {
+	    $('.button-class1').click(function(){
+	        if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
+	        if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
+	        if( $('.button-class2').hasClass('btn-primary') ) $('.button-class2').removeClass('btn-primary');
+	        if( !$('.button-class2').hasClass('btn-default') ) $('.button-class2').addClass('btn-default');
+	    });
+	    $('.button-class2').click(function(){
+	        if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
+	        if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
+	        if( $('.button-class1').hasClass('btn-primary') ) $('.button-class1').removeClass('btn-primary');
+	        if( !$('.button-class1').hasClass('btn-default') ) $('.button-class1').addClass('btn-default');
+	    });
+
+	});
 </script>
 
 <div class="container">
@@ -35,7 +49,7 @@ if(message.length>0){
 						<div class="*/image/admin.jpg"></div>
 						<div class="col-lg-6">
 							<div class="text-right">
-                    <a class="small" href="memberLoginForm">일반회원</a> / <a class="small" href="home">홈</a>
+                    			<a class="small" href="memberLoginForm"><b>일반회원</b></a> / <a class="small" href="home"><i class="fa fa-home"></i></a>
                   			</div>
 							<div class="p-5">
 								<div class="text-center">
@@ -63,11 +77,7 @@ if(message.length>0){
 										class="btn btn-info btn-user btn-block" onclick="validCheck()"
 										value="로그인">LOGIN</button>
 									<hr>
-									<a href="index.html" class="btn btn-warning btn-user btn-block">
-										<i class="fab fa-kickstarter-k"></i> 카카오톡 로그인
-									</a>
 								</form>
-								<hr>
 								<div class="text-center">
 									<a class="small" href="forgot-password.html">패스워드 찾기</a>
 								</div>

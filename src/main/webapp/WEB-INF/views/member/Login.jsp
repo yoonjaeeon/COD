@@ -34,7 +34,7 @@
               <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
               <div class="col-lg-6">
                   <div class="text-right">
-                    <a class="small" href="home">메인</a> / <a class="small" href="adminLoginForm">관리자</a>
+                    <a class="small" href="home"><i class="fa fa-home"></i></a> / <a class="small" href="adminLoginForm"><b>관리자</b></a>
                   </div>
                 <div class="p-5">
                   <div class="text-center">

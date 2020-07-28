@@ -2,6 +2,7 @@ package co.cod.app.seat.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,18 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.photo.service.PhotoService;
 import co.cod.app.seat.SeatVO;
 import co.cod.app.seat.service.SeatService;
-import co.cod.app.photo.service.PhotoService;
 
 @Controller
 public class SeatController {
@@ -42,7 +41,7 @@ public class SeatController {
 	// 등록
 	@RequestMapping(value = "/seat", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
 	@ResponseBody
-	public Map<String, Object> insertSeat(SeatVO seatVO, Model model, @RequestParam("upload") MultipartFile uploadfile,
+	public Map<String, Object> insertSeat(SeatVO seatVO, Model model,
 			HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("resources/upload");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -58,21 +57,15 @@ public class SeatController {
 		}
 		seatService.insertSeat(seatVO);
 		map.put("result", true);
-		map.put("kkk", "재수없어");
 		return map;
 	}
 
-	// 수정 폼
-		@RequestMapping("UpdateSeatForm")
-		public String UpdateSeatForm() {
-			return "adminManage/adminSeat";
-		}
 	
 	// 수정
-	@RequestMapping(value = "/seat", method = RequestMethod.PUT, headers = ("content-type=multipart/*"))
+	@RequestMapping(value = "/seatup", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
 	// 요청헤더
 	@ResponseBody
-	public SeatVO updateSeat(@RequestBody SeatVO seatVO, Model model, @RequestParam("upload") MultipartFile uploadfile,
+	public Map<String, Object> updateSeat(SeatVO seatVO, Model model,
 			HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("resources/upload");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -87,7 +80,7 @@ public class SeatController {
 			seatVO.setSeatImg(filename);
 		}
 		seatService.updateSeat(seatVO);
-		return seatVO;
+		return Collections.singletonMap("result", true);
 	}
 
 	// 삭제

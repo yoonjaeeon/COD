@@ -119,12 +119,12 @@
 			var adminId = $('input:text[name="adminId"]').val();
 			var seatSize = $('select[name="seatSize"]').val();
 			var seatImg = $('input:file[name="upload"]').val(); */
-			var form = $('#UpdateSeatForm')[0];
+			var form = $('#seatform')[0];
 			var data = new FormData(form);
 			$.ajax({ 
-			    url: "seat", 
-			    type: 'PUT', 
-			    dataType: 'json', 
+			    url: "seatup", 
+			    type: 'post', 
+			  	dataType: 'json',
 			    data : data, /* JSON.stringify({seatSeq:seatSeq, 
 			    	seatName:seatName, 
 			    	adminId:adminId,
@@ -132,6 +132,9 @@
 			    	seatImg:seatImg }) */
 			 /*    contentType:'application/json;charset=utf-8', */
 			    enctype: 'multipart/form-data',
+			    contentType:false,
+			    processData: false,
+			    cache: false,
 			    success: function(data) { 
 			    	seatList();
 			    },

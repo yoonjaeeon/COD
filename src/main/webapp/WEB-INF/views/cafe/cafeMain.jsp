@@ -22,7 +22,7 @@
 					<button>
 						<i class='fas fa-map-marker-alt'></i> ${cafeDetail.cafeAddress }
 					</button>
-					<button>
+					<button onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
 						<i class="fas fa-shopping-cart"> </i> 주문하기
 					</button>
 				</div>

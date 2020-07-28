@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class AdminVO {
-	@JsonProperty(value = "id")
+	
 	String adminId;
 	String pw;
 	String pass2;

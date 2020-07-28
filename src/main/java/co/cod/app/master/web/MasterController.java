@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.master.service.MasterService;
+import co.cod.app.menu.MenuVO;
 import vofile.MasterVO;
 import vofile.MessageVO;
 
@@ -62,31 +63,34 @@ public class MasterController {
 
 	// admin 조회
 	
-	@RequestMapping("adminList")
+	@RequestMapping("adminListForm")
 	public String adminListForm() {
 		return "ma/master/adminList";
 	}
 
 	// 관리자 카페 상태 에 따른 조회 ( 0/1/2 )
-	@RequestMapping(value = "/adminList", method = RequestMethod.GET)
+	@RequestMapping(value="/adminList/{cafeState}",  method=RequestMethod.GET)
 	@ResponseBody
-	public List<AdminVO> getAdminList(Model model, Integer cafeState) {
-		return adminService.getAdminList(cafeState);
+	public List<AdminVO> getAdminList2(@PathVariable String cafeState, AdminVO vo, Model model) {
+		vo.setCafeState(Integer.parseInt(cafeState));
+		return  adminService.getAdminList(vo);
 	}
 	// 관리자 카페 상태 수정
-	@RequestMapping(value = "/UpdateCafeState", method = RequestMethod.PUT, consumes = "application/json")
+	@RequestMapping(value = "/adminList", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
-	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Integer cafeState, Model model) {
-		adminVO.setCafeState(cafeState);
+	public AdminVO UpdateCafeState(@RequestBody AdminVO adminVO, Model model) {
+		System.out.println(adminVO);
 		adminService.updateCafeState(adminVO);
 		return adminVO;
 	}
+	
+	
+	
 	
 	// 관리자 단건 조회
 	// 단건조회
 	@RequestMapping("adminList/{adminId}") // getreview? reviewseq=aaaa
 	public String getAdmin(@PathVariable String adminId, HttpSession session) {
-		System.out.println(adminId);
 		return "ad/admin/adminList";
 	}
 

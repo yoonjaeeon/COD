@@ -3,67 +3,63 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-function deleteValue(){
-	/* $(this).closest("tr").empty(); */
-	$('#tblTest tr').empty();
+function deleteValue(seq){
+	/* $(this).closest("tr").empty(); 
+	 $('#testBoardTable tr:gt(0)').empty();
+	*/
+	$('#'+seq+'').empty();
 }
 	function test(name, price, ice, seq) {
-		
-		var sum = parseInt($('#sum').html);		
+		//$('#').empty();
+		var sum = parseInt($('#sum').val()) + parseInt($('#price').text());		
 		var validCheck=$('#appendTest td:contains('+name+')');
-		var sum2 =parseInt(validCheck=$('#appendTest td:contains('+name+')').next().next().next().text());
+		//var sum2 =parseInt(validCheck=$('#appendTest td:contains('+name+')').next().next().next().text());
 		//같은 메뉴인지 검사
 		if(validCheck.length > 0 ) {
 			validCheck.next().text(parseInt(validCheck.next().text())+1);
 			validCheck.next().next().next().text(parseInt(validCheck.next().next().next().text())+price);
-			
-			parseInt(sum2+parseInt(price));
+			$.ajax({
+				success:function(){
+					$('#sum').val(
+							 parseInt($('#sum').val()) + 
+							
+							 parseInt(price)  //같은 메뉴일떄는 텍스트값만 가져와서 더해줘야함 계속 더해주면 안된다.
+							);
+				}
+			})
+			//parseInt(sum2+parseInt(price));
 			//parseInt($('#sum').html(price))+parseInt(price);
-		} //name을 찾아줌
+		} //name을 찾아줌   $('#id').attr('style', "display:none;");
+
 		else{			
 			var tr =							
-				'<tr id="tblTest">'  
-					+'<td align="center">'+ name + '</td>'  
+				'<tr id="'+seq+'">'  
+					+'<td align="center">'+ name+'</td>'  
 					+'<td>' + 1	+ '</td>'  
 					+'<td>선택</td>'
-					+'<td>'+price+'</td>'
-					+'<td><button onclick="deleteValue()">삭제</button></td>'
+					+'<td id="price">'+price+'</td>'
+					+'<td><button onclick="deleteValue('+seq+')">삭제</button></td>'
 					+ '</tr>';
 					$('#appendTest').append(tr);
-			parseInt(sum2+parseInt(price));
-		}
-		//같은 메뉴 아닐때
 					
-	     //같은 메뉴가 있으면 수량 & 값 증가		
+					$.ajax({
+						success:function(){
+							$('#sum').val(
+									parseInt($('#sum').val()) + 
+									parseInt(price)
+									);
+						}
+					})
+					
+					/* $('#sum').val(
+							parseInt($('#sum').val())
+							+
+							parseInt($('#price').html)
+							); */
+		}	
 	}
 
-		/* $.ajax({
-			url : "menuList/" + menuName,
-			success : function(result) {
-				if($('#addMenuName') != $('#ddd').html()){
-					$('#table').append('<tr>').html("")
-				}else{
-					
-				}
-				result.menuName;
-				result.price;
-			}
-		}); 
-		var menu_name = $('input:text[name="menuName"]').val(menuList.menuName);
-		var menu_price = 2500;
-		var table = document.createElement('table'); <table class="table text-center" id="table">
-		<tr>
-			<td>메뉴</td>
-			<td>수량</td>
-			<td>좌석번호</td>
-			<td>가격</td>
-		</tr>
-		<tr id="tr">
-			<td id="addMenuName">아메리카노</td>
-			<td id="addMenuAmount">1</td>
-			<td id="addSeat">t1</td>
-			<td id="addMenuPrice">2500</td>
-		</table> */
+		
 	
 </script>
 
@@ -205,7 +201,7 @@ function deleteValue(){
 		<br> <br> <br>
 
 		<div class="container" id="showResult">
-			<h2>주문확인</h2><label id="sum"></label>
+			<h2>주문확인</h2>
 
 			<table class="table text-center" id="table">
 				<thead>
@@ -228,6 +224,7 @@ function deleteValue(){
 			</table>
 		</div>		
 		<div align="right">
+		<input id="sum" value="0" readonly>
 			<input type="button" value="결제" id="price" />
 		</div>
 	</div>

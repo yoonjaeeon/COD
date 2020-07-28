@@ -67,6 +67,8 @@ class AdminController {
 					} else if (result.getCafeState() == 2) {
 						return "ad/admin/adminMain";
 					}
+				}else if(result.getAdminState() == 1) {
+					return "ma/master/masterMain";
 				}
 
 			} else if (result.getAdminId().equals(adminVO.getAdminId()) && !result.getPw().equals(adminVO.getPw())) {

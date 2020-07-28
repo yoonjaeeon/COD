@@ -154,11 +154,10 @@ h1 {
 	                     ＊카페 등록 후 3일~5일 정도 심사가 이루어 집니다.
 		</div>
 	</div>
+	<br><br>
+	<div align="center">
+<button type="button" onclick="location.href='home'">홈으로</button>
+	</div>
 
-
-	<div class="other-content">
-		<p>
-			Lorem ipsum dolor sit amet, ne duo urbanitas eloquentiam consectetuer, vel et stet complectitur intellegebat.
-		</p>
 	</div>
 </div>

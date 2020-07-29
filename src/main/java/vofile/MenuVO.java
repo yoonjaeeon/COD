@@ -16,4 +16,5 @@ public class MenuVO {
 	String menuName;
 	String adminId;
 	Integer menuPrice;
+	String cafeName;
 }

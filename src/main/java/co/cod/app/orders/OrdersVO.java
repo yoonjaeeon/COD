@@ -1,8 +1,5 @@
 package co.cod.app.orders;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import co.cod.app.photo.PhotoVO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,5 +10,6 @@ public class OrdersVO {
 	String orderTime;
 	String email;
 	String adminId;
+	String cafeName;
 	Integer seatSeq;
 }

@@ -7,10 +7,14 @@
 
 <mapper namespace="co.cod.app.orders.mapper.OrdersMapper">
 	<select id="getMenuList" resultType="vofile.MenuVO" parameterType="String">
-		SELECT * FROM MENU WHERE ADMIN_ID=#{adminId}
+		SELECT M.* , C.CAFE_NAME CAFE_NAME
+		  FROM MENU M JOIN CAFE C ON(M.ADMIN_ID = C.ADMIN_ID)
+		 WHERE M.ADMIN_ID=#{adminId}
 	</select>
 	
 	<select id="getSeatList" resultType="co.cod.app.seat.SeatVO" parameterType="String">
-		SELECT * FROM SEAT WHERE ADMIN_ID=#{adminId} AND SEAT_RESERVE = 1
+		SELECT * 
+		  FROM SEAT 
+		 WHERE ADMIN_ID=#{adminId} AND SEAT_RESERVE = 1
 	</select>
 </mapper>

@@ -19,5 +19,5 @@ public interface CafeService {
 	public void updateCafeState(AdminVO adminVO);
 	public List<CafeVO> memberThemeList(CafeVO cafeVO);
 	public List<CafeVO> memberAreaList(CafeVO cafeVO);
-
+	public CafeVO getLocation(CafeVO cafeVO);
 }

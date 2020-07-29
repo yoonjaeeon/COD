@@ -18,4 +18,5 @@ public interface CafeMapper {
 	public List<CafeVO> getAreaList(CafeVO cafeVO);
 	public List<CafeVO> memberThemeList(CafeVO cafeVO);
 	public List<CafeVO> memberAreaList(CafeVO cafeVO);
+	public CafeVO getLocation(CafeVO cafeVO);
 }

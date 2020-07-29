@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
 <div id="wrapper">
 	<article class="post">
 		<div class="main_slick">
@@ -220,23 +222,27 @@
 					<h3>카페위치</h3>
 				</header>
 			</article>
-			<div id="map" style="width:100%;height:350px;"></div>
+			<div id="map" style="width:100%;height:350px;">
+			<input type="hidden" name="cafeX" value="${cafeLocation.cafeX}">
+			<input type="hidden" name="cafeY" value="${cafeLocation.cafeY}">
+			</div>
 		</div>
 	</article>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
+
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new kakao.maps.LatLng($('input[name=cafeY]').val(), $('input[name=cafeX]').val()), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
   
 // 마커를 표시할 위치입니다 
-var position =  new kakao.maps.LatLng(33.450701, 126.570667);
-
+var position =  new kakao.maps.LatLng($('input[name=cafeY]').val(), $('input[name=cafeX]').val());
+ //var position =  new kakao.maps.LatLng($('input[name=cafeX]').val()), $('input[name=cafeY]').val());
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
   position: position,
@@ -268,9 +274,6 @@ kakao.maps.event.addListener(marker, 'click', function() {
 </script>
 
 </div>
-
-
-
 
 
 

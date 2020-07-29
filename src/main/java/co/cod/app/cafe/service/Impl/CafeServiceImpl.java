@@ -84,6 +84,11 @@ public class CafeServiceImpl implements CafeService{
 	public List<CafeVO> memberAreaList(CafeVO cafeVO) {
 		return cafeMapper.memberAreaList(cafeVO);
 	}
+
+	@Override
+	public CafeVO getLocation(CafeVO cafeVO) {
+		return cafeMapper.getLocation(cafeVO);
+	}
 	
 	
 	

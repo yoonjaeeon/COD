@@ -43,4 +43,10 @@ public class TestController {
 		return "ad/cafe/cafeWaiting";
 	}
 
+	@RequestMapping("apiSampleApplicationJSON")
+	public String apiSampleApplicationJSON() {
+		return "ad/test/apiSampleApplicationJSON";
+	}
+	
+	
 }

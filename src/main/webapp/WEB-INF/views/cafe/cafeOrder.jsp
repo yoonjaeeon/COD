@@ -15,17 +15,13 @@ function amountDown(price,seq){ //수량 및 가격 내려줌
 		$('#prices'+seq+'').html(parseInt(price)*parseInt(value.html()));
 	sum();
 	}
-	//price.html(parseInt($price) - price);
-	//$('#menuPrice').html(parseInt($('#menuPrice').html)-parseInt(price));
 	
 }
 function amountUp(price,seq){
 	var value = $(event.target).prev();
 	var $price =parseInt(price); 
-		//parseInt($(event.target).closest("#prices").html());
 	value.html(parseInt(value.html())+1);
 	$('#prices'+seq+'').html(parseInt(price)*parseInt(value.html()));
-			//$('#menuPrice').html(parseInt($('#sum').html)+price);
 			sum();
 			
 			
@@ -52,59 +48,31 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 	$('#'+seq+'').empty();
 }
 
-/* 핫 메뉴 클릭 */
+//메뉴 클릭시
 	function test(name, price, seq, state) {
-		//var sum = parseInt($('#sum').innerHtml()) + parseInt($('#price').text());		
 		var validCheck=$('#appendTest td:contains('+state+' '+name+')');
-		//var sum2 =parseInt(validCheck=$('#appendTest td:contains('+name+')').next().next().next().text());
-		//같은 메뉴인지 검사
 		if(validCheck.length > 0 ) {
-			var span = validCheck.next().find('span')
+			var span = validCheck.next().find('span'); //수량
 			span.text(parseInt(span.text())+1);
 			
-			validCheck.next().next().next().text(parseInt(validCheck.next().next().next().text())+price);
+			validCheck.next().next().find('span').text(parseInt(validCheck.next().next().text())+price);
+			
 			sum();
-					/* $('#sum').html(
-							 parseInt($('#sum').html()) + 
-							
-							 parseInt(price)  //같은 메뉴일떄는 텍스트값만 가져와서 더해줘야함 계속 더해주면 안된다.
-							); */
-			//parseInt(sum2+parseInt(price));
-			//parseInt($('#sum').html(price))+parseInt(price);
-		} //name을 찾아줌   $('#id').attr('style', "display:none;");
-
+		} 
 		else{		
 			
 			var tr =							
 				'<tr id="'+seq+'" data-price="'+price+'">'  
 					+'<td align="center">'+state+' '+ name+'</td>'  
 					+'<td ><button onclick="amountDown('+price+","+seq+')">-</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">+</button></td>'  
-					+'<td>선택</td>'
 					+'<td><span class="menuPrice" id="prices'+seq+'">'+price+'<span></td>'
 					+'<td><button onclick="deleteValue('+seq+')">삭제</button></td>'
 					+ '</tr>';
-					
-					
 			$('#appendTest').append(tr);
 			sum();
-							/* $('#sum').html(
-									parseInt($('#sum').html()) + 
-									parseInt(price)
-									); */
-					
 		}	
-	
-		
 	}
 </script>
-
-
-
-
-
-
-
-
 <!-- 기본정보 -->
 <div class="align-center">
 	<div align="center">
@@ -214,7 +182,6 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 					<tr id="tr">
 						<td>메뉴</td>
 						<td>수량</td>
-						<td>좌석번호</td>
 						<td>가격</td>
 					</tr>
 				</thead>

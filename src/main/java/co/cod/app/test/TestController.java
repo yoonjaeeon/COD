@@ -33,10 +33,7 @@ public class TestController {
 		return "ad/memberList/memberOrderList";
 	}
 
-	@RequestMapping("memberMyPage")
-	public String memberMyPage() {
-		return "ad/member/memberMyPage";
-	}
+
 	
 	@RequestMapping("cafeWaiting")
 	public String cafeWaiting() {

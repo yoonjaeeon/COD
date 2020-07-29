@@ -4,7 +4,7 @@
 
 <mapper namespace="co.cod.app.seat.mapper.SeatMapper">
 	<!-- 페이징 카운트 갯수 -->
-	<select id ="getCount" resultType="int">
+ 	<select id ="getCount" resultType="int">
 	SELECT count(*)
         from seat
 	</select>
@@ -28,12 +28,10 @@
 	</resultMap> -->  
 	
 	<!-- 전체조회  -->
-	<select id="getSeatList"  resultType="co.cod.app.seat.SeatVO">
-	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	<select id="getSeatList"  parameterType="String" resultType="co.cod.app.seat.SeatVO" >
 		SELECT *
         from seat
         order by seat_seq desc
-         ) A ) B WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 
 	<insert id="insertSeat" parameterType="co.cod.app.seat.SeatVO">

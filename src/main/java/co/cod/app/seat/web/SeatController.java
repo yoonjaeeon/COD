@@ -35,7 +35,7 @@ public class SeatController {
 	// 등록폼
 	@RequestMapping("seatForm")
 	public String SeatForm() {
-		return "adminManage/adminSeat";
+		return "ad/adminManage/adminSeat";
 	}
 
 	// 등록

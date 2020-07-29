@@ -1,4 +1,4 @@
-package vofile;
+package co.cod.app.inventory;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,4 +12,5 @@ public class InventoryVO {
 	Integer orderSeq;
 	Integer nowVolume;
 	Integer inventoryPrice;
+	String adminId;
 }

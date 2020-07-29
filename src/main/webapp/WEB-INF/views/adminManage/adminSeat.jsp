@@ -124,7 +124,7 @@
 			$.ajax({ 
 			    url: "seatup", 
 			    type: 'post', 
-			  	dataType: 'json',
+			    dataType: 'json',
 			    data : data, /* JSON.stringify({seatSeq:seatSeq, 
 			    	seatName:seatName, 
 			    	adminId:adminId,
@@ -202,7 +202,8 @@
 						</select>
 					</div>  
  					 <div class="form-group">
-					<label>좌석 사진:</label> <input type="file" name="upload" id="upload" />
+					<label>좌석 사진:</label><br> 
+					<input type="file" name="upload" id="upload" >
 					</div> 
 					<div class="btn-group">      
 						<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
@@ -210,8 +211,16 @@
 						<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
 					</div>
 				</form>
-			</div>	
-	<div class="col-lg-6">
+			</div>
+					<div class="inputArea">
+ 					<p>대표 사진</p>
+ 					<img id="seatImg" src="resources/upload/${seat.seatImg}"style="width: 500px">
+ 					<img src="resources/upload/${seat.seatImg}"style="width: 500px">
+ 					</div>
+			</div>
+		</div>	
+	<div>
+		<div class="col-lg-6">
 		<h2>좌석 목록</h2>
 		<table class="table text-center">
 			<thead>
@@ -226,7 +235,6 @@
 			<tbody></tbody>
 		</table>
 	</div>
-</div>
 </div>
 </body>
 <%-- <h1>카페 좌석 관리</h1>

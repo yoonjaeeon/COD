@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dumy_mapper.xml -->
+<mapper namespace="co.cod.app.inventory.mapper.InventoryMapper">   
+
+	<select id="getInventoryList" parameterType="String" resultType="co.cod.app.inventory.InventoryVO" >
+		SELECT *
+		FROM inventory
+		WHERE admin_id =  #{adminId}
+		ORDER BY inventory_seq desc
+	</select>
+	
+	<select id="getInventory" parameterType="co.cod.app.inventory.InventoryVO" resultType="co.cod.app.inventory.InventoryVO">
+		select *
+		from inventory
+		where inventory_seq = #{inventorySeq}
+	</select>
+	
+	<select id="getInventoryListMap" parameterType="co.cod.app.inventory.InventoryVO" resultType="map">
+		select inventory_seq     "inventory_seq",
+			   inventory_name    "inventory_name",
+		       inventory_amount  "inventory_amount", 
+		       now_volume        "now_volume", 
+		       inventory_price   "inventory_price",
+		       admin_id	         "admin_id",
+		       volume		     "volume"
+		from inventory
+	</select>
+
+	<!-- 등록 -->
+	<insert id="insertInventory" parameterType="co.cod.app.inventory.InventoryVO">
+		insert into inventory (inventory_seq, inventory_name, inventory_amount, now_volume, inventory_price,
+						 admin_id, volume)
+		values ((select nvl(max(inventory_seq),0)+1 from inventory),
+		#{inventoryName},
+		#{inventoryAmount},
+		#{nowVolume},
+		#{inventoryPrice},
+		#{adminId},
+		#{volume}
+		)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="updateInventory" parameterType="co.cod.app.inventory.InventoryVO">
+		update inventory 
+		set
+		
+		inventory_name = #{inventoryName},
+		inventory_amount = #{inventoryAmount},
+		now_volume = #{nowVolume},
+		inventory_price = #{inventoryPrice},
+		volume = #{volume}
+
+		where inventory_seq = #{inventorySeq}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="deleteInventory" parameterType="co.cod.app.inventory.InventoryVO">
+		delete from inventory
+		where inventory_seq = #{inventorySeq}
+	</delete>
+
+</mapper>

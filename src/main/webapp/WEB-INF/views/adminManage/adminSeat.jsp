@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.seatimg
+{width : 50px}
+</style>
 <script src="resources/json.min.js"></script>
 <script type="text/javascript" >
 
@@ -59,7 +63,7 @@
 	function seatDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
-			var seatSeq = $(this).closest('tr').find('#seatSeq').text();
+			var seatSeq = $(this).closest('tr').find('.seatSeq').text();
 			var result = confirm(seatSeq +" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
@@ -82,7 +86,7 @@
 	function seatSelect() {
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
-			var seatSeq = $(this).closest('tr').find('#seatSeq').text();
+			var seatSeq = $(this).closest('tr').find('.seatSeq').text();
 			console.log(seatSeq);
 			//특정 사용자 조회
 			$.ajax({
@@ -100,12 +104,12 @@
 	
 	//사용자 조회 응답
 	function seatSelectResult(seat) {
-		$('input:text[name="adminId"]').val(seat.adminId);
-		$('input:text[name="seatSeq"]').val(seat.seatSeq);
+		$('input:hidden[name="adminId"]').val(seat.adminId);
+		$('input:hidden[name="seatSeq"]').val(seat.seatSeq);
 		$('input:text[name="seatName"]').val(seat.seatName);	
 		$('select[name="seatSize"]').val(seat.seatSize).attr("selected", "selected","selected","selected");
-		$('input[file="seatImg"]').val(seat.seatImg);
-		
+		/* $('input[file="seatImg"]').val(seat.seatImg); */
+		$('#seatImg').attr("src", "resources/upload/" + seat.seatImg);
 		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
 	}//userSelectResult
 	
@@ -164,11 +168,13 @@
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
-			.append($('<td>').html(item.adminId))
-			.append($('<td id=\'seatSeq\'></td>').html(item.seatSeq))
+			.append($('<input type=\'hidden\' id=\'adminId\'>').html(item.adminId))
+			.append($('<input type=\'hidden\' class=\'seatSeq\'>').html(item.seatSeq))
+			/* .append($('<td>').html(item.adminId))
+			.append($('<td id=\'seatSeq\'></td>').html(item.seatSeq)) */
 			.append($('<td>').html(item.seatName))					
 			.append($('<td>').html(item.seatSize))
-			.append($('<td>').html(item.seatImg))
+			.append($('<td>').html("<img class='seatimg' src='resources/upload/"+ item.seatImg +"'>"))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.appendTo('tbody');
@@ -182,13 +188,11 @@
 				<form id="seatform" class="form-horizontal" method="post"  enctype="multipart/form-data" >
 					<h2>좌석 등록</h2>
 					<div class="form-group">
-						<label> 관리자:</label> <input type="text" class="form-control"
-							name="adminId" id="adminId" value="${sessionScope.adminId}" readonly>
+						<input type="hidden" name="adminId">
 					</div>
 					<div class="form-group">
-						<label> 좌석 번호:</label> <input type="text" class="form-control"
-							name="seatSeq" id="seatSeq" readonly>
-					</div>
+						<input type="hidden" name="seatSeq">
+					</div> 	 		
 					<div class="form-group">
 						<label> 좌석 이름:</label> <input type="text" class="form-control"
 							name="seatName" id="seatName" >
@@ -196,9 +200,9 @@
 					<div class="form-group">   
 						<label>인원 선택:</label>
 						<select class="form-control" name="seatSize">
-							   		<option value="2">1~2인 이상</option>
-							   		<option value="4">2~4인 이상</option>
-							   		<option value="5">단체석</option>
+							   		<option value="1">1~2인 이상</option>
+							   		<option value="2">2~4인 이상</option>
+							   		<option value="3">단체석</option>
 						</select>
 					</div>  
  					 <div class="form-group">
@@ -212,21 +216,17 @@
 					</div>
 				</form>
 			</div>
-					<div class="inputArea">
- 					<p>대표 사진</p>
- 					<img id="seatImg" src="resources/upload/${seat.seatImg}"style="width: 500px">
- 					<img src="resources/upload/${seat.seatImg}"style="width: 500px">
- 					</div>
+				<div class="inputArea">
+ 					<p>좌석 사진</p>
+ 					<img id="seatImg" src="resources/upload/"style="width: 500px">
+ 				</div>
 			</div>
-		</div>	
 	<div>
 		<div class="col-lg-6">
 		<h2>좌석 목록</h2>
 		<table class="table text-center">
 			<thead>
 			<tr>
-			    <th class="text-center">관리자</th>				
-				<th class="text-center">좌석 번호</th>
 				<th class="text-center">좌석 이름</th>
 				<th class="text-center">인원</th>
 				<th class="text-center">좌석 사진</th>
@@ -235,6 +235,7 @@
 			<tbody></tbody>
 		</table>
 	</div>
+ </div>
 </div>
 </body>
 <%-- <h1>카페 좌석 관리</h1>

@@ -44,6 +44,7 @@ public class SeatController {
 	@ResponseBody
 	public Map<String, Object> insertSeat(SeatVO seatVO, Model model, HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("resources/upload");
+		seatVO.setAdminId((String)session.getAttribute("adminId"));	
 		Map<String, Object> map = new HashMap<String, Object>();
 		MultipartFile seatimg = seatVO.getUpload();
 		if (seatimg != null) {

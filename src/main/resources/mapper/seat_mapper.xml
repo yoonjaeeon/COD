@@ -6,8 +6,8 @@
 	<!-- 단건조회  -->
 	<select id="getSeat" parameterType="co.cod.app.seat.SeatVO" resultType="co.cod.app.seat.SeatVO">
 		SELECT *	   	 		
-		FROM Seat
-		WHERE Seat_seq = #{seatSeq}
+		FROM seat
+		WHERE seat_seq = #{seatSeq}
 	</select>
 
 	<!-- <resultMap type="#modelname" id="YourResultSet">

@@ -134,7 +134,7 @@ function inventoryListResult(data) {
    $("tbody").empty();
    $.each(data,function(idx,item){
       $('<tr>')
-      .append($('<input type=\'hidden\' id=\'adminId\'>').val(item.adminId))
+      .append($('<input type=\'hidden\' id=\'adminId\'>').html(item.adminId))
 /*       .append($('<td>').html(item.adminId)) */
 /*       .append($('<td class=\'inventorySeq\'></td>').html(item.inventorySeq)) */
       .append($('<input type=\'hidden\' class=\'inventorySeq\'>').html(item.inventorySeq))

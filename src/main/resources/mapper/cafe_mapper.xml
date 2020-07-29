@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.cafe.mapper.CafeMapper" >
-	<select id="getCafe" parameterType="co.cod.app.cafe.CafeVO" resultType="co.cod.app.cafe.CafeVO">
+	<select id="getCafe" parameterType="String" resultType="co.cod.app.cafe.CafeVO">
 			SELECT 
 			*
 			FROM cafe

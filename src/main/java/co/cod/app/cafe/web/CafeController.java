@@ -71,7 +71,7 @@ public class CafeController {
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
-		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
+		model.addAttribute("cafeDetail", cafeService.getCafe((String)session.getAttribute("adminId")));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		return "cafe/cafeMain";

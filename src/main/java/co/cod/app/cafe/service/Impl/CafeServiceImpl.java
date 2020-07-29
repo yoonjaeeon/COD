@@ -23,8 +23,8 @@ public class CafeServiceImpl implements CafeService{
 	AdminMapper adminMapper;
 	
 	@Override
-	public CafeVO getCafe(CafeVO cafeVO) {
-		return cafeMapper.getCafe(cafeVO);
+	public CafeVO getCafe(String adminId) {
+		return cafeMapper.getCafe(adminId);
 	}
 
 	@Override

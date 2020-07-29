@@ -7,7 +7,7 @@ import co.cod.app.cafe.CafeVO;
 
 public interface CafeMapper {
 
-	public CafeVO getCafe(CafeVO cafeVO);
+	public CafeVO getCafe(String adminId); 
 	public List<CafeVO> getCafeList(CafeVO cafeVO);
 	public void insertCafe(CafeVO cafeVO); 
 	public void updateCafe(CafeVO cafeVO);

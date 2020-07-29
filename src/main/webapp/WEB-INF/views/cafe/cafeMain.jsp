@@ -275,8 +275,6 @@ kakao.maps.event.addListener(marker, 'click', function() {
 
 </div>
 
-
-
 <script type="text/javascript">
 	$(".btn_toggle").click(function() {
 		$(".toggleView").collapse('toggle');

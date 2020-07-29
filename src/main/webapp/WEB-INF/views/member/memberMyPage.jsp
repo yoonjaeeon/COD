@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    
 <div class="align-center hovers row">
 	<div class="col-lg-5">
 		<h1>* My Page *</h1>

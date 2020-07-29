@@ -12,7 +12,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
 
-kakao.init('');
+kakao.init('0bb9eafc3a1ab150ed68b1b3120d2c61');
 
 
 kakao.Auth.login({

@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void updateMember(MemberVO memberVO) {
+		memberMapper.updateMember(memberVO);
 	}
 
 	@Override

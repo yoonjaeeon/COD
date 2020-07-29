@@ -41,16 +41,16 @@
 			var html = '<br>'+email+'<br>'+name;
 				
 			}
-			
+			≠
 		})
 		
 	}
 	
-	})
+	});
 		
 		
 
-
+</script>
 
 </body>
 </html>

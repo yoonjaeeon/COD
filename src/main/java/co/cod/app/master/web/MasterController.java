@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.master.service.MasterService;
-import co.cod.app.menu.MenuVO;
+import co.cod.app.member.MemberVO;
+import co.cod.app.member.service.MemberService;
 import vofile.MasterVO;
 import vofile.MessageVO;
 
@@ -25,7 +26,8 @@ public class MasterController {
 
 	@Autowired MasterService masterService;
 	@Autowired AdminService	adminService;
-
+	@Autowired MemberService memberService;
+	
 	//마스터 메세지
 	
 	@RequestMapping("masterMain")
@@ -96,9 +98,10 @@ public class MasterController {
 		session.invalidate();
 		return "main/home";
 	}
-
+	// 카페 상세 뷰
 	
-
-
+	
+	
+	
 }
 	

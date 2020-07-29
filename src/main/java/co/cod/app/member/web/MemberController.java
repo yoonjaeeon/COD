@@ -31,12 +31,6 @@ public class MemberController {
 		return "redirect:home";
 	}
 
-	// 업데이트
-	@RequestMapping("memberUpdate")
-	public String updateMember(MemberVO memberVO) {
-		return "member/memberUpdate";
-	}
-
 	// 멤버 탈퇴
 	@RequestMapping("memberDrop")
 	public String deleteMember(MemberVO memberVO) {
@@ -51,12 +45,31 @@ public class MemberController {
 	}
 
 	// 마이페이지
-	@RequestMapping("MemberMyPage")
+	@RequestMapping("memberMyPage")
 	public String MemberMyPage(Model model,MemberVO memberVO,HttpSession session) {
 		memberVO.setEmail((String)session.getAttribute("loginEmail"));
 		model.addAttribute("member", memberService.getMember(memberVO));
 		return "member/memberMyPage";
 	}
+
+	
+	//회원 정보 조회  
+	@RequestMapping("memberUpdateForm")
+	public String getMember(MemberVO memberVO, Model model ,HttpSession session) {
+		memberVO.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("member", memberService.getMember(memberVO));
+		return "member/memberUpdate";
+	}
+			
+	// 멤버 업데이트
+	@RequestMapping("updateMember")
+	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {
+		memberVO.setEmail((String)session.getAttribute("loginEmail"));
+	//	model.addAttribute("member", memberService.getMember(memberVO));
+		return "member/memberMyPage";
+	}
+	
+	
 	//즐겨찾기
 	@RequestMapping("bookmarks")
 	public String bookmarks(Model model, BookmarksVO bookmarksVO, HttpSession session) {

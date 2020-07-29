@@ -14,7 +14,8 @@
 		#{phone},
 		#{nickname}
 		)
-	</insert>
+	</insert>	
+	
 	<select id="getMember" parameterType="members" resultType="members">
 		SELECT *
 		  FROM member
@@ -26,6 +27,12 @@
 		resultType="co.cod.app.member.MemberVO">
 		select * from member
 	</select>
+	
+	<update id= "updateMember" parameterType="co.cod.app.member.MemberVO">
+		 UPDATE MEMBER SET PW = #{pw}, PHONE = #{phone} ,NICKNAME=#{nickname} WHERE EMAIL = #{email};
+		
+	</update>
+	
 
 	<select id="getBookmarks" parameterType="vofile.BookmarksVO"
 		resultType="vofile.BookmarksVO">
@@ -61,5 +68,17 @@
 		DELETE FROM BOOKMARKS
 		WHERE BOOKMARK_SEQ=#{bookmarkSeq}
 	</delete>
+
+
+	<delete id="deleteMember" parameterType="co.cod.app.member.MemberVO">
+		
+		DELETE FROM member
+		WHERE email =#{email}
+	
+	</delete>
+
+
+
+
 
 </mapper>

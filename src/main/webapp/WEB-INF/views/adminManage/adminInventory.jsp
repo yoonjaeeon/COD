@@ -46,7 +46,7 @@ function inventoryInsert(){
 function inventoryDelete() {
    //삭제 버튼 클릭
    $('body').on('click','#btnDelete',function(){
-      var inventorySeq = $(this).closest('tr').find('#inventorySeq').val();
+      var inventorySeq = $(this).closest('tr').find('.inventorySeq').text();
       var result = confirm("정말로 삭제하시겠습니까?");
       if(result) {
          $.ajax({
@@ -83,11 +83,11 @@ function inventorySelect() {
 
 //메뉴 조회 응답
 function inventorySelectResult(inventory) {
-	$('input:text[name="adminId"]').val(inventory.adminId);
-	$('input:text[name="inventorySeq"]').val(inventory.inventorySeq);
+	$('input:hidden[name="adminId"]').val(inventory.adminId);
+	$('input:hidden[name="inventorySeq"]').val(inventory.inventorySeq);
 	$('input:text[name="inventoryName"]').val(inventory.inventoryName);
 	$('input:text[name="inventoryAmount"]').val(inventory.inventoryAmount);
-	$('input:text[name=" volume"]').val(inventory.volume);
+	$('input:text[name="volume"]').val(inventory.volume);
 	$('input:text[name="nowVolume"]').val(inventory.nowVolume);
 	$('input:text[name="inventoryPrice"]').val(inventory.inventoryPrice);
 
@@ -97,7 +97,7 @@ function inventorySelectResult(inventory) {
 //메뉴 수정 요청
 function inventoryUpdate() {
    $('#btnUpdate').on('click',function(){
-	   var inventorySeq = $(this).closest('tr').find('#inventorySeq').val();
+	   var inventorySeq = $(this).closest('tr').find('.inventorySeq').text();
 	   console.log(JSON.stringify($("#inventoryform").serializeObject()));
       $.ajax({ 
           url: "inventory/", 
@@ -134,8 +134,10 @@ function inventoryListResult(data) {
    $("tbody").empty();
    $.each(data,function(idx,item){
       $('<tr>')
-      .append($('<td>').html(item.adminId))
-      .append($('<td class=\'inventorySeq\'></td>').html(item.inventorySeq))
+      .append($('<input type=\'hidden\' id=\'adminId\'>').val(item.adminId))
+/*       .append($('<td>').html(item.adminId)) */
+/*       .append($('<td class=\'inventorySeq\'></td>').html(item.inventorySeq)) */
+      .append($('<input type=\'hidden\' class=\'inventorySeq\'>').html(item.inventorySeq))
       .append($('<td>').html(item.inventoryName))
       .append($('<td>').html(item.inventoryAmount))
       .append($('<td>').html(item.volume))
@@ -159,9 +161,8 @@ $(document).ready(function(){
          <h4>재고 관리</h4><br>
    <form name="inventoryform" id="inventoryform" class="form-horizontal row">
       <div class="col-lg-6" >
-      	 <input type="text" class="form-control" name="adminId"   placeholder="관리자" id="adminId" 
-      	 value="${sessionScope.adminId}" readonly>      <br>
-      	 <input type="text" class="form-control" name="inventorySeq"   placeholder="재고번호" id="inventorySeq" readonly>      <br>
+      	 <input type="hidden" name="adminId">
+      	 <input type="hidden" name="inventorySeq">
       	 <input type="text" class="form-control" name="inventoryName"   placeholder="재고명" id="inventoryName">      <br>
          <input type="text" class="form-control" name="inventoryAmount"   placeholder="재고수량" id="inventoryAmount">      <br>
          <input type="text" class="form-control" name="volume"   placeholder="용량" id="volume">      <br>
@@ -186,8 +187,6 @@ $(document).ready(function(){
       <table class="table text-center" id="inventoryTbl">
          <thead>
             <tr>
-               <th class="text-center">관리자</th>
-               <th class="text-center">재고번호</th>
                <th class="text-center">재고명</th>
                <th class="text-center">재고수량</th>
                <th class="text-center">용량</th>

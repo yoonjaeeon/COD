@@ -23,17 +23,11 @@ public class SeatServiceImpl implements SeatService {
 
 	// 전체조회
 	@Override
-	public List<SeatVO> getSeatList(SeatVO seatVO) {
+	public List<SeatVO> getSeatList(String adminId) {
 		System.out.println("getSeatList 서비스 호출");
-		return seatMapper.getSeatList(seatVO);
+		return seatMapper.getSeatList(adminId);
 	}
 	
-	// 페이징 카운트
-	@Override
-	public int getCount(SeatVO seatVO) {
-		return seatMapper.getCount(seatVO);
-	}
- 
 	// 등록
 	@Override
 	public void insertSeat(SeatVO seatVO) {

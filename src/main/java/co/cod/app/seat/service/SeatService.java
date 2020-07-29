@@ -8,11 +8,8 @@ public interface SeatService {
 	// 단건 조회
 	public SeatVO getSeat(SeatVO seatVO);
 
-	// 페이징 조회
-	public int getCount(SeatVO seatVO);
-
 	// 목록 조회
-	public List<SeatVO> getSeatList(SeatVO seatVO);
+	public List<SeatVO> getSeatList(String adminId);
 
 	// 등록
 	public void insertSeat(SeatVO seatVO);

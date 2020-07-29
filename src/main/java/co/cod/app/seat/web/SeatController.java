@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.inventory.InventoryVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.seat.SeatVO;
 import co.cod.app.seat.service.SeatService;
@@ -41,8 +42,7 @@ public class SeatController {
 	// 등록
 	@RequestMapping(value = "/seat", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
 	@ResponseBody
-	public Map<String, Object> insertSeat(SeatVO seatVO, Model model,
-			HttpSession session) throws IOException {
+	public Map<String, Object> insertSeat(SeatVO seatVO, Model model, HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("resources/upload");
 		Map<String, Object> map = new HashMap<String, Object>();
 		MultipartFile seatimg = seatVO.getUpload();
@@ -60,13 +60,11 @@ public class SeatController {
 		return map;
 	}
 
-	
 	// 수정
 	@RequestMapping(value = "/seatup", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
 	// 요청헤더
 	@ResponseBody
-	public Map<String, Object> updateSeat(SeatVO seatVO, Model model,
-			HttpSession session) throws IOException {
+	public Map<String, Object> updateSeat(SeatVO seatVO, Model model, HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("resources/upload");
 		Map<String, Object> map = new HashMap<String, Object>();
 		MultipartFile seatimg = seatVO.getUpload();
@@ -105,33 +103,8 @@ public class SeatController {
 	// 전체조회
 	@RequestMapping(value = "/seat", method = RequestMethod.GET)
 	@ResponseBody
-	public List<SeatVO> getSeatList(Model model, SeatVO seatVO, HttpSession session) {
-//			SeatVO.setAdminId((String)session.getAttribute("adminId"));  // 세션수정 테스트
-		// 페이징 처리
-		// (현재 페이지 파라미터 받기)
-		int p = 1;
-		if (seatVO.getP() != null && !seatVO.getP().isEmpty()) {
-			p = Integer.parseInt(seatVO.getP());
-		}
-		// (페이징 객체를 생성)
-		Paging paging = new Paging();
-		paging.setPageUnit(5); // 한 페이지에 출력할 레코드 건수
-		paging.setPageSize(3); // 한 페이지에 출력할 페이지 번호 수
-		paging.setPage(p); // 현재 페이지
-		paging.setTotalRecord(seatService.getCount(seatVO)); // 전체 레코드 건수 조회
-		model.addAttribute("paging", paging);
-
-		seatVO.setStart(Integer.toString(paging.getFirst())); // start
-		seatVO.setEnd(Integer.toString(paging.getLast())); // end
-		return seatService.getSeatList(seatVO);
+	public List<SeatVO> getSeatList(Model model, HttpSession session) {
+		String adminId = (String) session.getAttribute("adminId");
+		return seatService.getSeatList(adminId);
 	}
-
-	/*
-	 * @RequestMapping(value="/respAPI")
-	 * 
-	 * @ResponseBody public Map respAPI() { RestTemplate rest = new RestTemplate();
-	 * return rest.getForObject(
-	 * "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713",
-	 * Map.class); }
-	 */
 }

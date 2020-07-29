@@ -3,20 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.cod.app.seat.mapper.SeatMapper">
-	<!-- 페이징 카운트 갯수 -->
- 	<select id ="getCount" resultType="int">
-	SELECT count(*)
-        from seat
-	</select>
 	<!-- 단건조회  -->
 	<select id="getSeat" parameterType="co.cod.app.seat.SeatVO" resultType="co.cod.app.seat.SeatVO">
-		SELECT 
-		        seat_seq,
-		        seat_name,
-				seat_img,
-				seat_reserve,
-				admin_id,
-				seat_size		 		
+		SELECT *	   	 		
 		FROM Seat
 		WHERE Seat_seq = #{seatSeq}
 	</select>

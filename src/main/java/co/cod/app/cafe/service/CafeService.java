@@ -7,7 +7,7 @@ import co.cod.app.admin.AdminVO;
 import co.cod.app.cafe.CafeVO;
 
 public interface CafeService {
-	public CafeVO getCafe(CafeVO cafeVO); 
+	public CafeVO getCafe(String adminId); 
 	public List<CafeVO> getCafeList(CafeVO cafeVO);
 	public void insertCafe(CafeVO cafeVO); 
 	public void updateCafe(CafeVO cafeVO);
@@ -19,5 +19,5 @@ public interface CafeService {
 	public void updateCafeState(AdminVO adminVO);
 	public List<CafeVO> memberThemeList(CafeVO cafeVO);
 	public List<CafeVO> memberAreaList(CafeVO cafeVO);
-
+	public CafeVO getLocation(CafeVO cafeVO);
 }

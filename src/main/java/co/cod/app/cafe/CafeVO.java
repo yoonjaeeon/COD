@@ -34,4 +34,6 @@ public class CafeVO {
    double stars; //별점
    MultipartFile upload;
    String profile;
+   String cafeX;
+   String cafeY;
 }

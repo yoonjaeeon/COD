@@ -71,8 +71,9 @@ public class CafeController {
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
-		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
+		model.addAttribute("cafeDetail", cafeService.getCafe((String)session.getAttribute("adminId")));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
+		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		return "cafe/cafeMain";
 	}
 
@@ -84,7 +85,7 @@ public class CafeController {
 
 	// 카페등록
 	@RequestMapping("insertCafe")
-	   public String insertCafe(/* @ModelAttribute("evo") */CafeVO cafeVO, PhotoVO photoVO,HttpSession session) throws IOException {
+	   public String insertCafe(CafeVO cafeVO, PhotoVO photoVO,HttpSession session) throws IOException {
 	    cafeVO.setAdminId((String)session.getAttribute("adminId")); 
 	    AdminVO adminVO = new AdminVO();
 	    adminVO.setAdminId((String)session.getAttribute("adminId"));
@@ -121,7 +122,7 @@ public class CafeController {
 	      }
 	      cafeService.insertCafe(cafeVO);
 	      adminService.updateCafeState(adminVO);
-	      return "e/cafe/cafeWaiting"; 
+	      return "e/admin/loading"; 
 	   }
 
 	// 단건조회
@@ -130,7 +131,4 @@ public class CafeController {
 		System.out.println(cafeName + " : " + adminId);
 		return "main/home";
 	}
-
-	
-
 }

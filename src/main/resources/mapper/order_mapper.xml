@@ -11,6 +11,6 @@
 	</select>
 	
 	<select id="getSeatList" resultType="co.cod.app.seat.SeatVO" parameterType="String">
-		SELECT * FROM SEAT WHERE ADMIN_ID=#{adminId}
+		SELECT * FROM SEAT WHERE ADMIN_ID=#{adminId} AND SEAT_RESERVE = 1
 	</select>
 </mapper>

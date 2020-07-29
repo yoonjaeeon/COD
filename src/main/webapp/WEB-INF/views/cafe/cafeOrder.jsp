@@ -71,6 +71,8 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			$('#appendTest').append(tr);
 			sum();
 		}	
+		
+		
 	}
 </script>
 <!-- 기본정보 -->
@@ -103,22 +105,31 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 	<!-- end service -->
 
 	<!-- detail -->
-	<div id="listpage">
+	<div id="listpage" >
 		<section class="posts row">
+		
 			<!-- 좌석선택 -->
-			<div class="main_slick col-lg-6">
+			<div class="main_slick col-lg-6">			
 				<c:forEach items="${seatList }" var="seat">
-					<div>
-						<article class="mini-post">
+					<div id="seatDiv">
+						<article class="mini-post" onclick="getSeat(${seat.seatName}, ${seat.seatSize })">
 							<header class="row">
 								<div class="col-sm-9">
 									<h3>
-										<a href="single.html">${seat.seatName} </a>
+										<a href="single.html">좌석명:${seat.seatName} </a>
 									</h3>
-									<h4>${seat.seatSize}</h4>
+									<c:if test="${seat.seatSize==1 }">
+									<h4>2인석</h4>
+									</c:if>
+									<c:if test="${seat.seatSize==2 }">
+									<h4>4인석</h4>
+									</c:if>
+									<c:if test="${seat.seatSize==3 }"> 
+									<h4>단체석</h4>
+									</c:if>
+									
 								</div>
 								<div class="col-sm-3">
-									<i class="far fa-heart"></i>
 									<c:if test="${seat.seatReserve==0 }">
 										<h4>예약불가</h4>
 									</c:if>
@@ -131,8 +142,9 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 								alt=""></a>
 						</article>
 					</div>
-				</c:forEach>
+				</c:forEach>				
 			</div>
+			
 			<!-- 메뉴판 -->
 			<article class="col-lg-6">
 				<h3>menu</h3>
@@ -175,8 +187,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<br> <br> <br>
 
 		<div class="container" id="showResult">
-			<h2>주문확인</h2>
-
+			<h2>주문확인</h2><label id="seat"></label>
 			<table class="table text-center" id="table">
 				<thead>
 					<tr id="tr">
@@ -196,6 +207,10 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 </div>
 
 <script type="text/javascript">
+function getSeat(seatName, seatSize){
+	$('#seat').html("예약 좌석 이름 seatName");			
+}
+
 $('[data-toggle="tooltip"]').tooltip()
 	$("div.main_slick").slick({
 		infinite : true,

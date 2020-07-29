@@ -79,7 +79,7 @@ function workerListResult(data) {
 					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 						<div class="dropdown-header">공지사항 관리</div>
 						<!-- 목록p 링크걸기 -->
-						<a class="dropdown-item" href="#"> 목록 보기 </a>
+						<a class="dropdown-item" href="adminNoticeList"> 목록 보기 </a>
 					</div>
 				</div>
 			</div>

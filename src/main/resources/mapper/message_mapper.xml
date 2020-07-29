@@ -4,10 +4,10 @@
 
 	<select id="messageList"
 		resultType="vofile.MessageVO">
-		SELECT *
-		FROM MESSAGE
-		WHERE ADMIN_ID = #{adminId} AND SEND_RECEIVE=0
-		ORDER BY MESSAGE_SEQ DESC
+		SELECT 	*
+		  FROM 	MESSAGE
+		 WHERE	ADMIN_ID = #{adminId} AND SEND_RECEIVE=0
+		 ORDER 	BY MESSAGE_SEQ DESC
 	</select>
 
 	<select id="getMessage"
@@ -65,8 +65,5 @@
 		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
 		 ORDER BY MESSAGE_SEQ DESC
 	</select>
-	
-	
 
-	
 </mapper>

@@ -1,5 +1,4 @@
 package vofile;
-import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +13,5 @@ public class MessageVO {
 	String adminId;
 	Integer read;
 	Integer masterRead;
-	Date messageDate;
+	String messageDate;
 }

@@ -1,5 +1,6 @@
 package co.cod.app.admin.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.admin.worker.WorkerVO;
+import co.cod.app.seat.SeatVO;
+import co.cod.app.seat.service.SeatService;
 
 @Controller
 class AdminController {
 
-	@Autowired
-	AdminService adminService;
+	@Autowired	AdminService adminService;
+	@Autowired	SeatService seatService;
 
 	// e등로폼
 	@RequestMapping("adminInsertForm")
@@ -124,4 +128,14 @@ class AdminController {
 				"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713",
 				Map.class);
 	}
+	
+	//좌석 전체조회
+	/*
+	 * @RequestMapping(value="/seats", method=RequestMethod.GET)
+	 * 
+	 * @ResponseBody public List<SeatVO> getSeatLists(Model model, HttpSession
+	 * session) { String adminId = (String)session.getAttribute("adminId"); return
+	 * seatService.getSeatLists(adminId); }
+	 */
+
 }

@@ -22,7 +22,10 @@
 	<select id="getWorkerList" parameterType="String" resultType="co.cod.app.admin.worker.WorkerVO">		
 	
 	
-		SELECT * FROM WORKER where admin_id = #{adminId}
+		SELECT * 
+		  FROM WORKER 
+		 WHERE admin_id = #{adminId}
+		ORDER BY worker_seq
 	
 	</select>
 	

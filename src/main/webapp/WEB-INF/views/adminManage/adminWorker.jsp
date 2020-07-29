@@ -7,15 +7,10 @@
 
 	$(function(){
 		workerList();
-
 	 	workerSelect();
-		
 		workerDelete();
-		
 		workerInsert();
-	
 		workerUpdate(); 
-		
 		init();
 	});	
 	//초기화
@@ -95,6 +90,7 @@
 		$('input:text[name="workerName"]').val(worker.workerName);
 		$('input:text[name="workerBirth"]').val(worker.workerBirth);
 		$('input:text[name="pay"]').val(worker.pay);
+		$('input:hidden[name="hidden_workerSeq"]').val(worker.workerSeq);
 		$('select[name="workerGrade"]').val(worker.workerGrade).attr("selected", "selected","selected");
 		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
 	}//userSelectResult
@@ -104,7 +100,7 @@
 	function workerUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-			var workerSeq = $('tbody').find('#hidden_workerSeq').val();
+			var workerSeq = $('input:hidden[name="hidden_workerSeq"]').val();
 			var workerName = $('input:text[name="workerName"]').val();
 			var workerBirth = $('input:text[name="workerBirth"]').val();
 			var pay = $('input:text[name="pay"]').val();
@@ -148,10 +144,9 @@
 			.append($('<td>').html(item.pay))
 			.append($('<td>').html(item.workerGrade))
 			.append($('<td>').html(item.workerBirth))
-			//.append($('<td>').html(item.role))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-			.append($('<input type=\'hidden\' id=\'hidden_workerSeq\'>').val(item.workerSeq))
+			.append($('<input type=\'hidden\' id =\'hidden_workerSeq\' name=\'hidden_workerSeq\'>').val(item.workerSeq))
 			.appendTo('tbody');
 		});//each
 	}//userListResult

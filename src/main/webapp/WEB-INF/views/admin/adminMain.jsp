@@ -1,6 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+$(function(){
+	workerList();
+});
+//메뉴 목록 조회 요청
+function workerList() {
+	$.ajax({
+		url:'adminWorker',
+		type:'GET',			
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " 에러 메세지:"+msg);
+		},
+		success:workerListResult
+	});
+}
+
+//메뉴 목록 조회 응답
+function workerListResult(data) {
+   $("#workers").empty();
+   $.each(data,function(idx,item){
+      $('<div>').addClass('col-md-4 col-sm-6')
+      .append($('<div>').html('<i class="fas fa-user fa-2x"></i> <br>'))
+      .append($('<div>').html(item.workerName ))
+      .appendTo('#workers');
+   });//each
+}//menuListResult
+</script>
 <div class="row" style="margin: 3em">
 	<!-- 메인왼쪽 -->
 	<div class="col-lg-6">
@@ -10,7 +38,7 @@
 				<h6 class="m-0 font-weight-bold">* 출 퇴근 *</h6>
 			</div>
 			<div class="card-body">
-				<div class="row workericon" align="center">
+				<div class="row workericon" align="center" id="workers">
 					<c:forEach items="${workerList }" var="w">
 						<div class="col-md-4 col-sm-6" style="padding: 0.3em">
 							<i class="fas fa-user fa-2x"></i> <br> ${w.workerName }

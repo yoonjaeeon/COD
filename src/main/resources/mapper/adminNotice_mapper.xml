@@ -2,7 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.admin.adminnotice.mapper.AdminNoticeMapper">
 
-<insert id="insertAdminNotice" parameterType="co.cod.app.admin.adminnotice.AdminNoticeVO">
+<!-- 전체조회 -->
+<select id="getAdminNoticeList" parameterType="String" resultType="adminNotice" >
+	SELECT *
+	FROM admin_notice
+	WHERE admin_id =  #{adminId}
+	ORDER BY admin_notice_seq DESC
+</select>
+<!-- 단건조회 -->
+<select id="getAdminNotice" parameterType="adminNotice" resultType="adminNotice">
+		select *
+		from admin_notice
+		where admin_notice_seq=#{adminNoticeSeq}
+	</select>
+<!-- 등록 -->
+<insert id="insertAdminNotice" parameterType="adminNotice">
 	INSERT INTO ADMIN_NOTICE
 	(ADMIN_NOTICE_SEQ,
 	ADMIN_NOTICE_TITLE,	
@@ -16,5 +30,19 @@
 	SYSDATE,
 	#{adminId}
 	)
-	</insert>
+</insert>
+
+<!-- 수정 -->
+<update id="updateAdminNotice" parameterType="adminNotice">
+	UPDATE admin_notice 
+	   SET admin_notice_title = #{adminNoticeTitle},
+		   admin_notice_content = #{adminNoticeContent},
+	 WHERE admin_notice_seq = #{adminNoticeSeq}
+</update>
+
+<!-- 삭제 -->
+<delete id="deleteAdminNotice" parameterType="String">
+	DELETE FROM admin_notice
+	WHERE admin_notice_seq = #{adminNoticeSeq}
+</delete>
 </mapper>

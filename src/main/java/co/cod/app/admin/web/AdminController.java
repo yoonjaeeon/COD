@@ -1,6 +1,5 @@
 package co.cod.app.admin.web;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.admin.worker.WorkerVO;
-import co.cod.app.seat.SeatVO;
 import co.cod.app.seat.service.SeatService;
 
 @Controller
@@ -36,6 +33,11 @@ class AdminController {
 	public String insertAdmin(AdminVO adminVO, Model model) {
 		adminService.insertAdmin(adminVO);
 		return "redirect:home";
+	}
+	// 업데이트
+	@RequestMapping("adminUpdate")
+	public String updateAdmin(AdminVO adminVO) {
+		return "admin/adminUpdate";
 	}
 
 	// admin 로그인
@@ -95,31 +97,12 @@ class AdminController {
 		return null;
 	}
 
-	// 업데이트
-	@RequestMapping("adminUpdate")
-	public String updateAdmin(AdminVO adminVO) {
-		return "admin/adminUpdate";
-	}
-
-	// 직원 리스트
-	@RequestMapping("adminWorkerList")
-	public String adminWorker(WorkerVO workerVO) {
-		return "ad/adminManage/adminWorkerList";
-
-	}
-
-	// 직원등록
-	@RequestMapping("insertWorker")
-	public String insertWorker(WorkerVO WorkerVO) {
-		return "ad/adminManage/insertWorker";
-	}
-
 	@RequestMapping("adminLogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "main/home";
 	}
-
+	
 	@RequestMapping(value = "/adminrespAPI")
 	@ResponseBody
 	public Map respAPI() {

@@ -1,26 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="./resources/json.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		userList();
-
-		userSelect();
-
-		userDelete();
-
-		userInsert();
-
-		userUpdate();
-
-		init();
+		adminNoticeList();
+		adminNoticeSelect();
+		adminNoticeDelete();
+		adminNoticeInsert();
+		adminNoticeUpdate();
+		init();    
 	});
 
 	//초기화
@@ -34,14 +22,14 @@
 	}//init
 
 	//사용자 삭제 요청
-	function userDelete() {
+	function adminNoticeDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click', '#btnDelete', function() {
-			var userId = $(this).closest('tr').find('#hidden_userId').val();
-			var result = confirm(userId + " 사용자를 정말로 삭제하시겠습니까?");
+			var adminNoticeId = $(this).closest('tr').find('#hidden_adminNoticeId').val();
+			var result = confirm(adminNoticeId + " 사용자를 정말로 삭제하시겠습니까?");
 			if (result) {
 				$.ajax({
-					url : 'users/' + userId,
+					url : 'adminNotices/' + adminNoticeId,
 					type : 'DELETE',
 					contentType : 'application/json;charset=utf-8',
 					dataType : 'json',
@@ -50,42 +38,42 @@
 					},
 					success : function(xhr) {
 						console.log(xhr.result);
-						userList();
+						adminNoticeList();
 					}
 				});
 			}//if
 		}); //삭제 버튼 클릭
-	}//userDelete
+	}//adminNoticeDelete
 
 	//사용자 조회 요청
-	function userSelect() {
+	function adminNoticeSelect() {
 		//조회 버튼 클릭
 		$('body').on('click', '#btnSelect', function() {
-			var userId = $(this).closest('tr').find('#hidden_userId').val();
+			var adminNoticeId = $(this).closest('tr').find('#hidden_adminNoticeId').val();
 			//특정 사용자 조회
 			$.ajax({
-				url : 'users/' + userId,
+				url : 'adminNotices/' + adminNoticeId,
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				error : function(xhr, status, msg) {
 				/* 	alert("상태값 :" + status + " Http에러메시지 :" + msg); */
 				},
-				success : userSelectResult
+				success : adminNoticeSelectResult
 			});
 		}); //조회 버튼 클릭
-	}//userSelect
+	}//adminNoticeSelect
 
 	//사용자 조회 응답
-	function userSelectResult(user) {
-		$('input:text[name="id"]').val(user.id);
-		$('input:text[name="name"]').val(user.name);
-		$('input:text[name="password"]').val(user.password);
-		$('select[name="role"]').val(user.role).attr("selected", "selected");
-	}//userSelectResult
+	function adminNoticeSelectResult(adminNotice) {
+		$('input:text[name="id"]').val(adminNotice.id);
+		$('input:text[name="name"]').val(adminNotice.name);
+		$('input:text[name="password"]').val(adminNotice.password);
+		$('select[name="role"]').val(adminNotice.role).attr("selected", "selected");
+	}//adminNoticeSelectResult
 
 	//사용자 수정 요청
-	function userUpdate() {
+	function adminNoticeUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function() {
 			var id = $('input:text[name="id"]').val();
@@ -93,7 +81,7 @@
 			var password = $('input:text[name="password"]').val();
 			var role = $('select[name="role"]').val();
 			$.ajax({
-				url : "users",
+				url : "adminNotices",
 				type : 'PUT',
 				dataType : 'json',
 				data : JSON.stringify({
@@ -104,23 +92,23 @@
 				}),
 				contentType : 'application/json',
 				success : function(data) {
-					userList();
+					adminNoticeList();
 				},
 				error : function(xhr, status, message) {
 					alert(" status: " + status + " er:" + message);
 				}
 			});
 		});//수정 버튼 클릭
-	}//userUpdate
+	}//adminNoticeUpdate
 
 	//사용자 등록 요청
-	function userInsert() {
+	function adminNoticeInsert() {
 		//등록 버튼 클릭
 		$('#btnInsert').on('click', function() {
 			$("#form1")
 
 			$.ajax({
-				url : "users",
+				url : "adminNotices",
 				type : 'POST',
 				dataType : 'json',
 				data : $("#form1").serialize(),
@@ -129,7 +117,7 @@
 				contentType: 'application/json', */
 				success : function(response) {
 					if (response.result == true) {
-						userList();
+						adminNoticeList();
 					}
 				},
 				error : function(xhr, status, message) {
@@ -137,24 +125,24 @@
 				}
 			});
 		});//등록 버튼 클릭
-	}//userInsert
+	}//adminNoticeInsert
 
 	//사용자 목록 조회 요청
-	function userList() {
+	function adminNoticeList() {
 		$.ajax({
-			url : 'users',
+			url : 'adminNotices',
 			type : 'GET',
 			//contentType:'application/json;charset=utf-8',
 			dataType : 'json',
 			error : function(xhr, status, msg) {
 				/* alert("상태값 :" + status + " Http에러메시지 :" + msg); */
 			},
-			success : userListResult
+			success : adminNoticeListResult
 		});
-	}//userList
+	}//adminNoticeList
 
 	//사용자 목록 조회 응답
-	function userListResult(data) {
+	function adminNoticeListResult(data) {
 		$("tbody").empty();
 		$.each(data, function(idx, item) {
 			$('<tr>').append($('<td>').html(item.id)).append(
@@ -166,62 +154,39 @@
 							$('<td>').html(
 									'<button id=\'btnDelete\'>삭제</button>'))
 					.append(
-							$('<input type=\'hidden\' id=\'hidden_userId\'>')
+							$('<input type=\'hidden\' id=\'hidden_adminNoticeId\'>')
 									.val(item.id)).appendTo('tbody');
 		});//each
-	}//userListResult
+	}//adminNoticeListResult
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container row">
+		<div class="col-6">
 		<form id="form1" class="form-horizontal">
 			<h2>공지사항 등록 및 수정</h2>
-			<div class="form-group">
-				<label>공지번호:</label> <input type="text" class="form-control"
-					name="adminNoticeSeq">
-			</div>
-			<div class="form-group">
-				<label>제목:</label> <input type="text" class="form-control"
-					name="adminNoticeTitle">
-			</div>
-			<div class="form-group">
-				<label>내용:</label> <input type="text" class="form-control"
-					name="adminNoticeContent">
-			</div>
-			<!-- 		<div class="form-group">
-			<label >성별:</label>
-			<div class="radio">
-				<label><input type="radio"  name="gender"  value="남">남</label>
-			</div>
-			<div class="radio">
-				<label><input type="radio"  name="gender"  value="여">여</label>
-			</div>	
-		</div>	 -->
-			<div class="form-group">
-				<label>작성일자:</label><input type="text" class="form-control"
-					name="adminNoticeTime">
-			</div>
+			<form class="adminNoticeF" action="insertAdminNotice">
+					<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle" name="adminNoticeTitle" style="width: 100%"><br> <br>
+					<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 100px"> </textarea><br><br>
+			</form>
 			<div class="btn-group">
 				<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 				<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-				<input type="button" class="btn btn-primary" value="삭제" id="btnDelete" />
 				<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
 			</div>
 		</form>
-	</div>
-	<hr />
-	<div class="container">
+		</div>
+		<div class="col-6">
 		<h2>공지사항 목록</h2>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th class="text-center">공지번호</th>
 					<th class="text-center">제목</th>
-					<th class="text-center">내용</th>
 					<th class="text-center">작성일자</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
-		<h1>페이징 넣어야함</h1>
+		</div>
 	</div>
+	<hr />

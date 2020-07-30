@@ -71,7 +71,7 @@ public class CafeController {
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
-		//model.addAttribute("cafeDetail", cafeService.getCafe((String)session.getAttribute("adminId")));
+		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO.getAdminId()));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		return "cafe/cafeMain";
@@ -128,6 +128,7 @@ public class CafeController {
 	// 단건조회
 	@RequestMapping("/getCafe/{cafeName}/{adminId}")
 	public String getCafe(@PathVariable String cafeName, @PathVariable String adminId) {
+		
 		System.out.println(cafeName + " : " + adminId);
 		return "main/home";
 	}

@@ -81,7 +81,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 <div class="align-center">
 	<div align="center">
 		
-		<h2>카페이름 받아와야함 <%-- ${menuList.cafeName} --%></h2>
+		<h2>${menuList[1].cafeName}</h2>
 		<article class="mini-post">
 			<header>
 				<h3>이벤트</h3>

@@ -13,4 +13,9 @@ public interface MenuMapper {
 	public int updateMenu(MenuVO menuVO);
 	public int deleteMenu(MenuVO menuVO);
 	public List<Map<String, Object>> getCafeMap();
+
+	// 멤버 결제 상세 조회 리스트 
+	
 }
+
+

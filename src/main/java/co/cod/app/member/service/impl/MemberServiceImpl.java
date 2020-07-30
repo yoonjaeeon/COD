@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.mapper.MemberMapper;
 import co.cod.app.member.service.MemberService;
+import co.cod.app.menu.MenuVO;
 import vofile.BookmarksVO;
 
 @Service
@@ -38,6 +39,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void deleteMember(MemberVO memberVO) {
+		memberMapper.deleteMember(memberVO);
 	}
 
 	@Override
@@ -61,6 +63,17 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.deleteBookmark(bookmarksVO);
 		
 	}
+
+	@Override
+	public List<MemberVO> getMyorderList(MemberVO memberVO) {
+		return memberMapper.getMyorderList(memberVO);
+	}
+
+	@Override
+	public List<MemberVO> getMyMenuList(MemberVO memberVO) {
+		return memberMapper.getMyMenuList(memberVO);
+	}
+
 
 	
 	

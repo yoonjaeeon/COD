@@ -17,4 +17,41 @@
 		  FROM SEAT 
 		 WHERE ADMIN_ID=#{adminId} AND SEAT_RESERVE = 1
 	</select>
+	
+	<insert id="insertOrders" >
+	 <selectKey resultType="int" keyProperty="orderSeq" order="BEFORE">
+      SELECT NVL(MAX(ORDER_SEQ),0)+1 FROM ORDERS  
+    </selectKey>
+		 INSERT 
+           INTO ORDERS (ORDER_SEQ,
+           				EMAIL,
+           				ORDER_TIME, 
+           				<if test="seatSeq != null and seatSeq != ''">
+                        SEAT_SEQ,
+                        </if>    
+           				ADMIN_ID)
+           VALUES
+                              ( #{orderSeq},
+                              #{email},
+                              sysdate,
+                              <if test="seatSeq != null and seatSeq != ''">
+                              #{seatSeq},
+                              </if>                              
+                              #{adminId}
+                              )
+	
+	</insert>
+	<insert id="insertOrderLine" parameterType="vofile.OrderlineVO">
+		INSERT INTO ORDERLINE(ORDERLINE_SEQ, 
+							     ORDER_SEQ,
+							     MENU_SEQ,
+							     ORDER_STATE,
+							     ORDERLINE_AMOUNT)
+		 			  VALUES((SELECT NVL(MAX(ORDERLINE_SEQ),0)+1 FROM ORDERLINE),
+		 			  		 #{orderSeq},
+		 			  		  #{menuSeq},
+		 			  		  #{orderState},
+		 			  		  #{orderlineAmount}
+		)
+	</insert>
 </mapper>

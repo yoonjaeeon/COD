@@ -5,6 +5,8 @@ import java.util.List;
 import co.cod.app.orders.OrdersVO;
 import co.cod.app.seat.SeatVO;
 import vofile.MenuVO;
+import vofile.OrderInsertVO;
+import vofile.OrderlineVO;
 
 
 public interface OrdersMapper {
@@ -12,7 +14,8 @@ public interface OrdersMapper {
 	public List<OrdersVO> getOrdersList(OrdersVO ordersVO);
 	public List<MenuVO> getMenuList(String id);
 	public List<SeatVO> getSeatList(String id);	
-	public void insertOrders(OrdersVO ordersVO);
+	public void insertOrders(OrderInsertVO ordersVO);
+	public OrderlineVO insertOrderLine(OrderlineVO orderlineVO);
 	public void updateOrders(OrdersVO ordersVO);
-	public void deleteOrders(OrdersVO ordersVO);
+	public void deleteOrders(OrdersVO ordersVO);	
 }

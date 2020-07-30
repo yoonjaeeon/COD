@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-
+<style>
+#seatSeq{display : none}
+</style>
 <script>
 function amountDown(price,seq){ //수량 및 가격 내려줌
 	var value = $(event.target).next();
@@ -51,7 +53,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 }
 
 //메뉴 클릭시
-	function test(name, price, seq, state) {
+	function test(name, price, seq, state, realState) {
 		var validCheck=$('#appendTest td:contains('+state+' '+name+')');
 		if(validCheck.length > 0 ) {
 			var span = validCheck.next().find('span'); //수량
@@ -71,6 +73,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 					+'<td><button onclick="deleteValue('+seq+')">삭제</button></td>'
 					+ '</tr>';
 			$('#appendTest').append(tr);
+				$('tr#'+seq).data('orderLine',{menuSeq:seq,orderState:realState, price:price});	
 			sum();
 		}	
 		
@@ -80,7 +83,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 <!-- 기본정보 -->
 <div class="align-center">
 	<div align="center">
-		
+
 		<h2>${menuList[1].cafeName}</h2>
 		<article class="mini-post">
 			<header>
@@ -105,29 +108,30 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 	<!-- end service -->
 
 	<!-- detail -->
-	<div id="listpage" >
+	<div id="listpage">
 		<section class="posts row">
-		
+
 			<!-- 좌석선택 -->
-			<div class="main_slick col-lg-6">			
+			<div class="main_slick col-lg-6">
 				<c:forEach items="${seatList }" var="seat">
 					<div id="seatDiv">
-						<article class="mini-post" onclick="getSeat(${seat.seatName}, ${seat.seatSize })">
+						<article class="mini-post"
+							onclick="getSeat('${seat.seatName}', '${seat.seatSize }', '${seat.seatSeq}')">
 							<header class="row">
 								<div class="col-sm-9">
 									<h3>
 										<a href="single.html">좌석명:${seat.seatName} </a>
 									</h3>
 									<c:if test="${seat.seatSize==1 }">
-									<h4>2인석</h4>
+										<h4>2인석</h4>
 									</c:if>
 									<c:if test="${seat.seatSize==2 }">
-									<h4>4인석</h4>
+										<h4>4인석</h4>
 									</c:if>
-									<c:if test="${seat.seatSize==3 }"> 
-									<h4>단체석</h4>
+									<c:if test="${seat.seatSize==3 }">
+										<h4>단체석</h4>
 									</c:if>
-									
+
 								</div>
 								<div class="col-sm-3">
 									<c:if test="${seat.seatReserve==0 }">
@@ -142,9 +146,9 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 								alt=""></a>
 						</article>
 					</div>
-				</c:forEach>				
+				</c:forEach>
 			</div>
-			
+
 			<!-- 메뉴판 -->
 			<article class="col-lg-6">
 				<h3>menu</h3>
@@ -165,17 +169,17 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 							<div class="col-lg-6 col-md-8 published" id='ddd'>${menu.menuName }</div>
 							<c:if test="${menu.menuState ==2 }">
 								<div
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '핫')"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '핫',${menu.menuState })"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Hot선택 " data-toggle="tooltip">${menu.price }</div>
 
 								<div
-									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스')"
+									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스', ${menu.menuState })"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Ice선택" data-toggle="tooltip">${menu.price+menu.priceAdd }</div>
 							</c:if> <c:if test="${menu.menuState==0 }">
 								<div align="center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '')"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '', ${menu.menuState })"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
 							</c:if>
@@ -187,7 +191,10 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<br> <br> <br>
 
 		<div class="container" id="showResult">
-			<h2>주문확인</h2><label id="seat"></label>
+			<h2>주문확인</h2>
+			<div>
+				<label id="seatName"></label> <label id="seatSize"></label><label id="seatSeq"></label>
+			</div>
 			<table class="table text-center" id="table">
 				<thead>
 					<tr id="tr">
@@ -202,19 +209,54 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		</div>
 		<div align="right">
 			<label id="sum">0</label>
-			<button type="button" onclick="iamport()">결제</button>
+			<button type="button"
+				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');insertOrder('${menuList[0].adminId}');">
+				결제</button>
 			<!-- <input type="button" value="결제" id="price" /> -->
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
+function insertOrder(adminId){
+	
+	var seatSeq = $('#seatSeq').html();
+	var amount =  $('#amount')
+			//id="amount'+seq+'"
+	var result =[];		
+	var trs = $('#appendTest tr').each(function(index, item){
+	var obj = $(item).data('orderLine')
+	obj["orderlineAmount"] = $(item).find('span').first().html();   //수량
+		result.push(obj);  //json 구조의 객체를 result배열에 담아줌.
+	});		
+	console.log(result);
+	 $.ajax({
+		url:"insertOrders",
+		type: 'POST',
+		contentType:'application/json',
+        dataType: 'json',
+        data: JSON.stringify(result), //객체를 json구조의 String으로 변환시켜줌
+         success : function(data){
+        	alert(data)
+        } 
+		
+	})
+} 
+
+
 $('[data-toggle="tooltip"]').tooltip();
 
-function getSeat(seatName, seatSize){
-	$('#seat').html("예약 좌석 이름 seatName");			
+function getSeat(seatName, seatSize, seatSeq){
+	$('#seatName').html(seatName);
+	$('#seatSeq').html(seatSeq);
+	if(seatSize == 1){
+	$('#seatSize').html("2인석");
+	}else if(seatSize == 2){
+		$('#seatSize').html("4인석")
+	}else{
+		$('#seatSize').html("단체석")
+	}
 }
-
 	$("div.main_slick").slick({
 		infinite : true,
 		speed : 400,
@@ -222,7 +264,6 @@ function getSeat(seatName, seatSize){
 		adaptiveHeight : true,
 		dot : true
 	});
-
 	$(document).ready(function() {
 		var max_h = 0;
 		$("div.boxs ").each(function() {
@@ -258,21 +299,18 @@ function getSeat(seatName, seatSize){
 	});
 </script>
 
- <script>
- function iamport(){
-	 var sum = 
-	  $(function (){
-		  var sum = parseInt();
+<script>
 	        var IMP = window.IMP; // 생략가능
 	        IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	        var msg;
-	        
+	//아엠포트 결제연동
+	//var name= cafeName;
+  function requestPay(cafeName,adminId){
 	        IMP.request_pay({
 	            pg : 'kakaopay',
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
-	            name : '여기이름',
-	            amount : '124',
+	            name : cafeName,
+	            amount : $('#sum').html(),
 	            buyer_email : 'yedam@ac.kr',
 	            buyer_name : '서강',
 	            buyer_tel : '010-1598-1521',
@@ -311,14 +349,13 @@ function getSeat(seatName, seatSize){
 	                msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
 	                //실패시 이동할 페이지
-	                location.href="<%=request.getContextPath()%>/order/payFail";
+	                location.href="<%=request.getContextPath()%>/cafeOrder?adminId="+adminId;
 	                alert(msg);
 	            }
 	        });
 	        
-	    });
-
- }
-    </script>
+  }
+ 
+</script>
 
 

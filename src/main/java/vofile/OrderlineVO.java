@@ -9,5 +9,5 @@ public class OrderlineVO {
 	Integer orderlineAmount;
 	Integer menuSeq;
 	Integer orderSeq;
-	Integer orderState;
+	Integer orderState;	
 }

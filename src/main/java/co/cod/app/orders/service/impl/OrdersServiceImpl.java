@@ -10,6 +10,8 @@ import co.cod.app.orders.mapper.OrdersMapper;
 import co.cod.app.orders.service.OrdersService;
 import co.cod.app.seat.SeatVO;
 import vofile.MenuVO;
+import vofile.OrderInsertVO;
+import vofile.OrderlineVO;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
@@ -29,9 +31,12 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public void insertOrders(OrdersVO ordersVO) {
-		ordersMapper.insertOrders(ordersVO);
-		
+	public void insertOrders(OrderInsertVO orderInsertVO) {
+		ordersMapper.insertOrders(orderInsertVO);
+		for(OrderlineVO orderlineVO: orderInsertVO.getOrderlineList()) {
+			orderlineVO.setOrderSeq(orderInsertVO.getOrderSeq());
+			ordersMapper.insertOrderLine(orderlineVO);
+		}		
 	}
 
 	@Override
@@ -55,6 +60,8 @@ public class OrdersServiceImpl implements OrdersService {
 	public List<SeatVO> getSeatList(String id) {
 		return ordersMapper.getSeatList(id);
 	}
+
+	
 	
 	
 	

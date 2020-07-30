@@ -172,7 +172,7 @@
 		<table class="table text-center" id="adminTbl">
 			<thead>
 				<tr >
-					<th class="text-center">관리자 아이디</th>
+					<th class="text-center"><a href="cafeList?adminId=${cafe.adminId}"/>관리자 아이디</th>
 					<th class="text-center">관리자 연락처</th>
 					<th class="text-center">관리자 대기 상태</th>
 					<th class="text-center">상태승인</th>

@@ -12,27 +12,27 @@
       <div align="center"><h2>카페 등록 및 수정</h2></div>
       <div class="form-group">      
          <label> 관리자 아이디:</label>
-         <input type="text"  class="form-control" id="id" name="adminId" value="${cafe.adminId}" readonly>
+         <input type="text"  class="form-control" id="id" name="adminId" value="${cafeList.adminId}" readonly>
       </div>   
       <div class="form-group">
          <label>카페이름:</label>
-         <input type="text"  class="form-control"  id="name" name="cafeName" value="${cafe.cafeName}">
+         <input type="text"  class="form-control"  id="name" name="cafeName" value="${cafeList.cafeName}">
       </div>   
       <div class="form-group">
          <label>카페주소:</label>
-         <input type="text"  class="form-control" id="address" name="cafeAddress" value="${cafe.cafeAddress}">
+         <input type="text"  class="form-control" id="address" name="cafeAddress" value="${cafeList.cafeAddress}">
       </div>
       <div class="form-group">
          <label>전화번호:</label>
-         <input type="text"  class="form-control" id="phone" name="cafePhone" value="${cafe.cafePhone}" >
+         <input type="text"  class="form-control" id="phone" name="cafePhone" value="${cafeList.cafePhone}" >
       </div>  
       <div class="form-group">
          <label>카페영업시간:</label>
-         <input type="text"  class="form-control" id="time" name="cafeTime" value="${cafe.cafeTime}" >
+         <input type="text"  class="form-control" id="time" name="cafeTime" value="${cafeList.cafeTime}" >
       </div>
       <div class="form-group">
          <label>휴무일:</label>
-         <input type="text"  class="form-control" id="close" name="cafeCloseday" value="${cafe.cafeCloseday}" >
+         <input type="text"  class="form-control" id="close" name="cafeCloseday" value="${cafeList.cafeCloseday}" >
       </div>
        <%--  <div class="form-group">
       <label>썸네일:</label> 

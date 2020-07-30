@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.service.AdminService;
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 
 
@@ -14,13 +17,10 @@ import co.cod.app.cafe.service.CafeService;
 public class TestController {
 	@Autowired
 	CafeService cafeservice;
-
+	@Autowired
+	AdminService adminService;
 	// 관리자 리뷰 리스트
-	@RequestMapping("adminReviewList")
-	public String adminReviewList() {
-		return "ad/adminCommunity/adminReviewList";
-	}
-
+	
 	// 광고
 
 
@@ -40,8 +40,9 @@ public class TestController {
 	}
 
 	@RequestMapping("cafeList")
-	public String memberMyPage(Model model ,HttpSession session) {
-		model.addAttribute("cafe",cafeservice.getCafe((String)session.getAttribute("adminId")));
+	public String cafeList(Model model ,HttpSession session, AdminVO adminVO, CafeVO cafeVO) {
+		//model.addAttribute("cafe",cafeservice.getCafe((String)session.getAttribute("adminId")));
+		model.addAttribute("cafeList", adminService.getAdmin(adminVO));
 		return "ad/cafe/cafeList";
 	}
 	

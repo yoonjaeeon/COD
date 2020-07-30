@@ -21,4 +21,7 @@ public class AdminVO {
 	Integer adminState;	
 	String cafeName;
 	String cafeAddress;
+	
+	//조인을 위한 필드
+	String cafePhone;
 }

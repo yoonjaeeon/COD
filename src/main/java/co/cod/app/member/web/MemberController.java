@@ -32,16 +32,16 @@ public class MemberController {
 	}
 
 	// 멤버 탈퇴
-	@RequestMapping("memberDrop")
+	@RequestMapping("memberDelete")
 	public String deleteMember(MemberVO memberVO) {
-		return "member/memberDrop";
+		return "member/memberMyPage";
 	}
 
 	// 전체조회
-	@RequestMapping("MemberList")
+	@RequestMapping("memberList")
 	public String getMemberList(MemberVO memberVO, Model model) {
 		model.addAttribute("MemberList", memberService.getMemberList());
-		return "ma/member/memberList";
+		return "member/memberList";
 	}
 
 	// 마이페이지
@@ -64,13 +64,28 @@ public class MemberController {
 	// 멤버 업데이트
 	@RequestMapping("updateMember")
 	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {
-		memberVO.setEmail((String)session.getAttribute("loginEmail"));
-	//	model.addAttribute("member", memberService.getMember(memberVO));
+		memberVO.setEmail((String)session.getAttribute("email"));
+		model.addAttribute("member", memberService.getMember(memberVO));
 		return "member/memberMyPage";
 	}
 	
 	
-	//즐겨찾기
+	//멤버 결제 조회 
+	@RequestMapping("myorderList")
+	public String getMyorderList(Model model,MemberVO memberVO, HttpSession session) {		
+		memberVO.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("getMyorderList", memberService.getMyorderList(memberVO));
+		
+		return "member/myorderList";
+	}
+	//멤버 결제 조회 
+	@RequestMapping("MyMenuList")
+	public String getMyMenuList(Model model,MemberVO memberVO) {		
+	return "member/MyMenuList";
+		}
+	
+	
+		//즐겨찾기
 	@RequestMapping("bookmarks")
 	public String bookmarks(Model model, BookmarksVO bookmarksVO, HttpSession session) {
 		bookmarksVO.setEmail((String) session.getAttribute("loginEmail"));

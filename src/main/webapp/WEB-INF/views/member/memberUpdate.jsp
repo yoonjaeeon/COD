@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script>
  
 	function validCheck() {
@@ -16,6 +16,12 @@
 
 		alert("수정이 완료 되었습니다");
 		frm.submit();
+	}
+		
+		function validCheck1() {
+		return deleteMember;
+	
+		}
 	} 
 	
 	/* function pwValidCheck() {
@@ -52,7 +58,8 @@
 
 <div class="content">
 	<h2>회원 정보 수정 </h2>
-	<form action="updateMemberForm" name="frm">		
+	<form action="updateMember" name="frm">		
+			<input type="hidden" name="email" value="${member.email}"/>	
 			PW <span id="alert-success" style="display: none;" >비밀번호가 일치합니다.</span>
 			<span id="alert-danger"  style="display: none; color: #d92742; font-weight: bold;"> 비밀번호가 일치하지 않습니다.</span> 
 			<input type="password" id="pw" name="pw" class="pw" placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
@@ -63,7 +70,8 @@
 			<div class="align-center" style="margin-top: 30px">
 			<br> <br>
 			<div class="align-center" style="margin-top: 30px">
-				<button type="button" onclick="validCheck()">수정완료</button>
+			<button type="button" onclick="validCheck()">수정완료</button>
+			<button type="button" onclick="validCheck1()">회원탈퇴</button>
 			<input type="reset" value="지우기">
 			</div>
 		</div>

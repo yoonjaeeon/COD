@@ -3,6 +3,7 @@ package co.cod.app.member.mapper;
 import java.util.List;
 
 import co.cod.app.member.MemberVO;
+import co.cod.app.menu.MenuVO;
 import vofile.BookmarksVO;
 
 
@@ -18,4 +19,9 @@ public interface MemberMapper {
 	public MemberVO memberLogin(MemberVO memberVO);
 	public void insertBookmark(BookmarksVO bookmarksVO);
 	public void deleteBookmark(BookmarksVO bookmarksVO);
+	//멤버  결제 조회 
+	public List <MemberVO> getMyorderList(MemberVO memberVO);
+	//멤버 결제 상세 조회
+	public List <MemberVO> getMyMenuList(MemberVO memberVO);
+	
 }

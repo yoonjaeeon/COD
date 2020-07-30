@@ -29,7 +29,12 @@
 	</select>
 	
 	<update id= "updateMember" parameterType="co.cod.app.member.MemberVO">
-		 UPDATE MEMBER SET PW = #{pw}, PHONE = #{phone} ,NICKNAME=#{nickname} WHERE EMAIL = #{email};
+		 UPDATE MEMBER 
+		 SET PW = #{pw}, 
+		 PHONE = #{phone},
+		 BIRTHDAY = #{birthday},
+		 NICKNAME = #{nickname} 
+		 WHERE EMAIL = #{email}
 		
 	</update>
 	
@@ -54,6 +59,29 @@
 		FROM MEMBER
 		WHERE EMAIL = #{email}
 	</select>
+
+
+	<!-- 나의 오더 결제 조회  -->
+	<select id="getMyorderList" parameterType="co.cod.app.member.MemberVO" resultType="co.cod.app.member.MemberVO"> 
+		SELECT O.ORDER_TIME , O.EMAIL, C.CAFE_NAME, M.PRICE
+		FROM ORDERS O , CAFE C , MENU M 
+		WHERE O.ADMIN_ID = C.ADMIN_ID 
+		AND O.ADMIN_ID = M.ADMIN_ID			 
+		ORDER BY ORDER_TIME DESC
+	
+	</select>
+	
+	<!-- 결제내역 상세 조회 (주문메뉴/수량/단가) -->
+ 	<select id="getMyMenuList" parameterType="co.cod.app.member.MemberVO" resultType="co.cod.app.member.MemberVO">
+	
+	SELECT M.MENU_NAME, M.PRICE, OL.ORDERLINE_AMOUNT, O.ORDER_TIME, O.EMAIL
+	FROM MENU M, ORDERLINE OL, ORDERS O
+	WHERE M.ADMIN_ID = O.ADMIN_ID
+	AND OL.ORDER_SEQ = O.ORDER_SEQ
+	
+	
+	</select> 
+
 
 	<insert id="insertBookmark" parameterType="vofile.BookmarksVO">
 		<selectKey resultType="int" keyProperty="bookmarkSeq" order="BEFORE">

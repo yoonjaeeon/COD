@@ -14,6 +14,9 @@ public interface ReviewService {
 	// 목록 조회
 	public List<ReviewVO> getReviewList(ReviewVO reviewVO);
 
+	// 관리자 조회
+	public List<ReviewVO> adminReviewList(ReviewVO reviewVO);
+
 	// 등록
 	public void insertReview(ReviewVO reviewVO);
 

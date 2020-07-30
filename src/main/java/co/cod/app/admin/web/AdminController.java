@@ -21,7 +21,7 @@ class AdminController {
 
 	@Autowired	AdminService adminService;
 	@Autowired	SeatService seatService;
-
+	
 	// e등로폼
 	@RequestMapping("adminInsertForm")
 	public String insertAdmin(AdminVO adminVO) {

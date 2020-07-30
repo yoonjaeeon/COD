@@ -15,11 +15,6 @@ public class TestController {
 	@Autowired
 	CafeService cafeservice;
 
-	// 관리자 리뷰 리스트
-	@RequestMapping("adminReviewList")
-	public String adminReviewList() {
-		return "ad/adminCommunity/adminReviewList";
-	}
 
 	// 광고
 

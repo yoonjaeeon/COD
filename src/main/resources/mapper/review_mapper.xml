@@ -34,6 +34,13 @@
 		<result property="param3" column="columnname3" />
 	</resultMap> -->  
 	
+		<!-- 관리자조회  -->
+	<select id="adminReviewList"  resultType="co.cod.app.review.ReviewVO">
+		SELECT *
+        from review
+        order by review_time desc
+	</select>
+	
 	<!-- 전체조회  -->
 	<select id="getReviewList"  resultType="co.cod.app.review.ReviewVO">
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (

@@ -28,6 +28,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewMapper.getReviewList(reviewVO);
 	}
 	
+	// 관리자조회
+		@Override
+		public List<ReviewVO> adminReviewList(ReviewVO reviewVO) {
+			return reviewMapper.adminReviewList(reviewVO);
+		}
+	
 	// 페이징 카운트
 	@Override
 	public int getCount(ReviewVO reviewVO) {

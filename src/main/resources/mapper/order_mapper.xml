@@ -42,7 +42,7 @@
 	
 	</insert>
 	<insert id="insertOrderLine" parameterType="vofile.OrderlineVO">
-		INERT INTO ORDERLINE(ORDERLINE_SEQ, 
+		INSERT INTO ORDERLINE(ORDERLINE_SEQ, 
 							     ORDER_SEQ,
 							     MENU_SEQ,
 							     ORDER_STATE,

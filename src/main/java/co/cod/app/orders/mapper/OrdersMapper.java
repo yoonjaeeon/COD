@@ -15,7 +15,7 @@ public interface OrdersMapper {
 	public List<MenuVO> getMenuList(String id);
 	public List<SeatVO> getSeatList(String id);	
 	public void insertOrders(OrderInsertVO ordersVO);
-	public OrderlineVO insertOrderLine(OrderlineVO orderlineVO);
+	public void insertOrderLine(OrderlineVO orderlineVO);
 	public void updateOrders(OrdersVO ordersVO);
 	public void deleteOrders(OrdersVO ordersVO);	
 }

@@ -235,7 +235,8 @@ function insertOrder(adminId){
 		type: 'POST',
 		contentType:'application/json',
         dataType: 'json',
-        data: JSON.stringify(result), //객체를 json구조의 String으로 변환시켜줌
+        data: JSON.stringify( {adminId : adminId, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
+        ,
          success : function(data){
         	alert(data)
         } 
@@ -331,6 +332,7 @@ function getSeat(seatName, seatSize, seatSeq){
 	                }).done(function(data) {
 	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 	                    if ( everythings_fine ) {
+	                    	
 	                        msg = '결제가 완료되었습니다.';
 	                        msg += '\n고유ID : ' + rsp.imp_uid;
 	                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;

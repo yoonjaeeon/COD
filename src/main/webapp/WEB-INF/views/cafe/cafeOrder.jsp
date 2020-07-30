@@ -53,7 +53,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 }
 
 //메뉴 클릭시
-	function test(name, price, seq, state, realState) {
+	function test(name, price, seq, state, realState, seatSeq) {
 		var validCheck=$('#appendTest td:contains('+state+' '+name+')');
 		if(validCheck.length > 0 ) {
 			var span = validCheck.next().find('span'); //수량
@@ -235,7 +235,7 @@ function insertOrder(adminId){
 		type: 'POST',
 		contentType:'application/json',
         dataType: 'json',
-        data: JSON.stringify( {adminId : adminId, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
+        data: JSON.stringify( {adminId : adminId, seatSeq:seatSeq, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
         ,
          success : function(data){
         	alert(data)

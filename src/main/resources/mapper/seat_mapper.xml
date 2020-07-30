@@ -23,6 +23,7 @@
         order by seat_seq desc
 	</select>
 
+
 	<insert id="insertSeat" parameterType="co.cod.app.seat.SeatVO">
 		INSERT INTO Seat (seat_seq, seat_name, seat_img, seat_size, admin_id)  
 		

@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    ]
+   
    <script type="text/javascript">
 	function memberinto() {
 		location.href="memberUpdateForm";
+			
 	}
+	function myorderList() {
+		location.href="myorderList";
+			
+	}
+	
+	
 </script>
     
 <div class="align-center hovers row">
@@ -31,7 +38,7 @@
                </a>
             </div>
             <div class="col-sm-2">
-               <div class="single_feature">
+               <div class="single_feature" onclick="myorderList()">
                   <div class="single_feature_icon">
                      <i class="fab fa-fort-awesome"></i>
                   </div>

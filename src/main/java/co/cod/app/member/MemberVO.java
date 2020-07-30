@@ -1,4 +1,8 @@
 package co.cod.app.member;
+
+
+import java.sql.Date;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,4 +15,14 @@ String birthday;
 String phone;
 String nickname;
 Integer mileage;
+Date orderTime;
+String cafeName;
+Integer price;
+String menuName;
+Integer orderlineAmount;
+
+
+
+
+
 }

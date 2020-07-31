@@ -33,8 +33,9 @@
 			    dataType: 'json', 
 			    data : $("#workform").serialize(),			    
 			    success: function(response) {
-			    	console.log(response.kkk)
+			    	//console.log(response.kkk)
 			    	if(response.result == true) {
+			    		
 			    		workerList();
 			    	}
 			    }, 
@@ -153,22 +154,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6">
-		<form id="workform"  class="form-horizontal">
+		
 			<h2>직원 등록 및 수정</h2>
-			<div class="form-group">		
-				<label >직원이름 :</label>
-				<input type="text"  class="form-control" name="workerName">
-			</div>	
-			<div class="form-group">
-				<label>직원생일:</label>
-				<input type="text"  class="form-control"  name="workerBirth">
-			</div>	
-			<div class="form-group">
-				<label>직원급여:</label>
-				<input type="text"  class="form-control"  name="pay" >
-			</div>			
-			<div class="form-group">   
-				<label>등급:</label>
+			 <input type="text" class="form-control" name="workerName"   placeholder="직원이름">      <br>
+			 <input type="text" class="form-control" name="workerBirth"   placeholder="직원생일">      <br>
+			 <input type="text" class="form-control" name="pay"   placeholder="급여">      <br>
+			 <label>등급:</label>
 					<select class="form-control" name="workerGrade">
 						   		<option value="0">매니저</option>
 						   		<option value="1">정직원</option>
@@ -179,13 +170,13 @@
 				<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
 				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
 				<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
-					</div>
-		</form>
+		</div>
+
 		</div>
 	<hr/>		
 	<div class="col-lg-6">
-		<h2>직원목록</h2>
-		<table class="table text-center">
+	<table class="table text-center">
+		<h2>직원목록</h2>		
 			<thead>
 			<tr>				
 				<th class="text-center">직원이름</th>

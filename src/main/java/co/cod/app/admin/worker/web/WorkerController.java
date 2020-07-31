@@ -44,7 +44,6 @@ public class WorkerController {
 			workerVO.setAdminId((String)session.getAttribute("adminId"));
 			workerService.insertWorker(workerVO);
 			map.put("result", true);
-			map.put("kkk","현우바보");
 			return  map;
 	}
 

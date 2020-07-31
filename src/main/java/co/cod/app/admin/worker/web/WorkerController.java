@@ -49,10 +49,7 @@ public class WorkerController {
 	}
 
 	//수정
-		@RequestMapping(value="/adminWorker"
-				,method=RequestMethod.PUT
-				,consumes="application/json" )
-		 		//,headers = {"Content-type=application/json"})
+		@RequestMapping(value="/adminWorker" ,method=RequestMethod.PUT, consumes="application/json" )
 		//요청헤더	   
 		@ResponseBody
 		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
@@ -64,8 +61,8 @@ public class WorkerController {
 		//삭제
 		@RequestMapping(value="/adminWorker/{workerSeq}", method=RequestMethod.DELETE)
 		@ResponseBody
-		public Map<String, Object>deleteWorker( @PathVariable Integer workerSeq, WorkerVO workerVO, Model model) {
-			workerVO.setWorkerSeq(workerSeq);
+		public Map<String, Object>deleteWorker( @PathVariable String workerSeq, WorkerVO workerVO, Model model) {
+			workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
 			workerService.deleteWorker(workerVO);
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("result", Boolean.TRUE);
@@ -75,9 +72,8 @@ public class WorkerController {
 		//단건조회
 		@RequestMapping(value="/adminWorker/{workerSeq}",  method=RequestMethod.GET)
 		@ResponseBody
-		public WorkerVO getWorker(@PathVariable Integer workerSeq, WorkerVO workerVO, Model model) {
-//			workerVO.setAdminId((String)session.getAttribute("adminId"));
-			workerVO.setWorkerSeq(workerSeq);
+		public WorkerVO getWorker(@PathVariable String workerSeq, WorkerVO workerVO, Model model) {		
+			workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
 			return  workerService.getWorker(workerVO);
 		}
 		

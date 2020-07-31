@@ -29,6 +29,8 @@ function workerListResult(data) {
    });//each
 }//menuListResult
 </script>
+
+
 <div class="row" style="margin: 3em">
 	<!-- 메인왼쪽 -->
 	<div class="col-lg-6">

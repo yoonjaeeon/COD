@@ -31,8 +31,12 @@
 	
 	<select id="getWorker" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">
 	
-		SELECT WORKER_SEQ,
-		WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY
+		SELECT 
+		WORKER_SEQ,
+		WORKER_NAME, 
+		WORKER_BIRTH, 
+		WORKER_GRADE, 
+		PAY
 		FROM WORKER
 		WHERE WORKER_SEQ=#{workerSeq}
 	

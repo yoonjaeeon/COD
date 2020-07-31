@@ -98,10 +98,7 @@ public class MasterController {
 		session.invalidate();
 		return "main/home";
 	}
-	// 카페 상세 뷰
-	
-	
-	
+		
 	
 }
 	

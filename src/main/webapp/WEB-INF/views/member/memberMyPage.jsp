@@ -11,8 +11,13 @@
 		location.href="myorderList";
 			
 	}
+	function memberReviewList() {
+		location.href="memberReviewList";
 	
-	
+	}
+	function bookmarks() {
+		location.href="bookmarks";
+	}
 </script>
     
 <div class="align-center hovers row">
@@ -52,15 +57,7 @@
                   </div>
                   <h4>정보수정</h4>
                </div>
-            </div>
-            <div class="col-sm-2">
-               <div class="single_feature" >
-                  <div class="single_feature_icon">
-                     <i class="fab fa-fort-awesome"></i>
-                  </div>
-                  <h4>회원탈퇴</h4>
-               </div>
-            </div>
+            </div>         
             <div class="col-sm-2">
                <div class="single_feature">
                   <div class="single_feature_icon">
@@ -77,14 +74,15 @@
 <div id="listpage">
    <hr>
    <section class="posts">
+     
       <article>
          <header>
-            <h2>나의 결제내역리스트</h2>
+            <h2>#최근 결재내역</h2>
          </header>
          <div>
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4" onclick="myorderList()">
                <!-- Card Header - Accordion -->
-               <a href="#collapseCardExample" class="d-block card-header py-3"
+               <a href="myorderList" class="d-block card-header py-3"
                   data-toggle="collapse" role="button" aria-expanded="true"
                   aria-controls="collapseCardExample">
                   <h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
@@ -102,15 +100,15 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach begin="0" end="3">
+                              <c:forEach begin="0" end="3" items="${getMyorderList}"
+										var="list">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
                                  <a href="#">
-                                    <tr>
-                                       <td>예담카페</td>
-                                       <td>12,000</td>
-                                       <td>2020/07/20</td>
-                                       <!-- onclick 메소드 필요 함 -->
-                                    </tr>
+                                    <tr role="row" class="odd">																				
+											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+											<td>${list.cafeName}</td>
+											<td>${list.price }</td>
+										</tr>
                                  </a>
                               </c:forEach>
                            </tbody>
@@ -124,40 +122,42 @@
       </article>
       <article>
          <header>
-            <h2>#여가단 뭐넣으면 좋을까??</h2>
+            <h2>#내가 작성한 리뷰</h2>
          </header>
          <div>
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4" onclick="memberReviewList()">
                <!-- Card Header - Accordion -->
-               <a href="#collapseCardExample" class="d-block card-header py-3"
+               <a href="memberReviewList" class="d-block card-header py-3"
                   data-toggle="collapse" role="button" aria-expanded="true"
                   aria-controls="collapseCardExample">
-                  <h3 class="m-0 font-weight-bold ">* 최근 내가 작성한 리뷰 *</h3>
+                  <h3 class="m-0 font-weight-bold ">* 내가 작성한 리뷰  *</h3>
                </a>
                <!-- Card Content - Collapse -->
                <div class="collapse show" id="collapseCardExample">
                   <div class="card-body">
                      <div class="order">
                         <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <th>카페명</th>
-                                 <th>카페주소</th>
-                                 <th>등록날짜</th>
-                              </tr>
-                           </thead>
+                        <thead>
+							<tr>
+								<td>No.</td>
+								<td>카페 이름</td>
+								<td>작성자</td>
+								<td>등록일</td>							
+							</tr>
+						</thead>
                            <tbody>
-                              <c:forEach begin="0" end="3">
+                              <c:forEach begin="0" end="3" items="${reviewList }" var="review">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-                                 <a href="#">
-                                    <tr>
-                                       <td>예담카페</td>
-                                       <td>대구 중구 국채보상 13-4</td>
-                                       <td>2020/07/19</td>
-                                       <!-- onclick 메소드 필요 함 -->
-
-                                    </tr>
-                                 </a>
+                            <a href="memberReviewList">
+							<tr>							
+								<td>${review.reviewSeq }</td>
+								<td>${review.cafeName }</td>								
+								<td>${review.email }</td>
+								<td><fmt:parseDate value="${review.reviewTime }"
+										pattern="yyyy-MM-dd HH:mm:ss" var="rt" /> <fmt:formatDate
+										value="${rt}" pattern="yyyy-MM-dd" /></td>										
+							</tr>
+							</a>
                               </c:forEach>
                            </tbody>
                         </table>
@@ -168,62 +168,18 @@
 
          </div>
       </article>
+      
       <article>
          <header>
-            <h2>#내가 자주가는  #카페목록</h2>
+            <h2>#즐겨 찾는 카페 </h2>
          </header>
          <div>
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4" onclick="bookmarks()">
                <!-- Card Header - Accordion -->
-               <a href="#collapseCardExample" class="d-block card-header py-3"
+               <a href="myorderList" class="d-block card-header py-3"
                   data-toggle="collapse" role="button" aria-expanded="true"
                   aria-controls="collapseCardExample">
-                  <h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
-               </a>
-               <!-- Card Content - Collapse -->
-               <div class="collapse show" id="collapseCardExample">
-                  <div class="card-body">
-                     <div class="order">
-                        <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <th>카페명</th>
-                                 <th>결제금액</th>
-                                 <th>결제날짜</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <c:forEach begin="0" end="3">
-                                 <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-                                 <a href="#">
-                                    <tr>
-                                       <td>예담카페</td>
-                                       <td>12,000</td>
-                                       <td>2020/07/20</td>
-                                       <!-- onclick 메소드 필요 함 -->
-                                    </tr>
-                                 </a>
-                              </c:forEach>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-         </div>
-      </article>
-      <article>
-         <header>
-            <h2>#분위기좋은 #카페 추천</h2>
-         </header>
-         <div>
-            <div class="card shadow mb-4">
-               <!-- Card Header - Accordion -->
-               <a href="#collapseCardExample" class="d-block card-header py-3"
-                  data-toggle="collapse" role="button" aria-expanded="true"
-                  aria-controls="collapseCardExample">
-                  <h3 class="m-0 font-weight-bold ">* 최근 결제 내역 *</h3>
+                  <h3 class="m-0 font-weight-bold ">* 즐겨 찾기 카페 *</h3>
                </a>
                <!-- Card Content - Collapse -->
                <div class="collapse show" id="collapseCardExample">
@@ -238,15 +194,15 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach begin="0" end="3">
+                              <c:forEach begin="0" end="3" items="${getMyorderList}"
+										var="list">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
                                  <a href="#">
-                                    <tr>
-                                       <td>예담카페</td>
-                                       <td>12,000</td>
-                                       <td>2020/07/20</td>
-                                       <!-- onclick 메소드 필요 함 -->
-                                    </tr>
+                                    <tr role="row" class="odd">																				
+											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+											<td>${list.cafeName}</td>
+											<td>${list.price }</td>
+										</tr>
                                  </a>
                               </c:forEach>
                            </tbody>
@@ -258,5 +214,6 @@
 
          </div>
       </article>
+      
    </section>
 </div>

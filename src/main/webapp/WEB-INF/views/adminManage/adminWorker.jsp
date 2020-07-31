@@ -100,17 +100,13 @@
 	function workerUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-			var workerSeq = $('input:hidden[name="hidden_workerSeq"]').val();
-			var workerName = $('input:text[name="workerName"]').val();
-			var workerBirth = $('input:text[name="workerBirth"]').val();
-			var pay = $('input:text[name="pay"]').val();
-			var workerGrade = $('select[name="workerGrade"]').val();			
+			var workerSeq = $(this).closest('tr').find('#workerSeq').val();
 			$.ajax({ 
-			    url: "adminWorker", 
+			    url: "adminWorker/", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify({workerSeq:workerSeq, workerName: workerName, workerBirth:workerBirth,workerGrade: workerGrade, pay: pay}),
-			    contentType:'application/json;charset=utf-8',
+			    data : JSON.stringify($("workform").serializeObject()),
+			    contentType:'application/json',
 			    success: function(data) { 
 			       workerList();
 			    },
@@ -118,8 +114,8 @@
 			        alert(" status: "+status+" 에러:"+message);
 			    }
 			});
-		});//수정 버튼 클릭
-	}//userUpdate
+		});
+	}//Update
 	
 	
 	//사용자 목록 조회 요청
@@ -128,6 +124,7 @@
 			url:'adminWorker',
 			type:'GET',			
 			dataType:'json',
+			contentType:'application/json;charset=utf-8',
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " 에러 메세지:"+msg);
 			},
@@ -146,10 +143,11 @@
 			.append($('<td>').html(item.workerBirth))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-			.append($('<input type=\'hidden\' id =\'hidden_workerSeq\' name=\'hidden_workerSeq\'>').val(item.workerSeq))
+			.append($('<input type=\'hidden\' id =\'hidden_workerSeq\'>').val(item.workerSeq))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
+	
 </script>
 <body>
 <div class="container">
@@ -159,15 +157,15 @@
 			<h2>직원 등록 및 수정</h2>
 			<div class="form-group">		
 				<label >직원이름 :</label>
-				<input type="text"  class="form-control" name="workerName" id="workerName">
+				<input type="text"  class="form-control" name="workerName">
 			</div>	
 			<div class="form-group">
 				<label>직원생일:</label>
-				<input type="text"  class="form-control"  name="workerBirth" id="workerBirth">
+				<input type="text"  class="form-control"  name="workerBirth">
 			</div>	
 			<div class="form-group">
 				<label>직원급여:</label>
-				<input type="text"  class="form-control"  name="pay" id="pay">
+				<input type="text"  class="form-control"  name="pay" >
 			</div>			
 			<div class="form-group">   
 				<label>등급:</label>
@@ -177,7 +175,7 @@
 						   		<option value="2">알바</option>
 					</select>
 			</div>  
-			<div class="btn-group">      
+			<div class="container" align="center">       
 				<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
 				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
 				<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		

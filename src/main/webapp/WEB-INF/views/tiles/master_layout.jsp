@@ -74,7 +74,7 @@
 				to end your current session.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				<a class="btn btn-outline-info" href="login.html">Logout</a>
+				<a class="btn btn-outline-info" href="masterLogout">Logout</a>
 			</div>
 		</div>
 	</div>

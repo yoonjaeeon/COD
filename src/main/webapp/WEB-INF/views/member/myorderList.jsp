@@ -65,9 +65,9 @@
 									<c:forEach begin="0" end="10" items="${getMyorderList}"
 										var="list">
 										<tr role="row" class="odd" data-toggle="modal"
-											data-target="#contentModal">
-											<td>
-											<fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+											data-target="#contentModal">																				
+											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+											<td>${list.cafeName}</td>
 											<td>${list.price }</td>
 										</tr>
 									</c:forEach>

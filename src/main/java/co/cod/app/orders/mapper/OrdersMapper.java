@@ -2,6 +2,7 @@ package co.cod.app.orders.mapper;
 
 import java.util.List;
 
+import co.cod.app.member.MemberVO;
 import co.cod.app.orders.OrdersVO;
 import co.cod.app.seat.SeatVO;
 import vofile.MenuVO;
@@ -18,4 +19,7 @@ public interface OrdersMapper {
 	public void insertOrderLine(OrderlineVO orderlineVO);
 	public void updateOrders(OrdersVO ordersVO);
 	public void deleteOrders(OrdersVO ordersVO);	
+	public MemberVO getMileage(MemberVO memberVO);
+	public void mileage(OrderInsertVO orderInsertVO);
+	public void mileageMinus(OrderInsertVO orderInsertVO);
 }

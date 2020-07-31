@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.cod.app.member.MemberVO;
 import co.cod.app.orders.OrdersVO;
 import co.cod.app.orders.mapper.OrdersMapper;
 import co.cod.app.orders.service.OrdersService;
@@ -33,6 +34,8 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public void insertOrders(OrderInsertVO orderInsertVO) {
 		ordersMapper.insertOrders(orderInsertVO);
+		ordersMapper.mileage(orderInsertVO);
+		ordersMapper.mileageMinus(orderInsertVO);
 		for(OrderlineVO orderlineVO: orderInsertVO.getOrderlineList()) {
 			orderlineVO.setOrderSeq(orderInsertVO.getOrderSeq());
 			ordersMapper.insertOrderLine(orderlineVO);
@@ -61,6 +64,11 @@ public class OrdersServiceImpl implements OrdersService {
 		return ordersMapper.getSeatList(id);
 	}
 
+	@Override
+	public MemberVO getMileage(MemberVO memberVO) {
+		return ordersMapper.getMileage(memberVO);
+	}
+	
 	
 	
 	

@@ -6,6 +6,7 @@
 
 <style>
 #seatSeq{display : none}
+#myMileage{display : none}
 </style>
 <script>
 function amountDown(price,seq){ //수량 및 가격 내려줌
@@ -37,19 +38,24 @@ function sum(){
 			result += parseInt($(item).html());
 				//parseInt(item);			
 		})
-		$('#sum').html(result);
+		$('#total').html(result)
+		$('#total').html(result);
+		$('#sum').html($('#total').html());
 }
 
 
 function deleteValue(seq){ //주문상세 지우는 페이지
-			$('#sum').html(
-					 parseInt($('#sum').html())-parseInt($('#menuPrice').html()) 
+			$('#total').html(
+					 parseInt($('#total').html())-parseInt($('.menuPrice').html()) 
 					);
 			
-			if($('#sum').html()== null || $('#sum').html()==""){
-				$('#sum').html("0");
+			if($('#total').html()== null || $('#total').html()==""){
+				$('#total').html("0");
+				$('#sum').html($('#total').html());
+				
 			}
 	$('#'+seq+'').empty();
+	$('#sum').html($('#total').html());
 }
 
 //메뉴 클릭시
@@ -208,7 +214,12 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			</table>
 		</div>
 		<div align="right">
-			<label id="sum">0</label>
+		총 금액 : <label id="total">0</label>
+		결제 금액 : <label id="sum">0</label>
+				마일리지 사용<input id="useMileage" placeholder="보유 마일리지 : ${getMileage.mileage}p"> <label id="myMileage">${getMileage.mileage}</label>
+				<button type="button" onclick="mileageUse()">적용</button>
+				
+				<br>
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');insertOrder('${menuList[0].adminId}');">
 				결제</button>
@@ -218,10 +229,42 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 </div>
 
 <script type="text/javascript">
+
+//마일리지 유효성 검사
+function mileageUse(){
+	if(parseInt($('#sum').html()) == parseInt($('#total').html())){
+	 $('#sum').html(
+	parseInt($('#sum').html()) - parseInt($('#useMileage').val())		 
+	 )
+	}else if(parseInt($('#sum').html()) != parseInt($('#total').html())){
+		parseInt($('#sum').html($('#total').html()));  //합계 금액을 total금액으로 초기화 후에 마일리지 삭감 진행
+		$('#sum').html(
+				parseInt($('#sum').html()) - parseInt($('#useMileage').val())		 
+				 )
+	}
+}
+
+$('#useMileage').focusout(function() {
+	var mileage = $("#useMileage").val();
+	var myMileage = parseInt($('#myMileage').html());
+	
+	if (mileage > myMileage) { //마일리지 보유마일리지 이상
+		alert(myMileage + "포인트 까지 사용 가능")
+
+	} else if (mileage < 0) {  //마일리지 - 금액 입력
+		alert("0 이상 입력해주세요!") ;
+	}else if(parseInt(parseInt($('#sum').html())-mileage) < 1000){ //결제 금액이 1000원 이하인경우
+		
+		alert("최소 결제 금액은 1000원 입니다.")
+	}
+});
+
 function insertOrder(adminId){
 	
 	var seatSeq = $('#seatSeq').html();
 	var amount =  $('#amount')
+	var mileage = $('#total').html();
+	var mileageUse = $("#useMileage").val();
 			//id="amount'+seq+'"
 	var result =[];		
 	var trs = $('#appendTest tr').each(function(index, item){
@@ -235,10 +278,9 @@ function insertOrder(adminId){
 		type: 'POST',
 		contentType:'application/json',
         dataType: 'json',
-        data: JSON.stringify( {adminId : adminId, seatSeq:seatSeq, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
+        data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId, seatSeq:seatSeq, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
         ,
          success : function(data){
-        	alert(data)
         } 
 		
 	})

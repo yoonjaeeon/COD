@@ -12,6 +12,12 @@
 		 WHERE M.ADMIN_ID=#{adminId}
 	</select>
 	
+	<select id="getMileage" resultType="co.cod.app.member.MemberVO">
+	SELECT MILEAGE
+	  FROM MEMBER
+	 WHERE 	EMAIL = #{email} 
+	</select>
+	
 	<select id="getSeatList" resultType="co.cod.app.seat.SeatVO" parameterType="String">
 		SELECT * 
 		  FROM SEAT 
@@ -29,7 +35,8 @@
            				<if test="seatSeq != null and seatSeq != ''">
                         SEAT_SEQ,
                         </if>    
-           				ADMIN_ID)
+           				ADMIN_ID,
+           				mileage_use)
            VALUES
                               ( #{orderSeq},
                               #{email},
@@ -37,7 +44,8 @@
                               <if test="seatSeq != null and seatSeq != ''">
                               #{seatSeq},
                               </if>                              
-                              #{adminId}
+                              #{adminId},
+                              #{mileageUse}
                               )
 	
 	</insert>
@@ -47,11 +55,28 @@
 							     MENU_SEQ,
 							     ORDER_STATE,
 							     ORDERLINE_AMOUNT)
-		 			  VALUES((SELECT NVL(MAX(ORDERLINE_SEQ),0)+1 FROM ORDERLINE),
+		 			  VALUES((SELECT NVL(MAX(ORDERLINE_SEQ),0)+1 FROM ORDERLINE WHERE ORDER_SEQ = #{orderSeq} ),
 		 			  		 #{orderSeq},
 		 			  		  #{menuSeq},
 		 			  		  #{orderState},
 		 			  		  #{orderlineAmount}
 		)
 	</insert>
+	
+	<update id="mileage">
+	UPDATE MEMBER 
+	   SET MILEAGE= 
+	 				  (
+	 				  (SELECT MILEAGE FROM MEMBER WHERE EMAIL=#{email})+#{mileage}*0.05)
+	 WHERE EMAIL = #{email}
+	</update>
+	
+	<update id="mileageMinus">
+	UPDATE MEMBER 
+	   SET MILEAGE= 
+	 				  (
+	 				  (SELECT MILEAGE FROM MEMBER WHERE EMAIL=#{email})-#{mileageUse})
+	 WHERE EMAIL = #{email}
+	</update>
+	
 </mapper>

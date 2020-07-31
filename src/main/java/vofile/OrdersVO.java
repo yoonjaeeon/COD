@@ -10,4 +10,5 @@ public class OrdersVO {
 	String email;
 	String adminId;
 	Integer seatSeq;
+	Integer mileageUse;
 }

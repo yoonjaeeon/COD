@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.cod.app.member.MemberVO;
 import co.cod.app.orders.service.OrdersService;
 import vofile.MenuVO;
 import vofile.OrderInsertVO;
@@ -24,9 +25,12 @@ public class OrdersController {
 
 	// 카페 등록폼
 	@RequestMapping("cafeOrder")
-	public String cafeOrder(Model model, MenuVO menuVO, @RequestParam String adminId) {
+	public String cafeOrder(Model model, MenuVO menuVO,MemberVO memberVO, @RequestParam String adminId,HttpSession session) {
 		List menuList = ordersService.getMenuList(adminId);
 		List seatList = ordersService.getSeatList(adminId);
+		memberVO.setEmail((String)session.getAttribute("loginEmail"));	
+		
+		model.addAttribute("getMileage", ordersService.getMileage(memberVO));
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("seatList", seatList);
 

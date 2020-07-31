@@ -12,6 +12,13 @@
 		SELECT * FROM ADVERTISEMENT ORDER BY ADVERTISE_SEQ
 	</select>
 	
+	<select id ="getAdvertisementMap" resultType="map">
+		SELECT ADVERTISER "name", sum(advertise_money)
+		FROM ADVERTISEMENT
+		GROUP BY ADVERTISER
+	</select>
+	
+	
 	
 	<insert id="insertAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">
 		INSERT INTO ADVERTISEMENT	(

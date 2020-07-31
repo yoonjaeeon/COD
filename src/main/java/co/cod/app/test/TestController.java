@@ -51,10 +51,5 @@ public class TestController {
 		return "ad/test/apiSampleApplicationJSON";
 	}
 	
-	//마스터 차트
-	@RequestMapping("masterSales")
-	public String masterSales() {
-		return "ma/master/masterSales";
-	}
 	
 }

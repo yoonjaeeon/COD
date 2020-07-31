@@ -118,7 +118,17 @@ public class AdvertisementController {
 		return advertisementService.getAdvertisementList(advertisementVO);	
 	}	
 			
-
+//	차트
+	@RequestMapping("masterSales")
+	public @ResponseBody List<Map<String, Object>> getAdvertisementMap(){
+		return advertisementService.getAdvertisementMap();
+	}
+	@RequestMapping("masterSalesForm")
+	public String masterSalesForm() {
+		return "ma/master/masterSales";
+	}
+	
+	
 	/*
 	 * @RequestMapping(value="/respAPI")
 	 * 

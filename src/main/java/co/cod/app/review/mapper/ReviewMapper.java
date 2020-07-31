@@ -22,6 +22,9 @@ public interface ReviewMapper {
 
 	// 수정
 	public void updateReview(ReviewVO reviewVO);
+	
+	// 관리자 리뷰 삭제
+	public void adminDeleteReview(ReviewVO reviewVO);
 
 	// 삭제
 	public void deleteReview(ReviewVO reviewVO);

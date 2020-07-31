@@ -51,6 +51,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(ReviewVO reviewVO) {
 		reviewMapper.deleteReview(reviewVO);
 	}
+	
+	// 관리자 리뷰 삭제
+	@Override
+	public void adminDeleteReview(ReviewVO reviewVO) {
+		reviewMapper.adminDeleteReview(reviewVO);
+	}
 
 	// 수정
 	@Override

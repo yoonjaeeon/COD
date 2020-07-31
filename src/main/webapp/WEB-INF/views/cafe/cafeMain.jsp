@@ -24,9 +24,16 @@
 					<button>
 						<i class='fas fa-map-marker-alt'></i> ${cafeDetail.cafeAddress }
 					</button>
-					<button onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
-						<i class="fas fa-shopping-cart"> </i> 주문하기
-					</button>
+					<c:if test="${empty sessionScope.loginEmail}">
+					<button type="button" onclick="orderLogin()">
+								<i class="fas fa-shopping-cart"> </i> 주문하기
+							</button>
+					</c:if>
+						<c:if test="${not empty sessionScope.loginEmail}">
+							<button onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
+								<i class="fas fa-shopping-cart"> </i> 주문하기
+							</button>
+						</c:if>
 				</div>
 				<div class="col-lg-8 boxs">
 					<article class="mini-post">
@@ -192,6 +199,7 @@
 			</article>
 			<div class="toggleView">
 				<div class="padding2 row" align="center">
+				
 					<c:forEach begin="0" end="4">
 						<div class="col-lg-6 col-sm-12">
 							<div class="container row">
@@ -210,6 +218,7 @@
 							</div>
 						</div>
 					</c:forEach>
+					
 				</div>
 			</div>
 
@@ -232,6 +241,12 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
 
 <script>
+
+
+function orderLogin(){
+	alert("주문은 회원가입 후 가능합니다");
+}
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng($('input[name=cafeY]').val(), $('input[name=cafeX]').val()), // 지도의 중심좌표

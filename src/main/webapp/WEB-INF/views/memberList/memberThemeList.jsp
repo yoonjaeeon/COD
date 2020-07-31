@@ -83,6 +83,7 @@
 						<h4>#해쉬태그</h4>
 					</div>
 					<div class="col-sm-3">
+						<c:if test="${not empty sessionScope.loginEmail}">
 					<div class="heart" data-class="${theme.bookmarks}">
 						<c:if test="${not empty theme.bookmarks}">
 							<i class="far fa-heart" style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
@@ -94,6 +95,7 @@
 							data-toggle="tooltip" id="bookmarkInsert"></i>
 						</c:if> 
 						</div>
+						</c:if>
 						<h4><i class='fas fa-star'></i>${theme.stars }</h4>
 					</div>
 				</header>
@@ -131,7 +133,7 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
 	//tooltip 지정
     $('.heart').on('click', function(){
     	var i = $(this).find('i')
-    	console.log($(this).data('class')) 
+    	console.log($(this).data('class')); 
     	if(i.css('color')=='rgb(255, 0, 0)'){
     		if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
     			return

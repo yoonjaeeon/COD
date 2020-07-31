@@ -1,5 +1,6 @@
 package co.cod.app.admin.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -111,6 +112,8 @@ class AdminController {
 				"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713",
 				Map.class);
 	}
+	
+	
 	
 	//좌석 전체조회
 	/*

@@ -14,13 +14,14 @@
           var data = new google.visualization.DataTable();
           data.addColumn('string', '이름');
           data.addColumn('number', '광고매출');
+         
           var chartdata = [];
           $.ajax({
         	  url: "masterSales",
         	  async : false,      //동기식, 아작스 실행하고 데이터 값이 와야 실행(동기)
         	  success : function(result) {
         	  	for(i=0; i<result.length; i++) {
-        	  		chartdata.push([result[i].advertiser, parseInt(result[i].advertiseMoney)]);
+        	  		chartdata.push([result[i].name, parseInt(result[i].sum)]);
         	  	}
         	  }
           });

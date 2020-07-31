@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id ="getAdvertisementMap" resultType="map">
-		SELECT ADVERTISER "name", sum(advertise_money)
+		SELECT ADVERTISER "name", sum(advertise_money) "sum"
 		FROM ADVERTISEMENT
 		GROUP BY ADVERTISER
 	</select>

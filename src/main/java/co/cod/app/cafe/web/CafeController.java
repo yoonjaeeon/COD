@@ -3,6 +3,7 @@ package co.cod.app.cafe.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
@@ -132,4 +134,18 @@ public class CafeController {
 		System.out.println(cafeName + " : " + adminId);
 		return "main/home";
 	}
+	
+	//차트 JSON값
+		@RequestMapping("adminSales")
+		public @ResponseBody List<Map<String, Object>> getAdvertisementMap(){
+			return cafeService.getCafeMap();
+		}
+		
+	//차트 불러옴	
+	
+		@RequestMapping("adminSalesForm")
+		public String masterSalesForm() {
+			return "ad/adminOrder/adminSales";
+		}
+	
 }

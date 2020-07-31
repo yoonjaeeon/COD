@@ -2,10 +2,15 @@
    pageEncoding="UTF-8"%>
    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script type="text/javascript" >        
+<script type="text/javascript" >
+window.addEventListener("load", function(){
+	back.addEventListener("click",backF);
+})
+function backF(){
+	location.href="adminListForm"
+}
 </script>
-<script>
-</script>
+
 <body>
 <div class="container">
    <form action="insertCafe" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
@@ -44,19 +49,18 @@
      	</div>  --%>
       <div class="form-group">
          <label>해시테그:</label>
-         <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" value="${cafe.cafeHashtag}">
+         <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" value="${cafeList.cafeHashtag}"/>
      
        </div>     
         	 <br>
          <div>
          <label>문의사항:</label><br>
-         <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent">${cafe.cafeAskContent}</textarea>
+         <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent">${cafeList.cafeAskContent}</textarea>
       </div><br>
 
 
       <div class="btn-group">      
-             <input type="submit" class="btn btn-primary" value="승인"> 
-                <input type="submit" class="btn btn-primary" value="거절"> 
+             <input type="button" class="btn btn-primary" value="확인" id="back"> 
            <!--  <button type="submit" data-toggle="modal" data-target="#contentModal"  class="btn btn-primary" >등록</button>  -->
             <!-- <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" /> -->
          

@@ -39,6 +39,7 @@
 		
 	function cafeList(adminId){
 		location.href = "cafeList?adminId=" + adminId;
+		
 	}
 	
 	// 부트스트랩 아작스 모달 검색 

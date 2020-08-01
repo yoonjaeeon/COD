@@ -5,10 +5,15 @@
 <mapper namespace="co.cod.app.review.mapper.ReviewMapper">
 	<!-- 페이징 카운트 갯수 -->
 	<select id ="getCount" resultType="int">
-	SELECT count(*)
-        from orders o, cafe c, review r 
-        where c.admin_id= o.admin_id 
-        and c.admin_id = r.admin_id
+	 SELECT count(*) from cafe c, review r, orders o
+	 where  c.admin_id = r.admin_id 
+	 and r.order_seq = o.order_seq
+    <if test="email != null and email != ''">
+     and r.email = #{email}
+    </if>
+    <if test="adminId != null and adminId != ''">
+      and r.admin_id = #{adminId}
+    </if>
 	</select>
 	<!-- 단건조회  -->
 	<select id="getReview" parameterType="co.cod.app.review.ReviewVO" resultType="co.cod.app.review.ReviewVO">
@@ -36,18 +41,25 @@
 	
 		<!-- 관리자조회  -->
 	<select id="adminReviewList"  resultType="co.cod.app.review.ReviewVO">
-		SELECT *
-        from review
-        order by review_time desc
+	select m.email, r.*
+	from member m, review r
+	where admin_id = admin_id
+    order by review_seq desc
 	</select>
 	
 	<!-- 전체조회  -->
 	<select id="getReviewList"  resultType="co.cod.app.review.ReviewVO">
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
-		SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group, r.gdsThumbImg
+	SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group, r.gdsThumbImg
         from orders o, cafe c, review r 
-        where c.admin_id= o.admin_id 
+        where r.order_seq= o.order_seq 
         and c.admin_id = r.admin_id
+        <if test="email != null and email != ''">
+        and r.email = #{email}
+        </if>
+        <if test="adminId != null and adminId != ''">
+        and r.admin_id = #{adminId}
+        </if>
         order by review_seq desc
          ) A ) B WHERE rn BETWEEN #{start} AND #{end}
 	</select>
@@ -55,7 +67,8 @@
 	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">
 		INSERT INTO review (review_seq, review_content, review_time, stars, admin_id, photo_group, gdsThumbImg)  
 		
-		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, sysdate, #{stars}, #{adminId}, #{photoGroup}, #{gdsThumbImg})
+		VALUES ((select nvl(max(review_seq),0)+1 from review), #{reviewContent}, 
+		sysdate, #{stars}, #{adminId}, #{photoGroup}, #{gdsThumbImg})
 	</insert>
 
  	<update id="updateReview" parameterType="co.cod.app.review.ReviewVO">
@@ -74,6 +87,12 @@
 	</update>
 
 	<delete id="deleteReview" parameterType="co.cod.app.review.ReviewVO">
+		DELETE FROM review 
+		WHERE
+		review_seq = #{reviewSeq}
+	</delete>
+	
+	<delete id="adminDeleteReview" parameterType="co.cod.app.review.ReviewVO">
 		DELETE FROM review 
 		WHERE
 		review_seq = #{reviewSeq}

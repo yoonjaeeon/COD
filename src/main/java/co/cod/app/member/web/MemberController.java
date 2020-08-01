@@ -1,5 +1,7 @@
 package co.cod.app.member.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,9 @@ public class MemberController {
 
 	// 전체조회
 	@RequestMapping("memberList")
-	public String getMemberList(MemberVO memberVO, Model model) {
-		model.addAttribute("MemberList", memberService.getMemberList());
-		return "member/memberList";
+	public List getMemberList(MemberVO memberVO, Model model) {
+		model.addAttribute("MemberList", memberService.getMemberList());		
+		return memberService.getMemberList();
 	}
 
 	// 마이페이지
@@ -52,7 +54,6 @@ public class MemberController {
 		return "member/memberMyPage";
 	}
 
-	
 	//회원 정보 조회  
 	@RequestMapping("memberUpdateForm")
 	public String getMember(MemberVO memberVO, Model model ,HttpSession session) {
@@ -60,7 +61,7 @@ public class MemberController {
 		model.addAttribute("member", memberService.getMember(memberVO));
 		return "member/memberUpdate";
 	}
-			
+
 	// 멤버 업데이트
 	@RequestMapping("updateMember")
 	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {

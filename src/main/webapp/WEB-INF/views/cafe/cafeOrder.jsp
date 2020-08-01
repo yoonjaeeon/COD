@@ -216,7 +216,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<div align="right">
 		총 금액 : <label id="total">0</label>
 		결제 금액 : <label id="sum">0</label>
-				마일리지 사용<input id="useMileage" placeholder="보유 마일리지 : ${getMileage.mileage}p"> <label id="myMileage">${getMileage.mileage}</label>
+				마일리지 사용<input id="useMileage" placeholder=" ${getMileage.mileage}p 사용가능"> <label id="myMileage">${getMileage.mileage}</label>
 				<button type="button" onclick="mileageUse()">적용</button>
 				
 				<br>

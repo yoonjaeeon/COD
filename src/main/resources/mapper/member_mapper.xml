@@ -23,8 +23,7 @@
 	</select>
 
 	<select id="getMemberList"
-		parameterType="co.cod.app.member.MemberVO"
-		resultType="co.cod.app.member.MemberVO">
+		resultType="list">
 		select * from member
 	</select>
 	

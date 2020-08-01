@@ -18,7 +18,7 @@
 		}
 	}
 </script>
-
+${loginEmail }----
 <h2>내가 쓴 리뷰</h2>
 <div id="outter"> 
 	<table border="1">
@@ -30,7 +30,6 @@
 			<td>작성자</td>
 			<td>등록일</td>
 			<td>평 점</td>
-			<td>관리자</td>
 			<td><button type="button" onclick="location.href='insertFormReview'">리뷰 작성</button></td>	
 		</tr>
 		</thead>
@@ -44,7 +43,6 @@
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
 				<td>${review.stars }</td>
-				<td>${review.adminId }</td>
 				<td><button type="button" onclick="idDelete('${review.reviewSeq}')">삭제</button></td>
 			</tr>
 		</c:forEach>

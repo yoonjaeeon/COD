@@ -3,6 +3,8 @@ package co.cod.app.review.web;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,7 +80,7 @@ public class ReviewController {
 
 	// 목록조회
 	@RequestMapping("memberReviewList")
-	public String reviewList(Model model, ReviewVO reviewVO) {
+	public String reviewList(Model model, ReviewVO reviewVO, HttpSession session) {
 		// 페이징 처리
 		// (현재 페이지 파라미터 받기)
 		int p = 1;
@@ -86,25 +88,28 @@ public class ReviewController {
 			p = Integer.parseInt(reviewVO.getP());
 		}
 		// (페이징 객체를 생성)
-		Paging paging = new Paging();
+		Paging paging = new Paging();   
 		paging.setPageUnit(5); // 한 페이지에 출력할 레코드 건수
 		paging.setPageSize(3); // 한 페이지에 출력할 페이지 번호 수
 		paging.setPage(p); // 현재 페이지
+		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
 		paging.setTotalRecord(reviewService.getCount(reviewVO)); // 전체 레코드 건수 조회
 		model.addAttribute("paging", paging);
 
 		reviewVO.setStart(Integer.toString(paging.getFirst())); // start
 		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
-
+	
+		
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		return "memberList/memberReviewList";
 	}
+
 	// 관리자 리뷰 리스트
-			@RequestMapping("adminReviewList")
-			public String adminReviewList(Model model, ReviewVO reviewVO) {
-				model.addAttribute("adminReviewList", reviewService.getReviewList(reviewVO));
-				return "ad/adminCommunity/adminReviewList";
-			}
+	@RequestMapping("adminReviewList")
+	public String adminReviewList(Model model, ReviewVO reviewVO) {
+		model.addAttribute("adminReviewList", reviewService.adminReviewList(reviewVO));
+		return "ad/adminCommunity/adminReviewList";
+	}
 
 	// 수정폼
 	@RequestMapping("updateFormReview")
@@ -167,4 +172,13 @@ public class ReviewController {
 		// 서비스 호출
 		return "redirect:memberReviewList";
 	}
+	
+	// 관리자 리뷰 삭제 처리
+		@RequestMapping("adminDeleteReview")
+		public String adminDeletereview(ReviewVO reviewVO, Model model) {
+
+			reviewService.adminDeleteReview(reviewVO);
+			// 서비스 호출
+			return "redirect:adminReviewList";
+		}
 }

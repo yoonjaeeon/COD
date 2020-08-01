@@ -73,6 +73,7 @@
 						<h4>#해쉬태그</h4>
 					</div>
 					<div class="col-sm-3">
+					<c:if test="${not empty sessionScope.loginEmail}">
 						<div class="heart" data-class="${area.bookmarks}">
 							<c:if test="${empty sessionScope.loginEmail}">
 								<i class="far fa-heart"></i>
@@ -86,6 +87,7 @@
 							data-toggle="tooltip" id="bookmarkInsert"></i>
 							</c:if>
 						</div>
+						</c:if>
 						<h4><i class='fas fa-star'></i>${area.stars }</h4>
 					</div>
 				</header>

@@ -1,6 +1,5 @@
 package co.cod.app.admin.worker.web;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-
-
 
 import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.admin.worker.service.WorkerService;
@@ -36,54 +33,57 @@ public class WorkerController {
 	}
 	
 	//등록
-		@RequestMapping(value="/adminWorker"
-				,method=RequestMethod.POST)	            
-		@ResponseBody
-		public Map insertWorker( WorkerVO workerVO, Model model,HttpSession session) {		
-			Map<String, Object> map = new HashMap<String, Object>();
-			workerVO.setAdminId((String)session.getAttribute("adminId"));
-			workerService.insertWorker(workerVO);
-			map.put("result", true);
-			return  map;
+	@RequestMapping(value="/adminWorker",method=RequestMethod.POST)	            
+	@ResponseBody
+	public Map insertWorker( WorkerVO workerVO, Model model,HttpSession session) {		
+		Map<String, Object> map = new HashMap<String, Object>();
+		workerVO.setAdminId((String)session.getAttribute("adminId"));
+		workerService.insertWorker(workerVO);
+		map.put("result", true);
+		return  map;
 	}
 
 	//수정
-		@RequestMapping(value="/adminWorker" ,method=RequestMethod.PUT, consumes="application/json" )
-		//요청헤더	   
-		@ResponseBody
-		public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
-			workerService.updateWorker(workerVO);
-			return  workerVO;
-		}	
-		
-		
-		//삭제
-		@RequestMapping(value="/adminWorker/{workerSeq}", method=RequestMethod.DELETE)
-		@ResponseBody
-		public Map<String, Object>deleteWorker( @PathVariable String workerSeq, WorkerVO workerVO, Model model) {
-			workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
-			workerService.deleteWorker(workerVO);
-			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("result", Boolean.TRUE);
-			return result;
-		}
+	@RequestMapping(value="/adminWorker" ,method=RequestMethod.PUT, consumes="application/json" )
+	//요청헤더	   
+	@ResponseBody
+	public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
+		workerService.updateWorker(workerVO);
+		return  workerVO;
+	}	
+
+	//삭제
+	@RequestMapping(value="/adminWorker/{workerSeq}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object>deleteWorker( @PathVariable String workerSeq, WorkerVO workerVO, Model model) {
+		workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
+		workerService.deleteWorker(workerVO);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
 	
-		//단건조회
-		@RequestMapping(value="/adminWorker/{workerSeq}",  method=RequestMethod.GET)
-		@ResponseBody
-		public WorkerVO getWorker(@PathVariable String workerSeq, WorkerVO workerVO, Model model) {		
-			workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
-			return  workerService.getWorker(workerVO);
-		}
-		
-		
+	//단건조회
+	@RequestMapping(value="/adminWorker/{workerSeq}",  method=RequestMethod.GET)
+	@ResponseBody
+	public WorkerVO getWorker(@PathVariable String workerSeq, WorkerVO workerVO, Model model) {		
+		workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
+		return  workerService.getWorker(workerVO);
+	}
+
 	//전체조회
 	@RequestMapping(value="/adminWorker", method=RequestMethod.GET)
 	@ResponseBody
 	public List<WorkerVO> getWorkerList(Model model, WorkerVO workerVO,HttpSession session) {
 		return  workerService.getWorkerList((String)session.getAttribute("adminId"));	
 	}	
+	@RequestMapping(value="/workerState" ,method=RequestMethod.PUT )	   
+	@ResponseBody
+	public WorkerVO workerState(WorkerVO workerVO, Model model) {
 		
+		workerService.updateWorkerState(workerVO);
+		return  workerVO;
+	}		
 	//
 	@RequestMapping(value="/respAPI")
 	@ResponseBody

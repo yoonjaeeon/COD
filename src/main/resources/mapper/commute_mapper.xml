@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.cod.app.commute.mapper.CommuteMapper">
+
+	<insert id="insertCommute" parameterType="commute">
+	INSERT INTO Commute	(
+	COMMUTE_SEQ, WORKER_SEQ,COMMUTE_DATE, START_TIME
+	)
+	VALUES(
+	(select nvl(max(commute_seq),0)+1 from commute),
+	#{workerSea},
+	sysdate,
+	sysdate
+	)
+	</insert>	
+	
+	<select id="getcommute" parameterType="String" resultType="commute">		
+		SELECT * 
+		  FROM commute 
+		 WHERE worker_seq = #{worker_seq}
+	</select>
+		
+	<update id="updatecommute" parameterType="commute">
+	 	UPDATE WORKER
+		SET
+		end_time = sysdate
+	</update>	
+	
+</mapper>

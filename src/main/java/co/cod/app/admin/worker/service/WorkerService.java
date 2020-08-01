@@ -11,6 +11,7 @@ public interface WorkerService {
 	public List< WorkerVO> getWorkerList(String adminId);
 	public void insertWorker( WorkerVO workerVO);
 	public void updateWorker( WorkerVO workerVO);
+	public void updateWorkerState( WorkerVO workerVO);
 	public void deleteWorker( WorkerVO workerVO);
 	public List<Map> getWorkerListMap(WorkerVO workerVO);
 

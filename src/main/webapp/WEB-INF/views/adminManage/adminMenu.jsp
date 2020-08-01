@@ -99,7 +99,6 @@ function menuSelectResult(menu) {
 function menuUpdate() {
    $('#btnUpdate').on('click',function(){
 	   var menuSeq = $(this).closest('tr').find('#menuSeq').val();
-	   console.log(JSON.stringify($("#menuform").serializeObject()));
       $.ajax({ 
           url: "menu/", 
           type: 'PUT', 

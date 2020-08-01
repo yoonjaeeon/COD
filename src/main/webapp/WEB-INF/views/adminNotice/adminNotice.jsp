@@ -24,6 +24,7 @@ function init() {
 //공지 등록 요청
 function adminNoticeInsert(){
    $('#btnInsert').on('click',function(){
+	  console.log($("#adminNoticeF").serialize())
       $.ajax({ 
           url: "adminNotice",  
           type: 'POST',  
@@ -90,7 +91,7 @@ function adminNoticeUpdate() {
    $('#btnUpdate').on('click',function(){
 	   var adminNoticeSeq = $(this).closest('tr').find('#adminNoticeSeq').val();
       $.ajax({ 
-          url: "adminNotice/", 
+          url: "adminNotice", 
           type: 'PUT', 
           dataType: 'json', 
           contentType: 'application/json',
@@ -150,9 +151,8 @@ $(document).ready(function(){
 			<form class="adminNoticeF">
 				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%"><br> <br>
 				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px"> </textarea>
-				<br>
-				<br>
 			</form>
+			<br><br>
 			<div class="btn-group">
 				<input type="button" class="btn" value="등록" id="btnInsert" />
 				<input type="button" class="btn" value="수정" id="btnUpdate" />

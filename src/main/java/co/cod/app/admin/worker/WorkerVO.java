@@ -11,5 +11,5 @@ public class WorkerVO {
 	String workerBirth;
 	Integer pay;
 	String adminId;
-
+	Integer workerState;
 }

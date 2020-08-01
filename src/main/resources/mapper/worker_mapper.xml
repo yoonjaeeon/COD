@@ -3,63 +3,52 @@
 
 <mapper namespace="co.cod.app.admin.worker.mapper.WorkerMapper">
 
-<insert id="insertWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
-	
-	INSERT INTO WORKER	(
-	ADMIN_ID,WORKER_SEQ, WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY
-	)
-	VALUES(
-	#{adminId},
-	(select nvl(max(worker_seq),0)+1 from worker),
-	#{workerName},
-	#{workerBirth},
-	#{workerGrade},
-	#{pay}
-	)
-	
-	</insert>	
-	
-	<select id="getWorkerList" parameterType="String" resultType="co.cod.app.admin.worker.WorkerVO">		
-	
-	
-		SELECT * 
-		  FROM WORKER 
-		 WHERE admin_id = #{adminId}
-		ORDER BY worker_seq
-	
-	</select>
-	
-	<select id="getWorker" parameterType="co.cod.app.admin.worker.WorkerVO" resultType="co.cod.app.admin.worker.WorkerVO">
-	
-		SELECT 
-		WORKER_SEQ,
-		WORKER_NAME, 
-		WORKER_BIRTH, 
-		WORKER_GRADE, 
-		PAY
+	<insert id="insertWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
+		INSERT INTO WORKER (
+		ADMIN_ID,WORKER_SEQ, WORKER_NAME, WORKER_BIRTH, WORKER_GRADE, PAY
+		)
+		VALUES(
+		#{adminId},
+		(select nvl(max(worker_seq),0)+1 from worker),
+		#{workerName},
+		#{workerBirth},
+		#{workerGrade},
+		#{pay}
+		)
+	</insert>
+
+	<select id="getWorkerList" parameterType="String" resultType="co.cod.app.admin.worker.WorkerVO">
+		SELECT *
 		FROM WORKER
-		WHERE WORKER_SEQ=#{workerSeq}
-	
+		WHERE admin_id = #{adminId}
+		ORDER BY worker_seq
 	</select>
-	
-	
-	
-	
+
+	<select id="getWorker" parameterType="co.cod.app.admin.worker.WorkerVO"	resultType="co.cod.app.admin.worker.WorkerVO">
+		SELECT *
+		  FROM WORKER
+		 WHERE WORKER_SEQ=#{workerSeq}
+	</select>
+
 	<update id="updateWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
-	 	
-	 	UPDATE WORKER
+		UPDATE WORKER
 		SET
 		WORKER_NAME = #{workerName},
 		WORKER_BIRTH = #{workerBirth},
 		PAY = #{pay},
 		WORKER_GRADE = #{workerGrade}
-		WHERE WORKER_SEQ = #{workerSeq}
+		WHERE WORKER_SEQ =	#{workerSeq}
 	</update>
-	
-	<delete id="deleteWorker" parameterType="co.cod.app.admin.worker.WorkerVO">		
+	<update id="updateWorkerState" parameterType="co.cod.app.admin.worker.WorkerVO">
+		UPDATE worker
+		SET
+		worker_state = #{workerState}
+		WHERE worker_seq = #{workerSeq}
+	</update>
+	<delete id="deleteWorker"
+		parameterType="co.cod.app.admin.worker.WorkerVO">
 		DELETE FROM WORKER WHERE WORKER_SEQ = #{workerSeq}
-		
 	</delete>
-	
-	
+
+
 </mapper>

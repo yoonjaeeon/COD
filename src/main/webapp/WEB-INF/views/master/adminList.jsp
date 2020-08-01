@@ -77,15 +77,9 @@
 		});
 	}
 
-	$('body').on('click', '#state1', function() {
-		selectList(1);
-	}); //조회 버튼 클릭
-	$('body').on('click', '#state2', function() {
-		selectList(2);
-	}); //조회 버튼 클릭
-	$('body').on('click', '#state0', function() {
-		selectList(0,1,2);
-	}); //조회 버
+	$('body').on('click', '#state1', function() { selectList(1); }); //조회 버튼 클릭
+	$('body').on('click', '#state2', function() { selectList(2); }); //조회 버튼 클릭
+	$('body').on('click', '#state0', function() { selectList(0,1,2);}); //조회 버
 
 	//대기상태 수정 요청
 	function cafeStateUpdate() {

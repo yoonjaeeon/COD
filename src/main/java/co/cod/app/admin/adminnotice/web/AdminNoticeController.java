@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.adminnotice.AdminNoticeVO;
 import co.cod.app.admin.adminnotice.service.AdminNoticeService;
+import co.cod.app.menu.MenuVO;
 @Controller
 public class AdminNoticeController {
 
@@ -56,11 +57,12 @@ public class AdminNoticeController {
 		return result;
 	}
 	//등록
-	@RequestMapping(value="/adminNotice",method=RequestMethod.POST)
+	@RequestMapping(value="/adminNotice" , method=RequestMethod.POST)
 	@ResponseBody
-	public Map insertadminNotice(AdminNoticeVO vo, Model model, HttpSession session) {
-		vo.setAdminId((String)session.getAttribute("adminId"));		
-		adminNoticeService.insertAdminNotice(vo);
+	public Map insertAdminNotice(AdminNoticeVO adminNoticeVO, Model model, HttpSession session) {
+		adminNoticeVO.setAdminId((String)session.getAttribute("adminId"));
+		System.out.println(adminNoticeVO);
+		adminNoticeService.insertAdminNotice(adminNoticeVO);
 		return  Collections.singletonMap("result", true);
 	}
 	
@@ -71,7 +73,13 @@ public class AdminNoticeController {
 		adminNoticeService.updateAdminNotice(vo);
 		return  vo;
 	}	
-	
+	@RequestMapping("insertAdminNotice") 
+	public String
+	 insertAdminNotice(HttpSession session, AdminNoticeVO adminNoticeVO, Model model){ 
+		adminNoticeVO.setAdminId((String)session.getAttribute("adminId"));
+		adminNoticeService.insertAdminNotice(adminNoticeVO);
+		return "redirect:admin";
+	}
 	/*
 	 * @RequestMapping("insertAdminNotice") public String
 	 * insertAdminNotice(HttpSession session, AdminNoticeVO adminNoticeVO, Model

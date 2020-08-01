@@ -49,4 +49,9 @@ public class WorkerServiceImpl implements WorkerService{
 		
 	}
 
+	@Override
+	public void updateWorkerState(WorkerVO workerVO) {
+		workerMapper.updateWorkerState(workerVO);		
+	}
+
 }

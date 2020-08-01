@@ -1,8 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.on{
+	color:red;
+}
+.off{
+	color:green;
+}
+</style>
 <script>
+
 $(function(){
+	seatList();
 	workerList();
 });
 //메뉴 목록 조회 요청
@@ -17,20 +27,88 @@ function workerList() {
 		success:workerListResult
 	});
 }
-
+//자리 목록 조회 요청
+function seatList() {
+   $.ajax({
+      url:'seat',
+      type:'GET',
+      contentType:'application/json;charset=utf-8',
+      dataType:'json',
+      error:function(xhr,status,msg){
+         alert("상태값 :" + status + " Http에러메시지 :"+msg);
+      },
+      success:seatListResult
+   });
+}//seatList
 //메뉴 목록 조회 응답
 function workerListResult(data) {
    $("#workers").empty();
    $.each(data,function(idx,item){
-      $('<div>').addClass('col-md-4 col-sm-6')
-      .append($('<div>').html('<i class="fas fa-user fa-2x"></i> <br>'))
+      $('<div>').addClass('col-md-4 col-sm-6').addClass('wtbl')
+      .append($('<div>').html('<i class="fas fa-user fa-2x"></i> <br>').addClass('workerIcon'))
       .append($('<div>').html(item.workerName ))
+      .append($('<input type=\'text\' class=\'workerSeq\'>').val(item.workerSeq))
       .appendTo('#workers');
+      if(item.workerState ==1){
+    	 $('.workerIcon').addClass('off')
+      }
    });//each
 }//menuListResult
+//메뉴 목록 조회 응답
+function seatListResult(data) {
+	   $.each(data,function(idx,item){
+		  $('<div>').addClass('col-md-4 col-sm-6')
+		  			.append($('<div>').html('<i class="fas fa-cog fa-2x"></i><br>').addClass('tblIcon'))
+		  			.append($('<div>').html(item.seatName))
+	      .appendTo('#tblView');
+		  if(item.seatReserve ==0){
+		    	 $('.tblIcon').addClass('off')
+		  }else{
+		    	 $('.tblIcon').addClass('on')
+		  }
+	   });
+}//menuListResult
+
+//출퇴기능
+
+   $('body').on('click','.wtbl',function(){
+      var workerSeq = $(this).find('.workerSeq').val();
+      $.ajax({
+         url:"adminWorker/"+workerSeq,
+         type:'GET',
+         contentType:'application/json;charset=utf-8',
+         dataType:'json',
+         error:function(xhr,status,msg){
+            alert("상태값 :" + status + " Http에러메시지 :"+msg);
+         },
+         success:workerSelectResult
+      });
+   }); //조회 버튼 클릭
+
+
+//메뉴 조회 응답
+function workerSelectResult(worker) {
+	if(worker.workerState==0){
+		workerUpdate(worker.workerSeq, 1);
+	}else{
+		workerUpdate(worker.workerSeq, 0);
+	}
+}//menuSelectResult
+function workerUpdate(workerSeq, workerState) {
+	$.ajax({ 
+	    url: "workerState", 
+	    type: 'PUT', 
+	    dataType: 'json',
+	    data : JSON.stringify({workerSeq:workerSeq, workerState:workerState}),
+	    success: function(data) { 
+	    	workerList();
+	    },
+	    error:function(xhr, status, message) { 
+	        alert(" status: "+status+" 에러:"+message);
+	    }
+	});
+}
 </script>
-
-
 <div class="row" style="margin: 3em">
 	<!-- 메인왼쪽 -->
 	<div class="col-lg-6">
@@ -41,11 +119,7 @@ function workerListResult(data) {
 			</div>
 			<div class="card-body">
 				<div class="row workericon" align="center" id="workers">
-					<c:forEach items="${workerList }" var="w">
-						<div class="col-md-4 col-sm-6" style="padding: 0.3em">
-							<i class="fas fa-user fa-2x"></i> <br> ${w.workerName }
-						</div>
-					</c:forEach>
+					
 				</div>
 			</div>
 		</div>
@@ -55,12 +129,7 @@ function workerListResult(data) {
 				<h6 class="m-0 font-weight-bold">* 테이블 ON/OFF *</h6>
 			</div>
 			<div class="card-body">
-				<div class="row cafetables" align="center">
-					<c:forEach begin="0" end="6">
-						<div class="col-sm-3" style="padding: 0.3em">
-							<i class="fas fa-cog fa-2x"></i> <br> T1
-						</div>
-					</c:forEach>
+				<div class="row cafetables" align="center" id="tblView">
 				</div>
 			</div>
 		</div>

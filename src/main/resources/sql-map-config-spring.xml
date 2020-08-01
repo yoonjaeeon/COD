@@ -19,6 +19,7 @@
 	
 	<typeAliases>
 		<typeAlias type="co.cod.app.menu.MenuVO" alias="menu"/>
+		<typeAlias type="co.cod.app.commute.CommuteVO" alias="commute"/>
 		<typeAlias type="co.cod.app.member.MemberVO" alias="members"/>
 		<typeAlias type="co.cod.app.admin.AdminVO" alias="admins"/>
 		<typeAlias type="co.cod.app.admin.adminnotice.AdminNoticeVO" alias="adminNotice"/>

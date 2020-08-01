@@ -1,4 +1,4 @@
-package vofile;
+package co.cod.app.commute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

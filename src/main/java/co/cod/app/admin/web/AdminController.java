@@ -1,6 +1,5 @@
 package co.cod.app.admin.web;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.seat.service.SeatService;
 
 @Controller

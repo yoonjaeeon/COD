@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class AdminNoticeVO {
 	Integer adminNoticeSeq;
-	String adminNoticeTitle;
-	String adminId;
-	String adminNoticeContent;
-	String adminNoticeTime;
+	String 	adminId;
+	String	adminNoticeTitle;
+	String 	adminNoticeContent;
+	String 	adminNoticeTime;
+
 }

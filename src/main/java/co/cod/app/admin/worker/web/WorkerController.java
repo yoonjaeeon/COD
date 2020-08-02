@@ -18,12 +18,14 @@ import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.admin.worker.service.WorkerService;
+import co.cod.app.commute.service.CommuteService;
 
 @Controller
 public class WorkerController {
 
 	
 	@Autowired WorkerService workerService;
+	@Autowired CommuteService commuteService;
 	
 	// 등록폼
 	@RequestMapping("adminWorkerForm")
@@ -76,14 +78,16 @@ public class WorkerController {
 	@ResponseBody
 	public List<WorkerVO> getWorkerList(Model model, WorkerVO workerVO,HttpSession session) {
 		return  workerService.getWorkerList((String)session.getAttribute("adminId"));	
-	}	
-	@RequestMapping(value="/workerState" ,method=RequestMethod.PUT )	   
+	}
+	//출석상태 업데이트
+	@RequestMapping(value="/workerState" ,method=RequestMethod.PUT ,consumes="application/json")	   
 	@ResponseBody
-	public WorkerVO workerState(WorkerVO workerVO, Model model) {
-		
+	public WorkerVO workerState(@RequestBody WorkerVO workerVO, Model model) {
 		workerService.updateWorkerState(workerVO);
 		return  workerVO;
-	}		
+	}
+	
+
 	//
 	@RequestMapping(value="/respAPI")
 	@ResponseBody

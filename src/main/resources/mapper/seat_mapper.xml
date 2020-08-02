@@ -20,6 +20,7 @@
 	<select id="getSeatList"  parameterType="String" resultType="co.cod.app.seat.SeatVO" >
 		SELECT *
         from seat
+        where admin_id = #{adminId}
         order by seat_seq desc
 	</select>
 
@@ -41,7 +42,13 @@
 		</set>	    
 		where seat_seq = #{seatSeq}
 	</update>
-
+	<!-- 예약상태변경 -->
+	<update id="updateSeatReserve" parameterType="co.cod.app.seat.SeatVO">
+		UPDATE seat
+		SET
+		seat_reserve = #{seatReserve}
+		WHERE seat_seq = #{seatSeq}
+	</update>
 	<delete id="deleteSeat" parameterType="co.cod.app.seat.SeatVO">
 		DELETE FROM seat 
 		WHERE

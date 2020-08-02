@@ -16,7 +16,8 @@ public interface SeatService {
 
 	// 삭제
 	public void deleteSeat(SeatVO seatVO);
-
+	
 	// 수정
 	public void updateSeat(SeatVO seatVO);
+	public void updateSeatReserve(SeatVO seatVO);
 }

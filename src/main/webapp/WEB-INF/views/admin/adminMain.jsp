@@ -10,7 +10,6 @@
 }
 </style>
 <script>
-
 $(function(){
 	seatList();
 	workerList();
@@ -47,7 +46,7 @@ function workerListResult(data) {
       $('<div>').addClass('col-md-4 col-sm-6').addClass('wtbl')
       .append($('<div>').html('<i class="fas fa-user fa-2x"></i> <br>').addClass('workerIcon'))
       .append($('<div>').html(item.workerName ))
-      .append($('<input type=\'text\' class=\'workerSeq\'>').val(item.workerSeq))
+      .append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
       .appendTo('#workers');
       if(item.workerState ==1){
     	 $('.workerIcon').addClass('off')
@@ -56,56 +55,101 @@ function workerListResult(data) {
 }//menuListResult
 //메뉴 목록 조회 응답
 function seatListResult(data) {
+	$("#tblView").empty();
 	   $.each(data,function(idx,item){
-		  $('<div>').addClass('col-md-4 col-sm-6')
+		  $('<div>').addClass('col-md-4 col-sm-6').addClass('stbl')
 		  			.append($('<div>').html('<i class="fas fa-cog fa-2x"></i><br>').addClass('tblIcon'))
 		  			.append($('<div>').html(item.seatName))
+		  			.append($('<input type=\'hidden\' class=\'seatSeq\'>').val(item.seatSeq))
 	      .appendTo('#tblView');
 		  if(item.seatReserve ==0){
-		    	 $('.tblIcon').addClass('off')
+			  $('.tblIcon').addClass('off')
 		  }else{
-		    	 $('.tblIcon').addClass('on')
+			  $('.tblIcon').addClass('on')
 		  }
 	   });
 }//menuListResult
-
 //출퇴기능
+$('body').on('click', '.wtbl', function() {
+	var workerSeq = $(this).find('.workerSeq').val();
+	$.ajax({
+		url : "adminWorker/" + workerSeq,
+		type : 'GET',
+		contentType : 'application/json;charset=utf-8',
+		dataType : 'json',
+		error : function(xhr, status, msg) {
+			alert("상태값 :" + status + " Http에러메시지 :" + msg);
+		},
+		success : workerSelectResult
+	});
+}); //조회 버튼 클릭
 
-   $('body').on('click','.wtbl',function(){
-      var workerSeq = $(this).find('.workerSeq').val();
-      $.ajax({
-         url:"adminWorker/"+workerSeq,
-         type:'GET',
-         contentType:'application/json;charset=utf-8',
-         dataType:'json',
-         error:function(xhr,status,msg){
-            alert("상태값 :" + status + " Http에러메시지 :"+msg);
-         },
-         success:workerSelectResult
-      });
-   }); //조회 버튼 클릭
-
-
-//메뉴 조회 응답
+//출석 조회 응답
 function workerSelectResult(worker) {
-	if(worker.workerState==0){
+	if (worker.workerState == 0) {
 		workerUpdate(worker.workerSeq, 1);
-	}else{
+	} else {
 		workerUpdate(worker.workerSeq, 0);
 	}
-}//menuSelectResult
+}//츨석 업데이트
 function workerUpdate(workerSeq, workerState) {
-	$.ajax({ 
-	    url: "workerState", 
-	    type: 'PUT', 
-	    dataType: 'json',
-	    data : JSON.stringify({workerSeq:workerSeq, workerState:workerState}),
-	    success: function(data) { 
-	    	workerList();
-	    },
-	    error:function(xhr, status, message) { 
-	        alert(" status: "+status+" 에러:"+message);
-	    }
+	if (workerState == 1) {
+		$.post("commute", {workerSeq : workerSeq});
+	}
+	$.ajax({
+		url : "workerState",
+		type : 'PUT',
+		data : JSON.stringify({
+			workerSeq : workerSeq,
+			workerState : workerState
+		}),
+		dataType : 'json',
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			workerList();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
+
+//좌석 on off
+$('body').on('click', '.stbl', function() {
+	var seatSeq = $(this).find('.seatSeq').val();
+	$.ajax({
+		url : "seat/" + seatSeq,
+		type : 'GET',
+		contentType : 'application/json;charset=utf-8',
+		dataType : 'json',
+		error : function(xhr, status, msg) {
+			alert("상태값 :" + status + " Http에러메시지 :" + msg);
+		},
+		success : function(data){
+			if(data.seatReserve==0){
+				seatUpdate(data.seatSeq, 1);
+			}else{
+				seatUpdate(data.seatSeq, 0);
+			}
+		}
+	});
+});
+function seatUpdate(seatSeq, seatReserve) {
+	$.ajax({
+		url : "seatReserve",
+		type : 'PUT',
+		data : JSON.stringify({
+			seatSeq : seatSeq,
+			seatReserve : seatReserve
+		}),
+		dataType : 'json',
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			seatList();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
 	});
 }
 </script>

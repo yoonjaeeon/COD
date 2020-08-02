@@ -5,26 +5,27 @@
 
 	<insert id="insertCommute" parameterType="commute">
 	INSERT INTO Commute	(
-	COMMUTE_SEQ, WORKER_SEQ,COMMUTE_DATE, START_TIME
+	COMMUTE_SEQ, WORKER_SEQ, START_TIME
 	)
 	VALUES(
 	(select nvl(max(commute_seq),0)+1 from commute),
-	#{workerSea},
-	sysdate,
+	#{workerSeq},
 	sysdate
 	)
 	</insert>	
 	
+	<update id="updateCommute" parameterType="commute">
+	 	UPDATE commute
+		SET
+		end_time = sysdate
+		where worker_seq = #{workerSeq}
+	</update>	
+
 	<select id="getcommute" parameterType="String" resultType="commute">		
 		SELECT * 
 		  FROM commute 
 		 WHERE worker_seq = #{worker_seq}
 	</select>
 		
-	<update id="updatecommute" parameterType="commute">
-	 	UPDATE WORKER
-		SET
-		end_time = sysdate
-	</update>	
 	
 </mapper>

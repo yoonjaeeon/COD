@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -105,7 +106,14 @@ public class SeatController {
 	@RequestMapping(value = "/seat", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SeatVO> getSeatList(Model model, HttpSession session) {
-		String adminId = (String) session.getAttribute("adminId");
-		return seatService.getSeatList(adminId);
+		return seatService.getSeatList((String) session.getAttribute("adminId"));
+	}
+	
+	//좌석상태 업데이트
+	@RequestMapping(value="/seatReserve" ,method=RequestMethod.PUT ,consumes="application/json")	   
+	@ResponseBody
+	public SeatVO seatReserve(@RequestBody SeatVO seatVO, Model model) {
+		seatService.updateSeatReserve(seatVO);
+		return  seatVO;
 	}
 }

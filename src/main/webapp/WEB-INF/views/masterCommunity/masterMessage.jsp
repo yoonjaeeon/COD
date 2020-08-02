@@ -11,31 +11,101 @@
 		$()
 	}); */
 	
-	function sendMasterMessage(value) {	
+	function sendMasterMessage(adminId,seq) {	
 		$('#myModal').modal('show');		
 		$('#myInput').trigger('focus');
-		$('#adminId').val(value);		
+		$('#adminId').val(adminId);		
+		$('#sendMessageSeq').val(seq);
 	};
 	
+	function receiveMessage(){
+		$.ajax({
+			url : 'receiveMasterMessage',
+			type : 'POST',
+			contentType: 'application/json;charset=utf-8',
+			dataType : 'json',
+			async : true,
+			success : function(data){
+	           if(typeof data.length == 0 || data == ""){
+				    	 alert("받은 메세지가 없습니다.");		 
+						 $('#testBoardTable tr:gt(0)').empty();
+	           }else{
+					$('#th').text('읽음');
+					$('#date').text('수신일자');
+					$('#dap').text('답장');
+					$("#testBoardTable tr:gt(0)").empty();
+				$.each(data, function (index, item) {
+	                let html = '';
+	                html += '<tr class="tr" id="tr'+item.messageSeq+'">';
+	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.messageTitle+'</td>';    
+	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.adminId+'</td>'; 
+                    html += '<td id="msg'+item.messageSeq+'" ><button data-toggle="modal" data-target="#modalMessage" onclick="sendMasterMessage('+item.adminId+','+item.messageSeq+')">답장</button></td>';
+
+				    if(item.read === 1){
+	            	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+	                }else{
+                	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+	                }
+	                html += '</tr>';
+	                $("#testBoardTable").append(html);
+	            });
+	           }
+			}
+			
+					
+		})
+	} 
 	
+	 function sendMessage(){
+			$.ajax({
+				url : 'sendMasterMessage', 
+				type : 'post',
+				contentType: 'application/json;charset=utf-8',
+				dataType : 'json',
+				async : true,
+				success : function(data){
+					 if(typeof data.length == 0 || data == ""){
+				    	 alert("보낸 메세지가 없습니다.");		 
+						 $('#testBoardTable tr:gt(0)').empty();
+		       }else{
+					$('#date').text('발신일자')
+					$('#th').text('발송완료');
+					$('#dap').text('보낸날짜')
+					$("#testBoardTable tr:gt(0)").empty();
+						  $.each(data, function (index, item) {
+			                    let html = '';
+			                    html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
+			                    html += '<td>'+item.messageTitle+'</td>';	 
+			                    html += '<td>'+item.adminId+'</td>';
+			                    html += '<td>'+item.messageDate+'</td>';	
+		                    	html += '<td align="center">O</td>';
+			                    html += '</tr>';
+			                    $("#testBoardTable").append(html);
+			                });
+						
+					$('#messageTitle').html(data.messageTitle);
+					}
+				}
+			})
+		}
 
 </script>
-
-<table border="1" id="testBoardTable">
+<button type="button" onclick="receiveMessage()">받은 메세지</button><button type="button" onclick="sendMessage()">보낸 메세지</button>
+<table border="1" id="testBoardTable" class="table table-hover">
 	<tr id='tr'>
 		<!-- <th><input type="checkBox" id="chkAll"></th> -->
 		<th>제목</th>
 		<th>아이디</th>
-		<th>답장</th>
-		<th>읽음</th>
+		<th id="dap">답장</th>
+		<th id="th">읽음</th>
 		<!-- data-toggle="modal" data-target="#exampleModal" -->
 	</tr>
 	<c:forEach items="${messageList}" var="list">
-		<tr>
+		<tr id="tr${list.messageSeq }">
 			<!-- <td><input type="checkbox" name="check"></td> -->
 			<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })"><span id="messageTitle"></span>${list.messageTitle }</td>
 			<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })"><span id="messageAdminId"></span>${list.adminId }</td>
-			<td><button data-toggle="modal" data-target="#modalMessage" onclick="sendMasterMessage('${list.adminId }')">답장</button></td>
+			<td><button data-toggle="modal" data-target="#modalMessage" onclick="sendMasterMessage('${list.adminId }',${list.messageSeq })">답장</button></td>
 			<td align="center" class="readClass" id="messageRead"> <!-- 메세지 읽음표시  -->
 			<span id="messageUpdate"> 			
 			<c:if test="${list.masterRead == 1 }">
@@ -92,6 +162,7 @@
 				</button>
 			</div>
 			<form method="post" id="sendModal" name="sendModal">
+				<input type="hidden" id="sendMessageSeq">
 				<input type="text" name="messageTitle" placeholder="제목 입력" />
 				<input type="text" id="adminId" name="adminId" readonly ><br> 
 					<input type="text" name="messageContent" placeholder="메세지 입력" />
@@ -126,6 +197,7 @@ function sendAjax(){
 	var title = $('#sendtitle').val();
 	var content = $('#sendContent').val();
 	var adminId = $('#adminId').val();
+	var messageSeq = $('#sendMessageSeq').val();
 	$.ajax({
 		url :'insertMasterMessage',
 		method : 'post',
@@ -134,6 +206,19 @@ function sendAjax(){
 		success:function(data){
 			alert("전송완료");
 			$("#modalMessage .close").click();
+			
+			$.ajax({
+				url:'getMasterSend',
+				method :'post',
+				data : {messageSeq:messageSeq},
+				dataType :'json',
+				sucess:function(result){
+					var seq = $('#sendMessageSeq').val();
+
+				    $('#tr'+messageSeq+'').empty();
+					alert(result);
+				}
+			})
 			//$('#modalMessage').modal('hide');
 		}
 	})

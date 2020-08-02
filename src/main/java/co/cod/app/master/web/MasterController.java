@@ -50,8 +50,6 @@ public class MasterController {
 	@RequestMapping("getMasterMessage") 
 	@ResponseBody
 	public MasterVO getMasterMessage(MasterVO masterVO) {
-		//messageVO.setMessageSeq(2);
-		
 		return masterService.getMasterMessage(masterVO);		
 	}	
 	
@@ -98,7 +96,18 @@ public class MasterController {
 		session.invalidate();
 		return "main/home";
 	}
-		
+	
+	@RequestMapping("receiveMasterMessage")
+	@ResponseBody
+	public List<MessageVO> receiveMasterMessage(MessageVO messageVO) {
+		return masterService.receiveMasterMessage(messageVO);		
+	}
+	
+	@RequestMapping("sendMasterMessage")
+	@ResponseBody
+	public List<MessageVO> sendMasterMessage(MessageVO messageVO) {
+		return masterService.sendMasterMessage(messageVO);		
+	}
 	
 }
 	

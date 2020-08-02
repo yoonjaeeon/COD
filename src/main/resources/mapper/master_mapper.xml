@@ -9,8 +9,18 @@
 <mapper namespace="co.cod.app.master.mapper.MasterMapper">
 	<select id="masterMessage" resultType="vofile.MessageVO"> 
 	SELECT * FROM MESSAGE
-	WHERE SEND_RECEIVE =1
+	WHERE SEND_RECEIVE =1 AND MASTER_SEND=0
 	</select>	
+	
+	<select id="sendMasterMessage" resultType="vofile.MessageVO">
+	SELECT * FROM MESSAGE
+	WHERE SEND_RECEIVE =1 AND MASTER_SEND=1
+	</select>
+	
+	<select id="receiveMasterMessage" resultType="vofile.MessageVO">
+	SELECT * FROM MESSAGE
+	WHERE SEND_RECEIVE =1 AND MASTER_SEND=0
+	</select>
 
 	<select id="getMasterMessageCount" resultType="int">
 		 SELECT NVL(COUNT(MASTER_READ),0) FROM MESSAGE

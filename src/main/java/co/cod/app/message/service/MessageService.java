@@ -11,4 +11,5 @@ public interface MessageService {
 	public int getMessageCount(MessageVO messageVO); //메세지 카운트
 	public List<MessageVO> sendMessage(MessageVO messageVO);  //보낸메세지
 	public List<MessageVO> receiveMessage(MessageVO messageVO); //받은메세지
+	public void getMasterSend(MessageVO messageVO);
 }

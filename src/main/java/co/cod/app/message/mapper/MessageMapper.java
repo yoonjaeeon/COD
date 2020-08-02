@@ -12,4 +12,5 @@ public interface MessageMapper {
 	public int getMessageCount(MessageVO messageVO);  //메세지 카운트 
 	public List<MessageVO> sendMessage(MessageVO messageVO);
 	public List<MessageVO> receiveMessage(MessageVO messageVO);
+	public void getMasterSend(MessageVO messageVO);  //마스터 보낸메세지
 }

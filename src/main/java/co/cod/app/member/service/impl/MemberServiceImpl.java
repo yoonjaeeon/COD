@@ -74,6 +74,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMyMenuList(memberVO);
 	}
 
+	@Override
+	public String getEmail(MemberVO memberVO) {
+		return memberMapper.getEmail(memberVO);
+	}
+
+	@Override
+	public MemberVO getPhone(MemberVO memberVO) {
+		return memberMapper.getPhone(memberVO);
+	}
+
 
 	
 	

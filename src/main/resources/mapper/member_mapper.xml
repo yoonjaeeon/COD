@@ -23,7 +23,7 @@
 	</select>
 
 	<select id="getMemberList"
-		resultType="list">
+		resultType="co.cod.app.member.MemberVO">
 		select * from member
 	</select>
 	
@@ -97,13 +97,24 @@
 	</delete>
 
 
-	<delete id="deleteMember" parameterType="co.cod.app.member.MemberVO">
+	<delete id="deleteMember" parameterType="String">
 		
 		DELETE FROM member
 		WHERE email =#{email}
 	
 	</delete>
 
+	<select id="getEmail" parameterType="co.cod.app.member.MemberVO">
+	SELECT EMAIL 
+	  FROM MEMBER 
+	 WHERE EMAIL=#{email jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getPhone" parameterType="co.cod.app.member.MemberVO">
+	SELECT PHONE 
+	  FROM MEMBER 
+	 WHERE  PHONE=#{phone}
+	</select>
 
 
 

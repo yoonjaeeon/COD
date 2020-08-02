@@ -2,15 +2,14 @@ package co.cod.app.member.service;
 
 import java.util.List;
 
-import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
-import co.cod.app.menu.MenuVO;
 import vofile.BookmarksVO;
+import vofile.MessageVO;
 
 public interface MemberService {
 
 	public MemberVO getMember( MemberVO memberVO);
-	public List< MemberVO> getMemberList( );
+	public List<MemberVO> getMemberList( );
 	public void insertMember( MemberVO memberVO);
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
@@ -22,4 +21,7 @@ public interface MemberService {
 	public List <MemberVO> getMyorderList(MemberVO memberVO);
 	//멤버 결제 상세 조회 
 	public List <MemberVO> getMyMenuList(MemberVO memberVO);
+	public String getEmail(MemberVO memberVO);
+	public MemberVO getPhone(MemberVO memberVO);
+	
 }

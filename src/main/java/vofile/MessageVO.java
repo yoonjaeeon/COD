@@ -14,4 +14,5 @@ public class MessageVO {
 	Integer read;
 	Integer masterRead;
 	String messageDate;
+	Integer masterSend;
 }

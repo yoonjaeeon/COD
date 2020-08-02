@@ -68,17 +68,16 @@ messageSeq = seq;
 		type : 'POST',
 		contentType: 'application/json;charset=utf-8',
 		dataType : 'json',
-		async : false,
+		async : true,
 		success : function(data){
            if(typeof data.length == 0 || data == ""){
 			    	 alert("받은 메세지가 없습니다.");		 
 					 $('#testBoardTable tr:gt(0)').empty();
            }else{
-			    	  console.log(data)
-			$.each(data, function (index, item) {
 				$('#th').text('읽음');
 				$('#date').text('수신일자')
 				$("#testBoardTable tr:gt(0)").empty();
+			$.each(data, function (index, item) {
                 let html = '';
                 html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
                 html += '<td>'+item.messageTitle+'</td>';    
@@ -138,7 +137,6 @@ messageSeq = seq;
 </div>
 <!-- 페이징 처리하기 -->
 <form action="" id="modal" method="post"></form>
-
 <!-- Modal -->
 <div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">

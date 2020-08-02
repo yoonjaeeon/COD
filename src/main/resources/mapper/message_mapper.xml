@@ -65,5 +65,11 @@
 		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
 		 ORDER BY MESSAGE_SEQ DESC
 	</select>
+	
+	<update id="getMasterSend" parameterType="vofile.MessageVO">
+	UPDATE MESSAGE 
+	   SET MASTER_SEND=1 
+	 WHERE MESSAGE_SEQ=#{messageSeq}
+	</update>
 
 </mapper>

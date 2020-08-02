@@ -44,8 +44,6 @@ public class MessageController {
 	@RequestMapping("getMessage") 
 	@ResponseBody
 	public MessageVO getMessage(MessageVO messageVO) {
-		//messageVO.setMessageSeq(2);
-		
 		return messageService.getMessage(messageVO);		
 	}	
 	
@@ -64,6 +62,14 @@ public class MessageController {
 		
 		return messageService.receiveMessage(messageVO);
 	}
+	
+	@RequestMapping("getMasterSend")
+	@ResponseBody
+	public String getMasterSend(MessageVO messageVO) {
+		messageService.getMasterSend(messageVO);
+		return "success";
+	}
+	
 	
 	
 }

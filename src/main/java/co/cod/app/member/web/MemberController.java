@@ -40,7 +40,7 @@ public class MemberController {
 	}
 
 	// 전체조회
-	@RequestMapping("memberList")
+	@RequestMapping("getMemberList")
 	public List getMemberList(MemberVO memberVO, Model model) {
 		model.addAttribute("MemberList", memberService.getMemberList());		
 		return memberService.getMemberList();
@@ -155,6 +155,17 @@ public class MemberController {
 	@ResponseBody
 	public String deleteBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {
 		memberService.deleteBookmark(bookmarksVO);
+		return "true";
+	}
+	
+	@RequestMapping("getPhone")
+	public MemberVO getPhone(MemberVO memberVO) {
+		return memberService.getPhone(memberVO);
+	}
+	
+	@RequestMapping("getEmail")
+	public String getEmail(MemberVO memberVO) {
+		memberService.getEmail(memberVO);
 		return "true";
 	}
 }

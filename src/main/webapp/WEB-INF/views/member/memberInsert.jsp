@@ -41,6 +41,10 @@
 			frm.birthday.focus();
 			return;
 		}
+		
+		$.ajax({
+			
+		});
 		alert("회원가입을 축하합니다!");
 		frm.submit();
 	}
@@ -103,6 +107,35 @@
 </form>
 </div>
 <script>
+function idDupCheck(){
+	var email = $('#email').val();
+	$.ajax({
+		url : 'getEmail',
+		type:'post',
+		contentType: 'application/json;charset=utf-8',
+		dataType : 'json',
+		data : {email:email},
+		always:function(result){
+			if(result == "" && result != null){
+				$('#idCheck').html("아이디 사용 가능");
+			}else if(result == email){
+				$('#idCheck').html("아이디 중복");
+			}
+			}
+			/* var check = [];
+			for(var i=0; i<= result.length; i++){
+				
+				if(result[i].email == $('#email').val()){
+					$('#idCheck').html("아이디 중복");
+				}else{
+					$('#idCheck').html("아이디 사용가능");
+				}
+				
+			}  */
+		});
+	}
+
+
 	$('.pw').focusout(function() {
 		var pwd1 = $("#pw").val();
 		var pwd2 = $("#pw2").val();
@@ -118,6 +151,7 @@
 				$("#alert-success").css('display', 'none');
 				$("#alert-danger").css('display', 'inline-block');
 				$("#pw").val("");
+				
 				$("#pw2").val("");
 				frm.pw.focus();
 			}

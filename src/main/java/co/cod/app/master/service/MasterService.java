@@ -13,4 +13,6 @@ public interface MasterService {
 	public int getMasterMessageCount(); //메세지 카운트
 	public List<MessageVO> masterMessage(); //메세지 리스트
 	public MasterVO getMasterMessage(MasterVO masterVO);
+	public List<MessageVO> receiveMasterMessage(MessageVO messageVO);
+	public List<MessageVO> sendMasterMessage(MessageVO messageVO);
 }

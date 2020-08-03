@@ -89,10 +89,10 @@ function adminNoticeSelectResult(adminNotice) {
 //메뉴 수정 요청
 function adminNoticeUpdate() {
    $('#btnUpdate').on('click',function(){
-	   var adminNoticeSeq = $(this).closest('tr').find('#adminNoticeSeq').val();
       $.ajax({ 
           url: "adminNotice", 
           type: 'PUT', 
+          data: JSON.stringify($("#adminNoticeF").serializeObject()),
           dataType: 'json', 
           contentType: 'application/json',
           success: function(data) { 
@@ -147,11 +147,10 @@ $(document).ready(function(){
 	<div align="center" class="container">
 		<h4>공지사항</h4>
 		<br>
-		<form id="form1" class="form-horizontal">
-			<form class="adminNoticeF">
+		<form id="adminNoticeF" class="form-horizontal">
+
 				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%"><br> <br>
 				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px"> </textarea>
-			</form>
 			<br><br>
 			<div class="btn-group">
 				<input type="button" class="btn" value="등록" id="btnInsert" />

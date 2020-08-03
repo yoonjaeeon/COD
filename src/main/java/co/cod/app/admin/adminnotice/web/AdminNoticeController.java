@@ -67,7 +67,7 @@ public class AdminNoticeController {
 	}
 	
 	//수정
-	@RequestMapping(value="/adminNotice" ,method=RequestMethod.PUT ,consumes="application/json")
+	@RequestMapping(value="/adminNotice" , method=RequestMethod.PUT ,consumes="application/json")
 	@ResponseBody
 	public AdminNoticeVO updateAdminNotice(@RequestBody AdminNoticeVO vo, Model model) {
 		adminNoticeService.updateAdminNotice(vo);

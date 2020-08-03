@@ -63,7 +63,7 @@
 								</tfoot>
 								<tbody>
 									<c:forEach begin="0" end="10" items="${getMemberDayOrder}" var="list">
-										<tr role="row" class="odd" data-toggle="modal" data-target="#contentModal" onclick="getOrders('${list.orderTime}')">																
+										<tr role="row" class="odd" data-toggle="modal" data-target="#contentModal" onclick="getOrders('${list.orderTime}','${list.cafeName }')">																
 											<td>
 											<fmt:parseDate value="${list.orderTime}" pattern="yyyy-MM-dd" var="date"/>
 											<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
@@ -152,16 +152,19 @@
 
 <script>
 var orderTime;
-function getOrders(time){
+var cafeName;
+function getOrders(time, name){
 	orderTime = time;
+	cafeName = name;
 }
 $('#contentModal').on('show.bs.modal', function (e) {
 	$.ajax({
 		url : 'getMemberOrders',  
 		method:'post',
-		data : {orderTime : orderTime},
+		data : {orderTime : orderTime, cafeName : cafeName},
 		dataType :'json',
 		success:function(result){
+			$('#tbody').empty();
 			$.each(result, function(index, item){		
 				$('#tbody').append('<tr><td>'+item.menuName+'</td><td>'+item.price+'</td><td>'+item.orderlineAmount+'</td><td>'+item.orderTime+'</td></tr>')
 				

@@ -141,7 +141,9 @@
 			O.ORDER_TIME
 	  FROM MENU M JOIN ORDERLINE OL ON (M.MENU_SEQ = OL.MENU_SEQ)
 	            JOIN ORDERS O ON(O.ORDER_SEQ = OL.ORDER_SEQ)
+	            JOIN CAFE C ON(C.ADMIN_ID = O.ADMIN_ID)
      WHERE O.EMAIL = #{email} AND 
-     		TO_CHAR(ORDER_TIME, 'yyyy-MM-dd')=#{orderTime}
+     		TO_CHAR(ORDER_TIME, 'yyyy-MM-dd')=#{orderTime} AND
+     		C.CAFE_NAME=#{cafeName}
 	</select>
 </mapper>

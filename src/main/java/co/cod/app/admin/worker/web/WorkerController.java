@@ -79,6 +79,12 @@ public class WorkerController {
 	public List<WorkerVO> getWorkerList(Model model, WorkerVO workerVO,HttpSession session) {
 		return  workerService.getWorkerList((String)session.getAttribute("adminId"));	
 	}
+	//전체조회
+	@RequestMapping(value="/workerCommute", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Map> workerCommute(Model model, HttpSession session) {
+		return  workerService.getworkerCommute((String)session.getAttribute("adminId"));	
+	}
 	//출석상태 업데이트
 	@RequestMapping(value="/workerState" ,method=RequestMethod.PUT ,consumes="application/json")	   
 	@ResponseBody

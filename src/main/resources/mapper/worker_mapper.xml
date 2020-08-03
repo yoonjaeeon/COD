@@ -49,6 +49,11 @@
 		parameterType="co.cod.app.admin.worker.WorkerVO">
 		DELETE FROM WORKER WHERE WORKER_SEQ = #{workerSeq}
 	</delete>
-
+	<select id="getworkerCommute" parameterType="String" resultType="map">
+		SELECT *
+		FROM commute_view
+		WHERE admin_id = #{adminId}
+		ORDER BY worker_seq
+	</select>
 
 </mapper>

@@ -8,11 +8,12 @@
 			  FROM COMMUTE
 		</selectKey>
 		INSERT INTO Commute	(
-			COMMUTE_SEQ, WORKER_SEQ, START_TIME
+			COMMUTE_SEQ, WORKER_SEQ, commute_day, START_TIME
 		)
 		VALUES(
 			#{commuteSeq},
 			#{workerSeq},
+			sysdate,
 			sysdate
 		)
 	</insert>
@@ -21,7 +22,7 @@
 	 	UPDATE commute
 		SET
 		end_time = sysdate
-		where worker_seq = #{workerSeq}
+		where commute_seq = #{commuteSeq}
 	</update>	
 
 	<select id="getcommute" parameterType="String" resultType="commute">		

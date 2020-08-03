@@ -90,6 +90,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMemberDayOrder(getMemberDayOrder);
 	}
 
+	@Override
+	public List<GetMemberDayOrder> getMemberOrders(GetMemberDayOrder getMemberDayOrder) {
+		return memberMapper.getMemberOrders(getMemberDayOrder);
+	}
+
 
 	
 	

@@ -118,7 +118,7 @@
 	
 	<select id="getMemberDayOrder" resultType="vofile.GetMemberDayOrder">
 	SELECT 
-				TRUNC(O.ORDER_TIME, )
+				
                 TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd') "ORDER_TIME", 
                 C.CAFE_NAME CAFE_NAME,
                 SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
@@ -130,5 +130,18 @@
                 TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd'), 
                 C.CAFE_NAME
     ORDER BY 1 DESC
+	</select>
+	
+	<select id="getMemberOrders" resultType="vofile.GetMemberDayOrder">
+	SELECT 
+			M.MENU_NAME, 
+			OL.ORDER_STATE, 
+			M.PRICE, 
+			OL.ORDERLINE_AMOUNT, 
+			O.ORDER_TIME
+	  FROM MENU M JOIN ORDERLINE OL ON (M.MENU_SEQ = OL.MENU_SEQ)
+	            JOIN ORDERS O ON(O.ORDER_SEQ = OL.ORDER_SEQ)
+     WHERE O.EMAIL = #{email} AND 
+     		TO_CHAR(ORDER_TIME, 'yyyy-MM-dd')=#{orderTime}
 	</select>
 </mapper>

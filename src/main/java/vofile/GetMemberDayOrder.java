@@ -1,6 +1,5 @@
 package vofile;
 
-import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,4 +11,6 @@ public class GetMemberDayOrder {
 	String cafeName;
 	String price;
 	String email;
+	String menuName;
+	Integer orderlineAmount;
 }

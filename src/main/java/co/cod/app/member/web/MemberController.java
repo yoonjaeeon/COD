@@ -176,4 +176,11 @@ public class MemberController {
 		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
 		return memberService.getMemberDayOrder(getMemberDayOrder);
 	}
+	
+	@RequestMapping("getMemberOrders")
+	@ResponseBody
+	public List<GetMemberDayOrder> getMemberOrders(HttpSession session, GetMemberDayOrder getMemberDayOrder, Model model){
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		return memberService.getMemberOrders(getMemberDayOrder);
+	}
 }

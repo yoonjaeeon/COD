@@ -63,7 +63,7 @@
 								</tfoot>
 								<tbody>
 									<c:forEach begin="0" end="10" items="${getMemberDayOrder}" var="list">
-										<tr role="row" class="odd" data-toggle="modal" data-target="#contentModal">																
+										<tr role="row" class="odd" data-toggle="modal" data-target="#contentModal" onclick="getOrders('${list.orderTime}')">																
 											<td>
 											<fmt:parseDate value="${list.orderTime}" pattern="yyyy-MM-dd" var="date"/>
 											<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
@@ -137,17 +137,7 @@
 							<th>주문날짜</th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach begin="0" end="3">
-							<a href="getMyMenuList">
-								<tr>
-									<td>${menuName }</td>
-									<td>${price }</td>
-									<td>${orderlineAmount }</td>
-									<td>${orderTime }</td>									
-								</tr>
-							</a>
-						</c:forEach>
+					<tbody id="tbody">
 					</tbody>
 				</table>
 			</div>
@@ -159,3 +149,42 @@
 	</div>
 </div>
 
+
+<script>
+var orderTime;
+function getOrders(time){
+	orderTime = time;
+}
+$('#contentModal').on('show.bs.modal', function (e) {
+	$.ajax({
+		url : 'getMemberOrders',  
+		method:'post',
+		data : {orderTime : orderTime},
+		dataType :'json',
+		success:function(result){
+			$.each(result, function(index, item){		
+				$('#tbody').append('<tr><td>'+item.menuName+'</td><td>'+item.price+'</td><td>'+item.orderlineAmount+'</td><td>'+item.orderTime+'</td></tr>')
+				
+			})
+		}
+	})
+
+})  
+
+
+/* function getOrders(time){
+	$.ajax({
+		url :'getMemberOrders',
+		type : 'post',
+		data : {orderTime:time},
+		contentType: 'application/json;charset=utf-8',
+		dataType :'json',
+		success : function(result){
+			$.each(result, function(index, item){
+				$($('#tbody'))
+			})
+		}
+		
+	})
+} */
+</script>

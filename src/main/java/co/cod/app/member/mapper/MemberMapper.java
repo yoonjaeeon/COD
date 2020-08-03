@@ -26,5 +26,6 @@ public interface MemberMapper {
 	public String getEmail(MemberVO memberVO);
 	public MemberVO getPhone(MemberVO memberVO);
 	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getMemberOrders(GetMemberDayOrder getMemberDayOrder);
 	
 }

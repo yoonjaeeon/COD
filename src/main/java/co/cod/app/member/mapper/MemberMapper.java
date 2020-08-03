@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.cod.app.member.MemberVO;
 import vofile.BookmarksVO;
+import vofile.GetMemberDayOrder;
 
 
 public interface MemberMapper {
@@ -24,5 +25,6 @@ public interface MemberMapper {
 	public List <MemberVO> getMyMenuList(MemberVO memberVO);
 	public String getEmail(MemberVO memberVO);
 	public MemberVO getPhone(MemberVO memberVO);
+	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder);
 	
 }

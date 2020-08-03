@@ -62,11 +62,12 @@
 									</tr>
 								</tfoot>
 								<tbody>
-									<c:forEach begin="0" end="10" items="${getMyorderList}"
-										var="list">
-										<tr role="row" class="odd" data-toggle="modal"
-											data-target="#contentModal">																				
-											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+									<c:forEach begin="0" end="10" items="${getMemberDayOrder}" var="list">
+										<tr role="row" class="odd" data-toggle="modal" data-target="#contentModal">																
+											<td>
+											<fmt:parseDate value="${list.orderTime}" pattern="yyyy-MM-dd" var="date"/>
+											<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+											</td>
 											<td>${list.cafeName}</td>
 											<td>${list.price }</td>
 										</tr>

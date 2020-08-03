@@ -10,6 +10,7 @@ import co.cod.app.member.mapper.MemberMapper;
 import co.cod.app.member.service.MemberService;
 import co.cod.app.menu.MenuVO;
 import vofile.BookmarksVO;
+import vofile.GetMemberDayOrder;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -82,6 +83,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getPhone(MemberVO memberVO) {
 		return memberMapper.getPhone(memberVO);
+	}
+
+	@Override
+	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder) {
+		return memberMapper.getMemberDayOrder(getMemberDayOrder);
 	}
 
 

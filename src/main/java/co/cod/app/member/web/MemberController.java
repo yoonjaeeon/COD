@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 import vofile.BookmarksVO;
+import vofile.GetMemberDayOrder;
 
 @Controller
 public class MemberController {
@@ -73,10 +74,10 @@ public class MemberController {
 	
 	//멤버 결제 조회 
 	@RequestMapping("myorderList")
-	public String getMyorderList(Model model,MemberVO memberVO, HttpSession session) {		
+	public String getMyorderList(Model model,GetMemberDayOrder getMemberDayOrder ,MemberVO memberVO, HttpSession session) {		
 		memberVO.setEmail((String)session.getAttribute("loginEmail"));
-		model.addAttribute("getMyorderList", memberService.getMyorderList(memberVO));
-		
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("getMemberDayOrder", memberService.getMemberDayOrder(getMemberDayOrder));
 		return "member/myorderList";
 	}
 	//멤버 결제 조회 
@@ -167,5 +168,12 @@ public class MemberController {
 	public String getEmail(MemberVO memberVO) {
 		memberService.getEmail(memberVO);
 		return "true";
+	}
+	
+	@RequestMapping("getMemberDayOrder")
+	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder,Model model,HttpSession session) {
+		model.addAttribute("getMemberDayOrder", memberService.getMemberDayOrder(getMemberDayOrder));		
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		return memberService.getMemberDayOrder(getMemberDayOrder);
 	}
 }

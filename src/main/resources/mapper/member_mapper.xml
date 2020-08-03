@@ -115,4 +115,20 @@
 	  FROM MEMBER 
 	 WHERE  PHONE=#{phone}
 	</select>
+	
+	<select id="getMemberDayOrder" resultType="vofile.GetMemberDayOrder">
+	SELECT 
+				TRUNC(O.ORDER_TIME, )
+                TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd') "ORDER_TIME", 
+                C.CAFE_NAME CAFE_NAME,
+                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
+     FROM ORDERS O   JOIN ORDERLINE OL           ON (O.ORDER_SEQ = OL.ORDER_SEQ)
+                     JOIN MENU M                 ON (OL.MENU_SEQ = M.MENU_SEQ)
+                     JOIN CAFE C                 ON (M.ADMIN_ID = C.ADMIN_ID)
+    WHERE O.EMAIL = #{email}
+    GROUP BY 
+                TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd'), 
+                C.CAFE_NAME
+    ORDER BY 1 DESC
+	</select>
 </mapper>

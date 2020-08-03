@@ -397,9 +397,7 @@ function getSeat(seatName, seatSize, seatSeq){
 	                alert(msg);
 	            }
 	        });
-	        
   }
- 
 </script>
 
 

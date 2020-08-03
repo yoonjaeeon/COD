@@ -13,4 +13,5 @@ public interface MessageMapper {
 	public List<MessageVO> sendMessage(MessageVO messageVO);
 	public List<MessageVO> receiveMessage(MessageVO messageVO);
 	public void getMasterSend(MessageVO messageVO);  //마스터 보낸메세지
+	public List<MessageVO> fiveMessage(MessageVO messageVO);
 }

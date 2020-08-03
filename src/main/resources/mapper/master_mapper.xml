@@ -7,6 +7,17 @@
 
 <!-- MESSAGE -->
 <mapper namespace="co.cod.app.master.mapper.MasterMapper">
+
+	<select id="getFiveMessage" resultType="vofile.MessageVO">
+	SELECT * 
+	  FROM (SELECT * 
+			 FROM MESSAGE
+			WHERE SEND_RECEIVE =1 
+		      AND MASTER_SEND=0 
+	     ORDER BY MESSAGE_SEQ DESC) 
+	  WHERE <![CDATA[rownum <= 5]]>
+	</select>
+	
 	<select id="masterMessage" resultType="vofile.MessageVO"> 
 	SELECT * FROM MESSAGE
 	WHERE SEND_RECEIVE =1 AND MASTER_SEND=0
@@ -24,7 +35,7 @@
 
 	<select id="getMasterMessageCount" resultType="int">
 		 SELECT NVL(COUNT(MASTER_READ),0) FROM MESSAGE
-		WHERE MASTER_READ=1 AND SEND_RECEIVE =1
+		WHERE MASTER_READ=1 AND SEND_RECEIVE =1 AND MASTER_SEND =0
 	</select>
 	
 	<select id="getMasterMessage" resultType="vofile.MasterVO" parameterType="vofile.MasterVO">
@@ -63,7 +74,6 @@
 						0
 		)
 	</insert>
-
-
+	
 <!--  마스터가 Admin 이 보낸 카페 등록 폼에서 승인을 누를시 cafe_state 가 0에서 2로 바꿈  -->
 </mapper>

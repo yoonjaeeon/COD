@@ -28,9 +28,8 @@ public class MasterServiceImpl implements MasterService{
 	@Override
 	public void insertMasterMessage(MasterVO masterVO) {
 		MessageVO messageVO = new MessageVO();
-		masterMapper.insertMasterMessage(masterVO);
-		
-		
+		masterMapper.insertMasterMessage(masterVO);	
+		//messageMapper.getMasterSend(messageVO);
 	}
 	@Override
 	public void deleteMaster(MasterVO masterVO) {
@@ -66,6 +65,13 @@ public class MasterServiceImpl implements MasterService{
 	public List<MessageVO> sendMasterMessage(MessageVO messageVO) {
 		return masterMapper.sendMasterMessage(messageVO);
 	}
+
+
+	@Override
+	public List<MessageVO> getFiveMessage(MessageVO messageVO) {
+		return masterMapper.getFiveMessage(messageVO);
+	}
+	
 	
 	
 }

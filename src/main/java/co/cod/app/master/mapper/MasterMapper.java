@@ -16,4 +16,5 @@ public interface MasterMapper {
 	public void updateMessage(Integer messageSeq); 
 	public List<MessageVO> receiveMasterMessage(MessageVO messageVO);
 	public List<MessageVO> sendMasterMessage(MessageVO messageVO);
+	public List<MessageVO> getFiveMessage(MessageVO messageVO);
 }

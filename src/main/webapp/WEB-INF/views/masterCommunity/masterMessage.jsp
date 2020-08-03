@@ -30,21 +30,24 @@
 				    	 alert("받은 메세지가 없습니다.");		 
 						 $('#testBoardTable tr:gt(0)').empty();
 	           }else{
-					$('#th').text('읽음');
+				/* 	$('#th').text('읽음'); */
 					$('#date').text('수신일자');
 					$('#dap').text('답장');
+					$('#th').text('읽음');
 					$("#testBoardTable tr:gt(0)").empty();
 				$.each(data, function (index, item) {
 	                let html = '';
+	               
+                                   
 	                html += '<tr class="tr" id="tr'+item.messageSeq+'">';
 	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.messageTitle+'</td>';    
 	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.adminId+'</td>'; 
                     html += '<td id="msg'+item.messageSeq+'" ><button data-toggle="modal" data-target="#modalMessage" onclick="sendMasterMessage('+item.adminId+','+item.messageSeq+')">답장</button></td>';
-
+                                      
 				    if(item.read === 1){
-	            	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+	            	html += '<td align="center" id="msg'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
 	                }else{
-                	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+                	html +='<td align="center" id="msg'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
 	                }
 	                html += '</tr>';
 	                $("#testBoardTable").append(html);
@@ -56,6 +59,7 @@
 		})
 	} 
 	
+	/* 답장기능 */
 	 function sendMessage(){
 			$.ajax({
 				url : 'sendMasterMessage', 
@@ -68,7 +72,7 @@
 				    	 alert("보낸 메세지가 없습니다.");		 
 						 $('#testBoardTable tr:gt(0)').empty();
 		       }else{
-					$('#date').text('발신일자')
+					$('#date').text('발신일자');
 					$('#th').text('발송완료');
 					$('#dap').text('보낸날짜')
 					$("#testBoardTable tr:gt(0)").empty();
@@ -82,7 +86,7 @@
 			                    html += '</tr>';
 			                    $("#testBoardTable").append(html);
 			                });
-						
+					$('#messageCount').load("getMessageCount");
 					$('#messageTitle').html(data.messageTitle);
 					}
 				}
@@ -91,6 +95,7 @@
 
 </script>
 <button type="button" onclick="receiveMessage()">받은 메세지</button><button type="button" onclick="sendMessage()">보낸 메세지</button>
+<button type="bitton" onclick="send">메세지 보내기</button>
 <table border="1" id="testBoardTable" class="table table-hover">
 	<tr id='tr'>
 		<!-- <th><input type="checkBox" id="chkAll"></th> -->
@@ -181,9 +186,7 @@
 
 var messageSeq ;
 function messageUpdate(seq){
-messageSeq = seq;
-	/* 1 안읽음, 0 읽음	 */
-
+	messageSeq = seq;
 }
 /* function modalContent(data){
 	$("tbody").empty();
@@ -197,7 +200,7 @@ function sendAjax(){
 	var title = $('#sendtitle').val();
 	var content = $('#sendContent').val();
 	var adminId = $('#adminId').val();
-	var messageSeq = $('#sendMessageSeq').val();
+	var messageSeqs = $('#sendMessageSeq').val();
 	$.ajax({
 		url :'insertMasterMessage',
 		method : 'post',
@@ -206,17 +209,14 @@ function sendAjax(){
 		success:function(data){
 			alert("전송완료");
 			$("#modalMessage .close").click();
-			
 			$.ajax({
 				url:'getMasterSend',
 				method :'post',
-				data : {messageSeq:messageSeq},
-				dataType :'json',
-				sucess:function(result){
+				data : {messageSeq:messageSeqs},
+				dataType :'text',
+				success:function(result){
 					var seq = $('#sendMessageSeq').val();
-
-				    $('#tr'+messageSeq+'').empty();
-					alert(result);
+					$('#tr'+messageSeqs).remove();
 				}
 			})
 			//$('#modalMessage').modal('hide');
@@ -224,6 +224,7 @@ function sendAjax(){
 	})
 	
 	}
+	
 	//모달창 메세지 받기
 	 $('#contentModal').on('show.bs.modal', function (e) {
 		console.log(e.target); 

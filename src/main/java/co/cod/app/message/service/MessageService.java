@@ -12,4 +12,5 @@ public interface MessageService {
 	public List<MessageVO> sendMessage(MessageVO messageVO);  //보낸메세지
 	public List<MessageVO> receiveMessage(MessageVO messageVO); //받은메세지
 	public void getMasterSend(MessageVO messageVO);
+	public List<MessageVO> fiveMessage(MessageVO messageVO);
 }

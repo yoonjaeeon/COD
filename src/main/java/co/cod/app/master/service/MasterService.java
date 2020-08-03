@@ -15,4 +15,5 @@ public interface MasterService {
 	public MasterVO getMasterMessage(MasterVO masterVO);
 	public List<MessageVO> receiveMasterMessage(MessageVO messageVO);
 	public List<MessageVO> sendMasterMessage(MessageVO messageVO);
+	public List<MessageVO> getFiveMessage(MessageVO messageVO);
 }

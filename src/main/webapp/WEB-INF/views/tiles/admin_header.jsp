@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+$(function(){
+	$('#messagesDropdown').on("click",function(){
+		$.ajax({
+			url : 'fiveMessage',
+			type : 'post',
+			datatype : 'json',
+			contentType: 'application/json;charset=utf-8',
+			success:function(result){
+				$('#divParent').empty();
+				$.each(result, function(index, item){
+					$('<div>').addClass('font_weight-bold')
+					  .append($('<div data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')">').addClass('text-truncate').html(item.messageTitle))
+					  .append($('<div data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')">').addClass('small text-gray-500').html('관리자 · '+item.messageDate))
+					  .append($('<input type="hidden" value="'+item.messageSeq+'" id="messageSeq">'))
+					  .appendTo($('#divParent'));
+				})
+			}
+		})
+	});
+})
+</script>
 <body id="page-top">
 	
   <!-- Page Wrapper -->
@@ -149,7 +171,7 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
@@ -231,47 +253,11 @@
                 <h6 class="dropdown-header">
                   	메세지 목록
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="adminMessage">Read More Messages</a>
+                <div id="divParent">
+                
+                </div>
+                            
+                <a class="dropdown-item text-center small text-gray-500" href="adminMessage">메세지 더 보기</a>
               </div>
             </li>
 
@@ -306,4 +292,56 @@
             </li>
           </ul>
         </nav>
+        
+        <div class="modal fade" id="contentModals" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">메세지</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h2><span id="getMessageTitle"> </span></h2> <br>
+				<span id="getMessageContent"></span>
+				<%-- ${messageTitle } <br>
+				${getMessageContent}fff --%>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
 
+<script>
+var messageSeq ;
+function messageUpdate(seq){
+messageSeq = seq;
+}
+
+//모달창 메세지 받기
+$('#contentModals').on('show.bs.modal', function (e) {
+	console.log(e.target); 
+	$.ajax({
+		url : 'getMessage',  
+		method:'post',
+		data : {messageSeq:messageSeq},
+		dataType :'json',
+		success:function(data){
+			/* if(data.Data.response.length == 0 ){
+		    	  alert("받은 메세지가 없습니다.");
+		    	  return false;
+			}else{ */
+				$('#getMessageTitle').html(data.messageTitle);
+				$('#getMessageContent').html(data.messageContent);
+				$('#messageCount').load("getMessageCount");
+				
+			/* } */
+		}
+	});
+});
+</script>

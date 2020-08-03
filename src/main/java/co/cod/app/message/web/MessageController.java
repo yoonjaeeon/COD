@@ -70,6 +70,11 @@ public class MessageController {
 		return "success";
 	}
 	
+	@RequestMapping("fiveMessage")
+	@ResponseBody
+	public List<MessageVO> fiveMessage(MessageVO messageVO){
+		return messageService.fiveMessage(messageVO);
+	}
 	
 	
 }

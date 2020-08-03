@@ -51,5 +51,9 @@ public class MessageServiceImpl implements MessageService{
 	public void getMasterSend(MessageVO messageVO) {
 		 messageMapper.getMasterSend(messageVO);
 	}
+	@Override
+	public List<MessageVO> fiveMessage(MessageVO messageVO) {
+		return messageMapper.fiveMessage(messageVO);
+	}
 
 }

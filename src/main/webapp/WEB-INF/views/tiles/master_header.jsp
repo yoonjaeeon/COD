@@ -1,6 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script>
+$('#contentModal').on('show.bs.modal', function (e) {
+	var messageSeq = $('#messageSeq:messageSeq');
+	$.ajax({
+		url : 'getMessage',  
+		method:'post',
+		data : {messageSeq:messageSeq},
+		dataType :'json',
+		success:function(data){
+				$('#getMessageTitle').html(data.messageTitle);
+				$('#getMessageContent').html(data.messageContent);
+				$('#messageCount').load("getMessageCount");
+		}
+	})
+
+})  
+
+ $(function(){	
+	 $('#divParent').on("click", function(){
+		 
+	 })
+$('#messagesDropdown').on("click", function(){
+	$.ajax({
+		url : 'getFiveMessage',
+		type : 'post',
+		datatype : 'json',
+		contentType: 'application/json;charset=utf-8',
+		success:function(result){
+			$('#divParent').empty();			
+			$.each(result, function(index, item){				
+				$('<div data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')">').addClass('font_weight-bold')
+						  .append($('<div>').addClass('text-truncate').html(item.messageTitle))
+						  .append($('<div>').addClass('small text-gray-500').html(item.adminId+' · '+item.messageDate))
+						  .append($('<input type="hidden" value="'+item.messageSeq+'" id="messageSeq">'))
+						  .appendTo($('#divParent'))
+			/* 	var append =
+			'<div class="font-weight-bold">' + 
+                '<div class="text-truncate">'+item.messageTitle+'</div>'+
+                '<div class="small text-gray-500">'+item.adminId+'· '+item.messageDate+'</div>'+
+             '</div>';
+				$('#divParent').append(append); */
+				})//end of each
+		}
+	}); //end of ajax
+})
+	
+}) 
+</script>
 <body id="page-top">
 	
   <!-- Page Wrapper -->
@@ -142,7 +191,6 @@
               </div>
             </div>
           </form>
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -230,20 +278,17 @@
                 <h6 class="dropdown-header">
                   	메세지 목록
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
+                
+                  <!-- <div class="dropdown-list-image mr-3">
                     <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
                     <div class="status-indicator bg-success"></div>
-                  </div>     
-                 <%--  <c:forEach items="" var=""> --%>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">여기 제목</div>
-                    <div class="small text-gray-500"><!-- 여기 이름 추가하기 -->여기이름 · 여기날짜<!-- 여기 날짜 추가 --></div>
+                   </div>   --> 
+                  <div id="divParent">
+                  
+	                  
                   </div>
-                    <%-- </c:forEach> --%>
-                </a>
                 
-                <a class="dropdown-item text-center small text-gray-500" href="masterMessage">Read More Messages</a>
+                <a class="dropdown-item text-center small text-gray-500" href="masterMessage">메세지 더보기</a>
               </div>
             </li>
 
@@ -278,3 +323,27 @@
             </li>
           </ul>
         </nav>
+        
+        <div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">메세지</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h2><span id="getMessageTitle"> </span></h2> <br>
+				<span id="getMessageContent"></span>
+				<%-- ${messageTitle } <br>
+				${getMessageContent}fff --%>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>

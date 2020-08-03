@@ -115,8 +115,4 @@
 	  FROM MEMBER 
 	 WHERE  PHONE=#{phone}
 	</select>
-
-
-
-
 </mapper>

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.master.service.MasterService;
-import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 import vofile.MasterVO;
 import vofile.MessageVO;
@@ -107,6 +106,12 @@ public class MasterController {
 	@ResponseBody
 	public List<MessageVO> sendMasterMessage(MessageVO messageVO) {
 		return masterService.sendMasterMessage(messageVO);		
+	}
+	
+	@RequestMapping("getFiveMessage")
+	@ResponseBody
+	public List<MessageVO> getFiveMessage(MessageVO messageVO, Model model){
+		return masterService.getFiveMessage(messageVO);
 	}
 	
 }

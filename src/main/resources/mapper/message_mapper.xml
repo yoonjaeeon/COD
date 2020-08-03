@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.message.mapper.MessageMapper">
 
+	<select id ="fiveMessage" resultType="vofile.MessageVO">
+	SELECT * FROM   
+                          (SELECT 	*
+                              FROM 	MESSAGE
+                             WHERE	ADMIN_ID = 'ha' 
+                                 AND SEND_RECEIVE=0 
+                                 AND READ=1
+                             ORDER 	BY MESSAGE_SEQ DESC)
+	 WHERE <![CDATA[ROWNUM <= 5]]> 
+	</select>
+
 	<select id="messageList"
 		resultType="vofile.MessageVO">
 		SELECT 	*

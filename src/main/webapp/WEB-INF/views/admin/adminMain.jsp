@@ -14,7 +14,7 @@ $(function(){
 	seatList();
 	workerList();
 });
-//메뉴 목록 조회 요청
+//직원 목록 조회 요청
 function workerList() {
 	$.ajax({
 		url:'adminWorker',
@@ -26,75 +26,41 @@ function workerList() {
 		success:workerListResult
 	});
 }
-//자리 목록 조회 요청
-function seatList() {
-   $.ajax({
-      url:'seat',
-      type:'GET',
-      contentType:'application/json;charset=utf-8',
-      dataType:'json',
-      error:function(xhr,status,msg){
-         alert("상태값 :" + status + " Http에러메시지 :"+msg);
-      },
-      success:seatListResult
-   });
-}//seatList
-//메뉴 목록 조회 응답
+//직원 출퇴근버튼그리기
 function workerListResult(data) {
-   $("#workers").empty();
-   $.each(data,function(idx,item){
-      $('<div>').addClass('col-md-4 col-sm-6').addClass('wtbl')
-      .append($('<div>').html('<i class="fas fa-user fa-2x"></i> <br>').addClass('workerIcon'))
-      .append($('<div>').html(item.workerName ))
-      .append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
-      .appendTo('#workers');
-      if(item.workerState ==1){
-    	 $('.workerIcon').addClass('off')
-      }
-   });//each
-}//menuListResult
-//메뉴 목록 조회 응답
-function seatListResult(data) {
-	$("#tblView").empty();
-	   $.each(data,function(idx,item){
-		  $('<div>').addClass('col-md-4 col-sm-6').addClass('stbl')
-		  			.append($('<div>').html('<i class="fas fa-cog fa-2x"></i><br>').addClass('tblIcon'))
-		  			.append($('<div>').html(item.seatName))
-		  			.append($('<input type=\'hidden\' class=\'seatSeq\'>').val(item.seatSeq))
-	      .appendTo('#tblView');
-		  if(item.seatReserve ==0){
-			  $('.tblIcon').addClass('off')
-		  }else{
-			  $('.tblIcon').addClass('on')
-		  }
-	   });
-}//menuListResult
+	$("#workers").empty();
+	$.each(data, function(idx, item) {
+		var off = '';
+		if (item.workerState == 1) {
+			off = 'off';
+		}
+		$('<div>').addClass('col-md-4 col-sm-6 wtbl').data("workerSeq",item.workerSeq)
+			.append($('<div>').html('<i class="fas fa-user fa-2x '+off+'"></i> <br>').addClass('workerIcon'))
+			.append($('<div>').html(item.workerName))
+			.append($('<input type=\'text\' class=\'workerSeq\'>').val(item.workerSeq))
+			.append($('<input type=\'text\' class=\'commuteSeq\'>'))
+			.append($('<input type=\'text\' class=\'workerState\'>').val(item.workerState))
+			.appendTo('#workers');
+	});//each
+}//workerListResult
 //출퇴기능
 $('body').on('click', '.wtbl', function() {
 	var workerSeq = $(this).find('.workerSeq').val();
-	$.ajax({
-		url : "adminWorker/" + workerSeq,
-		type : 'GET',
-		contentType : 'application/json;charset=utf-8',
-		dataType : 'json',
-		error : function(xhr, status, msg) {
-			alert("상태값 :" + status + " Http에러메시지 :" + msg);
-		},
-		success : workerSelectResult
-	});
-}); //조회 버튼 클릭
-
-//출석 조회 응답
-function workerSelectResult(worker) {
-	if (worker.workerState == 0) {
-		workerUpdate(worker.workerSeq, 1);
+	var workerState = $(this).find('.workerState').val();
+	if (workerState == 0) {
+		workerUpdate(workerSeq, 1);
 	} else {
-		workerUpdate(worker.workerSeq, 0);
+		workerUpdate(workerSeq, 0);
 	}
-}//츨석 업데이트
+});
+//조회 버튼 클릭
 function workerUpdate(workerSeq, workerState) {
 	if (workerState == 1) {
-		$.post("commute", {workerSeq : workerSeq});
+		$.post("commute", {
+			workerSeq : workerSeq
+		}, function(data) {
+			console.log($(this).data('class')) 
+		});
 	}
 	$.ajax({
 		url : "workerState",
@@ -114,25 +80,46 @@ function workerUpdate(workerSeq, workerState) {
 	});
 }
 
+//좌석그리기
+function seatList() {
+   $.ajax({
+      url:'seat',
+      type:'GET',
+      contentType:'application/json;charset=utf-8',
+      dataType:'json',
+      error:function(xhr,status,msg){
+         alert("상태값 :" + status + " Http에러메시지 :"+msg);
+      },
+      success:seatListResult
+   });
+}//seatList
+function seatListResult(data) {
+	$("#tblView").empty();
+	$.each(data, function(idx, item) {
+		var onoff = '';
+		if (item.seatReserve == 0) {
+			onoff = 'off';
+		} else {
+			onoff = 'on'
+		}
+		$('<div>').addClass('col-md-4 col-sm-6 stbl')
+			.append($('<div>').html('<i class="fas fa-cog fa-2x '+onoff+'"></i><br>').addClass('tblIcon'))
+			.append($('<div>').html(item.seatName))
+			.append($('<input type=\'hidden\' class=\'seatSeq\'>').val(item.seatSeq))
+			.append($('<input type=\'hidden\' class=\'seatReserve\'>').val(item.seatReserve))
+			.appendTo('#tblView');
+	});
+}
+//seatListResult
 //좌석 on off
 $('body').on('click', '.stbl', function() {
 	var seatSeq = $(this).find('.seatSeq').val();
-	$.ajax({
-		url : "seat/" + seatSeq,
-		type : 'GET',
-		contentType : 'application/json;charset=utf-8',
-		dataType : 'json',
-		error : function(xhr, status, msg) {
-			alert("상태값 :" + status + " Http에러메시지 :" + msg);
-		},
-		success : function(data){
-			if(data.seatReserve==0){
-				seatUpdate(data.seatSeq, 1);
-			}else{
-				seatUpdate(data.seatSeq, 0);
-			}
-		}
-	});
+	var seatReserve = $(this).find('.seatReserve').val();
+	if (seatReserve == 0) {
+		seatUpdate(seatSeq, 1);
+	} else {
+		seatUpdate(seatSeq, 0);
+	}
 });
 function seatUpdate(seatSeq, seatReserve) {
 	$.ajax({
@@ -153,7 +140,10 @@ function seatUpdate(seatSeq, seatReserve) {
 	});
 }
 </script>
-<div class="row" style="margin: 3em">
+<div align="center" style="margin: 3em">
+	<button id="o/c" class="btn btn-outline-info"> OPEN </button>
+</div>
+<div class="row" >
 	<!-- 메인왼쪽 -->
 	<div class="col-lg-6">
 		<!-- 알바생 출석체크  -->
@@ -214,7 +204,7 @@ function seatUpdate(seatSeq, seatReserve) {
 			<a href="#collapseCardExample" class="d-block card-header py-3"
 				data-toggle="collapse" role="button" aria-expanded="true"
 				aria-controls="collapseCardExample">
-				<h6 class="m-0 font-weight-bold text-primary"> <i class="far fa-bell"></i> * 주문현황 * <span class="badge badge-danger badge-counter">7</span></h6>
+			<h6 class="m-0 font-weight-bold text-primary"> <i class="far fa-bell"></i> * 주문현황 * <span class="badge badge-danger badge-counter">7</span></h6>
 			</a>
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardExample">

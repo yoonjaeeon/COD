@@ -23,11 +23,10 @@ class CommuteController {
 	
 	@RequestMapping(value="/commute",method=RequestMethod.POST)	            
 	@ResponseBody
-	public Map insertCommute(CommuteVO commuteVO, Model model) {		
+	public CommuteVO insertCommute(CommuteVO commuteVO, Model model) {		
 		Map<String, Object> map = new HashMap<String, Object>();
 		commuteService.insertCommute(commuteVO);
-		map.put("result", true);
-		return  map;
+		return  commuteVO;
 	}
 	@RequestMapping(value="/commuteup",method=RequestMethod.POST)	            
 	@ResponseBody

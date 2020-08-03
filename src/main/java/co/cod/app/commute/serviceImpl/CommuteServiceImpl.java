@@ -19,7 +19,7 @@ public class CommuteServiceImpl implements CommuteService{
 
 	@Override
 	public void updateCommute(CommuteVO commuteVO) {
-		commuteMapper.updateAdmin(commuteVO);
+		commuteMapper.updateCommute(commuteVO);
 	}
 
 	@Override

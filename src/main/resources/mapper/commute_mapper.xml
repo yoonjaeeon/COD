@@ -2,17 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.cod.app.commute.mapper.CommuteMapper">
-
 	<insert id="insertCommute" parameterType="commute">
-	INSERT INTO Commute	(
-	COMMUTE_SEQ, WORKER_SEQ, START_TIME
-	)
-	VALUES(
-	(select nvl(max(commute_seq),0)+1 from commute),
-	#{workerSeq},
-	sysdate
-	)
-	</insert>	
+		<selectKey resultType="int" keyProperty="commuteSeq" order="BEFORE">
+			SELECT NVL(MAX(COMMUTE_SEQ),0)+1 
+			  FROM COMMUTE
+		</selectKey>
+		INSERT INTO Commute	(
+			COMMUTE_SEQ, WORKER_SEQ, START_TIME
+		)
+		VALUES(
+			#{commuteSeq},
+			#{workerSeq},
+			sysdate
+		)
+	</insert>
 	
 	<update id="updateCommute" parameterType="commute">
 	 	UPDATE commute

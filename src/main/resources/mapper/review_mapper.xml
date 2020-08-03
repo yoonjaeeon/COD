@@ -60,8 +60,11 @@
         <if test="adminId != null and adminId != ''">
         and r.admin_id = #{adminId}
         </if>
+        <if test="reviewSeq != null and reviewSeq > 0">
+        and r.review_seq <![CDATA[<]]> #{reviewSeq}
+        </if>
         order by review_seq desc
-         ) A ) B WHERE rn BETWEEN #{start} AND #{end}
+         ) A ) B WHERE rn <![CDATA[<=]]> 4
 	</select>
 
 	<insert id="insertReview" parameterType="co.cod.app.review.ReviewVO">

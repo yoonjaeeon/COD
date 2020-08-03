@@ -18,7 +18,6 @@
 		}
 	}
 </script>
-${loginEmail }----
 <h2>내가 쓴 리뷰</h2>
 <div id="outter"> 
 	<table border="1">
@@ -38,7 +37,7 @@ ${loginEmail }----
 			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}'">
 				<td>${review.reviewSeq }</td>
 				<td>${review.cafeName }</td>
-				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
+				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 150px"></td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>

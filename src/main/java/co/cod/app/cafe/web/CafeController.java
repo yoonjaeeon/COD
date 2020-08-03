@@ -23,6 +23,8 @@ import co.cod.app.cafe.service.CafeService;
 import co.cod.app.menu.service.MenuService;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
+import co.cod.app.review.ReviewVO;
+import co.cod.app.review.service.ReviewService;
 
 @Controller
 public class CafeController {
@@ -35,6 +37,8 @@ public class CafeController {
 	AdminService adminService;
 	@Autowired
 	MenuService menuService;
+	@Autowired
+	ReviewService reviewService;
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
@@ -72,10 +76,11 @@ public class CafeController {
 
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
-	public String cafe(Model model, CafeVO cafeVO, HttpSession session) {
+	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, HttpSession session) {
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO.getAdminId()));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
+		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		return "cafe/cafeMain";
 	}
 

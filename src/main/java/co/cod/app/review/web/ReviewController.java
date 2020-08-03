@@ -110,6 +110,14 @@ public class ReviewController {
 		model.addAttribute("adminReviewList", reviewService.adminReviewList(reviewVO));
 		return "ad/adminCommunity/adminReviewList";
 	}
+	
+
+	// 카페상세 리뷰 리스트
+	@RequestMapping("cafeReviewList")
+	public String cafeReviewList(Model model, ReviewVO reviewVO) {
+		model.addAttribute("cafeReviewList", reviewService.getReviewList(reviewVO));
+		return "e/review/cafeReviewList";
+	}
 
 	// 수정폼
 	@RequestMapping("updateFormReview")

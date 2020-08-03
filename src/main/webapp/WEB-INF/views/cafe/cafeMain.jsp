@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <div id="wrapper">
@@ -25,15 +25,16 @@
 						<i class='fas fa-map-marker-alt'></i> ${cafeDetail.cafeAddress }
 					</button>
 					<c:if test="${empty sessionScope.loginEmail}">
-					<button type="button" onclick="orderLogin()">
-								<i class="fas fa-shopping-cart"> </i> 주문하기
-							</button>
+						<button type="button" onclick="orderLogin()">
+							<i class="fas fa-shopping-cart"> </i> 주문하기
+						</button>
 					</c:if>
-						<c:if test="${not empty sessionScope.loginEmail}">
-							<button onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
-								<i class="fas fa-shopping-cart"> </i> 주문하기
-							</button>
-						</c:if>
+					<c:if test="${not empty sessionScope.loginEmail}">
+						<button
+							onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
+							<i class="fas fa-shopping-cart"> </i> 주문하기
+						</button>
+					</c:if>
 				</div>
 				<div class="col-lg-8 boxs">
 					<article class="mini-post">
@@ -192,36 +193,13 @@
 			<article class="mini-post">
 				<header>
 					<h3>Review</h3>
-					<span class="author">
-						<button class="btn_toggle">more</button>
-					</span>
 				</header>
 			</article>
 			<div class="toggleView">
-				<div class="padding2 row" align="center">
-				
-					<c:forEach begin="0" end="4">
-						<div class="col-lg-6 col-sm-12">
-							<div class="container row">
-								<div class="col-6">
-									<a href="#" class="image fit"> <img
-										src="resources/images/main1.jpg" class="image"></a>
-								</div>
-								<div class="col-4">
-									<h6 class="published">분위기 넘넘 좋고 짱짱 맛있어요 최고에용! 사장님도 친절 하시고
-										다음에 또 가고 싶ㅇㅓ요</h6>
-								</div>
-								<div class="col-2">
-									<b>4.3</b>
-									<h6 class="published">2020.07.21</h6>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-					
+				<div class="padding2 row cafeReviewList">
 				</div>
 			</div>
-
+			<button type="button" class="btn_review" >more</button>
 		</div>
 
 		<!-- 지도 -->
@@ -231,66 +209,79 @@
 					<h3>카페위치</h3>
 				</header>
 			</article>
-			<div id="map" style="width:100%;height:350px;">
-			<input type="hidden" name="cafeX" value="${cafeLocation.cafeX}">
-			<input type="hidden" name="cafeY" value="${cafeLocation.cafeY}">
+			<div id="map" style="width: 100%; height: 350px;">
+				<input type="hidden" name="cafeX" value="${cafeLocation.cafeX}">
+				<input type="hidden" name="cafeY" value="${cafeLocation.cafeY}">
 			</div>
 		</div>
 	</article>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
-
-<script>
-
-
-function orderLogin(){
-	alert("주문은 회원가입 후 가능합니다");
-}
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng($('input[name=cafeY]').val(), $('input[name=cafeX]').val()), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-  
-// 마커를 표시할 위치입니다 
-var position =  new kakao.maps.LatLng($('input[name=cafeY]').val(), $('input[name=cafeX]').val());
- //var position =  new kakao.maps.LatLng($('input[name=cafeX]').val()), $('input[name=cafeY]').val());
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-  position: position,
-  clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-});
-
-// 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
-// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-// marker.setClickable(true);
-
-// 마커를 지도에 표시합니다.
-marker.setMap(map);
-
-// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
-// 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({
-    content : iwContent,
-    removable : iwRemoveable
-});
-
-// 마커에 클릭이벤트를 등록합니다
-kakao.maps.event.addListener(marker, 'click', function() {
-      // 마커 위에 인포윈도우를 표시합니다
-      infowindow.open(map, marker);  
-});
-</script>
-
 </div>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
+
+	<script>
+		function orderLogin() {
+			alert("주문은 회원가입 후 가능합니다");
+		}
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng($('input[name=cafeY]').val(), $(
+					'input[name=cafeX]').val()), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+		// 마커를 표시할 위치입니다 
+		var position = new kakao.maps.LatLng($('input[name=cafeY]').val(), $(
+				'input[name=cafeX]').val());
+		//var position =  new kakao.maps.LatLng($('input[name=cafeX]').val()), $('input[name=cafeY]').val());
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position : position,
+			clickable : true
+		// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		});
+
+		// 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
+		// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		// marker.setClickable(true);
+
+		// 마커를 지도에 표시합니다.
+		marker.setMap(map);
+
+		// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+		var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+			content : iwContent,
+			removable : iwRemoveable
+		});
+
+		// 마커에 클릭이벤트를 등록합니다
+		kakao.maps.event.addListener(marker, 'click', function() {
+			// 마커 위에 인포윈도우를 표시합니다
+			infowindow.open(map, marker);
+		});
+	</script>
 
 <script type="text/javascript">
+
+ $(".cafeReviewList").load("cafeReviewList"); 
+
+	$(".btn_review").click(function() {
+		$.ajax(
+				{url: "cafeReviewList"
+					,data:{reviewSeq:$(".reviewtitle").last().data("reviewseq")}
+				}).done(function(data){
+					$(".cafeReviewList").append(data)
+				})
+	});
+	
 	$(".btn_toggle").click(function() {
 		$(".toggleView").collapse('toggle');
 	});
@@ -303,26 +294,12 @@ kakao.maps.event.addListener(marker, 'click', function() {
 		dot : true
 	});
 
-	$(document).ready(function() {
-		var max_h = 0;
-		$("div.boxs ").each(function() {
-			var h = parseInt($(this).css("height"));
-			if (max_h < h) {
-				max_h = h;
-			}
-		});
-		$(".boxs ").each(function() {
-			$(this).css({
-				height : max_h
-			});
-		});
-	});
 	$('.icon_slick').slick({
 		slidesToShow : 7,
 		slidesToScroll : 1,
 		autoplay : true,
 		autoplaySpeed : 2000,
-		responsive : [ { 
+		responsive : [ {
 			breakpoint : 900,
 			settings : {
 				slidesToShow : 4,
@@ -341,5 +318,18 @@ kakao.maps.event.addListener(marker, 'click', function() {
 				slidesToScroll : 1
 			}
 		} ]
+	});
+
+	var max_h = 0;
+	$("div.boxs ").each(function() {
+		var h = parseInt($(this).css("height"));
+		if (max_h < h) {
+			max_h = h;
+		}
+	});
+	$(".boxs ").each(function() {
+		$(this).css({
+			height : max_h
+		});
 	});
 </script>

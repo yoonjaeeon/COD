@@ -16,6 +16,9 @@ Configuration 2.1//EN"
 	<definition name="ad/*/*" extends="adminTemplate">
 		<put-attribute name="a_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
+		<!-- 리뷰 -->
+	<definition name="e/review/cafeReviewList" template="/WEB-INF/views/review/cafeReviewList.jsp">
+	</definition>	
 	<definition name="e/*/*" template="/WEB-INF/views/tiles/emptyLayout.jsp">
 		<put-attribute name="e_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>	
@@ -27,6 +30,7 @@ Configuration 2.1//EN"
 	<definition name="ma/*/*" extends="masterTemplate">
 		<put-attribute name="m_content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
+
 	
 	<!--  사용자  -->
 	<definition name="*/*" extends="userTemplate">
@@ -38,6 +42,7 @@ Configuration 2.1//EN"
 	<!--empty -->
 	<definition name="*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
-	</definition>	
+	</definition>
+		
 
 </tiles-definitions>

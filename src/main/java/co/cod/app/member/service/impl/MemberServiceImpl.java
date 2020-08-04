@@ -110,10 +110,8 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getFiveReview(getMemberDayOrder);
 	}
 
-
-	
-	
-	
-	
-	
+	@Override
+	public List<MemberVO> popularList(MemberVO memberVO) {
+		return memberMapper.popularList(memberVO);
+	}
 }

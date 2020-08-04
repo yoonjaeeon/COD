@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 
 @Controller
@@ -14,8 +15,9 @@ public class HomeController {
 	@Autowired MemberService memberService;
    
    @RequestMapping("home")
-   public String home(Model model) {
-      System.out.println("main");
+   public String home(Model model, MemberVO memberVO,HttpSession session) {
+      memberService.popularList(memberVO);
+      model.addAttribute("popularList", memberService.popularList(memberVO));
       return "main/home";
    }
    

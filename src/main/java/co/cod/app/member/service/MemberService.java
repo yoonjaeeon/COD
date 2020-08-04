@@ -29,4 +29,5 @@ public interface MemberService {
 	public List<GetMemberDayOrder> getFiveDayOrder(GetMemberDayOrder getMemberDayOrder);
 	public List<GetMemberDayOrder> getFiveBookmarks(GetMemberDayOrder getMemberDayOrder);
 	public List<GetMemberDayOrder> getFiveReview(GetMemberDayOrder getMemberDayOrder);
+	public List<MemberVO> popularList(MemberVO memberVO);
 }

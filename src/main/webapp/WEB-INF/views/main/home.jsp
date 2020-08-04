@@ -184,23 +184,28 @@ if(message.length>0){
 	<h3>인기리스트</h3>
 	<hr>
 	<div class="main_slicks">
-		<c:forEach begin="0" end="4">
+		<c:forEach items="${popularList }" var="list">
 			<div>
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="single.html">yedam Cafe</a>
+								<a href="single.html">${list.cafeName }</a>
 							</h3>
-							<h4>#해쉬태그</h4>
+							<h4>${list.cafeHashtag }</h4>
 						</div>
 						<div class="col-sm-2">
+						<c:if test="${list.bookmarks == 1 }">
+							<i class="far fa-heart" style="color:red"></i>
+						</c:if>
+							<c:if test="${list.bookmarks == 0}">
 							<i class="far fa-heart"></i>
-							<h4>4.3</h4>
+						</c:if>
+							<h4>${list.stars }</h4>
 						</div>
 					</header>
 					<a href="single.html" class="image"><img
-						src="resources/images/main2.jpg" alt=""></a>
+						src="resources/images/'${list.cafeThumbnail}'" alt=""></a>
 				</article>
 			</div>
 		</c:forEach>

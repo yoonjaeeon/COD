@@ -17,6 +17,7 @@ function init() {
    $('#btnInit').on('click',function(){
       $('#adminNoticeF').each(function(){
          this.reset();
+         $('textArea[name="adminNoticeContent"]').text("");
       });
    });
 }//init
@@ -83,7 +84,6 @@ function adminNoticeSelectResult(adminNotice) {
 	$('input:hidden[name="adminNoticeSeq"]').val(adminNotice.adminNoticeSeq);
 	$('input:text[name="adminNoticeTitle"]').val(adminNotice.adminNoticeTitle);
 	$('textArea[name="adminNoticeContent"]').text(adminNotice.adminNoticeContent);
-
 }//adminNoticeSelectResult
 
 //메뉴 수정 요청
@@ -148,10 +148,10 @@ $(document).ready(function(){
 		<h4>공지사항</h4>
 		<br>
 		<form id="adminNoticeF" class="form-horizontal">
-
 				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%"><br> <br>
 				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px"> </textarea>
-			<br><br>
+				<input type="hidden" id="adminNoticeSeq" name="adminNoticeSeq"><br> <br>
+			<br>
 			<div class="btn-group">
 				<input type="button" class="btn" value="등록" id="btnInsert" />
 				<input type="button" class="btn" value="수정" id="btnUpdate" />

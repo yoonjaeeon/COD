@@ -40,7 +40,7 @@
 	<update id="updateAdminNotice" parameterType="adminNotice">
 		UPDATE admin_notice
 		SET admin_notice_title = #{adminNoticeTitle},
-		admin_notice_content = #{adminNoticeContent},
+		admin_notice_content = #{adminNoticeContent}
 		WHERE admin_notice_seq = #{adminNoticeSeq}
 	</update>
 

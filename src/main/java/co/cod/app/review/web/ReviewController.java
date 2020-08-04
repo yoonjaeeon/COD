@@ -109,7 +109,7 @@ public class ReviewController {
 	// 관리자 리뷰 리스트
 	@RequestMapping("adminReviewList")
 	public String adminReviewList(Model model, ReviewVO reviewVO, HttpSession session) {
-		// 페이징 처리
+		// 페이징 처리 
 		// (현재 페이지 파라미터 받기)
 		int p = 1;
 		if (reviewVO.getP() != null && !reviewVO.getP().isEmpty()) {

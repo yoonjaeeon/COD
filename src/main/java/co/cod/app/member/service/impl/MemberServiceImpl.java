@@ -105,6 +105,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getFiveBookmarks(getMemberDayOrder);
 	}
 
+	@Override
+	public List<GetMemberDayOrder> getFiveReview(GetMemberDayOrder getMemberDayOrder) {
+		return memberMapper.getFiveReview(getMemberDayOrder);
+	}
+
 
 	
 	

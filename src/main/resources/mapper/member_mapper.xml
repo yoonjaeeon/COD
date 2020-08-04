@@ -173,6 +173,7 @@
 	</select>
 	
 	<select id="getFiveBookmarks" resultType="vofile.GetMemberDayOrder">
+	SELECT * FROM(
 	 SELECT  
           C.CAFE_NAME,
          NVL( BOOKMARKNUM,0) BOOKMARKNUM
@@ -182,6 +183,17 @@
                                                       WHERE EMAIL=#{email}
                                                       GROUP BY ADMIN_ID ) O ON(C.ADMIN_ID = O.ADMIN_ID)
    WHERE B.EMAIL=#{email}
+   )
+   WHERE  <![CDATA[ROWNUM <= 5]]> 
+	</select>
+	
+	<select id="getFiveReview" resultType="vofile.GetMemberDayOrder">
+	 SELECT * FROM
+	 (SELECT C.CAFE_NAME, R.REVIEW_TIME        
+       FROM REVIEW R JOIN CAFE C ON (R.ADMIN_ID = C.ADMIN_ID)
+       WHERE EMAIL=#{email}
+       ORDER BY 2 DESC)
+       WHERE  <![CDATA[ROWNUM <= 5]]> 
 	</select>
 	
 </mapper>

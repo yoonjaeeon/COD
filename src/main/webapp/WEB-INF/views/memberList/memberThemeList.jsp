@@ -6,7 +6,11 @@
 .red{color:red}
 
 </style>
-
+<script>
+$(function(){
+	$("#${param.cafeTheme}").addClass("fix");
+})
+</script>
 
 <!-- 테마 아이콘  -->
 <div class="main_feature text-center">
@@ -17,31 +21,31 @@
 			</div>
 			<h4>추천 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t1'">
+		<div class="single_feature" id="t1" onclick="location.href='themeList?cafeTheme=t1'">		
 			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2'">
+		<div class="single_feature" id="t2" onclick="location.href='themeList?cafeTheme=t2'">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t3'">
+		<div class="single_feature" id="t3" onclick="location.href='themeList?cafeTheme=t3'">
 			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t4'">
+		<div class="single_feature" id="t4" onclick="location.href='themeList?cafeTheme=t4'">
 			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t5'">
+		<div class="single_feature" id="t5" onclick="location.href='themeList?cafeTheme=t5'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>

@@ -18,4 +18,7 @@ public class GetMemberDayOrder {
 	
 	//bookmark 가져오는데 필요한 필드
 	Integer bookmarknum;
+	
+	//review 필요한 필드
+	String reviewTime;
 }

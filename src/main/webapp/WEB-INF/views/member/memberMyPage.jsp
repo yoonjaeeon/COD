@@ -29,10 +29,11 @@
          <i class="fab fa-product-hunt" style='font-size: 24px'></i> ${ member.mileage} 원
       </h2>
    </div>
+   
    <div class="col-lg-7">
       <div class="main_feature text-center margin1">
          <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="width: 33%; flex: 0 0 33%; max-width: 33%;">
                <a href="memberReviewList">
                   <div class="single_feature">
                      <div class="single_feature_icon">
@@ -43,7 +44,8 @@
                   </div>
                </a>
             </div>
-            <div class="col-sm-2">
+            
+            <div class="col-sm-2" style="width: 33%; flex: 0 0 33%; max-width: 33%;">
                <div class="single_feature" onclick="myorderList()">
                   <div class="single_feature_icon">
                      <i class="fab fa-fort-awesome"></i>
@@ -51,20 +53,13 @@
                   <h4>결제내역</h4>
                </div>
             </div>
-            <div class="col-sm-2">
+            
+            <div class="col-sm-2" style="width: 33%; flex: 0 0 33%; max-width: 33%;">
                <div class="single_feature" onclick="memberinto()">
                   <div class="single_feature_icon">
                      <i class="fab fa-fort-awesome"></i>
                   </div>
                   <h4>정보수정</h4>
-               </div>
-            </div>         
-            <div class="col-sm-2">
-               <div class="single_feature">
-                  <div class="single_feature_icon">
-                     <i class="fab fa-fort-awesome"></i>
-                  </div>
-                  <a href="insertFormReview"><h4>리뷰작성주소</h4></a>
                </div>
             </div>
          </div>
@@ -142,18 +137,15 @@
                         <thead>
 							<tr>
 								<td>카페 이름</td>
-								<td>작성자</td>
 								<td>등록일</td>							
 							</tr>
 						</thead>
                            <tbody>
-                              <c:forEach begin="0" end="3" items="${reviewList }" var="review">
+                              <c:forEach items="${fiveReview }" var="review">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
                             <a href="memberReviewList">
 							<tr>							
-								<td>${review.reviewSeq }</td>
-								<td>${review.cafeName }</td>								
-								<td>${review.email }</td>
+								<td>${review.cafeName }</td>
 								<td><fmt:parseDate value="${review.reviewTime }"
 										pattern="yyyy-MM-dd HH:mm:ss" var="rt" /> <fmt:formatDate
 										value="${rt}" pattern="yyyy-MM-dd" /></td>										

@@ -6445,9 +6445,14 @@ body.is-menu-visible #menu {
 }
 
 .main_feature .single_feature:hover .single_feature_icon i {
+	transform: rotate(-45deg);	
+}
+.main_feature .fix .single_feature_icon{
+	transform: rotate(45deg);
+}
+.main_feature .fix .single_feature_icon i{
 	transform: rotate(-45deg);
 }
-
 .main_feature .single_feature:hover h4 {
 	color: #2ebaae;
 }

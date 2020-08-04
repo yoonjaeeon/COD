@@ -55,6 +55,7 @@ public class MemberController {
 		model.addAttribute("member", memberService.getMember(memberVO));
 		model.addAttribute("FiveOrders", memberService.getFiveDayOrder(getMemberDayOrder));
 		model.addAttribute("getMemberBookmarks", memberService.getFiveBookmarks(getMemberDayOrder));
+		model.addAttribute("fiveReview", memberService.getFiveReview(getMemberDayOrder));
 		return "member/memberMyPage";
 	}
 

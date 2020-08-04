@@ -56,7 +56,7 @@
                     <!-- <a href="memberLogin" onclick="validCheck()" class="btn btn-info btn-user btn-block">
                       Login
                     </a>    -->                 
-                    <button type="button" onclick="validCheck()" class="btn btn-info btn-user btn-block" onclick="validCheck()" value="로그인">로그인
+                    <button type="button" onclick="validCheck()" class="btn btn-info btn-user btn-block" value="로그인">로그인
                     </button> 
                     <hr>
                     <a href="index.html" class="btn btn-warning btn-user btn-block">

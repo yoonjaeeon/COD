@@ -29,7 +29,6 @@
 			<td>작성자</td>
 			<td>등록일</td>
 			<td>평 점</td>
-			<td><button type="button" onclick="location.href='insertFormReview'">리뷰 작성</button></td>	
 		</tr>
 		</thead>
 		<tbody>

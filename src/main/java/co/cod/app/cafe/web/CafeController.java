@@ -25,6 +25,8 @@ import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
 import co.cod.app.review.service.ReviewService;
+import co.cod.app.seat.SeatVO;
+import co.cod.app.seat.service.SeatService;
 
 @Controller
 public class CafeController {
@@ -39,11 +41,13 @@ public class CafeController {
 	MenuService menuService;
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	SeatService seatService;
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
 	public String AreaList(CafeVO cafeVO, Model model, HttpSession session) {
-		cafeVO.setEmail((String)session.getAttribute("loginEmail"));
+		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
 		List list = cafeService.AreaList(cafeVO);
 		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";
@@ -52,35 +56,37 @@ public class CafeController {
 	/* 카페 테마 리스트 보여주게하기. */
 	@RequestMapping("themeList")
 	public String getThemeList(HttpSession session, CafeVO cafeVO, Model model) {
-		cafeVO.setEmail((String)session.getAttribute("loginEmail")); 
+		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
 		List list = cafeService.getThemeList(cafeVO);
 		model.addAttribute("getTheme", list);
 		return "memberList/memberThemeList";
 	}
-	
-	//비회원 리스트 보여주기
+
+	// 비회원 리스트 보여주기
 	@RequestMapping("memberThemeList")
 	public String MemberThemeList(HttpSession session, CafeVO cafeVO, Model model) {
 		List list = cafeService.memberThemeList(cafeVO);
 		model.addAttribute("getTheme", list);
 		return "memberList/memberThemeList";
 	}
-	
+
 	@RequestMapping("memberAreaList")
 	public String MemberAreaList(CafeVO cafeVO, Model model, HttpSession session) {
 		List list = cafeService.memberAreaList(cafeVO);
 		model.addAttribute("getArea", list);
 		return "memberList/memberAreaList";
 	}
-	//비회원 리스트 끝
+	// 비회원 리스트 끝
 
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
-	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, HttpSession session) {
+	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, SeatVO seatVO, String adminId, HttpSession session) {
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO.getAdminId()));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
+		model.addAttribute("seatList", seatService.getSeatList(adminId));
+		seatVO.setAdminId((String)session.getAttribute("adminId"));
 		return "cafe/cafeMain";
 	}
 
@@ -95,65 +101,65 @@ public class CafeController {
 	
 	// 카페등록
 	@RequestMapping("insertCafe")
-	   public String insertCafe(CafeVO cafeVO, PhotoVO photoVO,HttpSession session) throws IOException {
-	    cafeVO.setAdminId((String)session.getAttribute("adminId")); 
-	    AdminVO adminVO = new AdminVO();
-	    adminVO.setAdminId((String)session.getAttribute("adminId"));
-	    adminVO.setCafeState(1);
+	public String insertCafe(CafeVO cafeVO, PhotoVO photoVO, HttpSession session) throws IOException {
+		cafeVO.setAdminId((String) session.getAttribute("adminId"));
+		AdminVO adminVO = new AdminVO();
+		adminVO.setAdminId((String) session.getAttribute("adminId"));
+		adminVO.setCafeState(1);
 		MultipartFile cafeThumbnail = cafeVO.getUpload();
-	      if (cafeThumbnail != null) {
-	         String filename = cafeThumbnail.getOriginalFilename();
-	         if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
-	            File upFile = FileRenamePolicy
-	                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-	            filename = upFile.getName();
-	            cafeThumbnail.transferTo(upFile);
-	         }
-	         cafeVO.setCafeThumbnail(filename);
-	      }
-	      
-	      MultipartFile[] files = photoVO.getUploadFile();
-	      if (files != null) {
-	         PhotoVO photoMaxVO = photoService.getPhotoMax();
-	         for (MultipartFile file : files) {
-	            String filename = file.getOriginalFilename();
-	            if (file != null && file.getSize() > 0) {
-	               File upFile = FileRenamePolicy
-	                     .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
-	               filename = upFile.getName();
-	               file.transferTo(upFile);
-	            }
-	            photoVO.setPhotoName(filename);
-	            photoVO.setPhotoUse(1);
-	            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-	            photoService.insertPhoto(photoVO);
-	         }
-	         cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
-	      }
-	      cafeService.insertCafe(cafeVO);
-	      adminService.updateCafeState(adminVO);
-	      return "e/admin/loading"; 
-	   }
+		if (cafeThumbnail != null) {
+			String filename = cafeThumbnail.getOriginalFilename();
+			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
+				File upFile = FileRenamePolicy
+						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				filename = upFile.getName();
+				cafeThumbnail.transferTo(upFile);
+			}
+			cafeVO.setCafeThumbnail(filename);
+		}
+
+		MultipartFile[] files = photoVO.getUploadFile();
+		if (files != null) {
+			PhotoVO photoMaxVO = photoService.getPhotoMax();
+			for (MultipartFile file : files) {
+				String filename = file.getOriginalFilename();
+				if (file != null && file.getSize() > 0) {
+					File upFile = FileRenamePolicy
+							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+					filename = upFile.getName();
+					file.transferTo(upFile);
+				}
+				photoVO.setPhotoName(filename);
+				photoVO.setPhotoUse(1);
+				photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+				photoService.insertPhoto(photoVO);
+			}
+			cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+		}
+		cafeService.insertCafe(cafeVO);
+		adminService.updateCafeState(adminVO);
+		return "e/admin/loading";
+	}
 
 	// 단건조회
 	@RequestMapping("/getCafe/{cafeName}/{adminId}")
 	public String getCafe(@PathVariable String cafeName, @PathVariable String adminId) {
-		
+
 		System.out.println(cafeName + " : " + adminId);
 		return "main/home";
 	}
-	
-	//차트 JSON값
-		@RequestMapping("adminSales")
-		public @ResponseBody List<Map<String, Object>> getAdvertisementMap(){
-			return cafeService.getCafeMap();
-		}
-		
-	//차트 불러옴	
-	
-		@RequestMapping("adminSalesForm")
-		public String masterSalesForm() {
-			return "ad/adminOrder/adminSales";
-		}
-	
+
+	// 차트 JSON값
+	@RequestMapping("adminSales")
+	public @ResponseBody List<Map<String, Object>> getAdvertisementMap() {
+		return cafeService.getCafeMap();
+	}
+
+	// 차트 불러옴
+
+	@RequestMapping("adminSalesForm")
+	public String masterSalesForm() {
+		return "ad/adminOrder/adminSales";
+	}
+
 }

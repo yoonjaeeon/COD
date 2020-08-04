@@ -18,7 +18,6 @@
 		}
 	}
 </script>
-
 <h2>관리자 리뷰 조회</h2>
 <div id="outter"> 
 	<table border="1">
@@ -43,6 +42,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	총 평점 : <input type="text" name="stars" id="stars" /><br />
 	<script type="text/javascript">
 	function gopage(p) {
 		location.href="adminReviewList?p="+p;

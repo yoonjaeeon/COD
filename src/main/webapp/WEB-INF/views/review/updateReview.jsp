@@ -9,7 +9,7 @@
 작성자: ${loginEmail} <br>
 카페 이름: ${review.cafeName } <br>
 <div class="form-group">
-		<label> 관리자:</label> <input type="text" class="form-control"
+		<input type="hidden" class="form-control"
 		name="adminId" id="adminId" value="${review.adminId}" readonly>
 	    </div>
 리뷰 내용:<br/>

@@ -15,6 +15,15 @@
       and r.admin_id = #{adminId}
     </if>
 	</select>
+	
+	<!--리뷰 평균  -->
+<!-- 	<select>
+	select admin_id, to_char(avg(stars),'9.9')
+	from review
+	where admin_id = #{adminId}
+	group by admin_id
+	</select> -->
+	
 	<!-- 단건조회  -->
 	<select id="getReview" parameterType="co.cod.app.review.ReviewVO" resultType="co.cod.app.review.ReviewVO">
 		SELECT 
@@ -41,10 +50,19 @@
 	
 		<!-- 관리자조회  -->
 	<select id="adminReviewList"  resultType="co.cod.app.review.ReviewVO">
-	select m.email, r.*
-	from member m, review r
-	where admin_id = admin_id
+	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	select *
+	from review 
+	<where>
+	<if test="email != null and email != ''">
+    and email = #{email}
+    </if>
+    <if test="adminId != null and adminId != ''">
+    and admin_id = #{adminId}
+    </if>
+    </where>
     order by review_seq desc
+      ) A ) B WHERE rn between #{start} and #{end}
 	</select>
 	
 	<!-- 전체조회  -->
@@ -59,7 +77,7 @@
         </if>
         <if test="adminId != null and adminId != ''">
         and r.admin_id = #{adminId}
-        </if>
+       	</if>
         <if test="reviewSeq != null and reviewSeq > 0">
         and r.review_seq <![CDATA[<]]> #{reviewSeq}
         </if>

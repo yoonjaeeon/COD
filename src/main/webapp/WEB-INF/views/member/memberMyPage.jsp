@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
    
    <script type="text/javascript">
 	function memberinto() {
@@ -100,16 +101,17 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach begin="0" end="3" items="${getMyorderList}"
-										var="list">
+                              <c:forEach items="${FiveOrders}" var="list">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-                                 <a href="#">
                                     <tr role="row" class="odd">																				
-											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
-											<td>${list.cafeName}</td>
-											<td>${list.price }</td>
-										</tr>
-                                 </a>
+
+										<td>${list.cafeName}</td>
+										<td>${list.price }</td>
+										<td>
+										<fmt:parseDate value="${list.orderTime}" pattern="yyyy-MM-dd" var="date"/>
+										<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+										</td>
+									</tr>
                               </c:forEach>
                            </tbody>
                         </table>
@@ -139,7 +141,6 @@
                         <table class="table table-hover">
                         <thead>
 							<tr>
-								<td>No.</td>
 								<td>카페 이름</td>
 								<td>작성자</td>
 								<td>등록일</td>							
@@ -179,7 +180,7 @@
                <a href="myorderList" class="d-block card-header py-3"
                   data-toggle="collapse" role="button" aria-expanded="true"
                   aria-controls="collapseCardExample">
-                  <h3 class="m-0 font-weight-bold ">* 즐겨 찾기 카페 *</h3>
+                  <h3 class="m-0 font-weight-bold ">* 즐겨 찾는 카페 *</h3>
                </a>
                <!-- Card Content - Collapse -->
                <div class="collapse show" id="collapseCardExample">
@@ -189,21 +190,17 @@
                            <thead>
                               <tr>
                                  <th>카페명</th>
-                                 <th>결제금액</th>
-                                 <th>결제날짜</th>
+                                 <th>방문횟수</th>
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach begin="0" end="3" items="${getMyorderList}"
+                              <c:forEach begin="0" end="3" items="${getMemberBookmarks}"
 										var="list">
                                  <!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-                                 <a href="#">
-                                    <tr role="row" class="odd">																				
-											<td><fmt:formatDate value="${list.orderTime}" pattern="yyyy-MM-dd"/></td>
+                                    <tr role="row" class="odd">															
 											<td>${list.cafeName}</td>
-											<td>${list.price }</td>
-										</tr>
-                                 </a>
+											<td>${list.bookmarknum }</td>
+									</tr>
                               </c:forEach>
                            </tbody>
                         </table>

@@ -27,5 +27,7 @@ public interface MemberMapper {
 	public MemberVO getPhone(MemberVO memberVO);
 	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder);
 	public List<GetMemberDayOrder> getMemberOrders(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getFiveDayOrder(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getFiveBookmarks(GetMemberDayOrder getMemberDayOrder);
 	
 }

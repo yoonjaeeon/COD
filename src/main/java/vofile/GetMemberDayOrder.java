@@ -15,4 +15,7 @@ public class GetMemberDayOrder {
 	Integer orderlineAmount;
 	Integer orderState;
 	Integer priceAdd;	
+	
+	//bookmark 가져오는데 필요한 필드
+	Integer bookmarknum;
 }

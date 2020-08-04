@@ -49,9 +49,12 @@ public class MemberController {
 
 	// 마이페이지
 	@RequestMapping("memberMyPage")
-	public String MemberMyPage(Model model,MemberVO memberVO,HttpSession session) {
+	public String MemberMyPage(Model model,GetMemberDayOrder getMemberDayOrder,MemberVO memberVO,HttpSession session) {
 		memberVO.setEmail((String)session.getAttribute("loginEmail"));
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
 		model.addAttribute("member", memberService.getMember(memberVO));
+		model.addAttribute("FiveOrders", memberService.getFiveDayOrder(getMemberDayOrder));
+		model.addAttribute("getMemberBookmarks", memberService.getFiveBookmarks(getMemberDayOrder));
 		return "member/memberMyPage";
 	}
 
@@ -160,14 +163,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping("getPhone")
-	public MemberVO getPhone(MemberVO memberVO) {
-		return memberService.getPhone(memberVO);
+	public String getPhone(MemberVO memberVO) {
+		memberService.getPhone(memberVO);
+		return "사용불가";
+		
 	}
 	
 	@RequestMapping("getEmail")
 	public String getEmail(MemberVO memberVO) {
 		memberService.getEmail(memberVO);
-		return "true";
+		return "사용불가";
 	}
 	
 	@RequestMapping("getMemberDayOrder")
@@ -183,4 +188,6 @@ public class MemberController {
 		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
 		return memberService.getMemberOrders(getMemberDayOrder);
 	}
+	
+	
 }

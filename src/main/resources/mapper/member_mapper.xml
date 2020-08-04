@@ -147,4 +147,41 @@
      		TO_CHAR(ORDER_TIME, 'yyyy-MM-dd')=#{orderTime} AND
      		C.CAFE_NAME=#{cafeName}
 	</select>
+	
+		<select id="getFiveDayOrder" resultType="vofile.GetMemberDayOrder">
+    select * FROM
+    	(SELECT 
+				
+                TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd') "ORDER_TIME", 
+                C.CAFE_NAME CAFE_NAME,
+                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
+     FROM ORDERS O   JOIN ORDERLINE OL           ON (O.ORDER_SEQ = OL.ORDER_SEQ)
+                     JOIN MENU M                 ON (OL.MENU_SEQ = M.MENU_SEQ)
+                     JOIN CAFE C                 ON (M.ADMIN_ID = C.ADMIN_ID)
+    WHERE O.EMAIL = #{email} 
+    GROUP BY 
+                TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd'), 
+                C.CAFE_NAME
+    ORDER BY 1 DESC)
+   where  <![CDATA[ROWNUM <= 5]]> 
+	</select>
+	
+	<select id="receiveMessage" resultType="vofile.MessageVO">
+		SELECT * 
+		  FROM BOOKMARKS
+		 WHERE EMAIL=#{email}
+	</select>
+	
+	<select id="getFiveBookmarks" resultType="vofile.GetMemberDayOrder">
+	 SELECT  
+          C.CAFE_NAME,
+         NVL( BOOKMARKNUM,0) BOOKMARKNUM
+    FROM CAFE C JOIN  BOOKMARKS B ON(B.ADMIN_ID = C.ADMIN_ID)
+                       LEFT OUTER JOIN (SELECT ADMIN_ID, COUNT(ORDER_SEQ) BOOKMARKNUM
+                                                       FROM ORDERS
+                                                      WHERE EMAIL=#{email}
+                                                      GROUP BY ADMIN_ID ) O ON(C.ADMIN_ID = O.ADMIN_ID)
+   WHERE B.EMAIL=#{email}
+	</select>
+	
 </mapper>

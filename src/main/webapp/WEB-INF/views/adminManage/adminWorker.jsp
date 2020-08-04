@@ -50,7 +50,8 @@
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
 			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
-			var result = confirm(workerSeq +" 사용자를 정말로 삭제하시겠습니까?");
+			var workerName = $(this).closest('tr').find('.workerName').text();
+			var result = confirm(workerName +" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
 					url:'adminWorker/'+ workerSeq,  
@@ -136,10 +137,22 @@
 	function workerListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
+			var grade ="";
+			switch(item.workerGrade) {
+			    case 0: 
+			    	grade="매니저"
+			        break;
+			    case 1: 
+			    	grade="정직원"
+			         break;
+			    default: 
+			    	grade="알바"
+			        break;
+			}
 			$('<tr>')
-			.append($('<td>').html(item.workerName))
+			.append($('<td>').addClass('workerName').html(item.workerName))
 			.append($('<td>').html(item.pay))
-			.append($('<td>').html(item.workerGrade))
+			.append($('<td>').html(grade))
 			.append($('<td>').html(item.workerBirth))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))

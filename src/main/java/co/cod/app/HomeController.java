@@ -17,6 +17,7 @@ public class HomeController {
    @RequestMapping("home")
    public String home(Model model, MemberVO memberVO,HttpSession session) {
       memberService.popularList(memberVO);
+      memberVO.setEmail((String)session.getAttribute("loginEmail"));
       model.addAttribute("popularList", memberService.popularList(memberVO));
       return "main/home";
    }

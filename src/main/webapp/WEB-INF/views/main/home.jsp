@@ -185,7 +185,7 @@ if(message.length>0){
 	<hr>
 	<div class="main_slicks">
 		<c:forEach items="${popularList }" var="list">
-			<div>
+	
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
@@ -207,7 +207,6 @@ if(message.length>0){
 					<a href="single.html" class="image"><img
 						src="resources/images/'${list.cafeThumbnail}'" alt=""></a>
 				</article>
-			</div>
 		</c:forEach>
 	</div>
 </div>

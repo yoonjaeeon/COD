@@ -50,4 +50,11 @@ public class SeatServiceImpl implements SeatService {
 	public void updateSeatReserve(SeatVO seatVO) {
 		seatMapper.updateSeatReserve(seatVO);
 	}
+
+	@Override
+	public void seatSetting(SeatVO seatVO) {
+		seatMapper.seatSetting(seatVO);
+	}
+	
+	
 }

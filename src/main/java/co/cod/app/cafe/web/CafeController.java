@@ -11,13 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
+import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.menu.service.MenuService;
@@ -94,7 +97,10 @@ public class CafeController {
 	public String insertCafeForm(CafeVO cafeVO) {
 		return "ad/cafe/cafeInsertForm";
 	}
-
+	
+	// 상태 대기 거절 창 
+	
+	
 	// 카페등록
 	@RequestMapping("insertCafe")
 	public String insertCafe(CafeVO cafeVO, PhotoVO photoVO, HttpSession session) throws IOException {
@@ -157,5 +163,17 @@ public class CafeController {
 	public String masterSalesForm() {
 		return "ad/adminOrder/adminSales";
 	}
-
+	//카페on/off
+	@RequestMapping(value="/cafeOpenClose",  method=RequestMethod.GET)
+	@ResponseBody
+	public Integer getCafeOpenClose(HttpSession session, Model model) {		
+		return cafeService.getCafeOpenClose((String)session.getAttribute("adminId"));
+	}
+	// 카페 open/colse
+	@RequestMapping(value="/cafeOpenClose" ,method=RequestMethod.PUT ,consumes="application/json")	   
+	@ResponseBody
+	public void updateOpenClose(@RequestBody CafeVO cafeVO,HttpSession session, Model model) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		cafeService.updateOpenClose(cafeVO);
+	}
 }

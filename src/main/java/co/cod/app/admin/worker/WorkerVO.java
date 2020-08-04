@@ -12,4 +12,5 @@ public class WorkerVO {
 	Integer pay;
 	String adminId;
 	Integer workerState;
+	Integer commuteSeq;
 }

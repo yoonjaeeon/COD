@@ -126,4 +126,18 @@
 		FROM MENU
 		GROUP BY MENU_NAME
 	</select>
+	
+	<!-- 카페 오픈상태 -->
+	<select id="getCafeOpenClose" parameterType="String" resultType="Integer">
+			SELECT open_close
+			FROM cafe
+			WHERE admin_id = #{adminId}
+	</select>
+	<update id="updateOpenClose" parameterType="co.cod.app.cafe.CafeVO">
+  		UPDATE CAFE
+  		SET
+  		open_close=#{openClose}
+  		WHERE
+  		ADMIN_ID = #{adminId}
+  </update>
 </mapper>

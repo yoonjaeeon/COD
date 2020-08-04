@@ -14,6 +14,6 @@ public interface WorkerMapper {
 	public void updateWorkerState( WorkerVO workerVO);
 	public void deleteWorker( WorkerVO workerVO);
 	public List<Map> getWorkerListMap(WorkerVO workerVO);
-	public List<Map> getworkerCommute(String adminId);
+	public List<WorkerVO> getworkerCommute(String adminId);
 
 }

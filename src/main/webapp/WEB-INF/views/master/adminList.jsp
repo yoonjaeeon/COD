@@ -49,7 +49,7 @@
 	function adminListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx, item) {
-			$('<tr data-toggle="modal" data-target="#contentModal" >' )
+			$('<tr>' )
 				.append($('<td>').append($('<a>').attr({"href":"javascript:void(0)", "onclick":"cafeList(\'" +item.adminId + "\')"}).html(item.adminId)))
 				.append($('<input type=\'hidden\' id=\'hidden_pw\'>').val(item.pw))
 				.append($('<input type=\'hidden\' id=\'hidden_pass2\'>').val(item.pass2))
@@ -60,7 +60,7 @@
 				.append($('<td>').html('<button class=\'btnUpdate2\'>거절</button>'))
 				.appendTo('tbody');
 			});
-		$('#contentModal').modal()
+		//$('#contentModal').modal()
 	}
 
 	//사용자 상태따른 목록보기
@@ -79,7 +79,7 @@
 
 	$('body').on('click', '#state1', function() { selectList(1); }); //조회 버튼 클릭
 	$('body').on('click', '#state2', function() { selectList(2); }); //조회 버튼 클릭
-	$('body').on('click', '#state0', function() { selectList(0,1,2);}); //조회 버
+	$('body').on('click', '#state3', function() { selectList(3); }); //조회 버튼 
 
 	//대기상태 수정 요청
 	function cafeStateUpdate() {
@@ -106,6 +106,8 @@
 		});//수정 버튼 클릭
 	}//userUpdate
 	//대기상태 수정 요청
+		
+	
 	
 	function cafeStateUpdate1() {
 		//수정 버튼 클릭
@@ -118,10 +120,10 @@
 				url : "adminList",
 				type : 'PUT',
 				dataType : 'json',
-				data : JSON.stringify({adminId:adminId , cafeState:1} ),
+				data : JSON.stringify({adminId:adminId , cafeState:3} ),
 				contentType : 'application/json;charset=utf-8',
 				success : function(data) {
-				//	adminList();
+				//adminList();	
 					tr.remove();
 				},
 				error : function(xhr, status, message) {
@@ -151,9 +153,9 @@
 <body>
 	<hr />
 	<div class="container" align="center">
-		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 조회" id="state1" /> &nbsp; 
-		<input type="button" class="btn btn-outline-info" value="카페 관리자 조회 " id="state2" /> &nbsp; 
-		<input type="button" class="btn btn-outline-info" value="대기 관리자 조회" id="state0" />
+		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 " id="state1" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="카페 관리자  " id="state2" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="카페 승인 거절 " id="state3" />
 	</div>
       <div class="row" style="margin-bottom: 1em">
       	<div class="col-6"></div>

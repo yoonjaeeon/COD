@@ -156,7 +156,7 @@ var cafeName;
 function getOrders(time, name){
 	orderTime = time;
 	cafeName = name;
-}
+
 $('#contentModal').on('show.bs.modal', function (e) {
 	$.ajax({
 		url : 'getMemberOrders',  
@@ -165,15 +165,32 @@ $('#contentModal').on('show.bs.modal', function (e) {
 		dataType :'json',
 		success:function(result){
 			$('#tbody').empty();
-			$.each(result, function(index, item){		
-				$('#tbody').append('<tr><td>'+item.menuName+'</td><td>'+item.price+'</td><td>'+item.orderlineAmount+'</td><td>'+item.orderTime+'</td></tr>')
+			$.each(result, function(index, item){     
+				var value = "";
+				if(item.orderState == 1){
+					value = '<td>아이스 '+item.menuName+'</td><td>'+(parseInt(item.price)+parseInt(item.priceAdd))+'</td>'
+				} else{
+					value =	'<td>'+item.menuName+'</td><td>'+item.price+'</td>'
+				}    
+				$('#tbody').append('<tr>'+value+
+				'<td>'+item.orderlineAmount+'</td>' +
+				'<td>'+item.orderTime+'</td></tr>')
 				
+				/* <c:if test="${list.orderState == 0 }">
+				<td>${list.cafeName}</td>
+				<td>${list.price }</td>
+				</c:if>
+				
+				<c:if test="${list.orderState == 0 }">
+				<td>아이스 ${list.cafeName}</td>
+				<td>${list.price + list.priceAdd }</td>
+				</c:if> */
 			})
 		}
 	})
 
 })  
-
+}
 
 /* function getOrders(time){
 	$.ajax({

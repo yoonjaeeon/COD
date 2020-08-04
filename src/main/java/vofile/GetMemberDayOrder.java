@@ -13,4 +13,6 @@ public class GetMemberDayOrder {
 	String email;
 	String menuName;
 	Integer orderlineAmount;
+	Integer orderState;
+	Integer priceAdd;	
 }

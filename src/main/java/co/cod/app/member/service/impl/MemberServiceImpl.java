@@ -114,4 +114,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> popularList(MemberVO memberVO) {
 		return memberMapper.popularList(memberVO);
 	}
+
+	@Override
+	public List<MemberVO> newCafeList(MemberVO memberVO) {
+		return memberMapper.newCafeList(memberVO);
+	}
+	
+	
 }

@@ -89,7 +89,10 @@ public class CafeController {
 	public String insertCafeForm(CafeVO cafeVO) {
 		return "ad/cafe/cafeInsertForm";
 	}
-
+	
+	// 상태 대기 거절 창 
+	
+	
 	// 카페등록
 	@RequestMapping("insertCafe")
 	   public String insertCafe(CafeVO cafeVO, PhotoVO photoVO,HttpSession session) throws IOException {

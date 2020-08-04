@@ -13,7 +13,26 @@
 $(function(){
 	seatList();
 	workerList();
+	cafeOnOffState();
 });
+//open close 버튼 세팅
+function cafeOnOffState(){
+	$.ajax({
+		url:'cafeOpenClose',
+		type:'GET',			
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " 에러 메세지:"+msg);
+		},
+		success:function(data){
+			if(data == 0){
+				$("#openClose").text("OPEN");
+			}else{
+				$("#openClose").text("CLOSE")
+			}
+		}
+	});
+}
 //직원 목록 조회 요청
 function workerList() {
 	$.ajax({
@@ -31,15 +50,15 @@ function workerListResult(data) {
 	$("#workers").empty();
 	$.each(data, function(idx, item) {
 		var off = '';
-		if (item.WORKER_STATE == 1) {
+		if (item.workerState == 1) {
 			off = 'off';
 		}
 		$('<div>').addClass('col-md-4 col-sm-6 wtbl')
 			.append($('<div>').html('<i class="fas fa-user fa-2x '+off+'"></i> <br>').addClass('workerIcon'))
-			.append($('<div>').html(item.WORKER_NAME))
-			.append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.WORKER_SEQ))
-			.append($('<input type=\'hidden\' class=\'commuteSeq\'>').val(item.COMMUTE_SEQ))
-			.append($('<input type=\'hidden\' class=\'workerState\'>').val(item.WORKER_STATE))
+			.append($('<div>').html(item.workerName))
+			.append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
+			.append($('<input type=\'hidden\' class=\'commuteSeq\'>').val(item.commuteSeq))
+			.append($('<input type=\'hidden\' class=\'workerState\'>').val(item.workerState))
 			.appendTo('#workers');
 	});//each
 }//workerListResult
@@ -48,15 +67,19 @@ $('body').on('click', '.wtbl', function() {
 	var workerSeq = $(this).find('.workerSeq').val();
 	var workerState = $(this).find('.workerState').val();
 	var commuteSeq = $(this).find('.commuteSeq').val();
-	if (workerState == 0) {
-		workerUpdate(workerSeq, 1);
-	} else {
+	if (workerState == 0 && commuteSeq != ""){
+		alert("오늘의 근무는 끝나셨습니다.")
+	}
+	if (workerState == 0 && commuteSeq == "") {
+		workerUpdate(workerSeq, 1, 0);
+	}else {
 		workerUpdate(workerSeq, 0,commuteSeq);
 	}
 });
 //조회 버튼 클릭
 function workerUpdate(workerSeq, workerState, commuteSeq) {
-	if (workerState == 1) {
+	console.log(workerSeq, workerState, commuteSeq);
+	if (workerState == 1 && commuteSeq == 0) {
 		$.post("commute", {	workerSeq : workerSeq});
 	}else{
 		$.post("commuteup", { commuteSeq : commuteSeq});
@@ -138,9 +161,51 @@ function seatUpdate(seatSeq, seatReserve) {
 		}
 	});
 }
+/* 가게 ON OFF */
+$('body').on('click', '#openClose', function() {
+	if($(this).text() == 'OPEN'){
+		cafeOpenClose(1);
+		seatSetting(0);
+	}else{
+		cafeOpenClose(0);
+		seatSetting(1);
+	}
+}); 
+function cafeOpenClose(openClose) {
+	$.ajax({
+		url : "cafeOpenClose",
+		type : 'PUT',
+		data : JSON.stringify({
+			openClose : openClose
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			cafeOnOffState();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
+function seatSetting(onOff){
+	$.ajax({
+		url : "seatsetting",
+		type : 'PUT',
+		data : JSON.stringify({
+			seatReserve : onOff
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			seatList();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
 </script>
 <div align="center" style="margin: 3em">
-	<button id="o/c" class="btn btn-outline-info"> OPEN </button>
+	<button id="openClose" class="btn btn-outline-info"></button>
 </div>
 <div class="row" >
 	<!-- 메인왼쪽 -->

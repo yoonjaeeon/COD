@@ -54,4 +54,10 @@
 		WHERE
 		Seat_seq = #{seatSeq}
 	</delete>
+	
+	<update id="seatSetting" parameterType="co.cod.app.seat.SeatVO">
+		UPDATE seat SET 
+		seat_reserve = #{seatReserve}
+		WHERE admin_id=#{adminId}
+	</update>
 </mapper>

@@ -17,6 +17,7 @@ public interface SeatMapper {
 	// 수정
 	public void updateSeat(SeatVO seatVO);
 	public void updateSeatReserve(SeatVO seatVO);
+	public void seatSetting(SeatVO seatVO);
 	// 삭제
 	public void deleteSeat(SeatVO seatVO);
 //	public String getName(Integer Id);

@@ -55,7 +55,7 @@ public class WorkerServiceImpl implements WorkerService{
 	}
 
 	@Override
-	public List<Map> getworkerCommute(String adminId) {
+	public List<WorkerVO> getworkerCommute(String adminId) {
 		return workerMapper.getworkerCommute(adminId);
 	}
 

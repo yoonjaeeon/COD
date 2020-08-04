@@ -89,6 +89,16 @@ public class CafeServiceImpl implements CafeService{
 	public CafeVO getLocation(CafeVO cafeVO) {
 		return cafeMapper.getLocation(cafeVO);
 	}
+
+	@Override
+	public void updateOpenClose(CafeVO cafeVO) {
+		cafeMapper.updateOpenClose(cafeVO);
+	}
+
+	@Override
+	public Integer getCafeOpenClose(String adminId) {
+		return cafeMapper.getCafeOpenClose(adminId);
+	}
 	
 	
 	

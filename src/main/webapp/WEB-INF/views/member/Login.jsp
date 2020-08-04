@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
     <script type="text/javascript">
+    
+    
     var message = '${msg}';
     if(message.length>0){
     	alert('${msg}');

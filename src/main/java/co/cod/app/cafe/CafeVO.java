@@ -36,4 +36,6 @@ public class CafeVO {
    String profile;
    String cafeX;
    String cafeY;
+   Integer openClose;
+   String cafe_submit;
 }

@@ -19,4 +19,8 @@ public interface CafeMapper {
 	public List<CafeVO> memberThemeList(CafeVO cafeVO);
 	public List<CafeVO> memberAreaList(CafeVO cafeVO);
 	public CafeVO getLocation(CafeVO cafeVO);
+	//카페 on off
+	public Integer getCafeOpenClose(String adminId);
+	public void updateOpenClose(CafeVO cafeVO);
+	
 }

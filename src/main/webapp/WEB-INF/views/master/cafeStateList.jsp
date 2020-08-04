@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <script>
 	function submit(param) {
 		frm.id.value = param
@@ -19,8 +18,7 @@
 	function GoContents(param) {
 		frm2.id.value = param;
 		frm2.submit();
-	}
-	
+	}	
 /* 	
 	ajax({
         type : "post",
@@ -40,7 +38,6 @@
  */
 
 </script>
-
 <div id="listpage">
 	<section class="posts">
 		
@@ -86,7 +83,6 @@
 							</div>
 							</div>
 						</div>
-			
-
+		
 
 

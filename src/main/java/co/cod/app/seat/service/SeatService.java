@@ -20,4 +20,5 @@ public interface SeatService {
 	// 수정
 	public void updateSeat(SeatVO seatVO);
 	public void updateSeatReserve(SeatVO seatVO);
+	public void seatSetting(SeatVO seatVO);
 }

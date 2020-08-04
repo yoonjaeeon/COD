@@ -127,6 +127,7 @@ public class AdvertisementController {
 		return "ma/master/masterSales";
 	}
 	
+
 	
 	/*
 	 * @RequestMapping(value="/respAPI")

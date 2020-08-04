@@ -29,6 +29,11 @@
 		GROUP BY ADVERTISER
 	</select>
 	
+	<select id ="monthAdvertisementMap" resultType="map">
+		select substr(contract_period,4,2), count(substr(contract_period,4,2)) "cnt" from ADVERTISEMENT
+		group by (substr(contract_period,4,2))
+	</select>
+	
 	
 	
 	<insert id="insertAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">

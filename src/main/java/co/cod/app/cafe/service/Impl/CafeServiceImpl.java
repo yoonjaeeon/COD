@@ -99,8 +99,10 @@ public class CafeServiceImpl implements CafeService{
 	public Integer getCafeOpenClose(String adminId) {
 		return cafeMapper.getCafeOpenClose(adminId);
 	}
-	
-	
-	
+
+	@Override
+	public void updateCafeSubmit(String adminId) {
+		cafeMapper.updateCafeSubmit(adminId);
+	}
 	
 }

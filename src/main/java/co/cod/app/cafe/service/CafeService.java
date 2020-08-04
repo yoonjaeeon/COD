@@ -23,4 +23,5 @@ public interface CafeService {
 //	카페 on off
 	public Integer getCafeOpenClose(String adminId);
 	public void updateOpenClose(CafeVO cafeVO);
+	public void updateCafeSubmit(String adminId);
 }

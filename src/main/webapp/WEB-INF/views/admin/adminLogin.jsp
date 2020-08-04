@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <script type="text/javascript">
 var message = '${msg}';
 if(message.length>0){
@@ -19,6 +20,12 @@ if(message.length>0){
 		frm.submit();
 	}
 </script>
+
+
+<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.adminId}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
 
 <div class="container">
 

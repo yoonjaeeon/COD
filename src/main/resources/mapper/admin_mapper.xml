@@ -54,8 +54,7 @@
 
 	<update id="updateCafeState" parameterType="co.cod.app.admin.AdminVO" >
 		UPDATE ADMIN SET CAFE_STATE=#{cafeState} WHERE ADMIN_ID = #{adminId} 
+		
 	</update>
-
-
-
+	
 </mapper>

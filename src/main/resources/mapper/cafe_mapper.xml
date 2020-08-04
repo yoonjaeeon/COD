@@ -139,5 +139,10 @@
   		open_close=#{openClose}
   		WHERE
   		ADMIN_ID = #{adminId}
-  </update>
+  	</update>
+  
+  	<!-- 카페 등록 허용 날짜 업데이트 -->
+  	<update id="updateCafeSubmit" parameterType="String" >
+		UPDATE CAFE SET CAFE_SUBMIT = SYSDATE WHERE ADMIN_ID = #{adminId} 
+	</update>
 </mapper>

@@ -81,7 +81,7 @@
 	$('body').on('click', '#state2', function() { selectList(2); }); //조회 버튼 클릭
 	$('body').on('click', '#state3', function() { selectList(3); }); //조회 버튼 
 
-	//대기상태 수정 요청
+	//대기상태 승인으로 바꿈  카페 상태 , 날짜 디비에 입력 
 	function cafeStateUpdate() {
 		//수정 버튼 클릭
 		$('body').on('click','.btnUpdate1', function() {			
@@ -96,7 +96,7 @@
 				data : JSON.stringify({adminId:adminId , cafeState:2} ),
 				contentType : 'application/json;charset=utf-8',
 				success : function(data) {
-				//	adminList();
+					//	adminList();
 					tr.remove();
 				},
 				error : function(xhr, status, message) {

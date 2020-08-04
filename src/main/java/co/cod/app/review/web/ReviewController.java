@@ -35,7 +35,7 @@ public class ReviewController {
 
 	// 등록처리
 	@RequestMapping("insertReview")
-	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO) throws IOException {
+	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO, HttpSession session) throws IOException {
 		MultipartFile reviewThumbnail = reviewVO.getUpload();
 		if (reviewThumbnail != null) {
 			String filename = reviewThumbnail.getOriginalFilename();
@@ -65,6 +65,8 @@ public class ReviewController {
 			}
 			reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 		}
+		reviewVO.setCafeName((String)session.getAttribute("cafeName"));
+		reviewVO.setAdminId((String)session.getAttribute("adminId"));
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출
 		return "redirect:memberReviewList";
@@ -107,7 +109,7 @@ public class ReviewController {
 	// 관리자 리뷰 리스트
 	@RequestMapping("adminReviewList")
 	public String adminReviewList(Model model, ReviewVO reviewVO, HttpSession session) {
-		// 페이징 처리
+		// 페이징 처리 
 		// (현재 페이지 파라미터 받기)
 		int p = 1;
 		if (reviewVO.getP() != null && !reviewVO.getP().isEmpty()) {

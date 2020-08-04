@@ -17,6 +17,7 @@
 		<fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt" />
 		<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd" /></h6>
 		<h6 class="published">${review.stars}</h6>
+		<h6 class="published">${review.email} 님</h6>
 		</div>
 	</div>
 </div>

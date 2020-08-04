@@ -37,5 +37,5 @@ public class CafeVO {
    String cafeX;
    String cafeY;
    Integer openClose;
-   Data cafe_submit;
+   String cafe_submit;
 }

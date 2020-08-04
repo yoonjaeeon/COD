@@ -80,13 +80,12 @@ public class CafeController {
 
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
-	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, SeatVO seatVO, String adminId, HttpSession session) {
+	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, SeatVO seatVO, HttpSession session) {
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO.getAdminId()));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
-		model.addAttribute("seatList", seatService.getSeatList(adminId));
-		seatVO.setAdminId((String)session.getAttribute("adminId"));
+		model.addAttribute("seatList", seatService.getSeatList(seatVO.getAdminId()));
 		return "cafe/cafeMain";
 	}
 

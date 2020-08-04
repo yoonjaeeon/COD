@@ -237,6 +237,7 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
 
 	<script>
+	//리뷰 작성 체크
 		function orderLogin() {
 			alert("주문은 회원가입 후 가능합니다");
 		}

@@ -7,7 +7,7 @@
 	<select id ="getCount" resultType="int">
 	 SELECT count(*) from cafe c, review r, orders o
 	 where  c.admin_id = r.admin_id 
-	 and r.order_seq = o.order_seq
+	 and r.email = o.email
     <if test="email != null and email != ''">
      and r.email = #{email}
     </if>
@@ -32,7 +32,6 @@
 				review_content,
 				review_time,
 				stars,
-				order_seq,
 				photo_group,
 				gdsThumbImg,
 				admin_id
@@ -68,10 +67,9 @@
 	<!-- 전체조회  -->
 	<select id="getReviewList"  resultType="co.cod.app.review.ReviewVO">
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
-	SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group, r.gdsThumbImg
-        from orders o, cafe c, review r 
-        where r.order_seq= o.order_seq 
-        and c.admin_id = r.admin_id
+	SELECT c.cafe_name, r.*
+        from cafe c, review r 
+        where c.admin_id = r.admin_id
         <if test="email != null and email != ''">
         and r.email = #{email}
         </if>

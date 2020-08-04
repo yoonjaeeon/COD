@@ -137,29 +137,45 @@
 		<!-- detail -->
 		<div id="listpage">
 			<section class="posts row">
+			
 				<!-- 좌석선택 -->
-				<div class="main_slick col-lg-6">
-					<c:forEach begin="0" end="3">
-						<div>
-							<article class="mini-post">
-								<header class="row">
-									<div class="col-sm-9">
-										<h3>
-											<a href="single.html">T1</a>
-										</h3>
-										<h4>2~4인</h4>
-									</div>
-									<div class="col-sm-3">
-										<i class="far fa-heart"></i>
+			<div class="main_slick col-lg-6">
+				<c:forEach items="${seatList }" var="seat">
+					<div id="seatDiv">
+						<article class="mini-post"
+							onclick="getSeat('${seat.seatName}', '${seat.seatSize }', '${seat.seatSeq}')">
+							<header class="row">
+								<div class="col-sm-9">
+									<h3>
+										<a href="single.html">좌석명:${seat.seatName} </a>
+									</h3>
+									<c:if test="${seat.seatSize==1 }">
+										<h4>2인석</h4>
+									</c:if>
+									<c:if test="${seat.seatSize==2 }">
+										<h4>4인석</h4>
+									</c:if>
+									<c:if test="${seat.seatSize==3 }">
+										<h4>단체석</h4>
+									</c:if>
+
+								</div>
+								<div class="col-sm-3">
+									<c:if test="${seat.seatReserve==0 }">
+										<h4>예약불가</h4>
+									</c:if>
+									<c:if test="${seat.seatReserve==1 }">
 										<h4>예약가능</h4>
-									</div>
-								</header>
-								<a href="#" class="image"><img
-									src="resources/images/main2.jpg" alt=""></a>
-							</article>
-						</div>
-					</c:forEach>
-				</div>
+									</c:if>
+								</div>
+							</header>
+							<a class="image"><img src="resources/upload/${seat.seatImg}"
+								alt=""></a>
+						</article>
+					</div>
+				</c:forEach>
+			</div>
+				
 				<!-- 메뉴판 -->
 				<article class="col-lg-6">
 					<h3>menu</h3>
@@ -191,6 +207,7 @@
 		<!-- review -->
 		<div>
 			<article class="mini-post">
+			<button type="button" onclick="location.href='insertFormReview'">리뷰 쓰러 가기</button>
 				<header>
 					<h3>Review</h3>
 				</header>
@@ -270,22 +287,34 @@
 	</script>
 
 <script type="text/javascript">
-
- $(".cafeReviewList").load("cafeReviewList"); 
-
+//첫번째 페이지 로드
+// $(".cafeReviewList").load("cafeReviewList?adminId=${param.adminId}");
+//more 버튼 클릭시
 	$(".btn_review").click(function() {
-		$.ajax(
-				{url: "cafeReviewList"
-					,data:{reviewSeq:$(".reviewtitle").last().data("reviewseq")}
-				}).done(function(data){
-					$(".cafeReviewList").append(data)
-				})
+	 $.ajax(
+		{url: "cafeReviewList",
+		data:{reviewSeq:$(".reviewtitle").last().data("reviewseq"),adminId:"${param.adminId}"}
+		}).done(function(data){
+			$(".cafeReviewList").append(data)
+		})
 	});
-	
+// 로드 후 클릭 함수가 실행	
+	 $(".btn_review").click();
+//	 
 	$(".btn_toggle").click(function() {
 		$(".toggleView").collapse('toggle');
 	});
-
+	function getSeat(seatName, seatSize, seatSeq){
+		$('#seatName').html(seatName);
+		$('#seatSeq').html(seatSeq);
+		if(seatSize == 1){
+		$('#seatSize').html("2인석");
+		}else if(seatSize == 2){
+			$('#seatSize').html("4인석")
+		}else{
+			$('#seatSize').html("단체석")
+		}
+	}
 	$("div.main_slick").slick({
 		infinite : true,
 		speed : 400,

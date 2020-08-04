@@ -13,7 +13,26 @@
 $(function(){
 	seatList();
 	workerList();
+	cafeOnOffState();
 });
+//open close 버튼 세팅
+function cafeOnOffState(){
+	$.ajax({
+		url:'cafeOpenClose',
+		type:'GET',			
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " 에러 메세지:"+msg);
+		},
+		success:function(data){
+			if(data == 0){
+				$("#openClose").text("OPEN");
+			}else{
+				$("#openClose").text("CLOSE")
+			}
+		}
+	});
+}
 //직원 목록 조회 요청
 function workerList() {
 	$.ajax({
@@ -142,9 +161,34 @@ function seatUpdate(seatSeq, seatReserve) {
 		}
 	});
 }
+/* 가게 ON OFF */
+$('body').on('click', '#openClose', function() {
+	if($(this).text() == 'OPEN'){
+		cafeOpenClose(1);
+	}else{
+		cafeOpenClose(0);
+	}
+}); 
+ function cafeOpenClose(openClose) {
+		$.ajax({
+			url : "cafeOpenClose",
+			type : 'PUT',
+			data : JSON.stringify({
+				openClose : openClose
+			}),
+			dataType : 'json',
+			contentType : 'application/json;charset=utf-8',
+			success : function(data) {
+				cafeOnOffState();
+			},
+			error : function(xhr, status, message) {
+				alert(" status: " + status + " 에러:" + message);
+			}
+		});
+	}
 </script>
 <div align="center" style="margin: 3em">
-	<button id="o/c" class="btn btn-outline-info"> OPEN </button>
+	<button id="openClose" class="btn btn-outline-info"></button>
 </div>
 <div class="row" >
 	<!-- 메인왼쪽 -->

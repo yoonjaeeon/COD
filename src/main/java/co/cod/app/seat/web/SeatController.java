@@ -110,6 +110,12 @@ public class SeatController {
 	}
 	
 	//좌석상태 업데이트
+	@RequestMapping(value="/seatsetting" ,method=RequestMethod.PUT ,consumes="application/json")	   
+	@ResponseBody
+	public SeatVO seatsetting(@RequestBody SeatVO seatVO, Model model) {
+		seatService.updateSeatReserve(seatVO);
+		return  seatVO;
+	}
 	@RequestMapping(value="/seatReserve" ,method=RequestMethod.PUT ,consumes="application/json")	   
 	@ResponseBody
 	public SeatVO seatReserve(@RequestBody SeatVO seatVO, Model model) {

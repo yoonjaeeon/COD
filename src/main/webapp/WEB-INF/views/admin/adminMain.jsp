@@ -165,27 +165,44 @@ function seatUpdate(seatSeq, seatReserve) {
 $('body').on('click', '#openClose', function() {
 	if($(this).text() == 'OPEN'){
 		cafeOpenClose(1);
+		seatSetting(0);
 	}else{
 		cafeOpenClose(0);
+		seatSetting(1);
 	}
 }); 
- function cafeOpenClose(openClose) {
-		$.ajax({
-			url : "cafeOpenClose",
-			type : 'PUT',
-			data : JSON.stringify({
-				openClose : openClose
-			}),
-			dataType : 'json',
-			contentType : 'application/json;charset=utf-8',
-			success : function(data) {
-				cafeOnOffState();
-			},
-			error : function(xhr, status, message) {
-				alert(" status: " + status + " 에러:" + message);
-			}
-		});
-	}
+function cafeOpenClose(openClose) {
+	$.ajax({
+		url : "cafeOpenClose",
+		type : 'PUT',
+		data : JSON.stringify({
+			openClose : openClose
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			cafeOnOffState();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
+function seatSetting(onOff){
+	$.ajax({
+		url : "seatsetting",
+		type : 'PUT',
+		data : JSON.stringify({
+			seatReserve : onOff
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			seatList();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
 </script>
 <div align="center" style="margin: 3em">
 	<button id="openClose" class="btn btn-outline-info"></button>

@@ -204,8 +204,9 @@ if(message.length>0){
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
-					<a href="single.html" class="image"><img
-						src="resources/images/'${list.cafeThumbnail}'" alt=""></a>
+					<a href="single.html" class="image">
+					<img src="resources/upload/${list.cafeThumbnail}" alt="">
+					</a>
 				</article>
 		</c:forEach>
 	</div>

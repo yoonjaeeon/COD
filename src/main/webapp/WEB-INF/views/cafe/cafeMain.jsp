@@ -206,8 +206,7 @@
 
 		<!-- review -->
 		<div>
-			<article class="mini-post">
-			<button type="button" onclick="location.href='insertFormReview'">리뷰 쓰러 가기</button>
+			<article class="mini-post">	
 				<header>
 					<h3>Review</h3>
 				</header>

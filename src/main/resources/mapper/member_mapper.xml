@@ -121,7 +121,8 @@
 				
                 TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd') "ORDER_TIME", 
                 C.CAFE_NAME CAFE_NAME,
-                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
+                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE,
+                min(o.order_seq) order_seq
      FROM ORDERS O   JOIN ORDERLINE OL           ON (O.ORDER_SEQ = OL.ORDER_SEQ)
                      JOIN MENU M                 ON (OL.MENU_SEQ = M.MENU_SEQ)
                      JOIN CAFE C                 ON (M.ADMIN_ID = C.ADMIN_ID)

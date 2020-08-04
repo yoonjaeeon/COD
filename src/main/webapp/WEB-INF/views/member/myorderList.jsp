@@ -52,6 +52,10 @@
 											rowspan="1" colspan="1"
 											aria-label="Office: activate to sort column ascending"
 											style="width: 55px;">결제금액</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1"
+											aria-label="Office: activate to sort column ascending"
+											style="width: 55px;">리뷰작성</th>
 									</tr>
 								</thead>
 								<tfoot>
@@ -59,6 +63,7 @@
 										<th rowspan="1" colspan="1">주문날짜</th>
 										<th rowspan="1" colspan="1">카페명</th>
 										<th rowspan="1" colspan="1">결제금액</th>
+										<th rowspan="1" colspan="1">리뷰작성</th>
 									</tr>
 								</tfoot>
 								<tbody>
@@ -70,6 +75,7 @@
 											</td>
 											<td>${list.cafeName}</td>
 											<td>${list.price }</td>
+											<td><button type="button" onclick="location.href='insertFormReview?orderSeq=${list.orderSeq}'">${list.orderSeq}리뷰 쓰러 가기</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
@@ -65,8 +66,7 @@ public class ReviewController {
 			}
 			reviewVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 		}
-		reviewVO.setCafeName((String)session.getAttribute("cafeName"));
-		reviewVO.setAdminId((String)session.getAttribute("adminId"));
+		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
 		reviewService.insertReview(reviewVO);
 		// 서비스 호출
 		return "redirect:memberReviewList";

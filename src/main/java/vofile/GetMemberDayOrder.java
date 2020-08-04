@@ -14,7 +14,8 @@ public class GetMemberDayOrder {
 	String menuName;
 	Integer orderlineAmount;
 	Integer orderState;
-	Integer priceAdd;	
+	Integer priceAdd;
+	Integer orderSeq;
 	
 	//bookmark 가져오는데 필요한 필드
 	Integer bookmarknum;

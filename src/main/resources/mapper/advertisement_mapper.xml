@@ -3,13 +3,24 @@
 
 <mapper namespace="co.cod.app.advertisement.mapper.AdvertisementMapper">
 
-	<select id="getAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO" resultType="co.cod.app.advertisement.AdvertisementVO">
-		SELECT * FROM ADVERTISEMENT
+	<select id="getAdvertisement" resultType="co.cod.app.advertisement.AdvertisementVO">
+		SELECT ADVERTISE_SEQ,
+				ADVERTISE_MONEY,
+				ADVERTISE_FILE,
+				ADVERTISER,
+				ADVERTISER_PHONE,
+				SITE,
+				TO_CHAR(CONTRACT_PERIOD,'yyyy-MM-dd') "CONTRACT_PERIOD",
+				TO_CHAR(CONTRACT_ENDPERIOD, 'yyyy-MM-dd') "CONTRACT_ENDPERIOD", 
+				TRUNC((contract_endperiod-contract_period), 0)as remain
+		FROM ADVERTISEMENT
 		WHERE ADVERTISE_SEQ = #{advertiseSeq}
 	</select>
 
-	<select id="getAdvertisementList" parameterType="co.cod.app.advertisement.AdvertisementVO" resultType="co.cod.app.advertisement.AdvertisementVO">		
-		SELECT * FROM ADVERTISEMENT ORDER BY ADVERTISE_SEQ
+	<select id="getAdvertisementList" resultType="co.cod.app.advertisement.AdvertisementVO">		
+		SELECT a.*, TRUNC((contract_endperiod-contract_period), 0) "remain"
+		  FROM ADVERTISEMENT a
+		 ORDER BY ADVERTISE_SEQ
 	</select>
 	
 	<select id ="getAdvertisementMap" resultType="map">
@@ -28,7 +39,8 @@
 		ADVERTISER,
 		ADVERTISER_PHONE,
 		SITE,
-		CONTRACT_PERIOD
+		CONTRACT_PERIOD,
+		CONTRACT_ENDPERIOD
 		)
 		VALUES(
 		(SELECT NVL(MAX(ADVERTISE_SEQ),0)+1 FROM ADVERTISEMENT),
@@ -37,7 +49,8 @@
 		#{advertiser},
 		#{advertiserPhone},
 		#{site},
-		#{contractPeriod}
+		#{contractPeriod},
+		#{contractENDPeriod}
 		)
 	</insert>
 
@@ -50,7 +63,8 @@
 		ADVERTISER = #{advertiser},
 		ADVERTISER_PHONE = #{advertiserPhone},
 		SITE = #{site},
-		CONTRACT_PERIOD = #{contractPeriod}
+		CONTRACT_PERIOD = #{contractPeriod},
+		CONTRACT_ENDPERIOD =  #{contractENDPeriod}
 		WHERE ADVERTISE_SEQ = #{advertiseSeq}
 	</update>
 	

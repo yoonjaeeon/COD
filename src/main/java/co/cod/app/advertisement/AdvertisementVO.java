@@ -15,6 +15,7 @@ public class AdvertisementVO {
 	String advertiserPhone;
 	String site;
 	String contractPeriod;
-	
+	String contractENDPeriod;
+	Integer remain;
 	MultipartFile upload;
 }

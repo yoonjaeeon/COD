@@ -44,7 +44,6 @@
 			    processData: false,
 			    cache: false,
 			    success: function(data) {
-			    	console.log(data.kkk)
 			    	if(data.result == true) {
 			    		advertList();
 			    	}
@@ -106,7 +105,8 @@
 		$('input:text[name="advertiserPhone"]').val(advertisement.advertiserPhone);
 		$('input:text[name="advertiseMoney"]').val(advertisement.advertiseMoney);
 		$('input:text[name="site"]').val(advertisement.site);
-		$('select[name="contractPeriod"]').val(advertisement.contractPeriod).attr("selected", "selected","selected");
+		$('input[name="contractPeriod"]').val(advertisement.contractPeriod);
+		$('input[name="contractENDPeriod"]').val(advertisement.contractENDPeriod);
 		$('input[file="advertiseFile"]').val(advertisement.advertiseFile);
 		
 		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
@@ -173,7 +173,9 @@
 			.append($('<td>').html(item.advertiseMoney))
 			.append($('<td>').html(item.advertiseFile))
 			.append($('<td>').html(item.site))
-			.append($('<td>').html(item.contractPeriod))
+			.append($('<td>').html(item.remain+"일"))
+			//.append($('<td>').html(item.contractPeriod))
+			//.append($('<td>').html(item.contractENDPeriod))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.appendTo('tbody');
@@ -183,7 +185,7 @@
 <body>
 <div class="container">
 	<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-4">
 				<form id="advertform" class="form-horizontal" method="post"  enctype="multipart/form-data" >
 					<h2>광고등록</h2>
 					<div class="form-group">
@@ -208,13 +210,14 @@
 					</div>
 					
 					<div class="form-group">   
-						<label>계약기간:</label>
-						<select class="form-control" name="contractPeriod">
-							   		<option value="1달">1달</option>
-							   		<option value="3달">3달</option>
-							   		<option value="6달">6달</option>
-						</select>
-					</div>  
+						<label>계약시작:</label>
+						<input type="date" id="date" class="form-control" name="contractPeriod" >	   		
+					</div>
+					<div class="form-group">   
+						<label>계약만료:</label>
+						<input type="date" id="date" class="form-control" name="contractENDPeriod" >	   		
+					</div>
+					  
  					 <div class="form-group">
 					<label>첨부파일:</label> <input type="file" name="upload" id="upload" />
 					</div> 
@@ -226,7 +229,7 @@
 				</form>
 			</div>
 		<hr/>		
-	<div class="col-lg-6">
+	<div class="col-lg-8">
 		<h2>광고목록</h2>
 		<table class="table text-center">
 			<thead>
@@ -237,7 +240,9 @@
 				<th class="text-center">금액</th>
 			    <th class="text-center">첨부파일</th>
 				<th class="text-center">사이트</th>
-				<th class="text-center">계약기간</th>
+				<th class="text-center">계약남은기간</th>
+				<th class="text-center">조회</th>
+				<th class="text-center">삭제</th>
 			</tr>
 			</thead>
 			<tbody></tbody>

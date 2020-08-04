@@ -51,5 +51,8 @@ public class TestController {
 		return "ad/test/apiSampleApplicationJSON";
 	}
 	
-	
+	@RequestMapping("membertest")
+	public String membertest() {
+		return "ad/member/membertest";
+	}
 }

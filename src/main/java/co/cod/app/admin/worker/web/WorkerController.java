@@ -82,7 +82,7 @@ public class WorkerController {
 	//전체조회
 	@RequestMapping(value="/workerCommute", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Map> workerCommute(Model model, HttpSession session) {
+	public List<WorkerVO> workerCommute(Model model, HttpSession session) {
 		return  workerService.getworkerCommute((String)session.getAttribute("adminId"));	
 	}
 	//출석상태 업데이트

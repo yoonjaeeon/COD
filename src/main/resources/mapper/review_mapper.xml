@@ -17,12 +17,11 @@
 	</select>
 	
 	<!--리뷰 평균  -->
-<!-- 	<select>
-	select admin_id, to_char(avg(stars),'9.9')
+	<select id ="getReviewAvg" resultType="double">
+	select to_char(avg(stars),'9.9')
 	from review
 	where admin_id = #{adminId}
-	group by admin_id
-	</select> -->
+	</select>
 	
 	<!-- 단건조회  -->
 	<select id="getReview" parameterType="co.cod.app.review.ReviewVO" resultType="co.cod.app.review.ReviewVO">
@@ -51,16 +50,16 @@
 		<!-- 관리자조회  -->
 	<select id="adminReviewList"  resultType="co.cod.app.review.ReviewVO">
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
-	select *
-	from review 
-	<where>
+	SELECT c.cafe_name, o.*, r.review_seq, r.review_content, r.review_time, r.stars, r.photo_group, r.gdsThumbImg
+    from orders o, cafe c, review r 
+    where r.order_seq= o.order_seq 
+    and c.admin_id = r.admin_id	
 	<if test="email != null and email != ''">
-    and email = #{email}
+    and r.email = #{email}
     </if>
     <if test="adminId != null and adminId != ''">
-    and admin_id = #{adminId}
+    and r.admin_id = #{adminId}
     </if>
-    </where>
     order by review_seq desc
       ) A ) B WHERE rn between #{start} and #{end}
 	</select>

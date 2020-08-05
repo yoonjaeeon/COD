@@ -71,7 +71,7 @@
       	  async : false,      //동기식, 아작스 실행하고 데이터 값이 와야 실행(동기)
       	  success : function(result) {
       	  	for(i=0; i<result.length; i++) {
-      	  		chartdata.push([result[i].month, parseInt(result[i].cnt)]);
+      	  		chartdata.push([result[i].month+'월', parseInt(result[i].cnt)]);
       	  	}
       	  }
         });

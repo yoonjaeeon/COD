@@ -22,4 +22,5 @@ public interface OrdersMapper {
 	public MemberVO getMileage(MemberVO memberVO);
 	public void mileage(OrderInsertVO orderInsertVO);
 	public void mileageMinus(OrderInsertVO orderInsertVO);
+	public void updateSeat(OrderInsertVO orderInsertVO);
 }

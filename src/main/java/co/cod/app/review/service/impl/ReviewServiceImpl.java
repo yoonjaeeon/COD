@@ -9,7 +9,6 @@ import co.cod.app.review.ReviewVO;
 import co.cod.app.review.mapper.ReviewMapper;
 import co.cod.app.review.service.ReviewService;
 
-
 @Service
 public class ReviewServiceImpl implements ReviewService {
 	@Autowired
@@ -27,19 +26,25 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("getReviewList 서비스 호출");
 		return reviewMapper.getReviewList(reviewVO);
 	}
-	
+
 	// 관리자조회
-		@Override
-		public List<ReviewVO> adminReviewList(ReviewVO reviewVO) {
-			return reviewMapper.adminReviewList(reviewVO);
-		}
-	
+	@Override
+	public List<ReviewVO> adminReviewList(ReviewVO reviewVO) {
+		return reviewMapper.adminReviewList(reviewVO);
+	}
+
 	// 페이징 카운트
 	@Override
 	public int getCount(ReviewVO reviewVO) {
 		return reviewMapper.getCount(reviewVO);
 	}
- 
+
+	// 총 평점 조회
+	@Override
+	public double getReviewAvg(String adminId) {
+		return reviewMapper.getReviewAvg(adminId);
+	}
+
 	// 등록
 	@Override
 	public void insertReview(ReviewVO reviewVO) {
@@ -51,7 +56,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(ReviewVO reviewVO) {
 		reviewMapper.deleteReview(reviewVO);
 	}
-	
+
 	// 관리자 리뷰 삭제
 	@Override
 	public void adminDeleteReview(ReviewVO reviewVO) {

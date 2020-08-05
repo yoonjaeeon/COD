@@ -30,8 +30,9 @@
 	</select>
 	
 	<select id ="monthAdvertisementMap" resultType="map">
-		select substr(contract_period,4,2), count(substr(contract_period,4,2)) "cnt" from ADVERTISEMENT
+		select substr(contract_period,4,2)"month", count(substr(contract_period,4,2)) "cnt" from ADVERTISEMENT
 		group by (substr(contract_period,4,2))
+		order by 1
 	</select>
 	
 	

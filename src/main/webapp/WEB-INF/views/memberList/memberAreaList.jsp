@@ -101,6 +101,7 @@ $(function(){
 	<section class="posts">
 		<c:forEach items="${getArea}" var="area">
 			<article class="mini-post">
+					<h5>${area.distance }km</h5>
 				<header class="row">
 					<div class="col-sm-9">
 						<h3>

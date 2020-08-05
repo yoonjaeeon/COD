@@ -38,4 +38,5 @@ public class CafeVO {
    double cafeY;
    Integer openClose;
    String cafe_submit;
+   String distance;
 }

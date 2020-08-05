@@ -20,7 +20,7 @@
 <h3>리뷰 작성</h3>
 <form name="frm" action="insertReview" method="post" enctype="multipart/form-data">
 	작성자: ${loginEmail} <br>
-	카페 이름: ${param.cafeName } <br> 
+	카페 이름:${cafeName } <br> 
 	<div class="form-group">
 		<input type="hidden" class="form-control"
 		name="orderSeq" id="orderSeq" value="${param.orderSeq}">

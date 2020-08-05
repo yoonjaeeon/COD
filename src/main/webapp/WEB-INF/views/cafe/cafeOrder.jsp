@@ -60,7 +60,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 
 //메뉴 클릭시
 	function test(name, price, seq, state, realState, seatSeq) {
-		var validCheck=$('#appendTest td:contains('+state+' '+name+')');
+		var validCheck=$('tr#'+seq+realState);
 		if(validCheck.length > 0 ) {
 			var span = validCheck.next().find('span'); //수량
 			span.text(parseInt(span.text())+1);
@@ -72,14 +72,14 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		else{		
 			
 			var tr =							
-				'<tr id="'+seq+'" data-price="'+price+'">'  
+				'<tr id="'+seq+realState+'" data-price="'+price+'">'  
 					+'<td align="center">'+state+' '+ name+'</td>'  
 					+'<td ><button onclick="amountDown('+price+","+seq+')">-</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">+</button></td>'  
 					+'<td><span class="menuPrice" id="prices'+seq+'">'+price+'<span></td>'
 					+'<td><button onclick="deleteValue('+seq+')">삭제</button></td>'
 					+ '</tr>';
-			$('#appendTest').append(tr);
-				$('tr#'+seq).data('orderLine',{menuSeq:seq,orderState:realState, price:price});	
+			$('#appendTest').append(tr);			
+			$('tr#'+seq+realState).data('orderLine',{menuSeq:seq,orderState:realState, price:price});	
 			sum();
 		}	
 		
@@ -175,18 +175,19 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 							<div class="col-lg-6 col-md-8 published" id='ddd'>${menu.menuName }</div>
 							<c:if test="${menu.menuState ==2 }">
 								<div
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '핫',${menu.menuState })"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq},'',0)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Hot선택 " data-toggle="tooltip">${menu.price }</div>
 
 								<div
-									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스', ${menu.menuState })"
+									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스', 1)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Ice선택" data-toggle="tooltip">${menu.price+menu.priceAdd }</div>
-							</c:if> <c:if test="${menu.menuState==0 }">
-								<div align="center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '', ${menu.menuState })"
-									class="col-lg-3 col-md-2 published" data-placement="top"
+							</c:if> 
+							<c:if test="${menu.menuState==0 || menu.menuState==1}">
+								<div align="center" style="text-align:center"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									class="col-lg-6 published" data-placement="top"
 									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
 							</c:if>
 						</li>
@@ -216,7 +217,8 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<div align="right">
 		총 금액 : <label id="total">0</label>
 		결제 금액 : <label id="sum">0</label>
-				마일리지 사용<input id="useMileage" placeholder=" ${getMileage.mileage}p 사용가능"> <label id="myMileage">${getMileage.mileage}</label>
+				사용 가능 마일리지:${getMileage.mileage}p<br>
+				<input id="useMileage" value="0"> <label id="myMileage">${getMileage.mileage}</label>
 				<button type="button" onclick="mileageUse()">적용</button>
 				
 				<br>
@@ -265,6 +267,7 @@ function insertOrder(adminId){
 	var amount =  $('#amount')
 	var mileage = $('#total').html();
 	var mileageUse = $("#useMileage").val();
+	var seatSeq = $('#seatSeq').html();
 			//id="amount'+seq+'"
 	var result =[];		
 	var trs = $('#appendTest tr').each(function(index, item){
@@ -278,7 +281,8 @@ function insertOrder(adminId){
 		type: 'POST',
 		contentType:'application/json',
         dataType: 'json',
-        data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId, seatSeq:seatSeq, orderlineList:result } )//객체를 json구조의 String으로 변환시켜줌        	
+        data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId, 
+        					seatSeq:seatSeq, orderlineList:result, seatSeq: seatSeq} )//객체를 json구조의 String으로 변환시켜줌        	
         ,
          success : function(data){
         } 
@@ -348,6 +352,9 @@ function getSeat(seatName, seatSize, seatSeq){
 	//아엠포트 결제연동
 	//var name= cafeName;
   function requestPay(cafeName,adminId){
+	  if($('#seatName').html() =="" || $('#seatName').html() == null){
+		  alert("좌석을 선택해주세요.");
+	  }else{
 	        IMP.request_pay({
 	            pg : 'kakaopay',
 	            pay_method : 'card',
@@ -397,7 +404,10 @@ function getSeat(seatName, seatSize, seatSeq){
 	                alert(msg);
 	            }
 	        });
+	  }
   }
+  
+  
 </script>
 
 

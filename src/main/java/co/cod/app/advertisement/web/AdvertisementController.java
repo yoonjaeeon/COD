@@ -126,8 +126,20 @@ public class AdvertisementController {
 	public String masterSalesForm() {
 		return "ma/master/masterSales";
 	}
-	
 
+	//달 차트
+	@RequestMapping("monthMasterSales")
+	public @ResponseBody List<Map<String, Object>> monthAdvertisementMap(){
+		return advertisementService.monthAdvertisementMap();
+	}
+
+	@RequestMapping("monthMasterSalesForm")
+	public String monthMasterSalesForm() {
+		return "ma/master/masterSales";
+	}
+
+
+	
 	
 	/*
 	 * @RequestMapping(value="/respAPI")

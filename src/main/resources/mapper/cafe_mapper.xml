@@ -1,155 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.cod.app.cafe.mapper.CafeMapper" >
-	<select id="getCafe" parameterType="String" resultType="co.cod.app.cafe.CafeVO">
-			SELECT 
-			*
-			FROM cafe
-			WHERE admin_id = #{adminId}
-	</select>	
-  	<insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
-  		INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
-			cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
-			cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
-			nokid, parking, animal, beam, charger, big_seat, lend, cafe_x, cafe_y)
-			VALUES(
-				#{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
-				#{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{photoGroup},
-				#{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
-				#{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend},#{cafeX},#{cafeY})
-				
-  	</insert>
+   <select id="getCafe" parameterType="String" resultType="co.cod.app.cafe.CafeVO">
+         SELECT 
+         *
+         FROM cafe
+         WHERE admin_id = #{adminId}
+   </select>   
+     <insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
+        INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
+         cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
+         cafe_hashtag, cafe_theme, cafe_ask_content, wifi,
+         nokid, parking, animal, beam, charger, big_seat, lend, cafe_x, cafe_y)
+         VALUES(
+            #{adminId}, #{cafeName}, #{cafeAddress},#{cafePhone},
+            #{cafeTime},#{cafeCloseday},#{cafeThumbnail},#{photoGroup},
+            #{cafeHashtag},#{cafeTheme},#{cafeAskContent},#{wifi},
+            #{nokid},#{parking},#{animal},#{beam},#{charger},#{bigSeat},#{lend},#{cafeX},#{cafeY})
+            
+     </insert>
   
   <update id="updateCafe" parameterType="co.cod.app.cafe.CafeVO">
-  		UPDATE CAFE
-  		SET
-  		cafe_name = #{cafeName},cafe_address = #{cafeAddress},cafe_phone = #{cafePhone},
-				cafe_time = #{cafeTime},cafe_closeday = #{cafeCloseday},cafe_thumbnail = #{cafeThumbnail},phtot_group = #{phtotGroup},
-				cafe_hashtag = #{cafeHashtag},cafe_theme = #{cafeTheme},cafe_ask_content = #{cafeAskContent},wifi = #{wifi},
-				nokid = #{nokid},parking = #{parking},animal = #{animal},beam = #{beam},
-				charger = #{charger},big_seat = #{bigSeat},lend = #{lend}
-  		WHERE
-  		ADMIN_ID = #{adminId}
+        UPDATE CAFE
+        SET
+           admin_id =#{adminId},
+          cafe_name = #{cafeName},
+          cafe_address = #{cafeAddress},
+          cafe_phone = #{cafePhone},
+         cafe_time = #{cafeTime},
+         cafe_closeday = #{cafeCloseday},
+         cafe_thumbnail = #{cafeThumbnail},
+         phtot_group = #{phtotGroup},
+         cafe_hashtag = #{cafeHashtag},
+         cafe_theme = #{cafeTheme},
+         wifi = #{wifi},
+         nokid = #{nokid},
+         parking = #{parking},
+         animal = #{animal},
+         beam = #{beam},
+         charger = #{charger},
+         big_seat = #{bigSeat},
+         lend = #{lend}
+        WHERE
+        ADMIN_ID = #{adminId}
   </update>
   <delete id="deleteCafe" parameterType="co.cod.app.cafe.CafeVO">
-  	DELETE FROM CAFE WHERE
-  	ADMIN_ID =#{adminId}
+     DELETE FROM CAFE WHERE
+     ADMIN_ID =#{adminId}
   
   </delete>
-  	<!-- 테마리스트 -->
-	<select id="getThemeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-		  SELECT 
+     <!-- 테마리스트 -->
+   <select id="getThemeList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
+        SELECT 
          C.ADMIN_ID, 
          C.CAFE_NAME, 
          C.CAFE_THUMBNAIL , 
-         NVL(R.STARS,0) AS		STARS
+         NVL(R.STARS,0) AS      STARS
          <if test="email != null">
-        ,  (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND	EMAIL =#{email}) AS BOOKMARKS,    
+        ,  (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,    
          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
           </if>
       FROM CAFE C 
       LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
                                   FROM REVIEW
                                   GROUP BY
-                                	ADMIN_ID) R
+                                   ADMIN_ID) R
                                   ON (C.ADMIN_ID = R.ADMIN_ID)
-		<where>
-			<if test="cafeTheme != null">
-				CAFE_THEME = #{cafeTheme}
-			</if>
-		</where>
-		ORDER BY CAFE_THEME DESC
-	</select>
-	<!-- 지역리스트 -->
-	<select id="getAreaList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-		 SELECT 
-			 C.ADMIN_ID, 
-			 C.CAFE_NAME,
-			 C.CAFE_ADDRESS, 
-			 C.CAFE_THUMBNAIL , 
-			 NVL(R.STARS,0) AS STARS 
-			 <if test="email != null">
-			 ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND EMAIL = #{email} ) AS BOOKMARKS,	
-			 (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
-			 </if>	 
-		   FROM CAFE C LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/ COUNT(STARS),1) STARS
-	                                    FROM REVIEW
-	                                    GROUP BY ADMIN_ID) R  
-	   		ON (C.ADMIN_ID = R.ADMIN_ID)
-			<where>
-				<if test="cafeAddress != null">
-					C.CAFE_ADDRESS LIKE '%'||#{cafeAddress}||'%'
-				</if>
-			</where>
-	</select>
-	
-	<select id="memberAreaList" resultType="co.cod.app.cafe.CafeVO">
+      <where>
+         <if test="cafeTheme != null">
+            CAFE_THEME = #{cafeTheme}
+         </if>
+      </where>
+      ORDER BY CAFE_THEME DESC
+   </select>
+   <!-- 지역리스트 -->
+   <select id="getAreaList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
+       SELECT 
+          C.ADMIN_ID, 
+          C.CAFE_NAME,
+          C.CAFE_ADDRESS, 
+          C.CAFE_THUMBNAIL , 
+          NVL(R.STARS,0) AS STARS 
+          <if test="email != null">
+          ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND EMAIL = #{email} ) AS BOOKMARKS,   
+          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
+          </if>    
+         FROM CAFE C LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/ COUNT(STARS),1) STARS
+                                       FROM REVIEW
+                                       GROUP BY ADMIN_ID) R  
+            ON (C.ADMIN_ID = R.ADMIN_ID)
+         <where>
+            <if test="cafeAddress != null">
+               C.CAFE_ADDRESS LIKE '%'||#{cafeAddress}||'%'
+            </if>
+         </where>
+   </select>
+   
+   <select id="memberAreaList" resultType="co.cod.app.cafe.CafeVO">
       SELECT 
          C.ADMIN_ID, 
          C.CAFE_NAME, 
          C.CAFE_THUMBNAIL , 
-         NVL(R.STARS,0) AS		STARS
+         NVL(R.STARS,0) AS      STARS
       FROM CAFE C 
       LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
                                   FROM REVIEW
                                   GROUP BY
-                                	ADMIN_ID) R
+                                   ADMIN_ID) R
                                   ON (C.ADMIN_ID = R.ADMIN_ID)
-	</select>
-	
-	<select id="memberThemeList" resultType="co.cod.app.cafe.CafeVO">
-	 SELECT 
+   </select>
+   
+   <select id="memberThemeList" resultType="co.cod.app.cafe.CafeVO">
+    SELECT 
          C.ADMIN_ID, 
          C.CAFE_NAME, 
          C.CAFE_THUMBNAIL , 
-         NVL(R.STARS,0) AS		STARS
+         NVL(R.STARS,0) AS      STARS
       FROM CAFE C 
       LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
                                   FROM REVIEW
                                   GROUP BY
-                                	ADMIN_ID) R
-                                  ON (C.ADMIN_ID = R.ADMIN_ID)		
-		ORDER BY CAFE_THEME DESC
-	</select>
-	
-	
-	<select id="getLocation" resultType="co.cod.app.cafe.CafeVO">
-	 SELECT 
+                                   ADMIN_ID) R
+                                  ON (C.ADMIN_ID = R.ADMIN_ID)      
+      ORDER BY CAFE_THEME DESC
+   </select>
+   
+   
+   <select id="getLocation" resultType="co.cod.app.cafe.CafeVO">
+    SELECT 
          cafe_x, 
          cafe_y
       FROM cafe
      WHERE admin_id = #{adminId}
-	</select>
-	<!-- 차트 -->
-	<select id="getCafeMap" resultType="map">
-		SELECT MENU_NAME "name", sum(PRICE)"sum"
-		FROM MENU
-		GROUP BY MENU_NAME
-	</select>
-	
-	<select id="monthGetCafeMap" resultType="map">
-		select substr(order_time,4,2)"month", count(substr(order_time,4,2)) cnt from orders
-		group by (substr(order_time,4,2))
-		order by 1
-	</select>
-	
-	
-	<!-- 카페 오픈상태 -->
-	<select id="getCafeOpenClose" parameterType="String" resultType="Integer">
-			SELECT open_close
-			FROM cafe
-			WHERE admin_id = #{adminId}
-	</select>
-	<update id="updateOpenClose" parameterType="co.cod.app.cafe.CafeVO">
-  		UPDATE CAFE
-  		SET
-  		open_close=#{openClose}
-  		WHERE
-  		ADMIN_ID = #{adminId}
-  	</update>
+   </select>
+   <!-- 차트 -->
+   <select id="getCafeMap" resultType="map">
+      SELECT MENU_NAME "name", sum(PRICE)"sum"
+      FROM MENU
+      GROUP BY MENU_NAME
+   </select>
+   
+   <select id="monthGetCafeMap" resultType="map">
+      select substr(order_time,4,2)"month", count(substr(order_time,4,2)) cnt from orders
+      group by (substr(order_time,4,2))
+      order by 1
+   </select>
+   
+   
+   <!-- 카페 오픈상태 -->
+   <select id="getCafeOpenClose" parameterType="String" resultType="Integer">
+         SELECT open_close
+         FROM cafe
+         WHERE admin_id = #{adminId}
+   </select>
+   <update id="updateOpenClose" parameterType="co.cod.app.cafe.CafeVO">
+        UPDATE CAFE
+        SET
+        open_close=#{openClose}
+        WHERE
+        ADMIN_ID = #{adminId}
+     </update>
   
-  	<!-- 카페 등록 허용 날짜 업데이트 -->
-  	<update id="updateCafeSubmit" parameterType="String" >
-		UPDATE CAFE SET CAFE_SUBMIT = SYSDATE WHERE ADMIN_ID = #{adminId} 
-	</update>
+     <!-- 카페 등록 허용 날짜 업데이트 -->
+     <update id="updateCafeSubmit" parameterType="String" >
+      UPDATE CAFE SET CAFE_SUBMIT = SYSDATE WHERE ADMIN_ID = #{adminId} 
+   </update>
 </mapper>

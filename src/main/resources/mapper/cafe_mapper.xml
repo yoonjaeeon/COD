@@ -20,30 +20,31 @@
             
      </insert>
   
-  <update id="updateCafe" parameterType="co.cod.app.cafe.CafeVO">
+  <update id="updateCafe"  parameterType="co.cod.app.cafe.CafeVO">
         UPDATE CAFE
         SET
-           admin_id =#{adminId},
-          cafe_name = #{cafeName},
-          cafe_address = #{cafeAddress},
-          cafe_phone = #{cafePhone},
-         cafe_time = #{cafeTime},
-         cafe_closeday = #{cafeCloseday},
-         cafe_thumbnail = #{cafeThumbnail},
-         phtot_group = #{phtotGroup},
-         cafe_hashtag = #{cafeHashtag},
-         cafe_theme = #{cafeTheme},
-         wifi = #{wifi},
-         nokid = #{nokid},
-         parking = #{parking},
-         animal = #{animal},
-         beam = #{beam},
-         charger = #{charger},
-         big_seat = #{bigSeat},
-         lend = #{lend}
+	         admin_id =#{adminId},
+	         cafe_name =#{cafeName},
+	         cafe_address = #{cafeAddress},
+	         cafe_phone = #{cafePhone},
+	         cafe_time = #{cafeTime},
+	         cafe_closeday = #{cafeCloseday},
+	         cafe_thumbnail = #{cafeThumbnail},
+	         phtot_group = #{phtotGroup},
+	         cafe_hashtag = #{cafeHashtag},
+	         cafe_theme = #{cafeTheme},
+	         wifi = #{wifi},
+	         nokid = #{nokid},
+	         parking = #{parking},
+	         animal = #{animal},
+	         beam = #{beam},
+	         charger = #{charger},
+	         big_seat = #{bigSeat},
+	         lend = #{lend}
         WHERE
         ADMIN_ID = #{adminId}
   </update>
+  
   <delete id="deleteCafe" parameterType="co.cod.app.cafe.CafeVO">
      DELETE FROM CAFE WHERE
      ADMIN_ID =#{adminId}

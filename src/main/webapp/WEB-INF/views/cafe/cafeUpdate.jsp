@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
          <input type="hidden"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}">
       </div>   
       <div class="form-group">
-         <label>카페이름:</label>
-         <input type="text"  class="form-control"  id="cafeName" name="cafeName" value="${getCafe.cafeName}" readonly>
+       <!--   <label>카페이름:</label> -->
+         <input type="hidden"  class="form-control"  id="cafeName" name="cafeName" value="${getCafe.cafeName}" >
       </div>   
  
       <div class="form-group">
@@ -81,7 +81,6 @@
             <label><input type="radio"  name="nokid" id="nokid"  value="0">No</label>
          </div> 
          </div><br>
-         
          <div class="form-group">
          <label >주차여부</label>
          <div class="radio">

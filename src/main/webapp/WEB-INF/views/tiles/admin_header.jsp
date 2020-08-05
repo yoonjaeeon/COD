@@ -88,6 +88,8 @@ $(function(){
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>
             <a class="collapse-item" href="adminNoticeList">공지사항관리</a>
             <a class="collapse-item" href="cafeInsertForm">카페등록</a>
+            <a class="collapse-item" href="cafeUpdateForm">카페수정</a>
+            
           </div>
         </div>
       </li>

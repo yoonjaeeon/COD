@@ -31,7 +31,7 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${adminReviewList }" var="review">
-			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}'">
+			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
 				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>

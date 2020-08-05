@@ -22,11 +22,6 @@ if(message.length>0){
 </script>
 
 
-<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
-	<c:if test="${not empty cookie.adminId}">
-		<c:set value="checked" var="checked"/>
-	</c:if>
-
 <div class="container">
 
 	<div class="row justify-content-center">

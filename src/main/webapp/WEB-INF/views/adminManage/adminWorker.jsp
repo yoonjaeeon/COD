@@ -71,7 +71,8 @@
 	function workerSelect() {
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
-			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
+			var workerSeq = $(this).closest('tr').find('.workerSeq').val();
+			console.log(workerSeq);
 			//특정 사용자 조회
 			$.ajax({
 				url:'adminWorker/' + workerSeq,
@@ -91,22 +92,21 @@
 		$('input:text[name="workerName"]').val(worker.workerName);
 		$('input:text[name="workerBirth"]').val(worker.workerBirth);
 		$('input:text[name="pay"]').val(worker.pay);
-		$('input:hidden[name="hidden_workerSeq"]').val(worker.workerSeq);
+		$('input:hidden[name="workerSeq"]').val(worker.workerSeq);
 		$('select[name="workerGrade"]').val(worker.workerGrade).attr("selected", "selected","selected");
 		//$('select[name="role"]').val(worker.role).attr("selected", "selected");
 	}//userSelectResult
-	
 	
 	//사용자 수정 요청
 	function workerUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-			var workerSeq = $(this).closest('tr').find('#workerSeq').val();	
+			console.log(JSON.stringify($("#workform").serializeObject()));
 			$.ajax({ 
-			    url: "adminWorker", 
+			    url: "adminWorker/", 
 			    type: 'PUT', 
-			    dataType: 'json', 
-			   	data : JSON.stringify($("workform").serializeObject()),
+			    dataType: 'json', 			    
+			   	data : JSON.stringify($("#workform").serializeObject()),		
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			       workerList();
@@ -143,7 +143,7 @@
 			.append($('<td>').html(item.workerBirth))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-			.append($('<input type=\'hidden\' id =\'hidden_workerSeq\'>').val(item.workerSeq))
+			.append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
@@ -152,7 +152,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6">
-		<form id="workform"  class="form-horizontal">
+		<form id="workform"  class="form-horizontal">				
+			<input type="hidden" class="form-control" name="workerSeq" id="workerSeq">				
 			<h2>직원 등록 및 수정</h2>
 			<div class="form-group">		
 				<label >직원이름 :</label>

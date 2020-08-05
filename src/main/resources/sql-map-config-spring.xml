@@ -23,6 +23,7 @@
 		<typeAlias type="co.cod.app.member.MemberVO" alias="members"/>
 		<typeAlias type="co.cod.app.admin.AdminVO" alias="admins"/>
 		<typeAlias type="co.cod.app.admin.adminnotice.AdminNoticeVO" alias="adminNotice"/>
+		<typeAlias type="co.cod.app.calculate.CalculateVO" alias="calculate"/>
 	</typeAliases>
 
 </configuration>

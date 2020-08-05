@@ -28,8 +28,20 @@ function cafeOnOffState(){
 			if(data == 0){
 				$("#openClose").text("OPEN");
 			}else{
-				$("#openClose").text("CLOSE")
+				$("#openClose").text("CLOSE");
 			}
+		}
+	});
+}
+function calculate(){
+	$.ajax({
+		url : "calculate",
+		type : 'GET',
+		success : function(data) {
+			console.log(data);
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
 		}
 	});
 }
@@ -59,31 +71,39 @@ function workerListResult(data) {
 			.append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
 			.append($('<input type=\'hidden\' class=\'commuteSeq\'>').val(item.commuteSeq))
 			.append($('<input type=\'hidden\' class=\'workerState\'>').val(item.workerState))
+			.append($('<input type=\'hidden\' class=\'workerGrade\'>').val(item.workerGrade))
 			.appendTo('#workers');
 	});//each
 }//workerListResult
 //출퇴기능
 $('body').on('click', '.wtbl', function() {
+	if($("#openClose").text() == 'OPEN'){
+		alert("카페 오픈후 출근해주세요");
+		return;
+	}
 	var workerSeq = $(this).find('.workerSeq').val();
 	var workerState = $(this).find('.workerState').val();
 	var commuteSeq = $(this).find('.commuteSeq').val();
+	var workerGrade = $(this).find('.workerGrade').val();
 	if (workerState == 0 && commuteSeq != ""){
 		alert("오늘의 근무는 끝나셨습니다.")
 	}
 	if (workerState == 0 && commuteSeq == "") {
 		workerUpdate(workerSeq, 1, 0);
-	}else {
-		workerUpdate(workerSeq, 0,commuteSeq);
+	}else if(workerState == 1) {
+		workerUpdate(workerSeq, 0,commuteSeq,workerGrade);
 	}
 });
 //조회 버튼 클릭
-function workerUpdate(workerSeq, workerState, commuteSeq) {
+function workerUpdate(workerSeq, workerState, commuteSeq,workerGrade) {
 	console.log(workerSeq, workerState, commuteSeq);
 	if (workerState == 1 && commuteSeq == 0) {
 		$.post("commute", {	workerSeq : workerSeq});
 	}else{
 		$.post("commuteup", { commuteSeq : commuteSeq});
+		if(workerGrade==2){
 		dayPay(workerSeq,commuteSeq);
+		}
 	}
 	$.ajax({
 		url : "workerState",
@@ -189,7 +209,7 @@ $('body').on('click', '#openClose', function() {
 	}else{
 		cafeOpenClose(0);
 		seatSetting(1);
-		
+		calculate();
 	}
 }); 
 function cafeOpenClose(openClose) {

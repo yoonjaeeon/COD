@@ -100,7 +100,6 @@ public class WorkerController {
 		workerService.updatedaypay(workerVO);
 	}
 
-	//
 	@RequestMapping(value="/respAPI")
 	@ResponseBody
 	public Map respAPI() {

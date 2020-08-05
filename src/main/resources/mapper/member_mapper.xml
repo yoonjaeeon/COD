@@ -216,4 +216,28 @@
 	ORDER BY CAFE_SUBMIT DESC)
 	 where  <![CDATA[ROWNUM <= 5]]> 
 	</select>
+	
+	<select id="location" resultType="co.cod.app.cafe.CafeVO">
+	SELECT * FROM(  
+   SELECT 
+         C.ADMIN_ID, 
+         C.CAFE_NAME, 
+         C.CAFE_THUMBNAIL , 
+         NVL(R.STARS,0) AS		STARS       
+         <if test="email != null">
+  	    ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND	EMAIL =#{email}) AS BOOKMARKS,    
+         (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
+         </if>
+   ,SQRT (POWER(69.1 * (to_number(cafe_y) - to_number(#{cafeY}) ), 2) +
+	     POWER(69.1 * (to_number(#{cafeX}) -to_number(cafe_x)) * COS(to_number(#{cafeY}) / 57.3), 2)) AS distance
+	     FROM cafe C LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
+                                                  FROM REVIEW
+                                           GROUP BY	ADMIN_ID) R
+                                      ON (C.ADMIN_ID = R.ADMIN_ID)
+)WHERE <![CDATA[distance < 25]]>
+ORDER BY DISTANCE
+	</select>
+	
+	
+	
 </mapper>

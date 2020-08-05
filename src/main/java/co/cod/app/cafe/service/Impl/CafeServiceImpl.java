@@ -1,5 +1,6 @@
 package co.cod.app.cafe.service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import co.cod.app.admin.mapper.AdminMapper;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.mapper.CafeMapper;
 import co.cod.app.cafe.service.CafeService;
+import co.cod.app.member.mapper.MemberMapper;
 
 
 @Service
@@ -21,6 +23,9 @@ public class CafeServiceImpl implements CafeService{
 	
 	@Autowired
 	AdminMapper adminMapper;
+	
+	@Autowired
+	MemberMapper memberMapper;
 	
 	@Override
 	public CafeVO getCafe(String adminId) {

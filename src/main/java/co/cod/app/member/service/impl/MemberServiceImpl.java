@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.mapper.MemberMapper;
 import co.cod.app.member.service.MemberService;
-import co.cod.app.menu.MenuVO;
 import vofile.BookmarksVO;
 import vofile.GetMemberDayOrder;
 
@@ -118,6 +118,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MemberVO> newCafeList(MemberVO memberVO) {
 		return memberMapper.newCafeList(memberVO);
+	}
+
+	@Override
+	public List<CafeVO> location(CafeVO cafeVO) {
+		return memberMapper.location(cafeVO);
 	}
 	
 	

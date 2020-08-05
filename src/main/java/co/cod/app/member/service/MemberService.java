@@ -2,10 +2,10 @@ package co.cod.app.member.service;
 
 import java.util.List;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
 import vofile.BookmarksVO;
 import vofile.GetMemberDayOrder;
-import vofile.MessageVO;
 
 public interface MemberService {
 
@@ -31,4 +31,5 @@ public interface MemberService {
 	public List<GetMemberDayOrder> getFiveReview(GetMemberDayOrder getMemberDayOrder);
 	public List<MemberVO> popularList(MemberVO memberVO);
 	public List<MemberVO> newCafeList(MemberVO memberVO);
+	public List<CafeVO> location(CafeVO cafeVO);
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 import vofile.BookmarksVO;
@@ -190,5 +191,11 @@ public class MemberController {
 		return memberService.getMemberOrders(getMemberDayOrder);
 	}
 	
+	@RequestMapping("location")	
+	public String location(Model model, HttpSession session, CafeVO cafeVO){
+		cafeVO.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("getArea", memberService.location(cafeVO));
+		return "memberList/memberAreaList";
+	}
 	
 }

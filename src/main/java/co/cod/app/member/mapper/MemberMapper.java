@@ -2,6 +2,7 @@ package co.cod.app.member.mapper;
 
 import java.util.List;
 
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.member.MemberVO;
 import vofile.BookmarksVO;
 import vofile.GetMemberDayOrder;
@@ -32,5 +33,6 @@ public interface MemberMapper {
 	public List<GetMemberDayOrder> getFiveReview(GetMemberDayOrder getMemberDayOrder);
 	public List<MemberVO> popularList(MemberVO memberVO);
 	public List<MemberVO> newCafeList(MemberVO memberVO);
+	public List<CafeVO> location(CafeVO cafeVO);
 	
 }

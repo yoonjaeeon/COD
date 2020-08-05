@@ -3,61 +3,93 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 $(function(){
+	
+	var x = document.getElementById("demo");
+	
+	//내주변 클릭시 위치 찾아줌
+	$('#location').on("click",function(){
+		getLocation();
+		showPosition();
+	})
+	
+	
+	//위치 찾아오는 function
+	function getLocation() {
+		  if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(showPosition);
+		  } else { 
+		    x.innerHTML = "이 브라우저에서는 지원하지 않습니다.";
+		  }
+	}
+	//위도 경도 보여주는 function
+	function showPosition(position) {		 
+		  location.href="location?cafeX="+position.coords.longitude+"&cafeY="+position.coords.latitude;
+	}
+	
+	//아이콘 고정
 	$("#${param.cafeAddress}").addClass("fix");
 })
 </script>
 <!-- 테마 아이콘  -->
 <div class="main_feature text-center">
 	<div class="icon_slick">
-		<div class="single_feature">
+		<div class="single_feature" id="location">
 			<div class="single_feature_icon">
 				<i class="far fa-thumbs-up"></i>
 			</div>
 			<h4>내주변</h4>
 		</div>
-		<div class="single_feature" id="중구" onclick="location.href='areaList?cafeAddress=중구'">
-			<div class="single_feature_icon" >
+		<div class="single_feature" id="중구"
+			onclick="location.href='areaList?cafeAddress=중구'">
+			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>중구</h4>
 		</div>
-		<div class="single_feature" id="남구" onclick="location.href='areaList?cafeAddress=남구'">
+		<div class="single_feature" id="남구"
+			onclick="location.href='areaList?cafeAddress=남구'">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>남구</h4>
 		</div>
-		<div class="single_feature" id="서구" onclick="location.href='areaList?cafeAddress=서구'">
+		<div class="single_feature" id="서구"
+			onclick="location.href='areaList?cafeAddress=서구'">
 			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>서구</h4>
 		</div>
-		<div class="single_feature" id="북구" onclick="location.href='areaList?cafeAddress=북구'">
+		<div class="single_feature" id="북구"
+			onclick="location.href='areaList?cafeAddress=북구'">
 			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>북구</h4>
 		</div>
-		<div class="single_feature" id="동구" onclick="location.href='areaList?cafeAddress=동구'">
+		<div class="single_feature" id="동구"
+			onclick="location.href='areaList?cafeAddress=동구'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
 			<h4>동구</h4>
 		</div>
-		<div class="single_feature" id="수성구" onclick="location.href='areaList?cafeAddress=수성구'">
+		<div class="single_feature" id="수성구"
+			onclick="location.href='areaList?cafeAddress=수성구'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
 			<h4>수성구</h4>
 		</div>
-		<div class="single_feature" id="달서구" onclick="location.href='areaList?cafeAddress=달서구'">
+		<div class="single_feature" id="달서구"
+			onclick="location.href='areaList?cafeAddress=달서구'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
 			<h4>달서구</h4>
 		</div>
-		<div class="single_feature" id="달성군" onclick="location.href='areaList?cafeAddress=달성군'">
+		<div class="single_feature" id="달성군"
+			onclick="location.href='areaList?cafeAddress=달성군'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
@@ -77,26 +109,31 @@ $(function(){
 						<h4>#해쉬태그</h4>
 					</div>
 					<div class="col-sm-3">
-					<c:if test="${not empty sessionScope.loginEmail}">
-						<div class="heart" data-class="${area.bookmarks}">
-							<c:if test="${empty sessionScope.loginEmail}">
-								<i class="far fa-heart"></i>
-							</c:if>
-							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
-								<i class="far fa-heart" style="color:red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
-							id="bookmarkDelete${area.bookmarkSeq}" ></i>
-							</c:if>
-							<c:if test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail ne area.bookmarks) }">
-								<i class="far fa-heart" data-id='${area.adminId}' style="color:black" data-placement="top" title="즐겨찾기 "	
-							data-toggle="tooltip" id="bookmarkInsert"></i>
-							</c:if>
-						</div>
+						<c:if test="${not empty sessionScope.loginEmail}">
+							<div class="heart" data-class="${area.bookmarks}">
+								<c:if test="${empty sessionScope.loginEmail}">
+									<i class="far fa-heart"></i>
+								</c:if>
+								<c:if
+									test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
+									<i class="far fa-heart" style="color: red" data-placement="top"
+										title="즐겨찾기 " data-toggle="tooltip"
+										id="bookmarkDelete${area.bookmarkSeq}"></i>
+								</c:if>
+								<c:if
+									test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail ne area.bookmarks) }">
+									<i class="far fa-heart" data-id='${area.adminId}'
+										style="color: black" data-placement="top" title="즐겨찾기 "
+										data-toggle="tooltip" id="bookmarkInsert"></i>
+								</c:if>
+							</div>
 						</c:if>
-						<h4><i class='fas fa-star'></i>${area.stars }</h4>
+						<h4>
+							<i class='fas fa-star'></i>${area.stars }</h4>
 					</div>
 				</header>
-				<a href="cafe?adminId=${area.adminId}" class="image"><img src="resources/upload/${area.cafeThumbnail }"
-					alt=""></a>
+				<a href="cafe?adminId=${area.adminId}" class="image"><img
+					src="resources/upload/${area.cafeThumbnail }" alt=""></a>
 			</article>
 		</c:forEach>
 	</section>

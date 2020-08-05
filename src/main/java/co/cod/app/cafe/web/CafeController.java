@@ -163,6 +163,17 @@ public class CafeController {
 	public String masterSalesForm() {
 		return "ad/adminOrder/adminSales";
 	}
+	
+	@RequestMapping("monthAdminSales")
+	public @ResponseBody List<Map<String, Object>> monthAdminSales(){
+		return cafeService.monthGetCafeMap();
+	}
+	
+	@RequestMapping("monthAdminSalesForm")
+	public String monthAdminSalesForm() {
+		return "ad/adminOrder/adminSales";
+	}
+	
 	//카페on/off
 	@RequestMapping(value="/cafeOpenClose",  method=RequestMethod.GET)
 	@ResponseBody

@@ -104,5 +104,11 @@ public class CafeServiceImpl implements CafeService{
 	public void updateCafeSubmit(String adminId) {
 		cafeMapper.updateCafeSubmit(adminId);
 	}
+
+	@Override
+	public List<Map<String, Object>> monthGetCafeMap() {
+		return cafeMapper.monthGetCafeMap();
+	}
+	
 	
 }

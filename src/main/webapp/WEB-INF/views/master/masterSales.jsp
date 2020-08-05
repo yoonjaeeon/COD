@@ -59,6 +59,7 @@
     	 google.charts.load('current', {'packages':['corechart','bar']}); //모든 차트 다 다운 받고싶을떄
          google.charts.setOnLoadCallback(drawsChart);
   	}	
+  	
     function drawsChart(){	
   	  var data = new google.visualization.DataTable();
   	  data.addColumn('string', '몇월');

@@ -120,12 +120,19 @@
       FROM cafe
      WHERE admin_id = #{adminId}
 	</select>
-	
+	<!-- 차트 -->
 	<select id="getCafeMap" resultType="map">
 		SELECT MENU_NAME "name", sum(PRICE)"sum"
 		FROM MENU
 		GROUP BY MENU_NAME
 	</select>
+	
+	<select id="monthGetCafeMap" resultType="map">
+		select substr(order_time,4,2)"month", count(substr(order_time,4,2)) cnt from orders
+		group by (substr(order_time,4,2))
+		order by 1
+	</select>
+	
 	
 	<!-- 카페 오픈상태 -->
 	<select id="getCafeOpenClose" parameterType="String" resultType="Integer">

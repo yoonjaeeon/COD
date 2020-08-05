@@ -6,6 +6,49 @@ var message = '${msg}';
 if(message.length>0){
 	alert('${msg}');
 }
+
+$('.heart').on('click', function(){
+	var i = $(this).find('i')
+	console.log($(this).data('class')) 
+	if(i.css('color')=='rgb(255, 0, 0)'){
+		if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
+			return
+		}else
+		/* 클린한 곳에서 id를 찾아서 8번째 문자를 반환시켜줌 */
+		var seq = $(this).find('i').attr('id').substr(14);
+		$.ajax({
+			url :'deleteBookmark?', 
+			data : {bookmarkSeq:seq},
+			method : 'post',
+			dataType :'json' ,
+			success:function(){
+				$("#bookmarkDelete"+seq).css('color','black');
+				$(this).find('i').removeAttr( 'id' )
+				$(this).find('i').addAttr("id","bookmarkInsert")
+				i.toggleClass('red');
+				//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
+				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
+			} 
+		})
+	}else{
+		if(!confirm("즐겨찾기목록에 등록하시겠습니까?")){
+			return
+		}
+		var result = $(this).find('i');
+		
+		var id = $(this).find('i').data('id')
+		$.ajax({
+			url :'insertBookmark', 
+			data : {adminId:id },
+			method : 'post',
+			dataType :'json' ,
+			success:function(data){
+				result.attr('style', 'color:red')
+				.attr('id', 'bookmarkDelete'+data.bookmarkSeq)    				
+			} 
+		})
+	}	  
+})
 </script>
 <div class="main_slick">
 	<c:forEach var="index" begin="1" end="3">
@@ -167,10 +210,20 @@ if(message.length>0){
 							</h3>
 							<h4>${list.cafeHashtag }</h4>
 						</div>
-						<!-- <div class="col-sm-2">
+						<div class="col-sm-2">
+						<div class="heart" data-class="${list.bookmarks}">
+						<c:if test="${list.bookmarks == 1 }">
+							<i class="far fa-heart" style="color:red"></i>
+						</c:if>
+							<c:if test="${list.bookmarks == 0}">
 							<i class="far fa-heart"></i>
-							<h4>4.3</h4>
-						</div> -->
+						</c:if>
+						<c:if test="${empty list.bookmarks}">
+							<i class="far fa-heart"></i>
+						</c:if>
+						</div>
+							<h4>${list.stars }</h4>
+						</div>
 					</header>
 					<a href="cafe?adminId=${list.adminId}" class="image"><img
 						src="resources/upload/${list.cafeThumbnail }" alt=""></a>
@@ -185,7 +238,7 @@ if(message.length>0){
 	<hr>
 	<div class="main_slicks">
 		<c:forEach items="${popularList }" var="list">
-		<div>
+			<div>
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
@@ -195,6 +248,7 @@ if(message.length>0){
 							<h4>${list.cafeHashtag }</h4>
 						</div>
 						<div class="col-sm-2">
+						<div class="heart" data-class="${list.bookmarks}">
 						<c:if test="${list.bookmarks == 1 }">
 							<i class="far fa-heart" style="color:red"></i>
 						</c:if>
@@ -204,6 +258,7 @@ if(message.length>0){
 						<c:if test="${empty list.bookmarks}">
 							<i class="far fa-heart"></i>
 						</c:if>
+						</div>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>

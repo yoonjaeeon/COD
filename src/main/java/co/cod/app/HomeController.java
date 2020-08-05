@@ -40,7 +40,7 @@ public class HomeController {
    @RequestMapping("memberLogout")
    public String logout(HttpSession session) {
       session.invalidate();
-      return "main/home";
+      return "forward:home";
    }
    
    

@@ -79,4 +79,8 @@
 	 WHERE EMAIL = #{email}
 	</update>
 	
+	<update id="updateSeat">
+	 update seat set seat_reserve=0 where admin_id=#{adminId} AND seat_seq=#{seatSeq}
+	</update>
+	
 </mapper>

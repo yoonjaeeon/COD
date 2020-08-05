@@ -29,10 +29,31 @@ public class MasterController {
 	@Autowired MemberService memberService;
 	@Autowired CafeService cafeService;
 	
-	//마스터 메세지
+	
+		// e등로폼
+		@RequestMapping("masterInsertForm")
+		public String insertMaster(MasterVO masterVO) {
+			return "master/masterInsert";
+		}
+
+		// 등록처리
+		@RequestMapping("masterInsert")
+		public String insertMaster(MasterVO masterVO, Model model) {
+			masterService.insertMaster(masterVO);
+			return "ma/master/masterMain";
+		}
+		
+		@RequestMapping("masterList")
+		public String masterList(MasterVO masterVO, Model model) {
+			model.addAttribute("masterList", masterService.MasterList(masterVO));
+			return "ma/master/masterList";
+		}		
+	
 	
 	@RequestMapping("masterMain")
-	public String masterMain() {
+	public String masterMain(Model model) {		
+		System.out.println(masterService.allList());
+		model.addAttribute("map", masterService.allList());			
 		return "ma/master/masterMain";
 	}
 	
@@ -61,7 +82,6 @@ public class MasterController {
 		return "true";
 	}
 	
-
 	// admin 조회
 	
 	@RequestMapping("adminListForm")
@@ -118,6 +138,6 @@ public class MasterController {
 	public List<MessageVO> getFiveMessage(MessageVO messageVO, Model model){
 		return masterService.getFiveMessage(messageVO);
 	}
-	
+
 }
 	

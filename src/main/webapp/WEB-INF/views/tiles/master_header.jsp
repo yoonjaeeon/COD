@@ -114,6 +114,8 @@ $('#messagesDropdown').on("click", function(){
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>-->
             <a class="collapse-item" href="adminListForm">관리자 리스트</a>
              <a class="collapse-item" href="advertisementForm">광고등록</a>
+             <a class="collapse-item" href="masterInsertForm">마스터 관리자 등록</a>
+             <a class="collapse-item" href="masterList">마스터 리스트</a>
           </div>
         </div>
       </li>

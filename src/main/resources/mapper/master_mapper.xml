@@ -3,11 +3,31 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- dumy_mapper.xml -->
 
-
-
 <!-- MESSAGE -->
 <mapper namespace="co.cod.app.master.mapper.MasterMapper">
 
+	<insert id="insertMaster" parameterType="vofile.MasterVO" >
+	INSERT INTO ADMIN (
+		ADMIN_ID,
+		PW,
+		PASS2,
+		ADMIN_PHONE,
+		CAFE_STATE, 
+		ADMIN_STATE)
+		VALUES ( 
+		#{adminId}, 
+		#{pw},
+		#{pass2}, 
+		#{adminPhone},	
+		0,	
+		1
+		)	
+	</insert>
+	
+	<select id="MasterList" resultType="vofile.MasterVO" >
+		SELECT * FROM ADMIN WHERE ADMIN_STATE = '1' 
+	</select>
+	
 	<select id="getFiveMessage" resultType="vofile.MessageVO">
 	SELECT * 
 	  FROM (SELECT * 
@@ -73,7 +93,22 @@
 						1,
 						0
 		)
-	</insert>
-	
+	</insert>	
 <!--  마스터가 Admin 이 보낸 카페 등록 폼에서 승인을 누를시 cafe_state 가 0에서 2로 바꿈  -->
+
+
+<!-- 마스터 올 리스트  -->
+
+<select id="allList" resultType="map">
+	SELECT
+		(SELECT COUNT(*) FROM MEMBER) "M" ,
+		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =1) "C1",
+		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =2) "C2",
+		(SELECT COUNT(*) FROM ADVERTISEMENT WHERE ADVERTISE_STATE=1) "A1"
+		
+		
+	FROM DUAL
+</select>
+
+
 </mapper>

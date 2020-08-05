@@ -23,7 +23,7 @@
 		frm.submit();
 	}
 
-/* 	function pwValidCheck() {
+	function pwValidCheck() {
 		var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		var reg = /^(?=.*?[a-z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/;
 		var pw = $("#pw").val();
@@ -52,7 +52,7 @@
 			frm.pw.focus();
 			return;
 		}
-	} */
+	} 
 </script>
 
 <div class="content">

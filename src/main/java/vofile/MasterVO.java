@@ -20,6 +20,18 @@ public class MasterVO {
 	Date messageDate;
 	Integer MessageSeq;
 	
+
+	String pass2;
+	
+	String adminPhone;
+	Integer adminState;	
+	String cafeName;
+	String cafeAddress;
+	
+	// 마스터 올리스트 
+	
+	String cafeState;
+	String advertiseState;
 	
 	
 }

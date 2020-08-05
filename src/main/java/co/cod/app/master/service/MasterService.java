@@ -1,6 +1,7 @@
 package co.cod.app.master.service;
 
 import java.util.List;
+import java.util.Map;
 
 import vofile.MasterVO;
 import vofile.MessageVO;
@@ -16,4 +17,8 @@ public interface MasterService {
 	public List<MessageVO> receiveMasterMessage(MessageVO messageVO);
 	public List<MessageVO> sendMasterMessage(MessageVO messageVO);
 	public List<MessageVO> getFiveMessage(MessageVO messageVO);
+	public void insertMaster(MasterVO masterVO);
+	public List<MasterVO> MasterList(MasterVO masterVO);
+	//마스터 올 리스트 
+	public Map allList();
 }

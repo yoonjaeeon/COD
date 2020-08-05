@@ -72,6 +72,7 @@ class AdminController {
 					} else if (result.getCafeState() == 2) {
 						return "redirect:admin";
 					}else if (result.getCafeState() == 3) {
+						model.addAttribute("id",adminVO.getAdminId());
 						return "e/admin/adminCancel";
 					}
 				}else if(result.getAdminState() == 1) {

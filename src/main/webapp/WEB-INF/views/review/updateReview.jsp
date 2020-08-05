@@ -6,10 +6,10 @@
 <h3>리뷰 수정</h3>
 <form name="frm" action="updateReview" method="post" enctype="multipart/form-data">
 작성자: ${loginEmail} <br>
-카페 이름: ${param.cafeName} <br>
+카페 이름: ${param.cafeName } <br>
 <div class="form-group">
 <input type="hidden" name="reviewSeq" value="${review.reviewSeq }">
-</div>
+	    </div>
 리뷰 내용:<br/>
 <textarea cols="30" rows="10"
           name="reviewContent" id="reviewContent">${review.reviewContent}</textarea><br/>

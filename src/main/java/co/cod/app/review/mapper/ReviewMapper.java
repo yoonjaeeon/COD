@@ -10,6 +10,9 @@ public interface ReviewMapper {
 
 	// 페이징 조회
 	public int getCount(ReviewVO reviewVO);
+	
+	// 총 평점 조회
+	public double getReviewAvg(String adminId);
 
 	// 목록 조회
 	public List<ReviewVO> getReviewList(ReviewVO reviewVO);

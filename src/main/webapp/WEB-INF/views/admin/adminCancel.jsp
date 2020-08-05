@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 
 <style>
 html, body {
@@ -125,6 +123,19 @@ h1 {
   }
 }
 </style>
+
+<script>
+$(function(){
+	$.ajax({
+		url : "adminList",
+		type : 'PUT',
+		dataType : 'json',
+		data : JSON.stringify({adminId:"${id}" , cafeState:0} ),
+		contentType : 'application/json;charset=utf-8'
+	})
+});
+</script>
+
 <div class="wrapper">
 	<h1>입점 심사가 거절 당했습니다</h1><br><br><br>
 	<div align="center">

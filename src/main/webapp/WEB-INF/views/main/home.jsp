@@ -163,7 +163,7 @@ if(message.length>0){
 					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="single.html">${list.cafeName }</a>
+								<a href="cafe?adminId=${list.adminId}">${list.cafeName }</a>
 							</h3>
 							<h4>${list.cafeHashtag }</h4>
 						</div>
@@ -172,7 +172,7 @@ if(message.length>0){
 							<h4>4.3</h4>
 						</div> -->
 					</header>
-					<a href="single.html" class="image"><img
+					<a href="cafe?adminId=${list.adminId}" class="image"><img
 						src="resources/upload/${list.cafeThumbnail }" alt=""></a>
 				</article>
 			</div>

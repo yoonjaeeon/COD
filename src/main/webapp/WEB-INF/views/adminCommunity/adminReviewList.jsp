@@ -31,7 +31,7 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${adminReviewList }" var="review">
-			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}'">
+			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
 				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
 				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
@@ -42,7 +42,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	총 평점 : <input type="text" name="stars" id="stars" /><br />
+	총 평점 : <input type="text" name="getReviewAvg" id="getReviewAvg" value="${getReviewAvg}" readonly/>점<br />
 	<script type="text/javascript">
 	function gopage(p) {
 		location.href="adminReviewList?p="+p;

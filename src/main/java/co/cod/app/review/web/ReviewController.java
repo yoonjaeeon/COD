@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
@@ -101,7 +102,7 @@ public class ReviewController {
 		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
 	
 		
-		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
+		model.addAttribute("reviewList", reviewService.adminReviewList(reviewVO));
 		return "memberList/memberReviewList";
 	}
 
@@ -127,6 +128,7 @@ public class ReviewController {
 		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
 
 		model.addAttribute("adminReviewList", reviewService.adminReviewList(reviewVO));
+		model.addAttribute("getReviewAvg", reviewService.getReviewAvg(reviewVO.getAdminId()));
 		return "ad/adminCommunity/adminReviewList";
 	}
 	

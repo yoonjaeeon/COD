@@ -75,7 +75,7 @@
 											</td>
 											<td>${list.cafeName}</td>
 											<td>${list.price }</td>
-											<td><button type="button" onclick="location.href='insertFormReview?orderSeq=${list.orderSeq}&cafeName=${list.cafeName }'">리뷰 쓰러 가기</button></td>
+											<td><button type="button" onclick="location.href='insertFormReview?orderSeq=${list.orderSeq}&cafeName=${list.cafeName}'">리뷰 쓰러 가기</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

@@ -94,9 +94,11 @@
 		}
 
 </script>
-<button type="button" onclick="receiveMessage()">받은 메세지</button><button type="button" onclick="sendMessage()">보낸 메세지</button>
-<button type="bitton" onclick="send">메세지 보내기</button>
-<table border="1" id="testBoardTable" class="table table-hover">
+<div class="container" align="center">
+<button class="btn btn-outline-info" onclick="receiveMessage()">받은 메세지</button>
+<button class="btn btn-outline-info" onclick="sendMessage()">보낸 메세지</button>
+<button class="btn btn-outline-info" onclick="send">메세지 보내기</button><br><br>
+<table  id="testBoardTable" class="table table-hover">
 	<tr id='tr'>
 		<!-- <th><input type="checkBox" id="chkAll"></th> -->
 		<th>제목</th>
@@ -124,14 +126,13 @@
 		</tr>
 	</c:forEach>
 </table>
-
+</div>
 
 <!-- 페이징 처리하기 -->
 <form action="" id="modal" method="post"></form>
 
 <!-- Modal -->
-<div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

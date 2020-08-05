@@ -83,6 +83,7 @@ function workerUpdate(workerSeq, workerState, commuteSeq) {
 		$.post("commute", {	workerSeq : workerSeq});
 	}else{
 		$.post("commuteup", { commuteSeq : commuteSeq});
+		dayPay(workerSeq,commuteSeq);
 	}
 	$.ajax({
 		url : "workerState",
@@ -95,6 +96,23 @@ function workerUpdate(workerSeq, workerState, commuteSeq) {
 		contentType : 'application/json;charset=utf-8',
 		success : function(data) {
 			workerList();
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
+function dayPay(workerSeq,commuteSeq){
+	$.ajax({
+		url : "dayPay",
+		type : 'PUT',
+		data : JSON.stringify({
+			workerSeq : workerSeq,
+			commuteSeq : commuteSeq
+		}),
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			alert("퇴근완료");
 		},
 		error : function(xhr, status, message) {
 			alert(" status: " + status + " 에러:" + message);
@@ -163,12 +181,15 @@ function seatUpdate(seatSeq, seatReserve) {
 }
 /* 가게 ON OFF */
 $('body').on('click', '#openClose', function() {
+	//close->open
 	if($(this).text() == 'OPEN'){
 		cafeOpenClose(1);
 		seatSetting(0);
+	//open -> close
 	}else{
 		cafeOpenClose(0);
 		seatSetting(1);
+		
 	}
 }); 
 function cafeOpenClose(openClose) {
@@ -203,6 +224,7 @@ function seatSetting(onOff){
 		}
 	});
 }
+
 </script>
 <div align="center" style="margin: 3em">
 	<button id="openClose" class="btn btn-outline-info"></button>
@@ -255,8 +277,8 @@ function seatSetting(onOff){
 			<!-- 공지사항등록 -->
 			<div class="card-body" align="center">
 				<form class="adminNoticeF" action="insertAdminNotice">
-					<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle" name="adminNoticeTitle" style="width: 100%"><br> <br>
-					<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 100px"> </textarea><br><br>
+					<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle" name="adminNoticeTitle" style="width: 100%" required><br> <br>
+					<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 100px" required></textarea><br><br>
 					<input type="submit" value="등록" class="btn btn-outline-info" style="margin-right: 2em">
 					<input type="reset"	value="지우기" class="btn btn-outline-info">
 				</form>

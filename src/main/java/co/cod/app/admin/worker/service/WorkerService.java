@@ -15,4 +15,5 @@ public interface WorkerService {
 	public void deleteWorker( WorkerVO workerVO);
 	public List<Map> getWorkerListMap(WorkerVO workerVO);
 	public List<WorkerVO> getworkerCommute(String adminId);
+	public void updatedaypay(WorkerVO workerVO);
 }

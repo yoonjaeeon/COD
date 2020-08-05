@@ -30,6 +30,4 @@
 		  FROM commute 
 		 WHERE worker_seq = #{worker_seq}
 	</select>
-		
-	
 </mapper>

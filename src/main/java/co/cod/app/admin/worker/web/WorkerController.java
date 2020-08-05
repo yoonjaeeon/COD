@@ -92,7 +92,12 @@ public class WorkerController {
 		workerService.updateWorkerState(workerVO);
 		return  workerVO;
 	}
-	
+	//일급계산
+	@RequestMapping(value="/dayPay" ,method=RequestMethod.PUT ,consumes="application/json")	   
+	@ResponseBody
+	public void updateDayPay(@RequestBody WorkerVO workerVO, Model model) {
+		workerService.updatedaypay(workerVO);
+	}
 
 	//
 	@RequestMapping(value="/respAPI")

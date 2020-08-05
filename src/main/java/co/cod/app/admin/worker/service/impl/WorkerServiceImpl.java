@@ -59,5 +59,8 @@ public class WorkerServiceImpl implements WorkerService{
 		return workerMapper.getworkerCommute(adminId);
 	}
 
-	
+	@Override
+	public void updatedaypay(WorkerVO workerVO) {
+		workerMapper.updatedaypay(workerVO);
+	}
 }

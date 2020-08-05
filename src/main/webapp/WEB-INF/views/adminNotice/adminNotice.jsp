@@ -148,8 +148,8 @@ $(document).ready(function(){
 		<h4>공지사항</h4>
 		<br>
 		<form id="adminNoticeF" class="form-horizontal">
-				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%"><br> <br>
-				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px"> </textarea>
+				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%" required><br> <br>
+				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px" required></textarea>
 				<input type="hidden" id="adminNoticeSeq" name="adminNoticeSeq"><br> <br>
 			<br>
 			<div class="btn-group">

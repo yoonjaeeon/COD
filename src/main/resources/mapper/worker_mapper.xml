@@ -54,5 +54,9 @@
 		  FROM worker w
 		 WHERE admin_id=#{adminId}
 	</select>
-
+	
+	<!-- 일급계산 -->
+	<update id="updatedaypay" statementType="CALLABLE">
+      { call worker_day_pay(#{workerSeq}, #{commuteSeq}) }
+   	</update>
 </mapper>

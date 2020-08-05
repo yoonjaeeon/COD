@@ -29,17 +29,13 @@
 		GROUP BY ADVERTISER
 	</select>
 	
-<<<<<<< HEAD
 	<select id ="monthAdvertisementMap" resultType="map">
 		select substr(contract_period,4,2)"month", count(substr(contract_period,4,2)) "cnt" from ADVERTISEMENT
 		group by (substr(contract_period,4,2))
 		order by 1
 	</select>
 	
-=======
->>>>>>> branch 'master' of https://github.com/yoonjaeeon/COD.git
-	
-	
+
 	<insert id="insertAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">
 		INSERT INTO ADVERTISEMENT	(
 		ADVERTISE_SEQ,

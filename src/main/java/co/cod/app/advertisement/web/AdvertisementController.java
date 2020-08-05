@@ -126,7 +126,7 @@ public class AdvertisementController {
 	public String masterSalesForm() {
 		return "ma/master/masterSales";
 	}
-<<<<<<< HEAD
+
 	//달 차트
 	@RequestMapping("monthMasterSales")
 	public @ResponseBody List<Map<String, Object>> monthAdvertisementMap(){
@@ -137,8 +137,8 @@ public class AdvertisementController {
 	public String monthMasterSalesForm() {
 		return "ma/master/masterSales";
 	}
-=======
->>>>>>> branch 'master' of https://github.com/yoonjaeeon/COD.git
+
+
 	
 	
 	/*

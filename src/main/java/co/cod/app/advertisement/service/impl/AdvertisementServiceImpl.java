@@ -46,6 +46,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		advertisementMapper.deleteAdvertisement(advertisementVO);
 	}
 
+	@Override
+	public List<Map<String, Object>> monthAdvertisementMap() {
+		return advertisementMapper.monthAdvertisementMap();
+	}
+
 
 
 

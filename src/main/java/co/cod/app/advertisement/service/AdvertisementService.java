@@ -12,4 +12,5 @@ public interface AdvertisementService {
 	public void deleteAdvertisement(AdvertisementVO advertisementVO);
 	public void updateAdvertisement(AdvertisementVO advertisementVO);
 	public List<Map<String, Object>> getAdvertisementMap();
+	public List<Map<String, Object>> monthAdvertisementMap();
 }

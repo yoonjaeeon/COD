@@ -108,7 +108,7 @@
 	//대기상태 수정 요청
 		
 	
-	
+	// 카페 승인 거절 
 	function cafeStateUpdate1() {
 		//수정 버튼 클릭
 		$('body').on('click','.btnUpdate2', function() {			

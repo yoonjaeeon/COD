@@ -33,7 +33,7 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${reviewList }" var="review">
-			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
+			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}'">
 				<td>${review.reviewSeq }</td>
 				<td>${review.cafeName }</td>
 				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 150px"></td>

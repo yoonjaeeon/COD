@@ -42,7 +42,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	총 평점 : <input type="text" name="stars" id="stars" /><br />
+	총 평점 : <input type="text" name="getReviewAvg" id="getReviewAvg" value="${getReviewAvg}" readonly/>점<br />
 	<script type="text/javascript">
 	function gopage(p) {
 		location.href="adminReviewList?p="+p;

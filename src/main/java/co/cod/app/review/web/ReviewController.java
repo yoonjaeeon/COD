@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;

@@ -36,7 +36,8 @@
 				photo_group,
 				gdsThumbImg,
 				admin_id
-								 		
+						
+		 		
 		FROM review
 		WHERE review_seq = #{reviewSeq}
 	</select>

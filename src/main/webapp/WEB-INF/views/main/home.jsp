@@ -157,23 +157,23 @@ if(message.length>0){
 	<h3>신규업체</h3>
 	<hr>
 	<div class="main_slicks">
-		<c:forEach items="${newCafeList}" var="list">
+		<c:forEach begin="0" end="4">
 			<div>
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="single.html">${list.cafeName }</a>
+								<a href="single.html">yedam Cafe</a>
 							</h3>
-							<h4>${list.cafeHashtag }</h4>
+							<h4>#해쉬태그</h4>
 						</div>
-						<!-- <div class="col-sm-2">
+						<div class="col-sm-2">
 							<i class="far fa-heart"></i>
 							<h4>4.3</h4>
-						</div> -->
+						</div>
 					</header>
 					<a href="single.html" class="image"><img
-						src="resources/upload/${list.cafeThumbnail }" alt=""></a>
+						src="resources/images/main2.jpg" alt=""></a>
 				</article>
 			</div>
 		</c:forEach>
@@ -185,12 +185,12 @@ if(message.length>0){
 	<hr>
 	<div class="main_slicks">
 		<c:forEach items="${popularList }" var="list">
-		<div>
+	
 				<article class="mini-post">
 					<header class="row">
 						<div class="col-sm-10">
 							<h3>
-								<a href="cafe?adminId=${list.adminId}">${list.cafeName }</a>
+								<a href="single.html">${list.cafeName }</a>
 							</h3>
 							<h4>${list.cafeHashtag }</h4>
 						</div>
@@ -201,17 +201,13 @@ if(message.length>0){
 							<c:if test="${list.bookmarks == 0}">
 							<i class="far fa-heart"></i>
 						</c:if>
-						<c:if test="${empty list.bookmarks}">
-							<i class="far fa-heart"></i>
-						</c:if>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
-					<a href="cafe?adminId=${list.adminId}" class="image">
+					<a href="single.html" class="image">
 					<img src="resources/upload/${list.cafeThumbnail}" alt="">
 					</a>
 				</article>
-				</div>
 		</c:forEach>
 	</div>
 </div>

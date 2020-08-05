@@ -26,5 +26,10 @@ String cafeThumbnail;
 String cafeHashtag;
 double stars;
 Integer bookmarks;
-String adminId;
+
+
+
+
+
+
 }

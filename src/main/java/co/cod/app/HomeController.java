@@ -19,7 +19,6 @@ public class HomeController {
       memberService.popularList(memberVO);
       memberVO.setEmail((String)session.getAttribute("loginEmail"));
       model.addAttribute("popularList", memberService.popularList(memberVO));
-      model.addAttribute("newCafeList", memberService.newCafeList(memberVO));
       return "main/home";
    }
    

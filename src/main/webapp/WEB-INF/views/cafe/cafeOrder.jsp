@@ -173,7 +173,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 					<c:forEach items="${menuList}" var="menu">
 						<li id='aa' class="list-group-item row" data-id='${menu.menuSeq}'>
 							<div class="col-lg-6 col-md-8 published" id='ddd'>${menu.menuName }</div>
-							<c:if test="${menu.menuState ==2 }">
+							<c:if test="${menu.menuState ==2 }">  <!-- 둘다 -->
 								<div
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq},'',0)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
@@ -184,7 +184,23 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Ice선택" data-toggle="tooltip">${menu.price+menu.priceAdd }</div>
 							</c:if> 
-							<c:if test="${menu.menuState==0 || menu.menuState==1}">
+							<c:if test="${menu.menuState==0}">  <!-- 핫 -->
+								<div align="center" style="text-align:center"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									class="col-lg-3 published" data-placement="top"
+									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
+							</c:if>
+							<c:if test="${menu.menuState==1}"> <!-- 아이스 -->
+								<div align="center" style="text-align:center"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									class="col-lg-3 published" data-placement="top"
+									title="메뉴 선택" data-toggle="tooltip"></div>
+									<div align="center" style="text-align:center"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									class="col-lg-3 published" data-placement="top"
+									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
+							</c:if>
+							<c:if test="${menu.menuState==3}"> <!-- 디저트 -->
 								<div align="center" style="text-align:center"
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
 									class="col-lg-6 published" data-placement="top"

@@ -186,23 +186,21 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 							</c:if> 
 							<c:if test="${menu.menuState==0}">  <!-- 핫 -->
 								<div align="center" style="text-align:center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
 									class="col-lg-3 published" data-placement="top"
 									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
 							</c:if>
 							<c:if test="${menu.menuState==1}"> <!-- 아이스 -->
 								<div align="center" style="text-align:center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
-									class="col-lg-3 published" data-placement="top"
-									title="메뉴 선택" data-toggle="tooltip"></div>
+									class="col-lg-3 published" data-placement="top"></div>
 									<div align="center" style="text-align:center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
 									class="col-lg-3 published" data-placement="top"
 									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
 							</c:if>
 							<c:if test="${menu.menuState==3}"> <!-- 디저트 -->
 								<div align="center" style="text-align:center"
-									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',2)"
+									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
 									class="col-lg-6 published" data-placement="top"
 									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
 							</c:if>

@@ -68,6 +68,9 @@ public class MenuController {
 	@ResponseBody
 	public Map insertMenu(MenuVO vo, Model model, HttpSession session) {
 		vo.setAdminId((String)session.getAttribute("adminId"));		
+		if(vo.getMenuSort().equals("Dessert")) {
+			vo.setMenuState(3);
+		}
 		menuService.insertMenu(vo);
 		return  Collections.singletonMap("result", true);
 	}

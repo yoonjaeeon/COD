@@ -334,15 +334,9 @@ $('#contentModals').on('show.bs.modal', function (e) {
 		data : {messageSeq:messageSeq},
 		dataType :'json',
 		success:function(data){
-			/* if(data.Data.response.length == 0 ){
-		    	  alert("받은 메세지가 없습니다.");
-		    	  return false;
-			}else{ */
 				$('#getMessageTitle').html(data.messageTitle);
 				$('#getMessageContent').html(data.messageContent);
 				$('#messageCount').load("getMessageCount");
-				
-			/* } */
 		}
 	});
 });

@@ -114,7 +114,7 @@ messageSeq = seq;
 	</tr>
 	<c:forEach items="${messageList}" var="list">
 	<tbody id="tbody">
-		<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
+		<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
 			<!-- <td><input type="checkbox" name="check"></td> -->
 			<td><span id="messageTitle"></span>${list.messageTitle }</td>
 			<td><span id="messageDate"></span>${list.messageDate}</td>
@@ -188,39 +188,24 @@ messageSeq = seq;
 
 
 <script>
-
-
-
-/* function modalContent(data){
-	$("tbody").empty();
-	$.each(data,function(idx,item)){
-		html(idx.messageTitle).append($('<br>')).html(item.messageContent)
-		
-	}
-} */
+var messageSeq ;
+function messageUpdate(seq){
+messageSeq = seq;
+}
 	//모달창 메세지 받기
-	 $('#contentModal').on('show.bs.modal', function (e) {
-		console.log(e.target); 
-		$.ajax({
-			url : 'getMessage',  
-			method:'post',
-			data : {messageSeq:messageSeq},
-			dataType :'json',
-			success:function(data){
-				/* if(data.Data.response.length == 0 ){
-			    	  alert("받은 메세지가 없습니다.");
-			    	  return false;
-				}else{ */
-					$('#getMessageTitle').html(data.messageTitle);
-					$('#getMessageContent').html(data.messageContent);
-					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
-					$('#messageCount').load("getMessageCount");
-					
-				/* } */
-			}
-		})
-
-	})  
-	
+	$('#contentModals').on('show.bs.modal', function (e) {
+	console.log(e.target); 
+	$.ajax({
+		url : 'getMessage',  
+		method:'post',
+		data : {messageSeq:messageSeq},
+		dataType :'json',
+		success:function(data){
+				$('#getMessageTitle').html(data.messageTitle);
+				$('#getMessageContent').html(data.messageContent);
+				$('#messageCount').load("getMessageCount");
+		}
+	});
+});
 	
     </script>

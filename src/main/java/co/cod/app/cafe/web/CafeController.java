@@ -188,15 +188,26 @@ public class CafeController {
       cafeService.updateOpenClose(cafeVO);
    }
    @RequestMapping("cafeUpdateForm")
-   public String cafeUpdateForm(Model model, CafeVO cafeVO, HttpSession session) {
+   public String cafeUpdateForm(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
       model.addAttribute("getCafe", cafeService.getCafe((String)session.getAttribute("adminId")));
+      cafeVO = cafeService.getCafe((String)session.getAttribute("adminId"));
+      System.out.println("1 "+cafeVO);
+      if (cafeVO.getPhotoGroup() != null) {
+			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
+			model.addAttribute("fileList", photoService.getPhotoList(photoVO));
+			System.out.println("확인"+photoVO);
+		}
+      
       return "ad/cafe/cafeUpdate";
    }
    
    @RequestMapping("cafeUpdate")
-   public String cafeUpdate(Model model, CafeVO cafeVO, HttpSession session) {
+   public String cafeUpdate(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
       cafeVO.setAdminId((String)session.getAttribute("adminId"));
       cafeService.updateCafe(cafeVO);
+     
+    
+   
       return "redirect:admin";
    }
    

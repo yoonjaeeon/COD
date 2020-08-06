@@ -22,15 +22,21 @@
   
   <update id="updateCafe"  parameterType="co.cod.app.cafe.CafeVO">
         UPDATE CAFE
-        SET
+        <set>
 	         admin_id =#{adminId},
 	         cafe_name =#{cafeName},
+	         <if test = "cafeAddress != null and cafeAddress != ''">
 	         cafe_address = #{cafeAddress},
+	         </if>
 	         cafe_phone = #{cafePhone},
 	         cafe_time = #{cafeTime},
 	         cafe_closeday = #{cafeCloseday},
+	           <if test = "photoGroup != null">
+	         photo_group = #{photoGroup},
+	          </if>
+	         <if test = "cafeThumbnail != null and cafeThumbnail != ''">
 	         cafe_thumbnail = #{cafeThumbnail},
-	         phtot_group = #{phtotGroup},
+	          </if>
 	         cafe_hashtag = #{cafeHashtag},
 	         cafe_theme = #{cafeTheme},
 	         wifi = #{wifi},
@@ -41,6 +47,7 @@
 	         charger = #{charger},
 	         big_seat = #{bigSeat},
 	         lend = #{lend}
+	         </set>
         WHERE
         ADMIN_ID = #{adminId}
   </update>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +33,15 @@
          <input type="text"  class="form-control" id="close" name="cafeCloseday" value="${getCafe.cafeCloseday}" >
       </div>
         <div class="form-group">
-      <label>썸네일:</label> 
-      <input type="file" id="upload" name="upload"/>
+      <label>썸네일:</label> <br><br>
+      <img src="resources/upload/${getCafe.cafeThumbnail}"style="width: 350px"/><br><br>
+     <input type="file" id="upload" name="upload"/>
      </div>  
         <div class="form-group">
-      <label>카페등록사진:</label> 
+      <label>카페등록사진:</label><br>
+      <c:forEach items="${fileList}" var="file">
+   		<img src="resources/upload/${file.photoName}"style="width: 300px"/><br>
+ 	  </c:forEach> 
       <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
         </div> 
       <div class="form-group">
@@ -141,8 +146,7 @@
             <label><input type="radio"  name="lend" id="lend" value="0">No</label>
          </div>
          </div> <br>
-         <input type="hidden" name="cafeX">
-       <input type="hidden" name="cafeY">   
+ 
       <div class="btn-group">      
              <button type="submit" class="btn btn-primary"> 수정</button>
             <button type="reset"  class="btn btn-primary" value="초기화" id="btnInit" >초기화</button>

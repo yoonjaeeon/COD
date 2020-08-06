@@ -33,14 +33,13 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-              <div class="col-lg-6">
+              <div class="col-lg-11">  <!-- 여기손댐 -->
                   <div class="text-right">
                     <a class="small" href="home"><i class="fa fa-home"></i></a> / <a class="small" href="adminLoginForm"><b>관리자</b></a>
                   </div>
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome</h1>                    
+                    <h1 class="h4 text-gray-900 mb-4">로그인</h1>                    
                   </div>
                   <form class="user" action="memberLogin" method="post" name="frm">
                     <div class="form-group">
@@ -67,7 +66,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" href="forgot-password.html">패스워드 찾기</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="memberInsertForm">회원가입 </a>

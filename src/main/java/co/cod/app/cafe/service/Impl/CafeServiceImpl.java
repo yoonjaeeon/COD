@@ -114,6 +114,11 @@ public class CafeServiceImpl implements CafeService{
    public List<Map<String, Object>> monthGetCafeMap() {
       return cafeMapper.monthGetCafeMap();
    }
+
+@Override
+public CafeVO adminNotice(CafeVO cafeVO) {
+	return cafeMapper.adminNotice(cafeVO);
+}
    
    
 }

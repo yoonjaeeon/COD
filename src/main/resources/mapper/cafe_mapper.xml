@@ -173,4 +173,16 @@
      <update id="updateCafeSubmit" parameterType="String" >
       UPDATE CAFE SET CAFE_SUBMIT = SYSDATE WHERE ADMIN_ID = #{adminId} 
    </update>
+   
+   <!-- 카페 공지사항 -->
+   <select id="adminNotice" resultType="co.cod.app.cafe.CafeVO">
+   SELECT A.ADMIN_NOTICE_CONTENT, 
+      B.ADMIN_NOTICE_TIME
+	 FROM      ADMIN_NOTICE A 
+     JOIN  
+      (SELECT MAX(ADMIN_NOTICE_TIME) ADMIN_NOTICE_TIME 
+          FROM ADMIN_NOTICE WHERE ADMIN_ID=#{adminId}) B 
+      ON(A.ADMIN_NOTICE_TIME = B.ADMIN_NOTICE_TIME)
+WHERE ADMIN_ID = #{adminId}
+   </select>
 </mapper>

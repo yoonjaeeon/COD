@@ -40,7 +40,7 @@
 					<article class="mini-post">
 						<header>
 							<h3>공지사항</h3>
-							<p class="published">07월21일 09:00am 소독 완료 ! 편하게 놀러오세요 :)</p>
+							<p class="published">${adminNotice.adminNoticeContent }</p>
 							<a href="#" class="author"><i class='far fa-heart'></i> <!-- <img src="resources/images/avatar.jpg" alt=""> --></a>
 						</header>
 					</article>

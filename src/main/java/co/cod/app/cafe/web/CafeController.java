@@ -103,6 +103,7 @@ public class CafeController {
       model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
       model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
       model.addAttribute("seatList", seatService.getSeatList(seatVO.getAdminId()));
+      model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));
       return "cafe/cafeMain";
    }
 

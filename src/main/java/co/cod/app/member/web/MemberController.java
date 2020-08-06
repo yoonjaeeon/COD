@@ -111,14 +111,14 @@ public class MemberController {
 
 			} else if (result.getEmail().equals(memberVO.getEmail()) && !result.getPw().equals(memberVO.getPw())) {
 				model.addAttribute("msg", "잘못된 비밀번호입니다.");
-				return "e/member/Login";
+				return "member/Login";
 			} else if (!result.getEmail().equals(memberVO.getEmail())) {
 				model.addAttribute("msg", "잘못된 이메일입니다.");
-				return "e/member/Login";
+				return "member/Login";
 			}
 		} else {
 			model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요");
-			return "e/member/Login";
+			return "member/Login";
 		}
 
 		/*
@@ -141,7 +141,7 @@ public class MemberController {
 
 	@RequestMapping("memberLoginForm")
 	public String aLogin(Model model) {
-		return "e/member/Login";
+		return "member/Login";
 	}
 
 	@RequestMapping("memberMain")

@@ -24,4 +24,8 @@ public class CafeVO {
 	Integer charger;
 	Integer lend;
 	Integer bigSeat;
+	
+	//공지사항 들고오는 필드
+	String adminNoticeContent;
+	String adminNoticeTime;
 }

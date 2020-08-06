@@ -25,4 +25,7 @@ public interface CafeService {
    public Integer getCafeOpenClose(String adminId);
    public void updateOpenClose(CafeVO cafeVO);
    public void updateCafeSubmit(String adminId);
+   //공지사항
+   public CafeVO adminNotice(CafeVO cafeVO);
+   
 }

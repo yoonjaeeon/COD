@@ -59,7 +59,7 @@ $('#messagesDropdown').on("click", function(){
     <ul class="navbar-nav sidebar" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="master">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="masterMain">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-coffee"></i>
         </div>
@@ -137,12 +137,7 @@ $('#messagesDropdown').on("click", function(){
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="adminLoginForm">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+         
           </div>
         </div>
       </li>
@@ -151,14 +146,14 @@ $('#messagesDropdown').on("click", function(){
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>광고비 책정 </span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>매출 그래프</span></a>
       </li>
 
       <!-- Divider -->

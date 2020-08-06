@@ -2,6 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript">
+	function adminListForm() {
+		location.href="adminListForm";
+			
+	}
+	function advertisementForm() {
+		location.href="advertisementForm";
+			
+	}
+	function masterMessage() {
+		location.href="masterMessage";
+	
+	}
+	function themeList() {
+		location.href="themeList";
+	}
+	function masterSalesForm() {
+		location.href="masterSalesForm";
+	}
+	
+	
+	
+</script>
 <div class="container-fluid">
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -15,7 +38,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">관리자님 접속 확인.</h6>
 		</div>
 		<div class="card-body">
-			<p><a href="#" onclick="logoutCheck()">${sessionScope.adminId }  님 환영합니다.</a></p>
+			<p><a href="#" onclick="">마스터 ${sessionScope.adminId }  님 환영합니다.</a></p>
 			<p class="mb-0"></p>
 			
 		</div>
@@ -23,9 +46,9 @@
 	<br />
 	<br />
 
-	<div class="card mb-4 py-3 border-left-primary">
+	<div class="card mb-2 py-1 border-left-primary">
 		<div class="card-body">
-			<h3 class="center">데이터 자료</h3>
+			<h5 class="center">데이터 자료</h5>
 		</div>
 	</div>
 	<!-- Content Row -->
@@ -36,10 +59,10 @@
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">오늘의 접속자</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800"> ${map.M } 명</div>
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">전체 회원수</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"> * ${map.member } 명</div>
 						</div>
-						<div class="col-auto">
+						<div class="col-auto">						
 							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
 						</div>
 					</div>
@@ -55,12 +78,61 @@
 						<div class="col mr-2">
 							<div
 								class="text-xs font-weight-bold text-success text-uppercase mb-1">미처리 승인 
-								자</div>
+								</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">
-								${map.C1 } 명 </div>
+								* ${map.cafe1 } 건  </div>
 						</div>
 						<div class="col-auto">
-							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+							<i class="fas fa-clipboard-list fa-2x text-gray-300" onclick="adminListForm()"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-warning shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">승인된 관리자 </div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">* ${map.cafe2}  건</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-comments fa-2x text-gray-300" onclick="adminListForm()" ></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Pending Requests Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-warning shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">광고 의뢰 </div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">* ${map.ad}  건</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-comments fa-2x text-gray-300" onclick="advertisementForm()" ></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">메세지</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"> * ${map.mess } 건</div>
+						</div>
+						<div class="col-auto">						
+							<i class="fas fa-clipboard-list fa-2x text-gray-300" onclick="masterMessage()"></i>
 						</div>
 					</div>
 				</div>
@@ -69,51 +141,51 @@
 
 		<!-- Earnings (Monthly) Card Example -->
 		<div class="col-xl-3 col-md-6 mb-4">
-			<div class="card border-left-info shadow h-100 py-2">
+			<div class="card border-left-success shadow h-100 py-2">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div
-								class="text-xs font-weight-bold text-info text-uppercase mb-1">
-								카페 가맹점</div>
-							<div class="row no-gutters align-items-center">
-								<div class="col-auto">
-									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-									${map.C2}  건	</div>
+								class="text-xs font-weight-bold text-success text-uppercase mb-1">가맹점수 
 								</div>
-								<div class="col">
-									<div class="progress progress-sm mr-2">
-										<div class="progress-bar bg-info" role="progressbar"
-											style=" width: 50%" aria-valuenow="50" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								* ${map.cafe } 점 </div>
 						</div>
 						<div class="col-auto">
-							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+							<i class="fas fa-clipboard-list fa-2x text-gray-300" onclick="themeList()"></i>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br />
-		<br />
-		<br />
-		<br />
+
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-warning shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">가맹 카페 직원수  </div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">* ${map.work}  명</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-comments fa-2x text-gray-300" onclick="adminListForm()" ></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<!-- Pending Requests Card Example -->
 		<div class="col-xl-3 col-md-6 mb-4">
 			<div class="card border-left-warning shadow h-100 py-2">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div
-								class="text-xs font-weight-bold text-warning text-uppercase mb-1">광고 
-								의뢰 건</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">${map.A1}  건</div>
+							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">월별 통계 </div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">* ${map.A1}  100억</div>
 						</div>
 						<div class="col-auto">
-							<i class="fas fa-comments fa-2x text-gray-300"></i>
+							<i class="fas fa-comments fa-2x text-gray-300" onclick="masterSalesForm()" ></i>
 						</div>
 					</div>
 				</div>
@@ -121,7 +193,9 @@
 		</div>
 	</div>
 </div>
-</form>
+
+
+
 	<!-- Content Row -->
 
 	<div class="card shadow mb-4">

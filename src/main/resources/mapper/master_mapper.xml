@@ -9,15 +9,13 @@
 	<insert id="insertMaster" parameterType="vofile.MasterVO" >
 	INSERT INTO ADMIN (
 		ADMIN_ID,
-		PW,
-		PASS2,
+		PW,		
 		ADMIN_PHONE,
 		CAFE_STATE, 
 		ADMIN_STATE)
 		VALUES ( 
 		#{adminId}, 
 		#{pw},
-		#{pass2}, 
 		#{adminPhone},	
 		0,	
 		1
@@ -101,12 +99,13 @@
 
 <select id="allList" resultType="map">
 	SELECT
-		(SELECT COUNT(*) FROM MEMBER) "M" ,
-		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =1) "C1",
-		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =2) "C2",
-		(SELECT COUNT(*) FROM ADVERTISEMENT WHERE ADVERTISE_STATE=1) "A1"
-		
-		
+		(SELECT COUNT(*) FROM MEMBER) "member" ,
+		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =1) "cafe1",
+		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =2) "cafe2",
+		(SELECT COUNT(*) FROM ADVERTISEMENT WHERE ADVERTISE_STATE=1) "ad",
+		(SELECT COUNT(*) FROM message WHERE send_receive =1) "mess",
+		(SELECT COUNT(*) FROM WORKER )	 "work",
+		(SELECT COUNT(*) FROM CAFE )	 "cafe"					
 	FROM DUAL
 </select>
 

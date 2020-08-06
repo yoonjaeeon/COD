@@ -42,14 +42,14 @@ public class MasterController {
 			masterService.insertMaster(masterVO);
 			return "ma/master/masterMain";
 		}
-		
+		// 리스트 조회
 		@RequestMapping("masterList")
 		public String masterList(MasterVO masterVO, Model model) {
 			model.addAttribute("masterList", masterService.MasterList(masterVO));
 			return "ma/master/masterList";
 		}		
 	
-	
+	// 맵으로
 	@RequestMapping("masterMain")
 	public String masterMain(Model model) {		
 		System.out.println(masterService.allList());

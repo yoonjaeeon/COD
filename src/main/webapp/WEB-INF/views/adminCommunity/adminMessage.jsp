@@ -189,7 +189,7 @@ messageSeq = seq;
 
 <script>
 var messageSeq ;
-function messageUpdate(seq){
+function messageUpdate(seq){ 
 messageSeq = seq;
 }
 	//모달창 메세지 받기

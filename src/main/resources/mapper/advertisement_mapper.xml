@@ -18,8 +18,19 @@
 	</select>
 
 	<select id="getAdvertisementList" resultType="co.cod.app.advertisement.AdvertisementVO">		
-		SELECT a.*, TRUNC((contract_endperiod-contract_period), 0) "remain"
+		SELECT a.* , 
+		case 
+		when  contract_endperiod >= sysdate then (contract_endperiod-sysdate +1)
+		else  0 end "remain"
 		  FROM ADVERTISEMENT a
+		  <where>
+		  <if test = "advertiseState == 1">
+		  contract_endperiod <![CDATA[>=]]> sysdate
+		  </if>    
+		   <if test = "advertiseState == 0">
+		  contract_endperiod <![CDATA[<]]> sysdate
+		  </if>
+		  </where>
 		 ORDER BY ADVERTISE_SEQ
 	</select>
 	
@@ -45,7 +56,8 @@
 		ADVERTISER_PHONE,
 		SITE,
 		CONTRACT_PERIOD,
-		CONTRACT_ENDPERIOD
+		CONTRACT_ENDPERIOD,
+		ADVERTISE_STATE
 		)
 		VALUES(
 		(SELECT NVL(MAX(ADVERTISE_SEQ),0)+1 FROM ADVERTISEMENT),
@@ -55,21 +67,25 @@
 		#{advertiserPhone},
 		#{site},
 		#{contractPeriod},
-		#{contractENDPeriod}
+		#{contractENDPeriod},
+		1
 		)
 	</insert>
 
 
 	<update id="updateAdvertisement" parameterType="co.cod.app.advertisement.AdvertisementVO">
 	 	UPDATE ADVERTISEMENT
-		SET
+		<set>
 		ADVERTISE_MONEY = #{advertiseMoney} ,
+		 <if test = "advertiseFile != null and advertiseFile != ''">
 		ADVERTISE_FILE = #{advertiseFile},
+		</if>
 		ADVERTISER = #{advertiser},
 		ADVERTISER_PHONE = #{advertiserPhone},
 		SITE = #{site},
 		CONTRACT_PERIOD = #{contractPeriod},
 		CONTRACT_ENDPERIOD =  #{contractENDPeriod}
+		</set>
 		WHERE ADVERTISE_SEQ = #{advertiseSeq}
 	</update>
 	

@@ -8,7 +8,7 @@
 	$(function() {
 		selectList(1);
 		cafeStateUpdate();
-		cafeStateUpdate1() 
+		cafeStateU-pdate1() 
        //	adminList();
 		// cafeInfo();
 	});
@@ -145,8 +145,10 @@
 			});
 		});
 	});
-		
+	
+	
 </script>
+
 
 <body>
 	<hr />

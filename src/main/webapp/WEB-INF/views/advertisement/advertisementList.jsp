@@ -6,7 +6,8 @@
 <script type="text/javascript" >
 
 	$(function(){
-		advertList();
+/* 		advertList(1);
+		advertList(0); */
 
 		advertSelect();
 		
@@ -18,6 +19,8 @@
 		
 		init();
 	});	
+	var adverCurrentState = 0;
+	
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
@@ -26,6 +29,10 @@
 				this.reset();
 			});
 		});
+
+		$('#state0').on('click' , function() { advertList(0); adverCurrentState= 0;}); //조회 버튼 클릭
+		$('#state1').on('click' , function() { advertList(1); adverCurrentState= 1;}); //조회 버튼 클릭
+		
 	}//init	
 	//사용자 등록 요청
 	function advertInsert(){
@@ -44,8 +51,8 @@
 			    processData: false,
 			    cache: false,
 			    success: function(data) {
-			    	if(data.result == true) {
-			    		advertList();
+			     	if(data.result == true) {
+			    		advertList(1);
 			    	}
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -72,7 +79,7 @@
 						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 					}, success:function(xhr) {
 						console.log(xhr.result);
-						advertList();
+						advertList(adverCurrentState);
 					}
 				});      }//if
 		}); //삭제 버튼 클릭
@@ -97,7 +104,8 @@
 			});
 		}); //조회 버튼 클릭
 	}//userSelect
-	
+
+
 	//사용자 조회 응답
 	function advertSelectResult(advertisement) {
 		$('input:text[name="advertiseSeq"]').val(advertisement.advertiseSeq);
@@ -139,7 +147,7 @@
 			    processData: false,
 			    cache: false,
 			    success: function(data) { 
-			    	advertList();
+			    	advertList(1);
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" 에러:"+message);
@@ -148,12 +156,12 @@
 		});//수정 버튼 클릭
 	}//userUpdate
 	
-	
 	//사용자 목록 조회 요청
-	function advertList() {
+	function advertList(selcets) {
 		$.ajax({
 			url:'advert',
-			type:'GET',			
+			type:'GET',	
+			data: {advertiseState:selcets},
 			dataType:'json',
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " 에러 메세지:"+msg);
@@ -181,73 +189,112 @@
 			.appendTo('tbody');
 		});//each
 	}//userListResult
+	
+	$(document).ready(function(){
+		  $("#searchMenu").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#adminTbl tr").filter(function() {
+		    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+	});
+	
 </script>
+
 <body>
 <div class="container">
 	<div class="row">
-			<div class="col-lg-4">
-				<form id="advertform" class="form-horizontal" method="post"  enctype="multipart/form-data" >
-					<h2>광고등록</h2>
-					<div class="form-group">
-						<label> 광고번호:</label> <input type="text" class="form-control"
-							name="advertiseSeq" id="advertiseSeq" readonly>
-					</div>
-					<div class="form-group">
-						<label>광고주 성함:</label> <input type="text" class="form-control"
-							name="advertiser" id="advertiser">
-					</div>
-					<div class="form-group">
-						<label>광고주 연락처:</label> <input type="text" class="form-control"
-							name="advertiserPhone" id="advertiserPhone">
-					</div>
-					<div class="form-group">
-						<label>금액:</label> <input type="text" class="form-control"
-							name="advertiseMoney" id="advertiseMoney">
-					</div>
-					<div class="form-group">
-						<label>사이트:</label> <input type="text" class="form-control"
-							name="site" id="site">
-					</div>
-					
-					<div class="form-group">   
-						<label>계약시작:</label>
-						<input type="date" id="date" class="form-control" name="contractPeriod" >	   		
-					</div>
-					<div class="form-group">   
-						<label>계약만료:</label>
-						<input type="date" id="date" class="form-control" name="contractENDPeriod" >	   		
-					</div>
-					  
- 					 <div class="form-group">
-					<label>첨부파일:</label> <input type="file" name="upload" id="upload" />
-					</div> 
-					<div class="btn-group">      
-						<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
-						<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-						<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
-					</div>
-				</form>
+		<div class="col-lg-4">
+			<form id="advertform" class="form-horizontal" method="post"  enctype="multipart/form-data" >
+				<h2>광고등록</h2>
+				<div class="form-group">
+					<label> 광고번호:</label> <input type="text" class="form-control"
+						name="advertiseSeq" id="advertiseSeq" readonly>
+				</div>
+				<div class="form-group">
+					<label>광고주 성함:</label> <input type="text" class="form-control"
+						name="advertiser" id="advertiser">
+				</div>
+				<div class="form-group">
+					<label>광고주 연락처:</label> <input type="text" class="form-control"
+						name="advertiserPhone" id="advertiserPhone">
+				</div>
+				<div class="form-group">
+					<label>금액:</label> <input type="text" class="form-control"
+						name="advertiseMoney" id="advertiseMoney">
+				</div>
+				<div class="form-group">
+					<label>사이트:</label> <input type="text" class="form-control"
+						name="site" id="site">
+				</div>
+				
+				<div class="form-group">   
+					<label>계약시작:</label>
+					<input type="date" id="date" class="form-control" name="contractPeriod" >	   		
+				</div>
+				<div class="form-group">   
+					<label>계약만료:</label>
+					<input type="date" id="date" class="form-control" name="contractENDPeriod" >	   		
+				</div>
+				  
+					 <div class="form-group">
+				<label>첨부파일:</label> <input type="file" name="upload" id="upload" />
+				</div> 
+				<div class="btn-group">      
+					<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
+					<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
+					<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+				</div>
+			</form>
+		</div>
+
+		
+		<div class="col-lg-8">
+			<br>
+			<h2>광고목록</h2>
+				<div class="container" align="center">
+				<input type="button" class="btn btn-outline-info" value="광고 계약 리스트 " id="state1" /> &nbsp;
+				<input type="button" class="btn btn-outline-info" value="광고 계약 만료 리스트 " id="state0" /> &nbsp; 
 			</div>
-		<hr/>		
-	<div class="col-lg-8">
-		<h2>광고목록</h2>
-		<table class="table text-center">
+			<div style="overflow:auto; width:900px" >
+			<table class="table text-center" id="adminTbl" style="width:900px" >
+				<thead>
+				<tr>				
+					<th class="text-center">광고번호</th>
+					<th class="text-center">광고주</th>
+					<th class="text-center">광고주연락처</th>
+					<th class="text-center">금액</th>
+				    <th class="text-center">첨부파일</th>
+					<th class="text-center">사이트</th>
+					<th class="text-center">계약남은기간</th>
+					<th class="text-center">조회</th>
+					<th class="text-center">삭제</th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		</div>
+<!-- 	<div class="row" style="margin-bottom: 1em">
+      	<div class="col-6"></div>
+      	<input class="form-control col-5" id="searchMenu" type="text" placeholder="관리자 아이디 ">
+      	<i class="fa fa-search col-1" style="font-size:24px;" ></i>
+      </div>
+	<div class="col-lg">
+		<h2>관리자 리스트</h2>
+		<table class="table text-center" id="adminTbl">
 			<thead>
-			<tr>				
-				<th class="text-center">광고번호</th>
-				<th class="text-center">광고주</th>
-				<th class="text-center">광고주연락처</th>
-				<th class="text-center">금액</th>
-			    <th class="text-center">첨부파일</th>
-				<th class="text-center">사이트</th>
-				<th class="text-center">계약남은기간</th>
-				<th class="text-center">조회</th>
-				<th class="text-center">삭제</th>
-			</tr>
+				<tr >
+					<th class="text-center">관리자 아이디</th>
+					<th class="text-center">관리자 연락처</th>
+					<th class="text-center">관리자 대기 상태</th>
+					<th class="text-center">상태승인</th>
+					<th class="text-center">상태거절</th>
+				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
-	</div>
+	</div> -->
 </div>
 </div>
 </body>

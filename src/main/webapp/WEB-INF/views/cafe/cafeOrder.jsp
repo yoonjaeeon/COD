@@ -5,8 +5,13 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
-#seatSeq{display : none}
-#myMileage{display : none}
+#seatSeq {
+	display: none
+}
+
+#myMileage {
+	display: none
+}
 </style>
 <script>
 function amountDown(price,seq){ //수량 및 가격 내려줌
@@ -173,7 +178,8 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 					<c:forEach items="${menuList}" var="menu">
 						<li id='aa' class="list-group-item row" data-id='${menu.menuSeq}'>
 							<div class="col-lg-6 col-md-8 published" id='ddd'>${menu.menuName }</div>
-							<c:if test="${menu.menuState ==2 }">  <!-- 둘다 -->
+							<c:if test="${menu.menuState ==2 }">
+								<!-- 둘다 -->
 								<div
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq},'',0)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
@@ -183,26 +189,26 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스', 1)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Ice선택" data-toggle="tooltip">${menu.price+menu.priceAdd }</div>
-							</c:if> 
-							<c:if test="${menu.menuState==0}">  <!-- 핫 -->
-								<div align="center" style="text-align:center"
+							</c:if> <c:if test="${menu.menuState==0}">
+								<!-- 핫 -->
+								<div align="center" style="text-align: center"
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
-									class="col-lg-3 published" data-placement="top"
-									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
-							</c:if>
-							<c:if test="${menu.menuState==1}"> <!-- 아이스 -->
-								<div align="center" style="text-align:center"
+									class="col-lg-3 published" data-placement="top" title="메뉴 선택"
+									data-toggle="tooltip">${menu.price }</div>
+							</c:if> <c:if test="${menu.menuState==1}">
+								<!-- 아이스 -->
+								<div align="center" style="text-align: center"
 									class="col-lg-3 published" data-placement="top"></div>
-									<div align="center" style="text-align:center"
+								<div align="center" style="text-align: center"
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
-									class="col-lg-3 published" data-placement="top"
-									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
-							</c:if>
-							<c:if test="${menu.menuState==3}"> <!-- 디저트 -->
-								<div align="center" style="text-align:center"
+									class="col-lg-3 published" data-placement="top" title="메뉴 선택"
+									data-toggle="tooltip">${menu.price }</div>
+							</c:if> <c:if test="${menu.menuState==3}">
+								<!-- 디저트 -->
+								<div align="center" style="text-align: center"
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq}, '',0)"
-									class="col-lg-6 published" data-placement="top"
-									title="메뉴 선택" data-toggle="tooltip">${menu.price }</div>
+									class="col-lg-6 published" data-placement="top" title="메뉴 선택"
+									data-toggle="tooltip">${menu.price }</div>
 							</c:if>
 						</li>
 					</c:forEach>
@@ -214,7 +220,8 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<div class="container" id="showResult">
 			<h2>주문확인</h2>
 			<div>
-				<label id="seatName"></label> <label id="seatSize"></label><label id="seatSeq"></label>
+				<label id="seatName"></label> <label id="seatSize"></label><label
+					id="seatSeq"></label>
 			</div>
 			<table class="table text-center" id="table">
 				<thead>
@@ -229,15 +236,14 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			</table>
 		</div>
 		<div align="right">
-		총 금액 : <label id="total">0</label>
-		결제 금액 : <label id="sum">0</label>
-				사용 가능 마일리지:${getMileage.mileage}p<br>
-				<input id="useMileage" value="0"> <label id="myMileage">${getMileage.mileage}</label>
-				<button type="button" onclick="mileageUse()">적용</button>
-				
-				<br>
+			총 금액 : <label id="total">0</label> 결제 금액 : <label id="sum">0</label>
+			사용 가능 마일리지:${getMileage.mileage}p<br> <input id="useMileage"
+				value="0"> <label id="myMileage">${getMileage.mileage}</label>
+			<button type="button" onclick="mileageUse()">적용</button>
+
+			<br>
 			<button type="button"
-				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');insertOrder('${menuList[0].adminId}');">
+				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
 			<!-- <input type="button" value="결제" id="price" /> -->
 		</div>
@@ -297,8 +303,8 @@ function insertOrder(adminId){
         dataType: 'json',
         data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId, 
         					seatSeq:seatSeq, orderlineList:result, seatSeq: seatSeq} )//객체를 json구조의 String으로 변환시켜줌        	
-        ,
-         success : function(data){
+        ,success : function(data){
+        	window.open('report.do?orderSeq='+data.orderSeq);
         } 
 		
 	})
@@ -366,6 +372,7 @@ function getSeat(seatName, seatSize, seatSeq){
 	//아엠포트 결제연동
 	//var name= cafeName;
   function requestPay(cafeName,adminId){
+	  var adminId = adminId;
 	  if($('#seatName').html() =="" || $('#seatName').html() == null){
 		  alert("좌석을 선택해주세요.");
 	  }else{
@@ -383,34 +390,24 @@ function getSeat(seatName, seatSize, seatSeq){
 	            //m_redirect_url : 'http://www.naver.com'
 	        }, function(rsp) {
 	            if ( rsp.success ) {
-	                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-	                jQuery.ajax({
-	                    url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
-	                    type: 'POST',
-	                    dataType: 'json',
-	                    data: {
-	                        imp_uid : rsp.imp_uid
-	                        //기타 필요한 데이터가 있으면 추가 전달
-	                    }
-	                }).done(function(data) {
+	            	insertOrder(adminId);
 	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 	                    if ( everythings_fine ) {
 	                    	
-	                        msg = '결제가 완료되었습니다.';
+	                    	
+	                        /* msg = '결제가 완료되었습니다.';
 	                        msg += '\n고유ID : ' + rsp.imp_uid;
 	                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 	                        msg += '\결제 금액 : ' + rsp.paid_amount;
 	                        msg += '카드 승인번호 : ' + rsp.apply_num;
-	                        
-	                        alert(msg);
+	                        alert(msg); */
+	                      //성공시 이동할 페이지
+	    	                <%-- location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg; --%>
 	                    } else {
 	                        //[3] 아직 제대로 결제가 되지 않았습니다.
 	                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	                    }
-	                });
-	                //성공시 이동할 페이지
-	                location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
-	            } else {
+	                }else {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
 	                //실패시 이동할 페이지
@@ -420,8 +417,6 @@ function getSeat(seatName, seatSize, seatSeq){
 	        });
 	  }
   }
-  
-  
 </script>
 
 

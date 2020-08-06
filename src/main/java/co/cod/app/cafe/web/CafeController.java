@@ -2,12 +2,19 @@ package co.cod.app.cafe.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.menu.service.MenuService;
@@ -30,6 +36,11 @@ import co.cod.app.review.ReviewVO;
 import co.cod.app.review.service.ReviewService;
 import co.cod.app.seat.SeatVO;
 import co.cod.app.seat.service.SeatService;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 public class CafeController {
@@ -46,6 +57,9 @@ public class CafeController {
    ReviewService reviewService;
    @Autowired
    SeatService seatService;
+   @Autowired   
+   @Qualifier("dataSourceSpied") 
+   DataSource datasource;
 
    /* 카페지역 리스트 */
    @RequestMapping("areaList")
@@ -204,11 +218,22 @@ public class CafeController {
    @RequestMapping("cafeUpdate")
    public String cafeUpdate(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
       cafeVO.setAdminId((String)session.getAttribute("adminId"));
-      cafeService.updateCafe(cafeVO);
-     
-    
-   
+      cafeService.updateCafe(cafeVO);  
       return "redirect:admin";
+   }
+   @RequestMapping("report.do") 
+   public void report(HttpServletRequest request, HttpServletResponse response) throws Exception {
+   Connection conn = datasource.getConnection();
+   InputStream jasperStream = getClass().getResourceAsStream("/reports/bills.jasper"); 
+   JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+   //파라미터 맵 
+   HashMap<String,Object> map = new HashMap<>(); 
+   map.put("p_orderSeq", request.getParameter("orderSeq")); 
+   
+   JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn); 
+   JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+   
+   
    }
    
 }

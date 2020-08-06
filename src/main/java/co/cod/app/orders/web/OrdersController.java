@@ -39,10 +39,10 @@ public class OrdersController {
 
 	@RequestMapping("insertOrders")
 	@ResponseBody
-	public String insertOrders(Model model,@RequestBody OrderInsertVO orderInsertVO,HttpSession session) {
+	public OrderInsertVO insertOrders(Model model,@RequestBody OrderInsertVO orderInsertVO,HttpSession session) {
 		orderInsertVO.setEmail((String)session.getAttribute("loginEmail"));
 		
 		ordersService.insertOrders(orderInsertVO);
-		return "true";
+		return orderInsertVO;
 	}
 }

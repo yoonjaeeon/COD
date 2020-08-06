@@ -270,6 +270,12 @@ $('.heart').on('click', function(){
 		</c:forEach>
 	</div>
 </div>
+<br><br>
+<hr>
+<div align="center">
+<a href="https://coupa.ng/bHyqZd" target="_blank"><img src="https://ads-partners.coupang.com/banners/294756?subId=&traceId=V0-301-bae0f72e5e59e45f-I294756&w=728&h=90" alt=""></a>
+<a href="https://coupa.ng/bHyrgY" target="_blank"><img src="https://ads-partners.coupang.com/banners/294754?subId=&traceId=V0-301-969b06e95b87326d-I294754&w=728&h=90" alt=""></a>
+</div>
 <script>
 	$(".main_slick").slick({
 		dots : true,

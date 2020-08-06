@@ -3,12 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div class="container-fluid">
+<br><br>
+<div class="container">
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 text-gray-800">나의 결제 리스트</h1>
 	<!-- DataTales Example -->
-	<div class="card shadow mb-4">
-		<div class="card-body">
 			<div class="table-responsive">
 				<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 					<div class="row">
@@ -34,9 +33,8 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table table-bordered dataTable" id="dataTable"
-								width="100%" cellspacing="0" role="grid"
-								aria-describedby="dataTable_info" style="width: 100%;">
+							<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+							role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
 								<thead>
 									<tr role="row">
@@ -115,15 +113,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
 
 <!-- The Modal -->
 <div class="modal fade" id="contentModal">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<h4 class="modal-title">카페명</h4>

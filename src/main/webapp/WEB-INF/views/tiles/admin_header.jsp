@@ -66,8 +66,8 @@ $(function(){
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">카페 정산</h6>
-            <a class="collapse-item" href="buttons.html">직원출퇴근조회</a>
-            <a class="collapse-item" href="adminSalesForm">매출정산</a>
+            <a class="collapse-item" href="workerCalculateView">직원출퇴근조회</a>
+            <a class="collapse-item" href="calculateView">매출정산</a>
           </div>
         </div>
       </li>
@@ -123,9 +123,9 @@ $(function(){
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="adminSalesForm">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>정산</span></a>
       </li>
 
       <!-- Nav Item - Tables -->

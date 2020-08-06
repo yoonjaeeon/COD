@@ -9,4 +9,10 @@
        #{adminId}
       )}
    	</select>
+   	<select id="commuteList" parameterType="String" resultType="map">
+   		SELECT * 
+   		  FROM commute_views
+   		 WHERE admin_id = #{adminId}
+   		 ORDER BY commute_day desc
+   	</select>
 </mapper>

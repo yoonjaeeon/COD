@@ -157,7 +157,7 @@ function seatListResult(data) {
 	$("#tblView").empty();
 	$.each(data, function(idx, item) {
 		var onoff = '';
-		if (item.seatReserve == 0) {
+		if (item.seatReserve == 1) {
 			onoff = 'off';
 		} else {
 			onoff = 'on'
@@ -204,12 +204,11 @@ $('body').on('click', '#openClose', function() {
 	//close->open
 	if($(this).text() == 'OPEN'){
 		cafeOpenClose(1);
-		seatSetting(0);
+		seatSetting(1);
 	//open -> close
 	}else{
 		cafeOpenClose(0);
-		seatSetting(1);
-		calculate();
+		seatSetting(0);
 	}
 }); 
 function cafeOpenClose(openClose) {

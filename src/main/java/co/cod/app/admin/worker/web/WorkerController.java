@@ -49,8 +49,6 @@ public class WorkerController {
 	@RequestMapping(value="/adminWorker" ,method=RequestMethod.PUT, consumes="application/json" )   
 	@ResponseBody
 	public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
-		System.out.println(workerVO);
-		workerService.updateWorker(workerVO);
 		
 		return  workerVO;
 	}	

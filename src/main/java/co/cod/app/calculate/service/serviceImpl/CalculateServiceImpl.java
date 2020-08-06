@@ -1,5 +1,8 @@
 package co.cod.app.calculate.service.serviceImpl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +16,9 @@ public class CalculateServiceImpl implements CalculateService {
 	@Override
 	public CalculateVO dayCalculate(String adminId) {
 		return calculateMapper.dayCalculate(adminId);
+	}
+	@Override
+	public List<Map> commuteList(String adminId) {
+		return calculateMapper.commuteList(adminId);
 	}
 }

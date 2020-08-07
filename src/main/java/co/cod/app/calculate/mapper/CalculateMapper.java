@@ -8,4 +8,5 @@ import co.cod.app.calculate.CalculateVO;
 public interface CalculateMapper {
 	public CalculateVO dayCalculate(String adminId);
 	public List<Map> commuteList(String adminId);
+	public List<CalculateVO> calculateList(CalculateVO calculateVO);
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.calculate.CalculateVO;
 import co.cod.app.calculate.service.CalculateService;
 
@@ -35,9 +34,19 @@ public class CalculateController {
 	public String adminCalculateForm(Model model, HttpSession session) {
 		return "ad/adminManage/adminCalculate";
 	}
-	@RequestMapping(value="/calculatelist", method=RequestMethod.GET)
+	@RequestMapping(value="/commuteworkerlist", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Map> getcommuteList(Model model,HttpSession session) {
 		return  calculateService.commuteList((String) session.getAttribute("adminId"));	
+	}
+	@RequestMapping(value="/calculateList", method=RequestMethod.GET)
+	@ResponseBody
+	public List<CalculateVO> getcalculate(CalculateVO calculateVO, Model model,HttpSession session){
+		calculateVO.setAdminId((String)session.getAttribute("adminId"));
+		List<CalculateVO> list = calculateService.calculateList(calculateVO);
+		for (CalculateVO c : list) {
+	         c.setOrderTime(c.getOrderTime().substring(0, 10));  
+		}
+		return list;
 	}
 }

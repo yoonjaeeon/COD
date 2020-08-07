@@ -8,8 +8,8 @@ $(function(){
    menuList();
    menuSelect();
    menuDelete();
-   menuInsert();
    menuUpdate();
+   menuInsert();
    init();
 });
 
@@ -26,6 +26,15 @@ function init() {
 //메뉴 등록 요청 등록
 function menuInsert(){
    $('#btnInsert').on('click',function(){
+	   if(!$("#menuName").val()){
+			console.log("이름X");
+			alert("메뉴이름을 입력해주세요");
+			return;
+		}
+		if(!$("#price").val()){
+			alert("단가를 입력해주세요");
+			return;
+		}
       $.ajax({ 
           url: "menu",  
           type: 'POST',  
@@ -149,13 +158,20 @@ function menuListResult(data) {
    });//each
 }//menuListResult
 $(document).ready(function(){
-	  $("#searchMenu").on("keyup", function() {
+	$("#searchMenu").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
 	    $("#menuTbl tr").filter(function() {
 	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
 	});
 });
+function setDisplay(){
+    if($('input:radio[id=add]').is(':checked')){
+    	$('#addDiv').show();
+    }else{
+    	$('#addDiv').hide();
+    }
+}
 </script>
 <div class="container">
          <h4>메뉴 등록 및 수정</h4><br>
@@ -168,8 +184,8 @@ $(document).ready(function(){
               <option value="Tea">Tea</option>
               <option value="Dessert">Dessert</option>
           </select><br> <!-- <a href="#"><i class="fa fa-plus-square"></i></a><br> -->
-         <input type="text" class="form-control" name="menuName"   placeholder="메뉴이름">      <br>
-         <input type="text" class="form-control" name="price"   placeholder="메뉴금액">      <br>
+         <input type="text" class="form-control" id="menuName" name="menuName"   placeholder="메뉴이름" ><br>
+         <input type="text" class="form-control" id="price" name="price"   placeholder="메뉴금액" ><br>
       </div>
       <div class="col-lg-6 row">
             <div class = "col-6">
@@ -187,7 +203,7 @@ $(document).ready(function(){
                Yes <input type="radio"  name="signiture" value="1"><br>
                Yes <input type="radio"  name="popularMenu" value="1">   <br>
                Yes <input type="radio"  name="newMenu" value="1"><br>
-               Yes <input type="radio"  name="" value="1"><br>
+               Yes <input type="radio"  name="addState" value="1" id="add" onclick="setDisplay()"><br>
             </div>
             <div class="col-2">
                  ALL <input type="radio"  name="menuState" checked="checked" value="2" ><br>
@@ -196,8 +212,9 @@ $(document).ready(function(){
                	 N o <input type="radio"  name="newMenu" checked="checked" value="0"><br>
                  N o <input type="radio"  name="addState" checked="checked" value="0"><br>
             </div>
-            <input type="text" class="form-control" name="priceAdd"   placeholder="아이스추가금" value="0">
-
+            <div id="addDiv">
+            <input type="text" class="form-control" name="priceAdd" placeholder="아이스추가금" value="0">
+			</div>
       </div>
       <div class= "container" align="center">
       <input type="button" class="btn btn-outline-info" value="등록" id="btnInsert"/>

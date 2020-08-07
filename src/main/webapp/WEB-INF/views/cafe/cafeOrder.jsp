@@ -245,7 +245,6 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
-				<button type="button" onclick="insertOrder('${menuList[0].adminId }')">as</button>
 			<!-- <input type="button" value="결제" id="price" /> -->
 		</div>
 	</div>
@@ -395,7 +394,6 @@ function getSeat(seatName, seatSize, seatSeq){
 	            buyer_postcode : '123-456',
 	            //m_redirect_url : 'http://www.naver.com'
 	        }, function(rsp) {
-	        	var win = window.open('about:blank', '_blank');
 	            if ( rsp.success ) {
 	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			         insertOrder(adminId); 

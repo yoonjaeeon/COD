@@ -1,0 +1,656 @@
+Found a 28 line (183 tokens) duplication in the following files: 
+Starting at line 11 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\mapper\MemberMapper.java
+Starting at line 10 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\service\MemberService.java
+
+public interface MemberMapper {
+
+
+	public MemberVO getMember( MemberVO memberVO);
+	public List<MemberVO> getMemberList();
+	public void insertMember( MemberVO memberVO);
+	public void updateMember( MemberVO memberVO);
+	public void deleteMember( MemberVO memberVO);
+	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);
+	public MemberVO memberLogin(MemberVO memberVO);
+	public void insertBookmark(BookmarksVO bookmarksVO);
+	public void deleteBookmark(BookmarksVO bookmarksVO);
+	//Î©§Î≤Ñ  Í≤∞Ï†ú Ï°∞Ìöå 
+	public List <MemberVO> getMyorderList(MemberVO memberVO);
+	//Î©§Î≤Ñ Í≤∞Ï†ú ?ÉÅ?Ñ∏ Ï°∞Ìöå
+	public List <MemberVO> getMyMenuList(MemberVO memberVO);
+	public String getEmail(MemberVO memberVO);
+	public MemberVO getPhone(MemberVO memberVO);
+	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getMemberOrders(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getFiveDayOrder(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getFiveBookmarks(GetMemberDayOrder getMemberDayOrder);
+	public List<GetMemberDayOrder> getFiveReview(GetMemberDayOrder getMemberDayOrder);
+	public List<MemberVO> popularList(MemberVO memberVO);
+	public List<MemberVO> newCafeList(MemberVO memberVO);
+	public List<CafeVO> location(CafeVO cafeVO);
+	
+}
+=====================================================================
+Found a 12 line (90 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\mapper\CafeMapper.java
+Starting at line 9 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\service\CafeService.java
+
+public interface CafeMapper {
+
+   public CafeVO getCafe(String adminId); 
+   public List<CafeVO> getCafeList(CafeVO cafeVO);
+   public void insertCafe(CafeVO cafeVO); 
+   public void updateCafe(CafeVO cafeVO);
+   public void deleteCafe(CafeVO cafeVO);
+   public List<Map<String, Object>> getCafeMap();
+   public List<Map<String, Object>> monthGetCafeMap();
+   public List<CafeVO> getThemeList(CafeVO cafeVO);
+   public List<CafeVO> ThemeList(CafeVO cafeVO);
+   public List<CafeVO> getAreaList(CafeVO cafeVO);
+=====================================================================
+Found a 13 line (81 tokens) duplication in the following files: 
+Starting at line 45 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 162 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+						.rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				filename = upFile.getName();
+				reviewThumbnail.transferTo(upFile);
+			}
+			reviewVO.setGdsThumbImg(filename);
+		}
+		MultipartFile[] files = photoVO.getUploadFile();
+		if (files != null) {
+			PhotoVO photoMaxVO = photoService.getPhotoMax();
+			for (MultipartFile file : files) {
+				String filename = file.getOriginalFilename();
+				if (file != null && file.getSize() > 0) {
+					File upFile = FileRenamePolicy
+=====================================================================
+Found a 13 line (77 tokens) duplication in the following files: 
+Starting at line 85 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 111 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+	public String reviewList(Model model, ReviewVO reviewVO, HttpSession session) {
+		// ?éò?ù¥Ïß? Ï≤òÎ¶¨
+		// (?òÑ?û¨ ?éò?ù¥Ïß? ?åå?ùºÎØ∏ÌÑ∞ Î∞õÍ∏∞)
+		int p = 1;
+		if (reviewVO.getP() != null && !reviewVO.getP().isEmpty()) {
+			p = Integer.parseInt(reviewVO.getP());
+		}
+		// (?éò?ù¥Ïß? Í∞ùÏ≤¥Î•? ?Éù?Ñ±)
+		Paging paging = new Paging();   
+		paging.setPageUnit(5); // ?ïú ?éò?ù¥Ïß??óê Ï∂úÎ†•?ï† ?†àÏΩîÎìú Í±¥Ïàò
+		paging.setPageSize(3); // ?ïú ?éò?ù¥Ïß??óê Ï∂úÎ†•?ï† ?éò?ù¥Ïß? Î≤àÌò∏ ?àò
+		paging.setPage(p); // ?òÑ?û¨ ?éò?ù¥Ïß?
+		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
+=====================================================================
+Found a 12 line (74 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\worker\mapper\WorkerMapper.java
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\worker\service\WorkerService.java
+
+public interface WorkerMapper {
+
+	public WorkerVO getWorker( WorkerVO workerVO);
+	public List< WorkerVO> getWorkerList(String adminId);
+	public void insertWorker( WorkerVO workerVO);
+	public void updateWorker( WorkerVO workerVO);
+	public void updateWorkerState( WorkerVO workerVO);
+	public void deleteWorker( WorkerVO workerVO);
+	public List<Map> getWorkerListMap(WorkerVO workerVO);
+	public List<WorkerVO> getworkerCommute(String adminId);
+	public void updatedaypay(WorkerVO workerVO);
+}
+=====================================================================
+Found a 11 line (70 tokens) duplication in the following files: 
+Starting at line 135 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+Starting at line 49 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+         cafeVO.setCafeThumbnail(filename);
+      }
+
+      MultipartFile[] files = photoVO.getUploadFile();
+      if (files != null) {
+         PhotoVO photoMaxVO = photoService.getPhotoMax();
+         for (MultipartFile file : files) {
+            String filename = file.getOriginalFilename();
+            if (file != null && file.getSize() > 0) {
+               File upFile = FileRenamePolicy
+                     .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+=====================================================================
+Found a 9 line (66 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\mapper\AdvertisementMapper.java
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\service\AdvertisementService.java
+
+public interface AdvertisementMapper {
+	public AdvertisementVO getAdvertisement(AdvertisementVO advertisementVO);
+	public List<AdvertisementVO> getAdvertisementList(AdvertisementVO advertisementVO);
+	public void insertAdvertisement(AdvertisementVO advertisementVO);
+	public void deleteAdvertisement(AdvertisementVO advertisementVO);
+	public void updateAdvertisement(AdvertisementVO advertisementVO);
+	public List<Map<String, Object>> getAdvertisementMap();
+	public List<Map<String, Object>> monthAdvertisementMap();
+}
+=====================================================================
+Found a 10 line (63 tokens) duplication in the following files: 
+Starting at line 135 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+Starting at line 170 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+         cafeVO.setCafeThumbnail(filename);
+      }
+
+      MultipartFile[] files = photoVO.getUploadFile();
+      if (files != null) {
+         PhotoVO photoMaxVO = photoService.getPhotoMax();
+         for (MultipartFile file : files) {
+            String filename = file.getOriginalFilename();
+            if (file != null && file.getSize() > 0) {
+               File upFile = FileRenamePolicy
+=====================================================================
+Found a 7 line (59 tokens) duplication in the following files: 
+Starting at line 48 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+Starting at line 70 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+		seatVO.setAdminId((String)session.getAttribute("adminId"));	
+		Map<String, Object> map = new HashMap<String, Object>();
+		MultipartFile seatimg = seatVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = FileRenamePolicy.rename(new File(path, filename));
+=====================================================================
+Found a 8 line (58 tokens) duplication in the following files: 
+Starting at line 77 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 72 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+		MultipartFile seatimg = advertisementVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = new File(path, filename);/* FileRenamePolicy.rename(new File(path, filename)); */
+				filename = upFile.getName();
+				seatimg.transferTo(upFile);
+			}
+=====================================================================
+Found a 11 line (57 tokens) duplication in the following files: 
+Starting at line 19 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\mapper\CafeMapper.java
+Starting at line 20 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\service\CafeService.java
+
+   public List<CafeVO> getAreaList(CafeVO cafeVO);
+   public List<CafeVO> memberThemeList(CafeVO cafeVO);
+   public List<CafeVO> memberAreaList(CafeVO cafeVO);
+   public CafeVO getLocation(CafeVO cafeVO);
+   //Ïπ¥Ìéò on off
+   public Integer getCafeOpenClose(String adminId);
+   public void updateOpenClose(CafeVO cafeVO);
+   public void updateCafeSubmit(String adminId);
+   public CafeVO adminNotice(CafeVO cafeVO);
+   
+}
+=====================================================================
+Found a 9 line (55 tokens) duplication in the following files: 
+Starting at line 97 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 123 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
+		paging.setTotalRecord(reviewService.getCount(reviewVO)); // ?†ÑÏ≤? ?†àÏΩîÎìú Í±¥Ïàò Ï°∞Ìöå
+		model.addAttribute("paging", paging);
+
+		reviewVO.setStart(Integer.toString(paging.getFirst())); // start
+		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
+	
+		
+		model.addAttribute("reviewList", reviewService.adminReviewList(reviewVO));
+=====================================================================
+Found a 15 line (53 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\inventory\mapper\InventoryMapper.java
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\inventory\service\InventoryService.java
+
+public interface InventoryMapper {
+	
+	//?ã®Í±? Ï°∞Ìöå
+	public InventoryVO getInventory(InventoryVO inventoryVO);
+	//?†ÑÏ≤? Ï°∞Ìöå
+	public List<InventoryVO> getInventoryList(String adminId);
+	//?ì±Î°?
+	public int insertInventory(InventoryVO inventoryVO); 
+	//?àò?†ï
+	public int updateInventory(InventoryVO inventoryVO);
+	//?Ç≠?†ú
+	public int deleteInventory(InventoryVO inventoryVO);
+	//
+	public List<Map<String, Object>> getCafeMap();
+}
+=====================================================================
+Found a 12 line (53 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\menu\mapper\MenuMapper.java
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\menu\service\MenuService.java
+
+public interface MenuMapper {
+	
+	public MenuVO getMenu(MenuVO menuVO);
+	public List<MenuVO> getMenuList(String adminId);
+	public int insertMenu(MenuVO menuVO); 
+	public int updateMenu(MenuVO menuVO);
+	public int deleteMenu(MenuVO menuVO);
+	public List<Map<String, Object>> getCafeMap();
+
+	// Î©§Î≤Ñ Í≤∞Ï†ú ?ÉÅ?Ñ∏ Ï°∞Ìöå Î¶¨Ïä§?ä∏ 
+	
+}
+=====================================================================
+Found a 7 line (52 tokens) duplication in the following files: 
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 142 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+
+        String filename = file.getOriginalFilename();
+        if (file != null && file.getSize() > 0) {
+            File upFile = FileRenamePolicy
+                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+            filename = upFile.getName();
+            file.transferTo(upFile);
+         }
+=====================================================================
+Found a 21 line (51 tokens) duplication in the following files: 
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\mapper\ReviewMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\service\ReviewService.java
+
+public interface ReviewMapper {
+	// ?ã®Í±? Ï°∞Ìöå
+	public ReviewVO getReview(ReviewVO reviewVO);
+
+	// ?éò?ù¥Ïß? Ï°∞Ìöå
+	public int getCount(ReviewVO reviewVO);
+	
+	// Ï¥? ?èâ?†ê Ï°∞Ìöå
+	public double getReviewAvg(String adminId);
+
+	// Î™©Î°ù Ï°∞Ìöå
+	public List<ReviewVO> getReviewList(ReviewVO reviewVO);
+
+	// Í¥?Î¶¨Ïûê Ï°∞Ìöå
+	public List<ReviewVO> adminReviewList(ReviewVO reviewVO);
+
+	// ?ì±Î°?
+	public void insertReview(ReviewVO reviewVO);
+
+	// ?àò?†ï
+	public void updateReview(ReviewVO reviewVO);
+=====================================================================
+Found a 9 line (47 tokens) duplication in the following files: 
+Starting at line 145 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+Starting at line 58 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+                     .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+               filename = upFile.getName();
+               file.transferTo(upFile);
+            }
+            photoVO.setPhotoName(filename);
+            photoVO.setPhotoUse(1);
+            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+            photoService.insertPhoto(photoVO);
+         }
+=====================================================================
+Found a 4 line (46 tokens) duplication in the following files: 
+Starting at line 53 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+Starting at line 82 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+
+	public String MemberMyPage(Model model,GetMemberDayOrder getMemberDayOrder,MemberVO memberVO,HttpSession session) {
+		memberVO.setEmail((String)session.getAttribute("loginEmail"));
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("member", memberService.getMember(memberVO));
+=====================================================================
+Found a 7 line (46 tokens) duplication in the following files: 
+Starting at line 11 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\mapper\MessageMapper.java
+Starting at line 10 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\service\MessageService.java
+
+	public void updateMessage(Integer messageSeq);    //Î©îÏÑ∏Ïß? ?ùΩ?ùå ?ëú?ãú
+	public int getMessageCount(MessageVO messageVO);  //Î©îÏÑ∏Ïß? Ïπ¥Ïö¥?ä∏ 
+	public List<MessageVO> sendMessage(MessageVO messageVO);
+	public List<MessageVO> receiveMessage(MessageVO messageVO);
+	public void getMasterSend(MessageVO messageVO);  //ÎßàÏä§?Ñ∞ Î≥¥ÎÇ∏Î©îÏÑ∏Ïß?
+	public List<MessageVO> fiveMessage(MessageVO messageVO);
+}
+=====================================================================
+Found a 10 line (45 tokens) duplication in the following files: 
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\photo\mapper\PhotoMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\photo\service\PhotoService.java
+
+public interface PhotoMapper {
+		
+	public PhotoVO getPhoto(PhotoVO photoVO);
+	public List<PhotoVO> getPhotoList(PhotoVO photoVO);
+	public void insertPhoto(PhotoVO photoVO);
+	public void updatePhoto(PhotoVO photoVO);
+	public void deletePhoto(PhotoVO photoVO);
+	public PhotoVO getPhotoMax();
+
+}
+=====================================================================
+Found a 5 line (43 tokens) duplication in the following files: 
+Starting at line 73 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 69 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+	public Map<String, Object> updateAdvertisement(AdvertisementVO advertisementVO, Model model,
+			HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("resources/upload");
+		Map<String, Object> map = new HashMap<String, Object>();
+		MultipartFile seatimg = advertisementVO.getUpload();
+=====================================================================
+Found a 6 line (43 tokens) duplication in the following files: 
+Starting at line 13 of C:\Users\User\git\COD\src\main\java\co\cod\app\orders\mapper\OrdersMapper.java
+Starting at line 11 of C:\Users\User\git\COD\src\main\java\co\cod\app\orders\service\OrdersService.java
+
+public interface OrdersMapper {
+	public OrdersVO getOrders(OrdersVO ordersVO);
+	public List<OrdersVO> getOrdersList(OrdersVO ordersVO);
+	public List<MenuVO> getMenuList(String id);
+	public List<SeatVO> getSeatList(String id);	
+	public void insertOrders(OrderInsertVO ordersVO);
+=====================================================================
+Found a 6 line (42 tokens) duplication in the following files: 
+Starting at line 14 of C:\Users\User\git\COD\src\main\java\co\cod\app\orderline\mapper\OrderLineMapper.java
+Starting at line 11 of C:\Users\User\git\COD\src\main\java\co\cod\app\orderline\service\OrderLineService.java
+
+	public List<OrderLineVO> getMenuList(String adminId);
+	public int insertOrderLine(List<OrderLineVO> orderLineVO); 
+	public int updateOrderLine(OrderLineVO orderLineVO);
+	public int deleteOrderLine(OrderLineVO orderLineVO);
+	public List<Map<String, Object>> getOrderLineMap();
+}
+=====================================================================
+Found a 6 line (42 tokens) duplication in the following files: 
+Starting at line 39 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 157 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO, HttpSession session) throws IOException {
+		MultipartFile reviewThumbnail = reviewVO.getUpload();
+		if (reviewThumbnail != null) {
+			String filename = reviewThumbnail.getOriginalFilename();
+			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
+				File upFile = FileRenamePolicy
+=====================================================================
+Found a 7 line (40 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\adminnotice\mapper\AdminNoticeMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\adminnotice\service\AdminNoticeService.java
+
+public interface AdminNoticeMapper {
+	public List<AdminNoticeVO> getAdminNoticeList(String adminId);
+	public AdminNoticeVO getAdminNotice(AdminNoticeVO adminNoticeVO);
+	public void insertAdminNotice(AdminNoticeVO adminNoticeVO);
+	public int updateAdminNotice(AdminNoticeVO adminNoticeVO);
+	public int deleteAdminNotice(String adminNoticeSeq);
+}
+=====================================================================
+Found a 10 line (38 tokens) duplication in the following files: 
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\Question\mapper\QuestionMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\Question\service\QuestionService.java
+
+public interface QuestionMapper {
+
+
+	public QuestionVO getQuestion( QuestionVO QuestionVO);
+	public List< QuestionVO> getQuestionList();
+	public void insertQuestion( QuestionVO QuestionVO);
+	public void updateQuestion( QuestionVO QuestionVO);
+	public void deleteQuestion( QuestionVO QuestionVO);	
+	
+}
+=====================================================================
+Found a 5 line (37 tokens) duplication in the following files: 
+Starting at line 77 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 50 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+		MultipartFile seatimg = advertisementVO.getUpload();
+		if (seatimg != null) {
+			String filename = seatimg.getOriginalFilename();
+			if (seatimg != null && seatimg.getSize() > 0) {
+				File upFile = new File(path, filename);/* FileRenamePolicy.rename(new File(path, filename)); */
+=====================================================================
+Found a 8 line (36 tokens) duplication in the following files: 
+Starting at line 61 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\worker\web\WorkerController.java
+Starting at line 97 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 91 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+		workerService.deleteWorker(workerVO);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	
+	//?ã®Í±¥Ï°∞?öå
+	@RequestMapping(value="/adminWorker/{workerSeq}",  method=RequestMethod.GET)
+=====================================================================
+Found a 4 line (33 tokens) duplication in the following files: 
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+        String filename = file.getOriginalFilename();
+        if (file != null && file.getSize() > 0) {
+            File upFile = FileRenamePolicy
+                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+=====================================================================
+Found a 6 line (33 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\commute\mapper\CommuteMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\commute\service\CommuteService.java
+
+public interface CommuteMapper {
+	public void insertCommute(CommuteVO commuteVO);
+	public void updateCommute(CommuteVO commuteVO);
+	public  List<CommuteVO> getCommuteList  (CommuteVO commuteVO);
+	public CommuteVO getCommute (String CommuteSeq);
+}
+=====================================================================
+Found a 7 line (33 tokens) duplication in the following files: 
+Starting at line 62 of C:\Users\User\git\COD\src\main\java\co\cod\app\inventory\web\InventoryController.java
+Starting at line 61 of C:\Users\User\git\COD\src\main\java\co\cod\app\menu\web\MenuController.java
+
+		inventoryService.deleteInventory(vo);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	//?ì±Î°?
+	@RequestMapping(value="/inventory",method=RequestMethod.POST)
+=====================================================================
+Found a 6 line (32 tokens) duplication in the following files: 
+Starting at line 19 of C:\Users\User\git\COD\src\main\java\co\cod\app\master\mapper\MasterMapper.java
+Starting at line 16 of C:\Users\User\git\COD\src\main\java\co\cod\app\master\service\MasterService.java
+
+	public void updateMessage(Integer messageSeq); 
+	public List<MessageVO> receiveMasterMessage(MessageVO messageVO);
+	public List<MessageVO> sendMasterMessage(MessageVO messageVO);
+	public List<MessageVO> getFiveMessage(MessageVO messageVO);
+	// ÎßàÏä§?Ñ∞ ?ò¨ Î¶¨Ïä§?ä∏
+	public Map allList();
+=====================================================================
+Found a 7 line (31 tokens) duplication in the following files: 
+Starting at line 54 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\adminnotice\web\AdminNoticeController.java
+Starting at line 62 of C:\Users\User\git\COD\src\main\java\co\cod\app\inventory\web\InventoryController.java
+Starting at line 61 of C:\Users\User\git\COD\src\main\java\co\cod\app\menu\web\MenuController.java
+
+		adminNoticeService.deleteAdminNotice(adminNoticeSeq);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	//?ì±Î°?
+	@RequestMapping(value="/adminNotice" , method=RequestMethod.POST)
+=====================================================================
+Found a 9 line (30 tokens) duplication in the following files: 
+Starting at line 8 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\mapper\AdminMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\service\AdminService.java
+
+public interface AdminMapper {
+		
+	public AdminVO getAdmin(AdminVO adminVO);
+	//public List<AdminVO> getAdminList(AdminVO adminVO);
+	
+	public void insertAdmin(AdminVO adminVO);
+	public void updateAdmin(AdminVO adminVO);
+	public void deleteAdmin(AdminVO adminVO);	
+	public String getName(Integer adminid);
+=====================================================================
+Found a 4 line (30 tokens) duplication in the following files: 
+Starting at line 56 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 129 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+Starting at line 143 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+
+        if (file != null && file.getSize() > 0) {
+            File upFile = FileRenamePolicy
+                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+            filename = upFile.getName();
+=====================================================================
+Found a 4 line (30 tokens) duplication in the following files: 
+Starting at line 43 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 56 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
+				File upFile = FileRenamePolicy
+						.rename(new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				filename = upFile.getName();
+=====================================================================
+Found a 6 line (29 tokens) duplication in the following files: 
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\adminnotice\web\AdminNoticeController.java
+Starting at line 62 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\worker\web\WorkerController.java
+Starting at line 98 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 63 of C:\Users\User\git\COD\src\main\java\co\cod\app\inventory\web\InventoryController.java
+Starting at line 62 of C:\Users\User\git\COD\src\main\java\co\cod\app\menu\web\MenuController.java
+Starting at line 92 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	//?ì±Î°?
+	@RequestMapping(value="/adminNotice" , method=RequestMethod.POST)
+=====================================================================
+Found a 21 line (29 tokens) duplication in the following files: 
+Starting at line 108 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\web\AdminController.java
+Starting at line 101 of C:\Users\User\git\COD\src\main\java\co\cod\app\admin\worker\web\WorkerController.java
+
+	@RequestMapping(value = "/adminrespAPI")
+	@ResponseBody
+	public Map respAPI() {
+		RestTemplate rest = new RestTemplate();
+		return rest.getForObject(
+				"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20200713",
+				Map.class);
+	}
+	
+	
+	
+	//Ï¢åÏÑù ?†ÑÏ≤¥Ï°∞?öå
+	/*
+	 * @RequestMapping(value="/seats", method=RequestMethod.GET)
+	 * 
+	 * @ResponseBody public List<SeatVO> getSeatLists(Model model, HttpSession
+	 * session) { String adminId = (String)session.getAttribute("adminId"); return
+	 * seatService.getSeatLists(adminId); }
+	 */
+
+}
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 149 of C:\Users\User\git\COD\src\main\java\co\cod\app\cafe\web\CafeController.java
+Starting at line 62 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 183 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+            photoVO.setPhotoName(filename);
+            photoVO.setPhotoUse(1);
+            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+            photoService.insertPhoto(photoVO);
+=====================================================================
+Found a 3 line (28 tokens) duplication in the following files: 
+Starting at line 53 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\web\MessageController.java
+Starting at line 60 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\web\MessageController.java
+
+	public List<MessageVO> sendMessage(MessageVO messageVO, HttpSession session, Model model) {
+		messageVO.setAdminId((String)session.getAttribute("adminId"));
+		return messageService.sendMessage(messageVO);
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 26 of C:\Users\User\git\COD\src\main\java\co\cod\app\commute\web\CommuteController.java
+Starting at line 33 of C:\Users\User\git\COD\src\main\java\co\cod\app\commute\web\CommuteController.java
+
+	public CommuteVO insertCommute(CommuteVO commuteVO, Model model) {		
+		Map<String, Object> map = new HashMap<String, Object>();
+		commuteService.insertCommute(commuteVO);
+=====================================================================
+Found a 12 line (27 tokens) duplication in the following files: 
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\mapper\SeatMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\service\SeatService.java
+
+public interface SeatMapper {
+	// ?ã®Í±? Ï°∞Ìöå
+	public SeatVO getSeat(SeatVO seatVO);
+
+	// Î™©Î°ù Ï°∞Ìöå
+	public List<SeatVO> getSeatList(String adminId);
+
+	// ?ì±Î°?
+	public void insertSeat(SeatVO seatVO);
+
+	// ?àò?†ï
+	public void updateSeat(SeatVO seatVO);
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\advertisement\web\AdvertisementController.java
+Starting at line 176 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+        String filename = file.getOriginalFilename();
+        if (file != null && file.getSize() > 0) {
+            File upFile = FileRenamePolicy
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 55 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+Starting at line 66 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+
+		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("member", memberService.getMember(memberVO));
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\mapper\MessageMapper.java
+Starting at line 7 of C:\Users\User\git\COD\src\main\java\co\cod\app\message\service\MessageService.java
+
+public interface MessageMapper {
+	public List<MessageVO> messageList(String adminId); //Î©îÏÑ∏Ïß? ?†ÑÏ≤? Ï°∞Ìöå (adminId?óê ?î∞Î•?)
+	public MessageVO getMessage(MessageVO messageVO);   //Î©îÏÑ∏Ïß? ?ã®Í±¥Ï°∞?öå(?Å¥Î¶??ãú)
+	public void insertMessage(MessageVO messageVO);   //Î©îÏÑ∏Ïß? Î≥¥ÎÇ¥Í∏?
+	public void updateMessage(Integer messageSeq);    //Î©îÏÑ∏Ïß? ?ùΩ?ùå ?ëú?ãú
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 46 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+Starting at line 69 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\web\SeatController.java
+
+	public Map<String, Object> insertSeat(SeatVO seatVO, Model model, HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("resources/upload");
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 97 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+Starting at line 154 of C:\Users\User\git\COD\src\main\java\co\cod\app\member\web\MemberController.java
+
+	public String bookmarks(Model model, BookmarksVO bookmarksVO, HttpSession session) {
+		bookmarksVO.setEmail((String) session.getAttribute("loginEmail"));
+=====================================================================
+Found a 7 line (25 tokens) duplication in the following files: 
+Starting at line 161 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+Starting at line 177 of C:\Users\User\git\COD\src\main\java\co\cod\app\review\web\ReviewController.java
+
+			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
+				File upFile = new File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+				/*
+				 * FileRenamePolicy.rename(new
+				 * File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+				 */
+				filename = upFile.getName();
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 15 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\mapper\SeatMapper.java
+Starting at line 18 of C:\Users\User\git\COD\src\main\java\co\cod\app\seat\service\SeatService.java
+
+	public void insertSeat(SeatVO seatVO);
+
+	// ?àò?†ï
+	public void updateSeat(SeatVO seatVO);
+	public void updateSeatReserve(SeatVO seatVO);
+	public void seatSetting(SeatVO seatVO);

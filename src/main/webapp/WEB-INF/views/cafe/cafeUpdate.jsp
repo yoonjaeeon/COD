@@ -1,11 +1,12 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4&libraries=services"></script>
 
 </head>
 <body>
@@ -17,10 +18,16 @@
          <input type="hidden"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}">
       </div>   
       <div class="form-group">
-       <!--   <label>카페이름:</label> -->
-         <input type="hidden"  class="form-control"  id="cafeName" name="cafeName" value="${getCafe.cafeName}" >
+         <label>카페이름:</label> 
+         <input type="text"  class="form-control"  id="cafeName" name="cafeName" value="${getCafe.cafeName}" >
       </div>   
- 
+ 		<div class="form-group">
+         <label>카페주소:</label>
+         <div class="row">
+         <input type="text"  class="form-control col-9" id="address" name="cafeAddress" >
+         <input type="button" class="col-3" id="adressSearch" value="검색">
+         </div>
+      </div>
       <div class="form-group">
          <label>전화번호:</label>
          <input type="text"  class="form-control" id="phone" name="cafePhone" value="${getCafe.cafePhone}" >
@@ -154,5 +161,37 @@
       </div>
    </form>
 </div> 
+<script>
+	//주소-좌표 변환 객체를 생성
+	var geocoder = new daum.maps.services.Geocoder();
+	
+    $('body').on('click', '#adressSearch', function() {
+    	new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+
+                        console.log(result.y);
+                        console.log(result.x);
+                        
+                        $('input:hidden[name="cafeY"]').val(result.y);
+                        $('input:hidden[name="cafeX"]').val(result.x);
+                        /* document.getElementById("cafeY").text(result.y);
+                        document.getElementById("cafeX").text(result.x);
+ */
+                    }
+                });
+            }
+        }).open();
+	}); 
+
+</script>
 </body>
 </html>

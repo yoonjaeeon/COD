@@ -21,7 +21,6 @@
          <div class="row">
          <input type="text"  class="form-control col-9" id="address" name="cafeAddress" >
          <input type="button" class="col-3" id="adressSearch" value="검색">
-         
          </div>
       </div>
       <div class="form-group" >

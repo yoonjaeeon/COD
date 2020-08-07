@@ -201,6 +201,7 @@ public class CafeController {
    public void updateOpenClose(@RequestBody CafeVO cafeVO,HttpSession session, Model model) {
       cafeVO.setAdminId((String)session.getAttribute("adminId"));
       cafeService.updateOpenClose(cafeVO);
+  
    }
    @RequestMapping("cafeUpdateForm")
    public String cafeUpdateForm(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
@@ -219,7 +220,7 @@ public class CafeController {
    @RequestMapping("cafeUpdate")
    public String cafeUpdate(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
       cafeVO.setAdminId((String)session.getAttribute("adminId"));
-      cafeService.updateCafe(cafeVO);  
+     cafeService.updateCafe(cafeVO);  
       return "redirect:admin";
    }
    @RequestMapping("report.do") 

@@ -6,7 +6,8 @@
 
 <div class="container">
    <form action="insertCafe" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
-      <div align="center"><h2>카페 등록 및 수정</h2></div>
+      <div align="center">
+      <h2>카페 등록 및 수정</h2></div>
       <div class="form-group">      
          <label> 관리자 아이디:</label>
          <input type="text"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}" readonly>
@@ -23,7 +24,7 @@
          
          </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" >
          <label>전화번호:</label>
          <input type="text"  class="form-control" id="phone" name="cafePhone" >
       </div>  
@@ -40,7 +41,7 @@
       <input type="file" id="upload" name="upload"/>
      </div>  
      	<div class="form-group">
-      <label>카페등록사진:</label> 
+      <label>카페상세사진:</label> 
       <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
      	</div> 
       <div class="form-group">
@@ -71,15 +72,16 @@
          <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent"></textarea>
       </div><br>
          
-        <div class="form-group">
+      <div class="form-group">
          <label >wifi 여부</label>
          <div class="radio">
             <label><input type="radio"  name="wifi" id="wifi" value="1" checked="checked">Yes</label>
          </div>
-         <div class="radio">
+         
+        <div class="radio">
             <label><input type="radio"  name="wifi" id="wifi"  value="0">No</label>
          </div>
-         </div> <br>
+         </div><br>
         
          <div class="form-group">
          <label >키즈존 여부</label>
@@ -154,7 +156,7 @@
          <input type="hidden" name="cafeX">
 		 <input type="hidden" name="cafeY">	
       <div class="btn-group">      
-             <input type="submit" class="btn btn-primary" value="등록"> 
+             <button type="button" class="btn btn-primary" onclick="cafeInsert()">등록</button>
            <!--  <button type="submit" data-toggle="modal" data-target="#contentModal"  class="btn btn-primary" >등록</button>  -->
             <!-- <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" /> -->
             <input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />
@@ -195,6 +197,27 @@
 	}); 
 
 </script>
-  
+  <script type="text/javascript">
+	function cafeInsert(){
+		if ($('[name=cafeName]').val() == ""|| $('[name=cafeName]').val() == null){
+			alert("카페이름이 입력되지 않았습니다.");
+			$('[name=cafeName]').focus();
+		}else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
+			alert("카페주소가 입력되지 않았습니다.");
+			$('[name=cafeAddress]').focus();
+		}else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
+			alert("카페 썸네일이 입력되지 않았습니다.");
+			$('[name=upload]').focus();	
+		}else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
+			alert("카페 상세사진이 입력되지 않았습니다.");
+			$('[name=uploadFile]').focus();
+		}else{	
+			alert("카페등록이 완료 되었습니다.");
+			form1.submit();
+			return;
+		}
+	}
+
+</script>
   
   

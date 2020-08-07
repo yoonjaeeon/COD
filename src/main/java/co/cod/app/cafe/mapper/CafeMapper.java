@@ -12,8 +12,8 @@ public interface CafeMapper {
    public void insertCafe(CafeVO cafeVO); 
    public void updateCafe(CafeVO cafeVO);
    public void deleteCafe(CafeVO cafeVO);
-   public List<Map<String, Object>> getCafeMap();
-   public List<Map<String, Object>> monthGetCafeMap();
+   public List<Map<String, Object>> getCafeMap(CafeVO cafeVO);
+   public List<Map<String, Object>> monthGetCafeMap(CafeVO cafeVO);
    public List<CafeVO> getThemeList(CafeVO cafeVO);
    public List<CafeVO> ThemeList(CafeVO cafeVO);
    public List<CafeVO> getAreaList(CafeVO cafeVO);

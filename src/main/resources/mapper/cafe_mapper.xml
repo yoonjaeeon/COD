@@ -142,14 +142,16 @@
      WHERE admin_id = #{adminId}
    </select>
    <!-- 차트 -->
-   <select id="getCafeMap" resultType="map">
-      SELECT MENU_NAME "name", sum(PRICE)"sum"
+   <select id="getCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
+      SELECT MENU_NAME "name", sum(PRICE)"sum"      
       FROM MENU
+      where admin_id = #{adminId}
       GROUP BY MENU_NAME
    </select>
    
-   <select id="monthGetCafeMap" resultType="map">
+   <select id="monthGetCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
       select substr(order_time,4,2)"month", count(substr(order_time,4,2)) cnt from orders
+      where admin_id=#{adminId}
       group by (substr(order_time,4,2))
       order by 1
    </select>

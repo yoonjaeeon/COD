@@ -55,8 +55,8 @@ public class CafeServiceImpl implements CafeService{
 
    
    @Override
-   public List<Map<String, Object>> getCafeMap() {
-      return cafeMapper.getCafeMap();
+   public List<Map<String, Object>> getCafeMap(CafeVO cafeVO) {
+      return cafeMapper.getCafeMap(cafeVO);
    }
 
    @Override
@@ -111,8 +111,8 @@ public class CafeServiceImpl implements CafeService{
    }
 
    @Override
-   public List<Map<String, Object>> monthGetCafeMap() {
-      return cafeMapper.monthGetCafeMap();
+   public List<Map<String, Object>> monthGetCafeMap(CafeVO cafeVO) {
+      return cafeMapper.monthGetCafeMap(cafeVO);
    }
 
 @Override

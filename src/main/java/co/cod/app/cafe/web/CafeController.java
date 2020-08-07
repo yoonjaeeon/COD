@@ -168,20 +168,21 @@ public class CafeController {
 
    // 차트 JSON값
    @RequestMapping("adminSales")
-   public @ResponseBody List<Map<String, Object>> getAdvertisementMap() {
-      return cafeService.getCafeMap();
+   public @ResponseBody List<Map<String, Object>> getAdvertisementMap(CafeVO cafeVO,HttpSession session) {
+	   cafeVO.setAdminId((String)session.getAttribute("adminId"));
+      return cafeService.getCafeMap(cafeVO);
    }
 
    // 차트 불러옴
-
    @RequestMapping("adminSalesForm")
    public String masterSalesForm() {
       return "ad/adminOrder/adminSales";
    }
    
    @RequestMapping("monthAdminSales")
-   public @ResponseBody List<Map<String, Object>> monthAdminSales(){
-      return cafeService.monthGetCafeMap();
+   public @ResponseBody List<Map<String, Object>> monthAdminSales(CafeVO cafeVO,HttpSession session){
+	   cafeVO.setAdminId((String)session.getAttribute("adminId"));
+      return cafeService.monthGetCafeMap(cafeVO);
    }
    
    @RequestMapping("monthAdminSalesForm")
@@ -217,11 +218,42 @@ public class CafeController {
    }
    
    @RequestMapping("cafeUpdate")
-   public String cafeUpdate(Model model, CafeVO cafeVO,PhotoVO photoVO, HttpSession session) {
-      cafeVO.setAdminId((String)session.getAttribute("adminId"));
-      cafeService.updateCafe(cafeVO);  
+   public String cafeUpdate(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) throws Exception, IOException {
+      cafeVO.setAdminId((String) session.getAttribute("adminId"));
+      MultipartFile cafeThumbnail = cafeVO.getUpload();
+      if (cafeThumbnail != null) {
+         String filename = cafeThumbnail.getOriginalFilename();
+         if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
+            File upFile = FileRenamePolicy
+                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+            filename = upFile.getName();
+            cafeThumbnail.transferTo(upFile);
+         }
+         cafeVO.setCafeThumbnail(filename);
+      }
+
+      MultipartFile[] files = photoVO.getUploadFile();
+      if (files != null) {
+         PhotoVO photoMaxVO = photoService.getPhotoMax();
+         for (MultipartFile file : files) {
+            String filename = file.getOriginalFilename();
+            if (file != null && file.getSize() > 0) {
+               File upFile = FileRenamePolicy
+                     .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+               filename = upFile.getName();
+               file.transferTo(upFile);
+            }
+            photoVO.setPhotoName(filename);
+            photoVO.setPhotoUse(1);
+            photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+            photoService.insertPhoto(photoVO);
+         }
+         cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
+      }
+      cafeService.updateCafe(cafeVO);
       return "redirect:admin";
    }
+   
    @RequestMapping("report.do") 
    public void report(HttpServletRequest request, HttpServletResponse response) throws Exception {
    Connection conn = datasource.getConnection();

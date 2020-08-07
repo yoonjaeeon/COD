@@ -276,7 +276,6 @@ $('#useMileage').focusout(function() {
 	} else if (mileage < 0) {  //마일리지 - 금액 입력
 		alert("0 이상 입력해주세요!") ;
 	}else if(parseInt(parseInt($('#sum').html())-mileage) < 1000){ //결제 금액이 1000원 이하인경우
-		
 		alert("최소 결제 금액은 1000원 입니다.")
 	}
 });
@@ -374,7 +373,6 @@ function getSeat(seatName, seatSize, seatSeq){
 <script>
   var IMP = window.IMP; // 생략가능
   IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	        
 	//아엠포트 결제연동
 	//var name= cafeName;
   function requestPay(cafeName,adminId){
@@ -396,7 +394,7 @@ function getSeat(seatName, seatSize, seatSeq){
 	        }, function(rsp) {
 	            if ( rsp.success ) {
 	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-			         insertOrder(adminId); 
+			         insertOrder(adminId);
 			     
 	                    	
 	                      //성공시 이동할 페이지

@@ -33,7 +33,7 @@ if(message.length>0){
 					<!-- Nested Row within Card Body -->
 					<div class="row">
 						<div class="*/image/admin.jpg"></div>
-						<div class="col-lg-6">
+						<div class="col-lg-11">
 							<div class="text-right">
                     			<a class="small" href="memberLoginForm"><b>일반회원</b></a> / <a class="small" href="home"><i class="fa fa-home"></i></a>
                   			</div>

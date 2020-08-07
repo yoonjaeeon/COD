@@ -39,4 +39,9 @@ public class CafeVO {
    Integer openClose;
    String cafe_submit;
    String distance;
+   
+
+	//공지사항 들고오는 필드
+	String adminNoticeContent;
+	String adminNoticeTime;
 }

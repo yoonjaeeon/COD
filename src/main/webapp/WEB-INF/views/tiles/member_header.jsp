@@ -71,7 +71,7 @@ function logoutCheck(){
                <h3>즐겨찾기</h3>
                <p>맘에 드는 카페를 등록해 보세요</p>
          </a></li>
-         <li><a href="MemberMyPage">
+         <li><a href="memberMyPage">
                <h3>MyPage</h3>
          </a></li>
       </ul>

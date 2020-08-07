@@ -240,11 +240,12 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			사용 가능 마일리지:${getMileage.mileage}p<br> <input id="useMileage"
 				value="0"> <label id="myMileage">${getMileage.mileage}</label>
 			<button type="button" onclick="mileageUse()">적용</button>
-
+			<%-- "insertOrder('${menuList[0].adminId }')" --%>
 			<br>
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
+				<button type="button" onclick="insertOrder('${menuList[0].adminId }')">as</button>
 			<!-- <input type="button" value="결제" id="price" /> -->
 		</div>
 	</div>
@@ -295,16 +296,21 @@ function insertOrder(adminId){
 	obj["orderlineAmount"] = $(item).find('span').first().html();   //수량
 		result.push(obj);  //json 구조의 객체를 result배열에 담아줌.
 	});		
+	console.log("===========================================");
 	console.log(result);
+	
 	 $.ajax({
 		url:"insertOrders",
 		type: 'POST',
 		contentType:'application/json',
         dataType: 'json',
-        data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId, 
-        					seatSeq:seatSeq, orderlineList:result, seatSeq: seatSeq} )//객체를 json구조의 String으로 변환시켜줌        	
-        ,success : function(data){
-        	window.open('report.do?orderSeq='+data.orderSeq);
+        async :false,
+        data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId,     
+        					seatSeq:seatSeq, orderlineList:result, seatSeq: seatSeq} ),        	
+        success : function(data){
+        	/* window.open('report.do?orderSeq='+data.orderSeq,'mmmm', "width=550px, height=900px"); */
+        	var win = window.open('about:blank', '_blank');
+        	 win.location.href ='report.do?orderSeq='+data.orderSeq;
         } 
 		
 	})
@@ -367,12 +373,12 @@ function getSeat(seatName, seatSize, seatSeq){
 </script>
 
 <script>
-	        var IMP = window.IMP; // 생략가능
-	        IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+  var IMP = window.IMP; // 생략가능
+  IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	        
 	//아엠포트 결제연동
 	//var name= cafeName;
   function requestPay(cafeName,adminId){
-	  var adminId = adminId;
 	  if($('#seatName').html() =="" || $('#seatName').html() == null){
 		  alert("좌석을 선택해주세요.");
 	  }else{
@@ -389,32 +395,21 @@ function getSeat(seatName, seatSize, seatSeq){
 	            buyer_postcode : '123-456',
 	            //m_redirect_url : 'http://www.naver.com'
 	        }, function(rsp) {
+	        	var win = window.open('about:blank', '_blank');
 	            if ( rsp.success ) {
-	            	insertOrder(adminId);
 	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-	                    if ( everythings_fine ) {
+			         insertOrder(adminId); 
+			     
 	                    	
-	                    	
-	                        /* msg = '결제가 완료되었습니다.';
-	                        msg += '\n고유ID : ' + rsp.imp_uid;
-	                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	                        msg += '\결제 금액 : ' + rsp.paid_amount;
-	                        msg += '카드 승인번호 : ' + rsp.apply_num;
-	                        alert(msg); */
 	                      //성공시 이동할 페이지
 	    	                <%-- location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg; --%>
-	                    } else {
-	                        //[3] 아직 제대로 결제가 되지 않았습니다.
-	                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-	                    }
-	                }else {
+                }else {
 	                msg = '결제에 실패하였습니다.';
-	                msg += '에러내용 : ' + rsp.error_msg;
-	                //실패시 이동할 페이지
-	                location.href="<%=request.getContextPath()%>/cafeOrder?adminId="+adminId;
+	                msg += '에러내용 : ' + rsp.error_msg;   
 	                alert(msg);
-	            }
+                }
 	        });
+	        
 	  }
   }
 </script>

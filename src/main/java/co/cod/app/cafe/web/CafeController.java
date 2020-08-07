@@ -167,8 +167,9 @@ public class CafeController {
 
 	// 차트 JSON값
 	@RequestMapping("adminSales")
-	public @ResponseBody List<Map<String, Object>> getAdvertisementMap() {
-		return cafeService.getCafeMap();
+	public @ResponseBody List<Map<String, Object>> getAdvertisementMap(HttpSession session, CafeVO cafeVO) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		return cafeService.getCafeMap(cafeVO);
 	}
 
 	// 차트 불러옴
@@ -179,8 +180,9 @@ public class CafeController {
 	}
 
 	@RequestMapping("monthAdminSales")
-	public @ResponseBody List<Map<String, Object>> monthAdminSales() {
-		return cafeService.monthGetCafeMap();
+	public @ResponseBody List<Map<String, Object>> monthAdminSales(HttpSession session, CafeVO cafeVO) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		return cafeService.monthGetCafeMap(cafeVO);
 	}
 
 	@RequestMapping("monthAdminSalesForm")

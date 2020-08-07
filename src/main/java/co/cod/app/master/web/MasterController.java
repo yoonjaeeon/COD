@@ -47,7 +47,14 @@ public class MasterController {
 		public String masterList(MasterVO masterVO, Model model) {
 			model.addAttribute("masterList", masterService.MasterList(masterVO));
 			return "ma/master/masterList";
-		}		
+		}
+		//
+//		// 삭제
+//		@RequestMapping("masterList")
+//		public String deleteMaster(MasterVO masterVO, Model model) {
+//		model.addAttribute("deleteMaster", masterService.MasterList(masterVO));
+//		return "ma/master/masterList";
+//		}
 	
 	// 맵으로
 	@RequestMapping("masterMain")

@@ -9,4 +9,6 @@ public class CalculateVO {
 	String	dayPay;
 	String calculatePay;
 	String adminId;
+	String orderTime;
+	Integer price;
 }

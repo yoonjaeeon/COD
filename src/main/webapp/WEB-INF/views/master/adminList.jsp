@@ -8,7 +8,7 @@
 	$(function() {
 		selectList(1);
 		cafeStateUpdate();
-		cafeStateU-pdate1() 
+		cafeStateUpdate1() 
        //	adminList();
 		// cafeInfo();
 	});

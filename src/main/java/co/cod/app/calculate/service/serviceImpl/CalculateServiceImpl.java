@@ -21,4 +21,10 @@ public class CalculateServiceImpl implements CalculateService {
 	public List<Map> commuteList(String adminId) {
 		return calculateMapper.commuteList(adminId);
 	}
+	@Override
+	public List<CalculateVO> calculateList(CalculateVO calculateVO) {
+		return calculateMapper.calculateList(calculateVO);
+	}
+	
+	
 }

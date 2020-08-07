@@ -16,13 +16,13 @@
 
 		alert("수정이 완료 되었습니다");
 		frm.submit();
-	}
+	    }
 		
 		function validCheck1() {
 		return deleteMember;
 	
 		}
-	} 
+
 	
 	/* function pwValidCheck() {
 		var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -58,7 +58,7 @@
 
 <div class="content">
 	<h2>회원 정보 수정 </h2>
-	<form action="updateMember" name="frm">		
+	<form action="updateMember" name="frm" method="post" enctype="multipart/form-data">		
 			<input type="hidden" name="email" value="${member.email}"/>	
 			PW <span id="alert-success" style="display: none;" >비밀번호가 일치합니다.</span>
 			<span id="alert-danger"  style="display: none; color: #d92742; font-weight: bold;"> 비밀번호가 일치하지 않습니다.</span> 
@@ -70,14 +70,14 @@
 			<div class="align-center" style="margin-top: 30px">
 			<br> <br>
 			<div class="align-center" style="margin-top: 30px">
-			<button type="button" onclick="validCheck()">수정완료</button>
+			<button type="submit" onclick="validCheck()">수정완료</button>
 			<button type="button" onclick="validCheck1()">회원탈퇴</button>
 			<input type="reset" value="지우기">
 			</div>
 		</div>
 	</form>
 </div>
-<!-- <script>
+<script>
 	$('.pw').focusout(function() {
 		var pwd1 = $("#pw").val();
 		var pwd2 = $("#pw2").val();
@@ -99,4 +99,3 @@
 		}
 	});
 </script>
- -->

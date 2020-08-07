@@ -173,7 +173,7 @@ $(function(){
 	<br><br>
 	<div align="center">
 	<button type="button" onclick="location.href='home'">홈으로</button>
-	<button type="button" onclick="location.href='cafeUpdate'"> 재등록 </button>
+	<button type="button" onclick="location.href='cafeUpdateForm'"> 재등록 </button>
 	
 	</div>
 

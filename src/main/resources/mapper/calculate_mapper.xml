@@ -15,4 +15,15 @@
    		 WHERE admin_id = #{adminId}
    		 ORDER BY commute_day desc
    	</select>
+   	
+   	<select id="calculateList" parameterType="calculate" resultType="calculate">
+        SELECT TRUNC(O.ORDER_TIME) "ORDER_TIME", 
+                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
+          FROM ORDERS O, ORDERLINE OL, MENU M
+         WHERE O.ORDER_SEQ = OL.ORDER_SEQ
+           AND OL.MENU_SEQ = M.MENU_SEQ
+           AND O.ADMIN_ID =#{adminId}
+         GROUP BY TRUNC(O.ORDER_TIME)
+         ORDER BY 1 DESC
+     </select> 
 </mapper>

@@ -13,7 +13,7 @@ $(document).ready(function() {
 } );
 function calculateList(){
 	$.ajax({
-		url : "calculatelist",
+		url : "commuteworkerlist",
 		type : 'GET',
 		dataType: 'json', 
 		success : function(data) {

@@ -18,7 +18,6 @@ public class MasterVO {
 	Integer read;
 	Integer masterRead;
 	Date messageDate;
-	Integer MessageSeq;
 	
 
 	String pass2;

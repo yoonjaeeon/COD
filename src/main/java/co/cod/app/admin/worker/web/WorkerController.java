@@ -49,7 +49,7 @@ public class WorkerController {
 	@RequestMapping(value="/adminWorker" ,method=RequestMethod.PUT, consumes="application/json" )   
 	@ResponseBody
 	public WorkerVO updateWorker(@RequestBody WorkerVO workerVO, Model model) {
-		
+		workerService.updateWorker(workerVO);
 		return  workerVO;
 	}	
 
@@ -69,6 +69,7 @@ public class WorkerController {
 	@ResponseBody
 	public WorkerVO getWorker(@PathVariable String workerSeq, WorkerVO workerVO, Model model) {		
 		workerVO.setWorkerSeq(Integer.parseInt(workerSeq));
+	System.out.println(workerSeq);
 		return  workerService.getWorker(workerVO);
 	}
 

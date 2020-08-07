@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.2.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bills" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="5664750c-d373-4e92-900f-3909b94cfcfe">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="bill"/>
+	<parameter name="p_orderSeq" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT MENU_NAME,
+            ORDERLINE_AMOUNT,
+              CASE WHEN ORDER_STATE > 0 THEN (PRICE+PRICE_ADD)*ORDERLINE_AMOUNT
+              ELSE PRICE*ORDERLINE_AMOUNT END PRICE,
+              ORDER_STATE,
+              PRICE_ADD,
+              CAFE_NAME
+FROM ORDER_VIEW 
+WHERE order_seq =  $P{p_orderSeq}]]>
+	</queryString>
+	<field name="MENU_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MENU_NAME"/>
+	</field>
+	<field name="ORDERLINE_AMOUNT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ORDERLINE_AMOUNT"/>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PRICE"/>
+	</field>
+	<field name="ORDER_STATE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ORDER_STATE"/>
+	</field>
+	<field name="PRICE_ADD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PRICE_ADD"/>
+	</field>
+	<field name="CAFE_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CAFE_NAME"/>
+	</field>
+	<variable name="v_summ" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{PRICE}.multiply( $F{ORDERLINE_AMOUNT})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="25" width="555" height="30" uuid="5b086a38-d57b-455f-8ee6-6a005d2f2665"/>
+				<textElement textAlignment="Center">
+					<font fontName="맑은 고딕" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAFE_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="30" width="180" height="30" uuid="8c94324c-6582-418a-878a-06e9b7a35087"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["메뉴명"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="30" width="180" height="30" uuid="cc0176af-0b39-474d-b6fa-31391de33ab6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["수량"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="30" width="180" height="30" uuid="41f04939-0384-4709-9e06-cdc8a4e20a2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["가격"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="10" width="185" height="30" uuid="b1765330-ff52-4859-a069-cd15f7cbb102">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8acb4bd-fcd8-416f-8230-dc695ad516bb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MENU_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="10" width="185" height="30" uuid="fd08401c-3131-4e35-bedb-456e6a651c52">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d111859-a52e-4973-8823-28c143233999"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ORDERLINE_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="10" width="185" height="30" uuid="86e0a657-e4bc-432f-b106-9cd73ae2f156">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5792ac70-2e2e-4895-b18c-66b559f9c30c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="41" splitType="Immediate">
+			<textField>
+				<reportElement x="375" y="5" width="185" height="30" uuid="abddb7a5-b770-4183-a1b8-1b8a9fec2dbc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_summ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="5" width="100" height="30" uuid="788a7abc-06d0-448b-8d5d-3fc7cb10b7ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["합계"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

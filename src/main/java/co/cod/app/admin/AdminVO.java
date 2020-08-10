@@ -34,6 +34,5 @@ public class AdminVO {
 	Integer priceAdd;
 	Integer orderlintAmount;
 	Integer orderState;
-	Integer submit;
-	
+	Integer submit;	
 }

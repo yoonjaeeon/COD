@@ -67,9 +67,11 @@ public class AdminServiceImpl implements AdminService{
 	public Integer getOrderCount(AdminVO adminVO) {
 		return adminMapper.getOrderCount(adminVO);
 	}
+
 	@Override
-	public void updateOrderSubmit(AdminVO adminVO) {
-		adminMapper.updateOrderSubmit(adminVO);
+	public void updateOrderSubmit(String orderSeq) {
+		adminMapper.updateOrderSubmit(orderSeq);
+		
 	}
 	@Override
 	public void deleteOrderSubmit(AdminVO adminVO) {

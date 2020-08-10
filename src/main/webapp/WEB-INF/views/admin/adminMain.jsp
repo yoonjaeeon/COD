@@ -251,14 +251,15 @@ function orderSubmit(seq){
 	var orderSubmit = confirm("주문 완료?");
 	if(orderSubmit == true){
 	$.ajax({
-		url:'updateOrderSubmit',
-		data : {orderSeq:seq},
-		type : 'post',
-		contentType : 'application/json;charset=utf-8',
+		url:'updateOrderSubmit/'+seq,
+		type : 'GET',
 		success :  function(data){
 			alert(data);
 			$('#getOrderCount').load("getOrderCount");
 			$('#getOrderCounts').load("getOrderCount");
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
 		}
 	})
 	}else{
@@ -272,11 +273,15 @@ function orderDelete(seq){
 	if(confirm("정말 주문 거절하시겠습니까?")){
 	$.ajax({
 		url:'deleteOrderSubmit',
-		data:{orderSeq:seq},
+		data:{orderSeq : seq},
 		type:'post',
 		success : function(result){
+			alert(result);
 			$('#getOrderCount').load("getOrderCount");
 			$('#getOrderCounts').load("getOrderCount");
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
 		}
 	})
 	}else{

@@ -27,7 +27,7 @@ public interface AdminMapper {
 	public void orderSubmit(AdminVO adminVO);
 	public List<AdminVO> getOrderView(AdminVO adminVO);
 	public Integer getOrderCount(AdminVO adminVO);
-	public void updateOrderSubmit(AdminVO adminVO);
+	public void updateOrderSubmit(String orderSeq);
 	public void deleteOrderSubmit(AdminVO adminVO);
 }
 

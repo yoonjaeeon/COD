@@ -82,10 +82,11 @@
 	 where submit=1 and admin_id=#{adminId} 
 	</select>
 	
-	<update id="updateOrderSubmit" parameterType="co.cod.app.admin.AdminVO">
+	<update id="updateOrderSubmit" parameterType="String">
 	UPDATE ORDERS SET SUBMIT=0
 	 WHERE ORDER_SEQ=#{orderSeq}
 	</update>
+	
 	<delete id="deleteOrderSubmit" parameterType="co.cod.app.admin.AdminVO">
 	DELETE FROM ORDERS
 	WHERE ORDER_SEQ = #{orderSeq}

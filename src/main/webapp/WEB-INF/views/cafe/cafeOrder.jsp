@@ -67,10 +67,10 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 	function test(name, price, seq, state, realState, seatSeq) {
 		var validCheck=$('tr#'+seq+realState);
 		if(validCheck.length > 0 ) {
-			var span = validCheck.next().find('span'); //수량
+			var span = validCheck.find('span').first(); //수량
 			span.text(parseInt(span.text())+1);
-			
-			validCheck.next().next().find('span').text(parseInt(validCheck.next().next().text())+price);
+			var last = validCheck.find('.menuPrice');
+			last.text(parseInt(last.text())+price);
 			
 			sum();
 		} 

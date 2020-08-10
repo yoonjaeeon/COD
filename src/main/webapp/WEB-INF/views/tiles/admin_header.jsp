@@ -68,6 +68,7 @@ $(function(){
             <h6 class="collapse-header">카페 정산</h6>
             <a class="collapse-item" href="workerCalculateView">직원출퇴근조회</a>
             <a class="collapse-item" href="calculateView">매출정산</a>
+            <a class="collapse-item" href="adminSalesForm">매출차트</a>
           </div>
         </div>
       </li>

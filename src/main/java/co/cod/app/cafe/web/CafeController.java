@@ -168,7 +168,7 @@ public class CafeController {
 							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
-				}
+				}						
 				photoVO.setPhotoName(filename);
 				photoVO.setPhotoUse(1);
 				photoVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
@@ -294,6 +294,10 @@ public class CafeController {
 			cafeVO.setPhotoGroup(photoMaxVO.getPhotoGroup());
 		}
 		cafeService.updateCafe(cafeVO);
+		AdminVO adminVO = new AdminVO();
+		adminVO.setAdminId((String) session.getAttribute("adminId"));
+		adminVO.setCafeState(1);
+		adminService.updateCafeState(adminVO);
 		return "redirect:admin";
 	}
 

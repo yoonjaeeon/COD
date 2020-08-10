@@ -46,11 +46,12 @@
 	         beam = #{beam},
 	         charger = #{charger},
 	         big_seat = #{bigSeat},
-	         lend = #{lend}
+	         lend = #{lend}  
 	         </set>
         WHERE
         ADMIN_ID = #{adminId}
   </update>
+
   
   <delete id="deleteCafe" parameterType="co.cod.app.cafe.CafeVO">
      DELETE FROM CAFE WHERE

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor //Bean생성자를 만들어줌
 public class CafeVO {
-	String email;
+   String email;
    String adminId;
    String cafeName;
    String cafeAddress;
@@ -41,7 +41,7 @@ public class CafeVO {
    String distance;
    String month;
    String day;
-   
+   String cafeState;
 
 	//공지사항 들고오는 필드
 	String adminNoticeContent;

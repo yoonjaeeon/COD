@@ -25,6 +25,8 @@ public class CalculateServiceImpl implements CalculateService {
 	public List<CalculateVO> calculateList(CalculateVO calculateVO) {
 		return calculateMapper.calculateList(calculateVO);
 	}
-	
-	
+	@Override
+	public List<Map> getcalculateList(CalculateVO calculateVO) {
+		return calculateMapper.getcalculateList(calculateVO);
+	}	
 }

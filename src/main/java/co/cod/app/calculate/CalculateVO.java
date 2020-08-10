@@ -11,4 +11,6 @@ public class CalculateVO {
 	String adminId;
 	String orderTime;
 	Integer price;
+	String startTime;
+	String endTime;
 }

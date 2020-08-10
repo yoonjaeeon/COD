@@ -23,7 +23,19 @@
          WHERE O.ORDER_SEQ = OL.ORDER_SEQ
            AND OL.MENU_SEQ = M.MENU_SEQ
            AND O.ADMIN_ID =#{adminId}
+         <if test = "startTime != null and startTime !='' and endTime =='' ">
+	        AND TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') = #{startTime}
+	     </if>
+	     <if test="startTime != null and startTime !='' and endTime != null and endTime !=''">
+	     	AND    TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') BETWEEN #{startTime} and #{endTime}
+	     </if>
          GROUP BY TRUNC(O.ORDER_TIME)
          ORDER BY 1 DESC
      </select> 
+     <select id="getcalculateList" parameterType="calculate" resultType="map">
+	     SELECT *       
+	       FROM order_view
+	      WHERE admin_id= #{adminId}
+	        AND trunc(order_time) = #{orderTime}
+     </select>
 </mapper>

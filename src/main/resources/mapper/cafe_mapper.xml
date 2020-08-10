@@ -160,10 +160,14 @@
    
  <!-- 월별 -->
 	<select id="monthGetCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
-      select substr(order_time,4,2)"month", count(substr(order_time,4,2)) cnt from orders
-      where admin_id=#{adminId}
-      group by (substr(order_time,4,2))
-      order by 1
+     SELECT TO_CHAR(TRUNC(O.ORDER_TIME), 'MM') "TIME",
+		SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) "PRICE"
+		FROM ORDERS O, ORDERLINE OL, MENU M
+		WHERE O.ORDER_SEQ = OL.ORDER_SEQ
+		AND OL.MENU_SEQ = M.MENU_SEQ
+		AND O.ADMIN_ID =#{adminId}
+		GROUP BY TO_CHAR(TRUNC(O.ORDER_TIME), 'MM')
+		ORDER BY 1 DESC
    </select>
    
   <!--  일별 -->

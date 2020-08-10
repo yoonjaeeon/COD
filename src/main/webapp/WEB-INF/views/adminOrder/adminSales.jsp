@@ -56,7 +56,7 @@
         function drawsChart(){	
       	  var data = new google.visualization.DataTable();
       	  data.addColumn('string', '몇월');
-           data.addColumn('number', '건수');
+           data.addColumn('number', '매출');
             
             var chartdata=[];
             $.ajax({
@@ -64,16 +64,16 @@
           	  async : false,      //동기식, 아작스 실행하고 데이터 값이 와야 실행(동기)
           	  success : function(result) {
           	  	for(i=0; i<result.length; i++) {
-          	  		chartdata.push([result[i].month+'월', parseInt(result[i].CNT)]);
+          	  		chartdata.push([result[i].TIME+'월', parseInt(result[i].PRICE)]);
           	  	}
           	  }
             });
             data.addRows(chartdata);//아작스로 데이터 가져온거
-            var options = {'title':'주문건수',
+            var options = {'title':'월별매출(2020년)',
                     'width':800,
                     'height':600,
                     is3D: true,
-                    vAxis: { format:'0,000', gridlines: {count:50}} , //gridlines: 선이 생김
+                    vAxis: { format:'0,000', gridlines: {count:60}} , //gridlines: 선이 생김
                     colors: ['#e6693e', '#f6c7b6', '#ec8f6e', '#f3b49f', '#f6c7b6']};
     		var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
     		chart.draw(data, options);

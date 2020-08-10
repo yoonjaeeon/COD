@@ -62,13 +62,13 @@ $('.heart').on('click', function(){
 <!-- Thema Icon -->
 <div class="main_feature text-center">
 	<div class="icon_slick">
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='getRandomList'">
 			<div class="single_feature_icon">
 				<i class="far fa-thumbs-up"></i>
 			</div>
 			<h4>랜덤 추천 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='getRandomList'">
+		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t1'">
 			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>

@@ -22,6 +22,18 @@ $(function(){
 		})
 	});
 })
+
+$(function(){
+	$.ajax({
+		url :'getOrderCount',
+		datatype :'json',
+		success:function(result){
+			$('#getOrderCount').html(result);
+			$('#getOrderCounts').html(result);
+		}
+			
+	})
+})
 </script>
 <body id="page-top">
 	
@@ -187,15 +199,19 @@ $(function(){
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
+             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter" id="getOrderCount"></span>
+                 <script>
+                $('#getOrderCount').load("getOrderCount")
+                </script>
               </a>
+
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+             <!--  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -233,7 +249,7 @@ $(function(){
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
+              </div> -->
             </li>
 
             <!-- Nav Item - Messages -->

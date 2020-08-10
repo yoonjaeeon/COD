@@ -24,7 +24,7 @@
  		<div class="form-group">
          <label>카페주소:</label>
          <div class="row">
-         <input type="text"  class="form-control col-9" id="address" name="cafeAddress" >
+         <input type="text"  class="form-control col-9" id="address" name="cafeAddress"   value="${getCafe.cafeAddress}" >
          <input type="button" class="col-3" id="adressSearch" value="검색">
          </div>
       </div>
@@ -156,8 +156,8 @@
          </div> <br>
  
       <div class="btn-group">      
-             <button type="submit" class="btn btn-primary"> 수정</button>
-            <button type="reset"  class="btn btn-primary" value="초기화" id="btnInit" >초기화</button>
+               <button type="button" class="btn btn-primary" onclick="cafeInsert()">재등록</button>
+            
       </div>
    </form>
 </div> 
@@ -191,7 +191,29 @@
             }
         }).open();
 	}); 
+</script>
+  <script type="text/javascript">
+	function cafeInsert(){
+		if ($('[name=cafeName]').val() == ""|| $('[name=cafeName]').val() == null){
+			alert("카페이름이 입력되지 않았습니다.");
+			$('[name=cafeName]').focus();
+		}else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
+			alert("카페주소가 입력되지 않았습니다.");
+			$('[name=cafeAddress]').focus();
+		/*  }else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
+			alert("카페 썸네일이 입력되지 않았습니다.");
+			$('[name=upload]').focus();	 
+		 }else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
+			alert("카페 상세사진이 입력되지 않았습니다.");
+			$('[name=uploadFile]').focus();  */
+		}else{	
+			alert("카페등록이 완료 되었습니다.");
+			form1.submit();
+			return;
+		}
+	}
 
 </script>
+
 </body>
 </html>

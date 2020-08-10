@@ -55,7 +55,26 @@ public class AdminServiceImpl implements AdminService{
 	public void updateCafeState(AdminVO adminVO) {
 		adminMapper.updateCafeState(adminVO);
 	}
-
+	@Override
+	public void orderSubmit(AdminVO adminVO) {
+		adminMapper.orderSubmit(adminVO);
+	}
+	@Override
+	public List<AdminVO> getOrderView(AdminVO adminVO) {
+		return adminMapper.getOrderView(adminVO);
+	}
+	@Override
+	public Integer getOrderCount(AdminVO adminVO) {
+		return adminMapper.getOrderCount(adminVO);
+	}
+	@Override
+	public void updateOrderSubmit(AdminVO adminVO) {
+		adminMapper.updateOrderSubmit(adminVO);
+	}
+	@Override
+	public void deleteOrderSubmit(AdminVO adminVO) {
+		adminMapper.deleteOrderSubmit(adminVO);
+	}
 }
 
 

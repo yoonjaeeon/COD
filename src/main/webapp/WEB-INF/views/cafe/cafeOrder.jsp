@@ -245,6 +245,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
+				<button onclick="insertOrder('${menuList[0].adminId}')">주문승인 테스트</button>
 			<!-- <input type="button" value="결제" id="price" /> -->
 		</div>
 	</div>

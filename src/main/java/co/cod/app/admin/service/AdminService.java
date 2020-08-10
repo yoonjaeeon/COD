@@ -15,5 +15,12 @@ public interface AdminService {
 	//adminList
 	public List<AdminVO> getAdminList(AdminVO adminVO);
 	public void updateCafeState(AdminVO adminVO);
+	
+	//주문현황
+	public void orderSubmit(AdminVO adminVO);
+	public List<AdminVO> getOrderView(AdminVO adminVO);
+	public Integer getOrderCount(AdminVO adminVO);
+	public void updateOrderSubmit(AdminVO adminVO);
+	public void deleteOrderSubmit(AdminVO adminVO);
 
 }

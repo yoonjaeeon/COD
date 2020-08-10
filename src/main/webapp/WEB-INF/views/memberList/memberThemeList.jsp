@@ -20,7 +20,7 @@ $(function(){
 <!-- 테마 아이콘  -->
 <div class="main_feature text-center">
 	<div class="icon_slick">
-		<div class="single_feature">
+		<div class="single_feature" onclick="location.href='getRandomList'">
 			<div class="single_feature_icon" >
 				<i class="far fa-thumbs-up"></i>
 			</div>
@@ -56,12 +56,7 @@ $(function(){
 			</div>
 			<h4>핸드 드립</h4>
 		</div>
-		<div class="single_feature" id="t" onclick="location.href='themeList?cafeTheme=t'">
-			<div class="single_feature_icon">
-				<i class="fas fa-laptop"></i>
-			</div>
-			<h4>랜덤 카페</h4>
-		</div>
+		
 		
 	</div>
 </div>

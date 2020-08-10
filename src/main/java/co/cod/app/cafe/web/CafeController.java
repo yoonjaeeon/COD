@@ -91,8 +91,14 @@ public class CafeController {
 //        return strB.toString();
 //
 //    }
-
-		
+	/* 카페 테마 리스트 보여주게하기. */
+	@RequestMapping("getRandomList")
+	public String getRandomList(HttpSession session, CafeVO cafeVO, Model model) {
+		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
+		List list = cafeService.getRandomList(cafeVO);
+		model.addAttribute("getTheme", list);
+		return "memberList/memberThemeList";
+	}
 		
 	
 	

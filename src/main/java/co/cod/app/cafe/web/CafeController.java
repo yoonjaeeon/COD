@@ -78,7 +78,25 @@ public class CafeController {
 		model.addAttribute("getTheme", list);
 		return "memberList/memberThemeList";
 	}
+//	// 카페 랜덤으로 보여주기 
+//	@RequestMapping("memberRandomList")
+//	public static String getRandomList(HttpSession session, CafeVO cafeVO, Model model, int len) {
+//        String randomStr = "abcdefghijklmnopqrstuvwxyz123456789";
+//        StringBuffer strB = new StringBuffer();
+//        Random random =  CafeController.current();
+//         for (int i = 0; i < len; i++) {
+//            int rdIdx = random.nextInt(35);
+//            strB.append(randomStr.substring(rdIdx, rdIdx + 1));
+//        }
+//        return strB.toString();
+//
+//    }
 
+		
+		
+	
+	
+	
 	// 비회원 리스트 보여주기
 	@RequestMapping("memberThemeList")
 	public String MemberThemeList(HttpSession session, CafeVO cafeVO, Model model) {

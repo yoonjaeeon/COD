@@ -27,5 +27,8 @@ public interface CafeService {
    public void updateCafeSubmit(String adminId);
    //공지사항
    public CafeVO adminNotice(CafeVO cafeVO);
+  
+   // 테마별 리스트에서 랜덤으로 카페 조회 
+   public List<CafeVO> getRandomList(CafeVO cafeVO);
    
 }

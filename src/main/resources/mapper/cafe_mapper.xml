@@ -81,6 +81,15 @@
       </where>
       ORDER BY CAFE_THEME DESC
    </select>
+  
+   <!-- 랜덤 리스트  -->
+    <select id="getRandamList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
+    SELECT * FROM (SELECT * FROM 
+    	CAFE ORDER BY DBMS_RANDOM.VALUE)
+       WHERE <![CDATA[ROWNUM <= 10]]> 
+   </select>
+   
+   
    <!-- 지역리스트 -->
    <select id="getAreaList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
        SELECT 

@@ -7,6 +7,11 @@
 
 </style>
 <script>
+function getRamdomList() {
+	location.href="getRamdomList";
+		
+}
+
 $(function(){
 	$("#${param.cafeTheme}").addClass("fix");
 })
@@ -51,6 +56,13 @@ $(function(){
 			</div>
 			<h4>핸드 드립</h4>
 		</div>
+		<div class="single_feature" id="t" onclick="location.href='themeList?cafeTheme=t'">
+			<div class="single_feature_icon">
+				<i class="fas fa-laptop"></i>
+			</div>
+			<h4>랜덤 카페</h4>
+		</div>
+		
 	</div>
 </div>
 <div id="listpage">

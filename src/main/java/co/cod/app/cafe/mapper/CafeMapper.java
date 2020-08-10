@@ -25,5 +25,6 @@ public interface CafeMapper {
    public void updateOpenClose(CafeVO cafeVO);
    public void updateCafeSubmit(String adminId);
    public CafeVO adminNotice(CafeVO cafeVO);
+   public List<CafeVO> getRandomList(CafeVO cafeVO);
    
 }

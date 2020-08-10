@@ -119,6 +119,11 @@ public class CafeServiceImpl implements CafeService{
 public CafeVO adminNotice(CafeVO cafeVO) {
 	return cafeMapper.adminNotice(cafeVO);
 }
+
+@Override
+public List<CafeVO> getRandomList(CafeVO cafeVO) {	
+	return  cafeMapper.getRandomList(cafeVO);
+}
    
    
 }

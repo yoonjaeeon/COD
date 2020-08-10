@@ -204,13 +204,13 @@
 		}else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
 			alert("카페주소가 입력되지 않았습니다.");
 			$('[name=cafeAddress]').focus();
-		 }else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
+		 }/* else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
 			alert("카페 썸네일이 입력되지 않았습니다.");
 			$('[name=upload]').focus();	 
 		 }else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
 			alert("카페 상세사진이 입력되지 않았습니다.");
 			$('[name=uploadFile]').focus(); 
-		}else{	
+		} */else{	
 			alert("카페등록이 완료 되었습니다.");
 			form1.submit();
 			return;

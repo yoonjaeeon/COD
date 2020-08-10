@@ -3,6 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<script>
+
+function button1(){
+	if(confirm("수정 하시겠습니까?")){
+		frm.submit();
+	}else{
+		return ;
+	}
+	
+}
+
+</script>
 <h3>리뷰 수정</h3>
 <form name="frm" action="updateReview" method="post" enctype="multipart/form-data">
 작성자: ${loginEmail} <br>
@@ -29,6 +41,8 @@
 첨부 사진 <br>
       <input multiple="multiple" type="file" id="photoGroup" name="uploadFile" value="${review.photoGroup }"/>
  <br><br>
-<button type="submit">수정</button>
+ <c:if test="${sessionScope.loginEmail == review.email}">
+<button type="button" onclick ="button1()">수정</button>
 <input type="reset" value="지우기" />
+</c:if>
 </form>

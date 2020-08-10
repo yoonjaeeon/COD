@@ -124,6 +124,12 @@ public CafeVO adminNotice(CafeVO cafeVO) {
 public List<CafeVO> getRandomList(CafeVO cafeVO) {	
 	return  cafeMapper.getRandomList(cafeVO);
 }
+
+@Override
+public List<Map<String, Object>> dayGetCafeMap(CafeVO cafeVO) {
+	return cafeMapper.dayGetCafeMap(cafeVO);
+}
    
    
+
 }

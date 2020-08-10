@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+
+
+
+
+</style>
+
+
+
 <script>
 var message = '${msg}';
 if(message.length>0){
@@ -68,31 +77,36 @@ $('.heart').on('click', function(){
 			</div>
 			<h4>랜덤 추천 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t1'">
+		<div class="single_feature"
+			onclick="location.href='themeList?cafeTheme=t1'">
 			<div class="single_feature_icon">
 				<i class="fab fa-fort-awesome"></i>
 			</div>
 			<h4>이색 카페</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t2'">
+		<div class="single_feature"
+			onclick="location.href='themeList?cafeTheme=t2'">
 			<div class="single_feature_icon">
 				<i class="fas fa-birthday-cake"></i>
 			</div>
 			<h4>디저트 맛집</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t3'">
+		<div class="single_feature"
+			onclick="location.href='themeList?cafeTheme=t3'">
 			<div class="single_feature_icon">
 				<i class="fab fa-envira"></i>
 			</div>
 			<h4>야외석 있는</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t4'">
+		<div class="single_feature"
+			onclick="location.href='themeList?cafeTheme=t4'">
 			<div class="single_feature_icon">
 				<i class="fas fa-laptop"></i>
 			</div>
 			<h4>작업하기 좋은</h4>
 		</div>
-		<div class="single_feature" onclick="location.href='themeList?cafeTheme=t5'">
+		<div class="single_feature"
+			onclick="location.href='themeList?cafeTheme=t5'">
 			<div class="single_feature_icon">
 				<i class="fas fa-coffee"></i>
 			</div>
@@ -100,32 +114,111 @@ $('.heart').on('click', function(){
 		</div>
 	</div>
 </div>
-
-
+<br>
+<br>
+<hr>
+<div class="section-tittle mb-35" align="center">
+	<h2>대구 지역 카페</h2>
+</div>
+<br>
+<br>
 <!-- 아이콘/지도  -->
 <div class="row" align="center" class="margin2">
-	<div class="col-lg-6">
-		<div>
-			<h2>지역별 리스트 보기 </h2>
-		</div>
-		<div class="main_slick" style="width: 70%">
-			<div>
-				<a href="#" class="image fit"> <img
-					src="resources/images/main1.jpg" class="image">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="image fit"> <img
-					src="resources/images/main3.jpg" class="image">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="image fit"> <img
-					src="resources/images/main2.jpg" class="image">
-				</a>
+	<div class="col-lg-2">
+		<!-- 여기  -->
+		<div class="card mb-2 py-1 border-bottom-primary" id="북구"
+			onclick="location.href='areaList?cafeAddress=북구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">북구</font></font></a>
 			</div>
 		</div>
+
+		<div class="card mb-2 py-1 border-bottom-primary" id="중구"
+			onclick="location.href='areaList?cafeAddress=중구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">중구</font></font></a>
+			</div>
+		</div>
+
+		<div class="card mb-2 py-1 border-bottom-primary" id="남구"
+			onclick="location.href='areaList?cafeAddress=남구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">남구</font></font></a>
+			</div>
+		</div>
+
+
+
 	</div>
+	<!-- 여기  -->
+	<div class="col-lg-2">
+		<div class="card mb-2 py-1 border-bottom-primary" id="서구"
+			onclick="location.href='areaList?cafeAddress=서구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">서구</font></font></a>
+			</div>
+		</div>
+		<div class="card mb-2 py-1 border-bottom-primary" id="location">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">내주변</font></font></a>
+
+			</div>
+		</div>
+
+
+		<div class="card mb-2 py-1 border-bottom-primary" id="동구"
+			onclick="location.href='areaList?cafeAddress=동구'">
+			<div class="card-body" >
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">동구</font></font></a>
+			</div>
+		</div>
+
+	</div>
+	<!-- 여기  -->
+	<div class="col-lg-2">
+		<div class="card mb-2 py-1 border-bottom-primary" id="수성구"
+			onclick="location.href='areaList?cafeAddress=수성구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">수성구</font></font></a>
+			</div>
+		</div>
+
+		<div class="card mb-2 py-1 border-bottom-primary" id="달서구"
+			onclick="location.href='areaList?cafeAddress=달서구'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">달서구</font></font></a>
+			</div>
+		</div>
+
+		<div class="card mb-2 py-1 border-bottom-primary" id="달성군"
+			onclick="location.href='areaList?cafeAddress=달성군'">
+			<div class="card-body">
+				<a href="#" class="hvr-float-shadow"><font
+					style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">달성군</font></font></a>
+			</div>
+		</div>
+
+	</div>
+
+
+
 	<!-- 지도 -->
 	<div class="col-lg-6">
 		<div class="maps">
@@ -193,6 +286,8 @@ $('.heart').on('click', function(){
 		</div>
 	</div>
 </div>
+
+<hr>
 <!-- 지도 end -->
 
 <!-- 신규List -->
@@ -211,17 +306,17 @@ $('.heart').on('click', function(){
 							<h4>${list.cafeHashtag }</h4>
 						</div>
 						<div class="col-sm-2">
-						<div class="heart" data-class="${list.bookmarks}">
-						<c:if test="${list.bookmarks == 1 }">
-							<i class="far fa-heart" style="color:red"></i>
-						</c:if>
-							<c:if test="${list.bookmarks == 0}">
-							<i class="far fa-heart"></i>
-						</c:if>
-						<c:if test="${empty list.bookmarks}">
-							<i class="far fa-heart"></i>
-						</c:if>
-						</div>
+							<div class="heart" data-class="${list.bookmarks}">
+								<c:if test="${list.bookmarks == 1 }">
+									<i class="far fa-heart" style="color: red"></i>
+								</c:if>
+								<c:if test="${list.bookmarks == 0}">
+									<i class="far fa-heart"></i>
+								</c:if>
+								<c:if test="${empty list.bookmarks}">
+									<i class="far fa-heart"></i>
+								</c:if>
+							</div>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
@@ -248,33 +343,37 @@ $('.heart').on('click', function(){
 							<h4>${list.cafeHashtag }</h4>
 						</div>
 						<div class="col-sm-2">
-						<div class="heart" data-class="${list.bookmarks}">
-						<c:if test="${list.bookmarks == 1 }">
-							<i class="far fa-heart" style="color:red"></i>
-						</c:if>
-							<c:if test="${list.bookmarks == 0}">
-							<i class="far fa-heart"></i>
-						</c:if>
-						<c:if test="${empty list.bookmarks}">
-							<i class="far fa-heart"></i>
-						</c:if>
-						</div>
+							<div class="heart" data-class="${list.bookmarks}">
+								<c:if test="${list.bookmarks == 1 }">
+									<i class="far fa-heart" style="color: red"></i>
+								</c:if>
+								<c:if test="${list.bookmarks == 0}">
+									<i class="far fa-heart"></i>
+								</c:if>
+								<c:if test="${empty list.bookmarks}">
+									<i class="far fa-heart"></i>
+								</c:if>
+							</div>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
-					<a href="cafe?adminId=${list.adminId}" class="image">
-					<img src="resources/upload/${list.cafeThumbnail}" alt="">
+					<a href="cafe?adminId=${list.adminId}" class="image"> <img
+						src="resources/upload/${list.cafeThumbnail}" alt="">
 					</a>
 				</article>
-				</div>
+			</div>
 		</c:forEach>
 	</div>
 </div>
-<br><br>
+<br>
+<br>
 <hr>
 <div align="center">
-<a href="https://coupa.ng/bHyqZd" target="_blank"><img src="https://ads-partners.coupang.com/banners/294756?subId=&traceId=V0-301-bae0f72e5e59e45f-I294756&w=728&h=90" alt=""></a>
-<a href="https://coupa.ng/bHyrgY" target="_blank"><img src="https://ads-partners.coupang.com/banners/294754?subId=&traceId=V0-301-969b06e95b87326d-I294754&w=728&h=90" alt=""></a>
+	<a href="https://coupa.ng/bHyqZd" target="_blank"><img
+		src="https://ads-partners.coupang.com/banners/294756?subId=&traceId=V0-301-bae0f72e5e59e45f-I294756&w=728&h=90"
+		alt=""></a> <a href="https://coupa.ng/bHyrgY" target="_blank"><img
+		src="https://ads-partners.coupang.com/banners/294754?subId=&traceId=V0-301-969b06e95b87326d-I294754&w=728&h=90"
+		alt=""></a>
 </div>
 <script>
 	$(".main_slick").slick({

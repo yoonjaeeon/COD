@@ -14,6 +14,7 @@ public interface CafeService {
    public void deleteCafe(CafeVO cafeVO);
    public List<Map<String, Object>> getCafeMap(CafeVO cafeVO);
    public List<Map<String, Object>> monthGetCafeMap(CafeVO cafeVO);
+   public List<Map<String, Object>> dayGetCafeMap(CafeVO cafeVO);
    public List<CafeVO> getThemeList(CafeVO cafeVO);   
    public List<CafeVO> ThemeList(CafeVO cafeVO);
    public List<CafeVO> AreaList(CafeVO cafeVO);
@@ -30,5 +31,7 @@ public interface CafeService {
   
    // 테마별 리스트에서 랜덤으로 카페 조회 
    public List<CafeVO> getRandomList(CafeVO cafeVO);
+   //카페 업데이트 할때 cafe_state 변경
+  // public void updateCafeState(CafeVO cafeVO);
    
 }

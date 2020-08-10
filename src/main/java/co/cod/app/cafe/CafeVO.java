@@ -39,6 +39,8 @@ public class CafeVO {
    Integer openClose;
    String cafe_submit;
    String distance;
+   String month;
+   String day;
    
 
 	//공지사항 들고오는 필드

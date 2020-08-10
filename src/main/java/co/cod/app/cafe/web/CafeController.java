@@ -203,16 +203,28 @@ public class CafeController {
 		return "ad/adminOrder/adminSales";
 	}
 
+	@RequestMapping("monthAdminSalesForm")
+	public String monthAdminSalesForm(CafeVO cafeVO) {
+		return "ad/adminOrder/adminSales";
+	}
+	
 	@RequestMapping("monthAdminSales")
 	public @ResponseBody List<Map<String, Object>> monthAdminSales(HttpSession session, CafeVO cafeVO) {
 		cafeVO.setAdminId((String)session.getAttribute("adminId"));
 		return cafeService.monthGetCafeMap(cafeVO);
 	}
-
-	@RequestMapping("monthAdminSalesForm")
-	public String monthAdminSalesForm() {
+	
+	@RequestMapping("dayAdminSalesForm")
+	public String dayAdminSalesForm(CafeVO cafeVO) {
 		return "ad/adminOrder/adminSales";
 	}
+	
+	@RequestMapping("dayAdminSales")
+	public @ResponseBody List<Map<String, Object>> dayAdminSales(HttpSession session, CafeVO cafeVO) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		return cafeService.dayGetCafeMap(cafeVO);
+	}
+	
 
 	// 카페on/off
 	@RequestMapping(value = "/cafeOpenClose", method = RequestMethod.GET)

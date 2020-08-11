@@ -10,13 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.cod.app.Paging;
 import co.cod.app.message.service.MessageService;
+import co.cod.app.review.ReviewVO;
+import co.cod.app.review.service.ReviewService;
 import vofile.MessageVO;
 
 @Controller
 public class MessageController {
 	@Autowired
 	MessageService messageService;
+	@Autowired
+	ReviewService reviewService;
 	
 	@RequestMapping("getMessageCount")  //메세지 카운트
 	@ResponseBody
@@ -26,8 +31,24 @@ public class MessageController {
 	}
 	
 	@RequestMapping("adminMessage")	
-	public String adminMessage(Model model, MessageVO messageVO,HttpSession session) {
+	public String adminMessage(Model model, MessageVO messageVO,ReviewVO reviewVO,HttpSession session) {
 		model.addAttribute("messageList",messageService.messageList((String)session.getAttribute("adminId")));		
+		//페이징 처리
+		int p=1;
+		if(reviewVO.getP() != null && !reviewVO.getP().isEmpty()) {
+			p = Integer.parseInt(reviewVO.getP());
+		}
+		Paging paging = new Paging();   
+		paging.setPageUnit(5); // 한 페이지에 출력할 레코드 건수
+		paging.setPageSize(3); // 한 페이지에 출력할 페이지 번호 수
+		paging.setPage(p); // 현재 페이지
+		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
+		paging.setTotalRecord(reviewService.getCount(reviewVO)); // 전체 레코드 건수 조회
+		model.addAttribute("paging", paging);
+		
+		reviewVO.setStart(Integer.toString(paging.getFirst())); // start
+		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
+		
 		return "ad/adminCommunity/adminMessage";
 	}
 

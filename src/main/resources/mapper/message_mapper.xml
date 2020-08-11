@@ -64,17 +64,39 @@
 	</select>
 
 	<select id="sendMessage" resultType="vofile.MessageVO">
-		SELECT * 
+		<!-- SELECT * 
 		  FROM MESSAGE
 		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=1
-		 ORDER BY MESSAGE_SEQ DESC
+		 ORDER BY MESSAGE_SEQ DESC -->
+		 
+		 SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	SELECT *
+        from message m 
+        where ADMIN_ID=#{adminId}
+        AND SEND_RECEIVE=1
+        <if test="messageSeq != null and messageSeq != 0" >
+        AND message_seq  <![CDATA[<]]> ${messageSeq}
+        </if>
+        order by message_seq desc     
+         ) A ) B WHERE rn <![CDATA[<=]]> 5
 	</select>
 	
 	<select id="receiveMessage" resultType="vofile.MessageVO">
-		SELECT * 
+		<!-- SELECT * 
 		  FROM MESSAGE
 		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
-		 ORDER BY MESSAGE_SEQ DESC
+		 ORDER BY MESSAGE_SEQ DESC -->
+		 
+	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	SELECT *
+        from message m 
+        where ADMIN_ID=#{adminId}
+        AND SEND_RECEIVE=0
+        <if test="messageSeq != null and messageSeq !=0">
+        AND message_seq  <![CDATA[<]]> ${messageSeq}
+        </if>
+        order by message_seq desc     
+         ) A ) B WHERE rn <![CDATA[<=]]> 5
 	</select>
 	
 	<update id="getMasterSend" parameterType="vofile.MessageVO">

@@ -377,8 +377,7 @@ function orderDelete(seq){
 						<table class="table table-hover" id="table">
 							<thead>
 								<tr>
-									<th>NO</th>
-									<th>T번호</th>
+									<th>테이블</th>
 									<th>주문내역</th>
 									<th>완료</th>
 									<th>거절</th>
@@ -388,7 +387,6 @@ function orderDelete(seq){
 								<c:forEach items="${getOrderView}" var="list">
 									<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
 										<tr id="${list.orderSeq }">
-											<td>N</td>
 											<td>${list.seatName }</td>
 											<td>${list.menuName }</td>
 											<!-- onclick 메소드 필요 함 -->

@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<style>
+ul {
+    list-style:none;
+    margin:0 auto;
+    padding:0;
+}
+
+li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+</style>
 
 <script>
 	$(function() {
@@ -26,60 +41,70 @@ messageSeq = seq;
 }
 
 //보낸 메세지함 
- function sendMessage(){
-	$.ajax({
-		url : 'sendMessage', 
-		type : 'post',
-		contentType: 'application/json;charset=utf-8',
-		dataType : 'json',
-		async : true,
-		success : function(data){
-			 if(typeof data.length == 0 || data == ""){
-		    	 alert("보낸 메세지가 없습니다.");		 
-				 $('#testBoardTable tr:gt(0)').empty();
-       }else{
-			$('#date').text('발신일자')
-			$('#th').text('수신');
-			$("#testBoardTable tr:gt(0)").empty();
-				  $.each(data, function (index, item) {
-	                    let html = '';
-	                    html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
-	                    html += '<td>'+item.messageTitle+'</td>';	 
-	                    html += '<td>'+item.messageDate+'</td>';    
-	                    if(item.masterRead === 1){
-	                    	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
-	                        }else{
-	                        	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
-	                        }
-	                    html += '</tr>';
-	                    $("#testBoardTable").append(html);
-	                });
-				
-			$('#messageTitle').html(data.messageTitle);
+ function sendMessage(seq){
+	 var data = {}
+		if(seq != "undefined" && seq != null && seq!= "" ){
+			data = {messageSeq:seq}
+		}else{
+			$("#tbody").empty();
+		}$.ajax({
+			url : 'sendMessage', 
+			type : 'post',
+			dataType : 'json',
+			data : data,
+			async : true,
+			success : function(data){
+				 if(typeof data.length == 0 || data == ""){
+			    	 alert("메세지가 없습니다.");		 
+	       }else{
+				$('#date').text('발신일자')
+				$('#th').text('수신');
+				$("#tbody tr:gt(0)").empty();
+					  $.each(data, function (index, item) {
+		                    let html = '';
+		                    html += '<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
+		                    html += '<td>'+item.messageTitle+'</td>';	 
+		                    html += '<td>'+item.messageDate+'</td>';    
+		                    if(item.masterRead === 1){
+		                    	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+		                        }else{
+		                        	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+		                        }
+		                    html += '</tr>';
+		                    $("#tbody").append(html);
+		                    
+		                });
+					
+				$('#messageTitle').html(data.messageTitle);
+				}
 			}
-		}
-	})
+		})
 } //end of sendMessage 
 
 //받은 메세지함
- function receiveMessage(){
+ function receiveMessage(seq){
+	var data = {}
+	if(seq != "undefined" && seq != null && seq!= "" ){
+		data = {messageSeq:seq}
+	}else{
+		$("#tbody").empty();
+	}
 	$.ajax({
 		url : 'receiveMessage',
 		type : 'POST',
-		contentType: 'application/json;charset=utf-8',
+		data : data,	
 		dataType : 'json',
 		async : true,
 		success : function(data){
            if(typeof data.length == 0 || data == ""){
-			    	 alert("받은 메세지가 없습니다.");		 
-					 $('#testBoardTable tr:gt(0)').empty();
+			    	 alert("메세지가 없습니다.");
            }else{
 				$('#th').text('읽음');
 				$('#date').text('수신일자')
-				$("#testBoardTable tr:gt(0)").empty();
+			//	$("#tbody tr:gt(0)").empty();
 			$.each(data, function (index, item) {
                 let html = '';
-                html += '<tr data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr">';
+                html += '<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
                 html += '<td>'+item.messageTitle+'</td>';    
                 html += '<td>'+item.messageDate+'</td>';    
 			    	  
@@ -89,7 +114,7 @@ messageSeq = seq;
                 	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
                 }
                 html += '</tr>';
-                $("#testBoardTable").append(html);
+                $("#tbody").append(html);
             });
            }
 		}
@@ -97,6 +122,7 @@ messageSeq = seq;
 				
 	})
 } 
+
 </script>
 <div class="container" align="center">
 	<div class="padding2 margin3">
@@ -112,33 +138,26 @@ messageSeq = seq;
 		<th id="th">읽음</th>
 		<!-- data-toggle="modal" data-target="#exampleModal" -->
 	</tr>
-	<c:forEach items="${messageList}" var="list">
 	<tbody id="tbody">
-		<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate(${list.messageSeq })" id="msg${list.messageSeq }" class="tr">
-			<!-- <td><input type="checkbox" name="check"></td> -->
-			<td><span id="messageTitle"></span>${list.messageTitle }</td>
-			<td><span id="messageDate"></span>${list.messageDate}</td>
-			<td align="center" class="readClass" id="messageRead"> <!-- 메세지 읽음표시  -->
-			<span id="messageUpdate"> 
-			
-			<c:if test="${list.read == 1 }">
-				<i class="far fa-envelope"></i>
-			</c:if> 
-			<c:if test="${list.read == 0 }">
-				<i class='far fa-envelope-open'></i>
-			</c:if>
-			</span>			
-			</td>
-		</tr>
-	</tbody>
-	</c:forEach>
-</table>
 
+
+	</tbody>
+	
+</table>
+<button id="more" class="btn_review">더 보기</button>
 </div>
 <!-- 페이징 처리하기 -->
+<script type="text/javascript">
+	function gopage(p) {
+		location.href="adminMessage?p="+p;
+		//document.searchfrm.p.value = p; 검색
+ 		//document.searchfrm.submit();
+	}
+</script>
+
 <form action="" id="modal" method="post"></form>
 <!-- Modal -->
-<div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="contentModals" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -188,12 +207,22 @@ messageSeq = seq;
 
 
 <script>
+$('#more').on("click", function(p){
+	 var seq = $('#tbody tr').last().data('seq');
+	 receiveMessage(seq);
+	 /* $.ajax({
+		 url:"adminMessage",
+		 data :{messageSeq : seq}
+	 }) */
+	})
+
 var messageSeq ;
 function messageUpdate(seq){ 
-messageSeq = seq;
+	messageSeq = seq;
 }
-	//모달창 메세지 받기
-	$('#contentModals').on('show.bs.modal', function (e) {
+
+//모달창 메세지 받기
+$('#contentModal').on('show.bs.modal', function (e) {
 	console.log(e.target); 
 	$.ajax({
 		url : 'getMessage',  
@@ -208,4 +237,5 @@ messageSeq = seq;
 	});
 });
 	
-    </script>
+receiveMessage();
+</script>

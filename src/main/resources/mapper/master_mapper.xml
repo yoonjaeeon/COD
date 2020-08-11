@@ -42,13 +42,34 @@
 	</select>	
 	
 	<select id="sendMasterMessage" resultType="vofile.MessageVO">
-	SELECT * FROM MESSAGE
-	WHERE SEND_RECEIVE =1 AND MASTER_SEND=1
+	<!-- SELECT * FROM MESSAGE
+	WHERE SEND_RECEIVE =1 AND MASTER_SEND=1 -->
+	
+	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	SELECT *
+        from message m 
+        where SEND_RECEIVE=1 AND MASTER_SEND=1
+        <if test="messageSeq != null and messageSeq !=0">
+        AND message_seq  <![CDATA[<]]> ${messageSeq}
+        </if>
+        order by message_seq desc     
+         ) A ) B WHERE rn <![CDATA[<=]]> 5
+	
 	</select>
 	
 	<select id="receiveMasterMessage" resultType="vofile.MessageVO">
-	SELECT * FROM MESSAGE
-	WHERE SEND_RECEIVE =1 AND MASTER_SEND=0
+	<!-- SELECT * FROM MESSAGE
+	WHERE SEND_RECEIVE =1 AND MASTER_SEND=0 -->
+	
+	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
+	SELECT *
+        from message m 
+        where SEND_RECEIVE=1 AND MASTER_SEND=0
+        <if test="messageSeq != null and messageSeq !=0">
+        AND message_seq  <![CDATA[<]]> ${messageSeq}
+        </if>
+        order by message_seq desc     
+         ) A ) B WHERE rn <![CDATA[<=]]> 5
 	</select>
 
 	<select id="getMasterMessageCount" resultType="int">
@@ -62,6 +83,8 @@
 			MESSAGE_CONTENT, 
 			READ 
 		  FROM MESSAGE WHERE MESSAGE_SEQ =#{messageSeq}
+		  
+		  
 	</select>
 	
 	<update id="updateMessage" parameterType="int">  <!-- 메세지 읽음, 읽지않음 -->

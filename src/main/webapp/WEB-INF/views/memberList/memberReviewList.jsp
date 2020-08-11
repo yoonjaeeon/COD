@@ -4,7 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 
+<style>
+ul {
+    list-style:none;
+    margin:0 auto;
+    padding:0;
+}
 
+li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+</style>
 
 <!DOCTYPE html>
 <style>

@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+
+
+
 <!DOCTYPE html>
 <style>
 #outter tbody td{cursor:pointer}
@@ -46,6 +49,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	
 	<script type="text/javascript">
 	function gopage(p) {
 		location.href="memberReviewList?p="+p;

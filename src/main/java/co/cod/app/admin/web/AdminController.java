@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,9 +20,11 @@ import co.cod.app.seat.service.SeatService;
 @Controller
 class AdminController {
 
-	@Autowired	AdminService adminService;
-	@Autowired	SeatService seatService;
-	
+	@Autowired
+	AdminService adminService;
+	@Autowired
+	SeatService seatService;
+
 	// e등로폼
 	@RequestMapping("adminInsertForm")
 	public String insertAdmin(AdminVO adminVO) {
@@ -33,6 +37,7 @@ class AdminController {
 		adminService.insertAdmin(adminVO);
 		return "redirect:home";
 	}
+
 	// 업데이트
 	@RequestMapping("adminUpdate")
 	public String updateAdmin(AdminVO adminVO) {
@@ -56,7 +61,7 @@ class AdminController {
 		AdminVO result = adminService.adminLogin(adminVO);
 		String rt = "";
 		if (result != null) {
-			if (result.getAdminId().equals(adminVO.getAdminId()) && result.getPw().equals(adminVO.getPw())) {
+			if (result.getPw().equals(adminVO.getPw())) {
 				session.setAttribute("adminId", adminVO.getAdminId());
 //				rt = "ad/admin/adminMain";	
 				/*
@@ -71,32 +76,29 @@ class AdminController {
 						return "e/admin/loading";
 					} else if (result.getCafeState() == 2) {
 						return "redirect:admin";
-					}else if (result.getCafeState() == 3) {
-						model.addAttribute("id",adminVO.getAdminId());
+					} else{
+						model.addAttribute("id", adminVO.getAdminId());
 						return "e/admin/adminCancel";
 					}
-				}else if(result.getAdminState() == 1) {
+				} else  {
 					return "ma/master/masterMain";
 				}
 
-			} else if (result.getAdminId().equals(adminVO.getAdminId()) && !result.getPw().equals(adminVO.getPw())) {
+			} else {
 				model.addAttribute("msg", "잘못된 비밀번호입니다.");
-				return "admin/adminLogin";
-			} else if (!result.getAdminId().equals(adminVO.getAdminId())) {
-				model.addAttribute("msg", "잘못된 이메일입니다.");
 				return "admin/adminLogin";
 			}
 		} else
 
 		{
-			model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요");
+			model.addAttribute("msg", "잘못된 이메일입니다.");
 			return "admin/adminLogin";
 		} /*
 			 * else { model.addAttribute("msg", "이메일 또는 비밀번호를 확인해주세요"); return
 			 * "ma/master/masterMain"; }
 			 */
 //		return rt;
-		return null;
+		// return null;
 	}
 
 	@RequestMapping("adminLogout")
@@ -104,7 +106,7 @@ class AdminController {
 		session.invalidate();
 		return "main/home";
 	}
-	
+
 	@RequestMapping(value = "/adminrespAPI")
 	@ResponseBody
 	public Map respAPI() {
@@ -114,9 +116,28 @@ class AdminController {
 				Map.class);
 	}
 	
+	@RequestMapping("getOrderCount")
+	@ResponseBody
+	public Integer getOrderCount(AdminVO adminVO,HttpSession session) {
+		adminVO.setAdminId((String)session.getAttribute("adminId"));
+		return adminService.getOrderCount(adminVO);
+	}
 	
+	@RequestMapping(value="updateOrderSubmit/{orderSeq}", method=RequestMethod.GET)
+	@ResponseBody
+	public String updateOrderSubmit(@PathVariable String orderSeq, HttpSession session) {
+		adminService.updateOrderSubmit(orderSeq);
+		return "주문 처리완료";
+	}
 	
-	//좌석 전체조회
+	@RequestMapping(value="deleteOrderSubmit/{orderSeq}", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteOrderSubmit(AdminVO adminVO, HttpSession session) {
+		adminService.deleteOrderSubmit(adminVO);
+		return "삭제 완료";
+	}
+
+	// 좌석 전체조회
 	/*
 	 * @RequestMapping(value="/seats", method=RequestMethod.GET)
 	 * 

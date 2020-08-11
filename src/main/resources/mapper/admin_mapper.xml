@@ -57,4 +57,41 @@
 		
 	</update>
 	
+	<update id="orderSubmit" parameterType="co.cod.app.admin.AdminVO">
+		UPDATE ORDERS SET SUBMIT=0 WHERE ORDER_SEQ=#{orderSeq}
+	</update>
+	
+	<select id="getOrderView" resultType="co.cod.app.admin.AdminVO" parameterType="co.cod.app.admin.AdminVO">
+	SELECT 		ADMIN_ID, 
+				ORDER_TIME, 
+				SEAT_NAME, 
+				CAFE_NAME, 
+				ORDER_SEQ,  
+				LISTAGG(
+				CASE WHEN ORDER_STATE = 1 THEN '아이스'
+			          ELSE '' END
+				|| MENU_NAME||' : ' ||ORDERLINE_AMOUNT||'개'|| ', ') WITHIN GROUP (ORDER BY ORDER_SEQ) AS MENU_NAME
+	 FROM ORDER_VIEW OV WHERE SUBMIT=1 AND ADMIN_ID=#{adminId} AND  ROWNUM <![CDATA[ <= ]]>10
+  	GROUP BY ADMIN_ID, ORDER_TIME, SEAT_NAME, CAFE_NAME, ORDER_SEQ
+  	ORDER BY ORDER_SEQ DESC
+	</select>
+	
+	<select id="getOrderCount" parameterType="co.cod.app.admin.AdminVO" resultType="Integer">
+	select  count(distinct order_seq) menu_count
+	  from order_view ov 
+	 where submit=1 and admin_id=#{adminId} 
+	</select>
+	
+	<update id="updateOrderSubmit" parameterType="String">
+	UPDATE ORDERS SET SUBMIT=0
+	 WHERE ORDER_SEQ=#{orderSeq}
+	</update>
+	
+	<delete id="deleteOrderSubmit" parameterType="co.cod.app.admin.AdminVO">
+	DELETE FROM ORDERS
+	WHERE ORDER_SEQ = #{orderSeq}
+	ON DELETE CASCADE
+	</delete>
+	
+	
 </mapper>

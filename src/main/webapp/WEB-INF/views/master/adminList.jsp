@@ -84,7 +84,7 @@
 	//대기상태 승인으로 바꿈  카페 상태 , 날짜 디비에 입력 
 	function cafeStateUpdate() {
 		//수정 버튼 클릭
-		$('body').on('click','.btnUpdate2', function() {			
+		$('body').on('click','.btnUpdate1', function() {			
 			var adminId = $(this).parent().parent().children().eq(0).text();
 			var tr = $(this).parent().parent();
 			console.log(adminId);

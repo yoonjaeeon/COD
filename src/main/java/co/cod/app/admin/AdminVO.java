@@ -24,4 +24,15 @@ public class AdminVO {
 	
 	//조인을 위한 필드
 	String cafePhone;
+	
+	//주문현황
+	Integer orderSeq;
+	String orderTime;	
+	String seatName;
+	String menuName;
+	Integer price;
+	Integer priceAdd;
+	Integer orderlintAmount;
+	Integer orderState;
+	Integer submit;	
 }

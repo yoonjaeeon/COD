@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.service.AdminService;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 
 @Controller
 public class HomeController {
 	@Autowired MemberService memberService;
+	@Autowired AdminService adminService;
    
    @RequestMapping("home")
    public String home(Model model, MemberVO memberVO,HttpSession session) {
@@ -24,7 +28,9 @@ public class HomeController {
    }
    
    @RequestMapping("admin")
-   public String adminHome(Model model) {
+   public String adminHome(Model model, HttpSession session,AdminVO adminVO) {
+	   adminVO.setAdminId((String)(session.getAttribute("adminId")));
+	   model.addAttribute("getOrderView", adminService.getOrderView(adminVO));
       return "ad/admin/adminMain";
    }
    @RequestMapping("master")

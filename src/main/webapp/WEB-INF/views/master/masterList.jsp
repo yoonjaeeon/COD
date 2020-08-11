@@ -12,7 +12,33 @@ function deleteMaster() {
 
 
 </script>
-
+<div class="container">
+	<!-- Page Heading -->
+	<h1 class="h3 mb-2 text-gray-800">마스터 관리자 리스트</h1>
+	<!-- DataTales Example -->
+			<div class="table-responsive">
+				<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="dataTables_length" id="dataTable_length">
+								<label>보기 <select name="dataTable_length"
+									aria-controls="dataTable"
+									class="custom-select custom-select-sm form-control form-control-sm"><option
+											value="10">10</option>
+										<option value="25">25</option>
+										<option value="50">50</option>
+										<option value="100">100</option></select>
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div id="dataTable_filter" class="dataTables_filter">
+								<label>검색 :<input type="search"
+									class="form-control form-control-sm" placeholder="직원명"
+									aria-controls="dataTable"></label>
+							</div>
+						</div>
+					</div>
 <div class="row">
 	<div class="col-sm-12">
 		<table class="table table-bordered dataTable" id="dataTable"
@@ -60,32 +86,36 @@ function deleteMaster() {
 		</table>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-12 col-md-5"></div>
-	<div class="col-sm-12 col-md-7">
-		<div class="dataTables_paginate paging_simple_numbers"
-			id="dataTable_paginate">
-			<ul class="pagination">
-				<li class="paginate_button page-item previous disabled"
-					id="dataTable_previous"><a href="#" aria-controls="dataTable"
-					data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-				<li class="paginate_button page-item active"><a href="#"
-					aria-controls="dataTable" data-dt-idx="1" tabindex="0"
-					class="page-link">1</a></li>
-				<li class="paginate_button page-item "><a href="#"
-					aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-					class="page-link">2</a></li>
-				<li class="paginate_button page-item "><a href="#"
-					aria-controls="dataTable" data-dt-idx="3" tabindex="0"
-					class="page-link">3</a></li>
-				<li class="paginate_button page-item "><a href="#"
-					aria-controls="dataTable" data-dt-idx="4" tabindex="0"
-					class="page-link">4</a></li>
-
-				<li class="paginate_button page-item next" id="dataTable_next"><a
-					href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-					class="page-link">Next</a></li>
-			</ul>
+				<div class="row">
+						<div class="col-sm-12 col-md-5"></div>
+						<div class="col-sm-12 col-md-7">
+							<div class="dataTables_paginate paging_simple_numbers"
+								id="dataTable_paginate">
+								<ul class="pagination">
+									<li class="paginate_button page-item previous disabled"
+										id="dataTable_previous"><a href="#"
+										aria-controls="dataTable" data-dt-idx="0" tabindex="0"
+										class="page-link">Previous</a></li>
+									<li class="paginate_button page-item active"><a href="#"
+										aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+										class="page-link">1</a></li>
+									<li class="paginate_button page-item "><a href="#"
+										aria-controls="dataTable" data-dt-idx="2" tabindex="0"
+										class="page-link">2</a></li>
+									<li class="paginate_button page-item "><a href="#"
+										aria-controls="dataTable" data-dt-idx="3" tabindex="0"
+										class="page-link">3</a></li>
+									<li class="paginate_button page-item "><a href="#"
+										aria-controls="dataTable" data-dt-idx="4" tabindex="0"
+										class="page-link">4</a></li>
+									
+									<li class="paginate_button page-item next" id="dataTable_next"><a
+										href="#" aria-controls="dataTable" data-dt-idx="7"
+										tabindex="0" class="page-link">Next</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>

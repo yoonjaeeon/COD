@@ -11,7 +11,7 @@ public interface CafeService {
    public List<CafeVO> getCafeList(CafeVO cafeVO);
    public void insertCafe(CafeVO cafeVO); 
    public void updateCafe(CafeVO cafeVO);
-   public void deleteCafe(CafeVO cafeVO);
+   public void deleteCafe(String adminId);
    public List<Map<String, Object>> getCafeMap(CafeVO cafeVO);
    public List<Map<String, Object>> monthGetCafeMap(CafeVO cafeVO);
    public List<Map<String, Object>> dayGetCafeMap(CafeVO cafeVO);

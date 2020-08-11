@@ -9,7 +9,7 @@
 		selectList(1);
 		cafeStateUpdate();
 		cafeStateUpdate1() 
-       //	adminList();
+     
 		// cafeInfo();
 	});
 
@@ -79,7 +79,7 @@
 
 	$('body').on('click', '#state1', function() { selectList(1); }); //조회 버튼 클릭
 	$('body').on('click', '#state2', function() { selectList(2); }); //조회 버튼 클릭
-	$('body').on('click', '#state3', function() { selectList(3); }); //조회 버튼 
+	$('body').on('click', '#state3', function() { selectList(0); }); //조회 버튼 
 
 	//대기상태 승인으로 바꿈  카페 상태 , 날짜 디비에 입력 
 	function cafeStateUpdate() {
@@ -130,12 +130,21 @@
 					alert(" status: " + status + " 에러:" + message);
 				}
 			});
+   
+			$.ajax({
+				url:'adminList/'+ adminId,  
+				type:'DELETE',
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				error:function(xhr,status,msg){
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+				}, success:function(xhr) {
+					adminList();
+				}
+			});      //if
 		});//수정 버튼 클릭
 	}//userUpdate
 	
-	
-	
-	//admin 아이디 검색 
 	
 	$(document).ready(function(){
 		  $("#searchMenu").on("keyup", function() {

@@ -49,8 +49,8 @@
 	function workerDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
-			var workerSeq = $(this).closest('tr').find('#hidden_workerSeq').val();
-			var result = confirm(workerSeq +" 사용자를 정말로 삭제하시겠습니까?");
+		
+			var result = confirm(cafe_name +" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
 					url:'adminWorker/'+ workerSeq,  

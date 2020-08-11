@@ -49,8 +49,8 @@ public class CafeServiceImpl implements CafeService{
 
    
    @Override
-   public void deleteCafe(CafeVO cafeVO) {
-      cafeMapper.deleteCafe(cafeVO);   
+   public void deleteCafe(String adminId) {
+      cafeMapper.deleteCafe(adminId);   
    }
 
    

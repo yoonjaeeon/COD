@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
+import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.menu.service.MenuService;
@@ -60,6 +61,7 @@ public class CafeController {
 	@Autowired
 	@Qualifier("dataSourceSpied")
 	DataSource datasource;
+
 
 	/* 카페지역 리스트 */
 	@RequestMapping("areaList")
@@ -151,7 +153,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("/Users/ihyeon-u/git/COD/src/main/webapp/resources/upload", filename));
 				filename = upFile.getName();
 				cafeThumbnail.transferTo(upFile);
 			}
@@ -165,7 +167,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("/Users/ihyeon-u/git/COD/src/main/webapp/resources/upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}						
@@ -246,14 +248,19 @@ public class CafeController {
 	public String cafeUpdateForm(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) {
 		model.addAttribute("getCafe", cafeService.getCafe((String) session.getAttribute("adminId")));
 		cafeVO = cafeService.getCafe((String) session.getAttribute("adminId"));
-		System.out.println("1 " + cafeVO);
 		if (cafeVO.getPhotoGroup() != null) {
 			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
 			model.addAttribute("fileList", photoService.getPhotoList(photoVO));
 			System.out.println("확인" + photoVO);
 		}
-
-		return "ad/cafe/cafeUpdate";
+	String result = "ad/cafe/cafeUpdate";
+	AdminVO adminVO = new AdminVO();
+	adminVO.setAdminId((String)session.getAttribute("adminId"));
+	adminVO = adminService.getAdmin(adminVO);
+	if(adminVO.getAdminState()==0) {
+		result = "e/cafe/cafeUpdate";
+	}
+		return result;
 	}
 
 	@RequestMapping("cafeUpdate")
@@ -264,7 +271,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("/Users/ihyeon-u/git/COD/src/main/webapp/resources/upload", filename));
 				System.out.println(upFile.getAbsolutePath()+"확==============================");
 				filename = upFile.getName();    
 				cafeThumbnail.transferTo(upFile);
@@ -280,7 +287,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("/Users/ihyeon-u/git/COD/src/main/webapp/resources/upload", filename));
 
 					System.out.println(upFile.getAbsolutePath()+"확==============================");
 					filename = upFile.getName();
@@ -314,5 +321,17 @@ public class CafeController {
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 
 	}
-
+	//삭제
+	@RequestMapping(value="/adminList/{adminId}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object>deleteCafe(@PathVariable String adminId,  Model model, HttpSession session) {
+		cafeService.deleteCafe(adminId);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	
+	
+	
+	
 }

@@ -11,8 +11,12 @@ function button1(){
 	}else{
 		return ;
 	}
-	
 }
+	function button2(){
+		location.href="adminReviewList";
+		
+	}	
+	
 
 </script>
 <h3>리뷰 수정</h3>
@@ -44,5 +48,8 @@ function button1(){
  <c:if test="${sessionScope.loginEmail == review.email}">
 <button type="button" onclick ="button1()">수정</button>
 <input type="reset" value="지우기" />
+</c:if>
+ <c:if test="${sessionScope.loginEmail != review.email }">
+<button type="button" onclick ="button2()">목록으로</button>
 </c:if>
 </form>

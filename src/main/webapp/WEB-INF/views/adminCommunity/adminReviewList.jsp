@@ -18,37 +18,40 @@
 		}
 	}
 </script>
-<h2>관리자 리뷰 조회</h2>
-<div id="outter"> 
-	<table border="1">
-	<thead>
-		<tr>
-			<td>리뷰 사진</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>평 점</td>
-		</tr>
-		</thead>
-		<tbody>
-		<c:forEach items="${adminReviewList }" var="review">
-			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
-				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
-				<td>${review.email }</td>
-				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
-				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
-				<td>${review.stars }</td>
-				<td><button type="button" onclick="idDelete('${review.reviewSeq}')">삭제</button></td>
+<div class="container">
+	<h2 align="center">관리자 리뷰 조회</h2>
+	<div id="outter"> 
+		<div align="right">
+		총 평점 : <b>${getReviewAvg}</b> 점<br /><br />
+		</div>
+		<table class="table table-hover" >
+		<thead>
+			<tr>
+				<td>리뷰 사진</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>평 점</td>
 			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
-	총 평점 : <input type="text" name="getReviewAvg" id="getReviewAvg" value="${getReviewAvg}" readonly/>점<br />
-	<script type="text/javascript">
-	function gopage(p) {
-		location.href="adminReviewList?p="+p;
-		//document.searchfrm.p.value = p; 검색
- 		//document.searchfrm.submit();
-	}
-</script>
-<my:paging paging="${paging}" jsfunc="gopage" />
-</div>
+			</thead>
+			<tbody>
+			<c:forEach items="${adminReviewList }" var="review">
+				<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
+					<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
+					<td>${review.email }</td>
+					<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
+					<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
+					<td>${review.stars }</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		</div>
+		<script type="text/javascript">
+		function gopage(p) {
+			location.href="adminReviewList?p="+p;
+		}
+		</script>
+		<div align="center">
+			<my:paging paging="${paging}" jsfunc="gopage"/>
+		</div>
+	</div>

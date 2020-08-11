@@ -257,6 +257,7 @@ function orderSubmit(seq){
 			alert(data);
 			$('#getOrderCount').load("getOrderCount");
 			$('#getOrderCounts').load("getOrderCount");
+			$('#'+seq).remove();
 		},
 		error : function(xhr, status, message) {
 			alert(" status: " + status + " 에러:" + message);
@@ -272,13 +273,13 @@ function orderSubmit(seq){
 function orderDelete(seq){
 	if(confirm("정말 주문 거절하시겠습니까?")){
 	$.ajax({
-		url:'deleteOrderSubmit',
-		data:{orderSeq : seq},
-		type:'post',
+		url:'deleteOrderSubmit/'+seq,
+		type:'GET',
 		success : function(result){
-			alert(result);
 			$('#getOrderCount').load("getOrderCount");
 			$('#getOrderCounts').load("getOrderCount");
+			$('#'+seq).remove();
+			
 		},
 		error : function(xhr, status, message) {
 			alert(" status: " + status + " 에러:" + message);
@@ -373,7 +374,7 @@ function orderDelete(seq){
 			<div class="collapse show" id="collapseCardExample">
 				<div class="card-body">
 					<div class="order">
-						<table class="table table-hover">
+						<table class="table table-hover" id="table">
 							<thead>
 								<tr>
 									<th>NO</th>
@@ -386,8 +387,7 @@ function orderDelete(seq){
 							<tbody>
 								<c:forEach items="${getOrderView}" var="list">
 									<!-- 상세정보 볼 수 있는 modal,,,?뭐든 작업하기 -->
-									<a href="#">
-										<tr>
+										<tr id="${list.orderSeq }">
 											<td>N</td>
 											<td>${list.seatName }</td>
 											<td>${list.menuName }</td>
@@ -395,7 +395,6 @@ function orderDelete(seq){
 											<td><i class="fas fa-heart" id="success" onclick="orderSubmit(${list.orderSeq })"></i></td>
 											<td><i class="fas fa-heart" id="delete" onclick="orderDelete(${list.orderSeq })"></i></td>
 										</tr>
-									</a>
 								</c:forEach>
 							</tbody>
 						</table>

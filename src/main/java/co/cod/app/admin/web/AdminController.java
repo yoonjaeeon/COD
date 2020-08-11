@@ -130,7 +130,7 @@ class AdminController {
 		return "주문 처리완료";
 	}
 	
-	@RequestMapping("deleteOrderSubmit")
+	@RequestMapping(value="deleteOrderSubmit/{orderSeq}", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteOrderSubmit(AdminVO adminVO, HttpSession session) {
 		adminService.deleteOrderSubmit(adminVO);

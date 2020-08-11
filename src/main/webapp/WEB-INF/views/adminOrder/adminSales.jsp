@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
      
-      google.charts.load('current', {'packages':['corechart','bar']}); //모든 차트 다 다운 받고싶을떄
+      google.charts.load('current', {'packages':['corechart','line']}); //모든 차트 다 다운 받고싶을떄
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
           // Create the data table.

@@ -74,87 +74,97 @@
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
          </div>
        </div>     
-            <br>    
+            <br> 
+        <div class="row">
+      		<div class="col-3">   
         <div class="form-group">
-         <label >wifi 여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="wifi" id="wifi" value="1" checked="checked">Yes</label>
-         </div>
-         <div class="radio">
-            <label><input type="radio"  name="wifi" id="wifi"  value="0">No</label>
+	         <label >wifi 여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="wifi" id="wifi" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="wifi" id="wifi"  value="0">No</label>
          </div>
          </div> <br>
-        
+        </div>
+        <div class="col-3">   
          <div class="form-group">
-         <label >키즈존 여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="nokid" id="nokid" value="1" checked="checked">Yes</label>
+	         <label >키즈존 여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="nokid" id="nokid" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio"> 
+	            <label><input type="radio"  name="nokid" id="nokid"  value="0">No</label>
+	         </div> 
+	         </div><br>
          </div>
-         <div class="radio"> 
-            <label><input type="radio"  name="nokid" id="nokid"  value="0">No</label>
-         </div> 
-         </div><br>
+         <div class="col-3">   
          <div class="form-group">
-         <label >주차여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="parking" id="parking" value="1" checked="checked">Yes</label>
+	         <label >주차여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="parking" id="parking" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="parking" id="parking" value="0">No</label>
+	         </div> 
+	         </div><br>
          </div>
-         <div class="radio">
-            <label><input type="radio"  name="parking" id="parking" value="0">No</label>
-         </div> 
-         </div><br>
-         
+         <div class="col-3">   
           <div class="form-group">
-         <label >반려견동반여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="animal" id="animal" value="1" checked="checked">Yes</label>
+	         <label >반려견동반여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="animal" id="animal" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="animal" id="animal" value="0">No</label>
+	         </div>
+	         </div> <br>
          </div>
-         <div class="radio">
-            <label><input type="radio"  name="animal" id="animal" value="0">No</label>
-         </div>
-         </div> <br>
-         
+         <div class="col-3">   
           <div class="form-group">
-         <label >빔프로젝트 대여여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="beam" id="beam"  value="1" checked="checked">Yes</label>
-         </div>
-         <div class="radio">
-            <label><input type="radio"  name="beam" id="beam" value="0">No</label>
-         </div> 
-         </div><br>
-         
+	         <label >빔프로젝트 대여여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="beam" id="beam"  value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="beam" id="beam" value="0">No</label>
+	         </div> 
+	         </div><br>
+		</div>         
+		<div class="col-3">   
           <div class="form-group">
-         <label >충전기 대여여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="charger" id="charger" value="1" checked="checked">Yes</label>
+	         <label >충전기 대여여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="charger" id="charger" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="charger" id="charger" value="0">No</label>
+	         </div>
+	         </div> <br>
          </div>
-         <div class="radio">
-            <label><input type="radio"  name="charger" id="charger" value="0">No</label>
-         </div>
-         </div> <br>
-         
+         <div class="col-3">   
              <div class="form-group">
          <label >단체석 여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="bigSeat" id="bigSeat" value="1" checked="checked">Yes</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="bigSeat" id="bigSeat" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="bigSeat" id="bigSeat" value="0">No</label>
+	          </div> 
+	         </div><br>
          </div>
-         <div class="radio">
-            <label><input type="radio"  name="bigSeat" id="bigSeat" value="0">No</label>
- 
-         </div> 
-         </div><br>
-         
+         <div class="col-3">   
          <div class="form-group">
-         <label >대관여부</label>
-         <div class="radio">
-            <label><input type="radio"  name="lend" id="lend" value="1" checked="checked">Yes</label>
+	         <label >대관여부</label>
+	         <div class="radio">
+	            <label><input type="radio"  name="lend" id="lend" value="1" checked="checked">Yes</label>
+	         </div>
+	         <div class="radio">
+	            <label><input type="radio"  name="lend" id="lend" value="0">No</label>
+	         </div>
+	         </div> <br>
          </div>
-         <div class="radio">
-            <label><input type="radio"  name="lend" id="lend" value="0">No</label>
-         </div>
-         </div> <br>
- 
+ 		</div>
       <div class="btn-group">      
                <button type="button" class="btn btn-primary" onclick="cafeInsert()">재등록</button>
             

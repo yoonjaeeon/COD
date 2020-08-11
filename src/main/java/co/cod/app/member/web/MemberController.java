@@ -8,9 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import co.cod.app.cafe.CafeVO;
+import co.cod.app.kakao.KakaoController;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
 import vofile.BookmarksVO;
@@ -21,7 +27,8 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
-
+	@Autowired
+	KakaoController kakaoController;
 	// 등록폼
 	@RequestMapping("memberInsertForm")
 	public String insertMember(MemberVO memberVO) {
@@ -92,7 +99,7 @@ public class MemberController {
 		}
 	
 	
-		//즐겨찾기
+	//즐겨찾기
 	@RequestMapping("bookmarks")
 	public String bookmarks(Model model, BookmarksVO bookmarksVO, HttpSession session) {
 		bookmarksVO.setEmail((String) session.getAttribute("loginEmail"));
@@ -140,7 +147,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("memberLoginForm")
-	public String aLogin(Model model) {
+	public String aLogin(Model model, HttpSession session) {
+		String kakaoUrl = kakaoController.getAuthorizationUrl(session);
+        model.addAttribute("kakao_url", kakaoUrl);
 		return "member/Login";
 	}
 
@@ -198,4 +207,35 @@ public class MemberController {
 		return "memberList/memberAreaList";
 	}
 	
+	//카카오 로그인
+	@RequestMapping(value = "/memberloginform.do", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView memberLoginForm(HttpSession session) { 
+		ModelAndView mav = new ModelAndView(); 
+		/*인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */ 
+		String kakaoUrl = kakaoController.getAuthorizationUrl(session); /* 생성한 인증 URL을 View로 전달 */ 
+		mav.setViewName("memberloginform"); // mav.addObject("naver_url", naverAuthUrl); 
+		// 카카오 로그인
+		mav.addObject("kakao_url", kakaoUrl); 
+		return mav; 
+	}// end memberLoginForm()
+	   
+	   
+   @RequestMapping(value = "/kakaologin")
+   public String getKakaoSignIn(Model model,@RequestParam("code") String code, HttpSession session,MemberVO vo) throws Exception {
+	   JsonNode userInfo = kakaoController.getKakaoUserInfo(code);
+	   System.out.println(userInfo);
+       String kakaoId = userInfo.get("id").toString();
+       vo.setEmail(kakaoId);
+       JsonNode properties = userInfo.get("properties");
+		/* 1회성 로그인시 자동 회원가입처리 */
+       if(memberService.getMember(vo) == null) {
+    	   vo.setEmail(kakaoId);
+           vo.setNickname(properties.get("nickname").toString());
+           memberService.kakaoInsert(vo);
+       };
+      
+       session.setAttribute("loginEmail", kakaoId);
+       return "redirect:/home";
+   }
 }

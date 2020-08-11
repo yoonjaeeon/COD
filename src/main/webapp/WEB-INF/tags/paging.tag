@@ -12,7 +12,7 @@
 		<li class="page-item"><a href="javascript:${jsfunc}(${i})" class="page-link">${i}</a>
 	</c:if>
 	<c:if test="${i == paging.page}">
-		<li class="page-item active">${i}
+		<li class="page-item active"><a href="#"class="page-link">${i}</a>
 	</c:if>
 </c:forEach>
 <c:if test="${paging.endPage<paging.totalPageCount}">

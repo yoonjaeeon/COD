@@ -20,8 +20,9 @@
 		location.href="bookmarks";
 	}
 </script>
-    
+<br><br>
 <div class="align-center hovers row">
+
    <div class="col-lg-5">
       <h1>* My Page *</h1>
       <h2>${member.nickname } 님</h2>

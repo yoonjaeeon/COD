@@ -32,7 +32,7 @@ function logoutCheck(){
          <c:if test="${not empty sessionScope.loginEmail }">
          <li><a href="bookmarks">즐겨찾기</a></li>
          <li><a href="memberMyPage">MyPage</a></li>
-         <li><a href="#" onclick="logoutCheck()">${sessionScope.loginEmail }님 로그아웃</a></li>
+         <li><a onclick="logoutCheck()"> 로그아웃</a></li>
          </c:if>
       </ul>
    </nav>

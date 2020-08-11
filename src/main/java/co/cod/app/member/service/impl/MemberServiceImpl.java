@@ -124,6 +124,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<CafeVO> location(CafeVO cafeVO) {
 		return memberMapper.location(cafeVO);
 	}
+
+	@Override
+	public void kakaoInsert(MemberVO memberVO) {
+		memberMapper.kakaoInsert(memberVO);
+	}
 	
 	
 }

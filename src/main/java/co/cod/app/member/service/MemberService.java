@@ -12,6 +12,7 @@ public interface MemberService {
 	public MemberVO getMember( MemberVO memberVO);
 	public List<MemberVO> getMemberList( );
 	public void insertMember( MemberVO memberVO);
+	public void kakaoInsert(MemberVO memberVO);
 	public void updateMember( MemberVO memberVO);
 	public void deleteMember( MemberVO memberVO);
 	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);	

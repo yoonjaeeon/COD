@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <script type="text/javascript">
-    
+<script type="text/javascript">
     
     var message = '${msg}';
     if(message.length>0){
@@ -22,7 +20,7 @@
 		}
 		frm.submit();
     }
-    </script>
+</script>
 <div class="container">
 
     <div class="row justify-content-center">
@@ -33,7 +31,7 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-11">  <!-- 여기손댐 -->
+              <div class="col-lg-11">
                   <div class="text-right">
                     <a class="small" href="home"><i class="fa fa-home"></i></a> / <a class="small" href="adminLoginForm"><b>관리자</b></a>
                   </div>
@@ -60,7 +58,11 @@
                     <button type="button" onclick="validCheck()" class="btn btn-info btn-user btn-block" value="로그인">로그인
                     </button> 
                     <hr>
-                    <a href="index.html" class="btn btn-warning btn-user btn-block">
+            		<%--<div id="kakao_id_login" style="text-align: center"> 
+			            <a href="${kakao_url}"> 
+			            <img width="223" src="resources/admin/scss/kakao/kakao_login_medium_wide.png" /></a> 
+			        </div> --%>
+                    <a href="${kakao_url}" class="btn btn-warning btn-user btn-block">
                       <i class="fab fa-kickstarter-k"></i>   카카오톡 로그인
                     </a>
                   </form>

@@ -20,6 +20,7 @@ String cafeName;
 Integer price;
 String menuName;
 Integer orderlineAmount;
+String photo;
 
 //인기카페리스트 가져오는 필드
 String cafeThumbnail;

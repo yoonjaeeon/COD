@@ -15,7 +15,15 @@
 		#{nickname}
 		)
 	</insert>	
-	
+	<insert id="kakaoInsert" parameterType="co.cod.app.member.MemberVO">
+		INSERT INTO MEMBER (
+			EMAIL, NICKNAME
+		)
+		VALUES(
+		#{email},
+		#{nickname}
+		)
+	</insert>
 	<select id="getMember" parameterType="members" resultType="members">
 		SELECT *
 		  FROM member

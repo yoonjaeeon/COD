@@ -49,19 +49,20 @@
 	function workerDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
-		
-			var result = confirm(cafe_name +" 사용자를 정말로 삭제하시겠습니까?");
+			var workerSeq = $(this).closest('tr').find('.workerSeq').val();
+			var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
 					url:'adminWorker/'+ workerSeq,  
 					type:'DELETE',
 					contentType:'application/json;charset=utf-8',
 					dataType:'json',
-					error:function(xhr,status,msg){
+					error:function(xhr,status,msg){					
 						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 					}, success:function(xhr) {
 						console.log(xhr.result);
 						workerList();
+						
 					}
 				});      }//if
 		}); //삭제 버튼 클릭

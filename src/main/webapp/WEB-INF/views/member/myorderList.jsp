@@ -2,38 +2,47 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+	$('#order').DataTable(
+	);
+} );
+function myorderList(){
+	$.ajax({
+		url : "myorderList",
+		type : 'GET',
+		dataType: 'json', 
+		success : function(data) {
+			console.log(data);
+		},
+		error : function(xhr, status, message) {
+			alert(" status: " + status + " 에러:" + message);
+		}
+	});
+}
+</script>
 <br><br>
 <div class="container">
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 text-gray-800">나의 결제 리스트</h1>
 	<!-- DataTales Example -->
-			<div class="table-responsive">
+			
 				<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="dataTables_length" id="dataTable_length">
-								<label>보기 <select name="dataTable_length"
-									aria-controls="dataTable"
-									class="custom-select custom-select-sm form-control form-control-sm"><option
-											value="10">10</option>
-										<option value="25">25</option>
-										<option value="50">50</option>
-										<option value="100">100</option></select>
-								</label>
+													
 							</div>
 						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>검색 :<input type="search"
-									class="form-control form-control-sm" placeholder="카페명"
-									aria-controls="dataTable"></label>
-							</div>
-						</div>
+						
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+							<table id="order" class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
 							role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
 								<thead>
@@ -80,36 +89,18 @@
 							</table>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12 col-md-5"></div>
-						<div class="col-sm-12 col-md-7">
-							<div class="dataTables_paginate paging_simple_numbers"
-								id="dataTable_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous disabled"
-										id="dataTable_previous"><a href="#"
-										aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-										class="page-link">Previous</a></li>
-									<li class="paginate_button page-item active"><a href="#"
-										aria-controls="dataTable" data-dt-idx="1" tabindex="0"
-										class="page-link">1</a></li>
-									<li class="paginate_button page-item "><a href="#"
-										aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-										class="page-link">2</a></li>
-									<li class="paginate_button page-item "><a href="#"
-										aria-controls="dataTable" data-dt-idx="3" tabindex="0"
-										class="page-link">3</a></li>
-									<li class="paginate_button page-item "><a href="#"
-										aria-controls="dataTable" data-dt-idx="4" tabindex="0"
-										class="page-link">4</a></li>
-									
-									<li class="paginate_button page-item next" id="dataTable_next"><a
-										href="#" aria-controls="dataTable" data-dt-idx="7"
-										tabindex="0" class="page-link">Next</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+					<tr>
+			<td class="gutter"><div class="line number1 index0 alt2" style="display: none;">1</div></td>
+			<td class="code">
+				<div class="container" style="display: none;">
+					<div class="line number1 index0 alt2" style="display: none;">&nbsp;</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
 				</div>
 			</div>
 		</div>

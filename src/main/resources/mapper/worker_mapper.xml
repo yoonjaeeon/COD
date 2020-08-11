@@ -45,10 +45,13 @@
 		worker_state = #{workerState}
 		WHERE worker_seq = #{workerSeq}
 	</update>
-	<delete id="deleteWorker"
-		parameterType="co.cod.app.admin.worker.WorkerVO">
+	
+	
+	<delete id="deleteWorker" parameterType="co.cod.app.admin.worker.WorkerVO">
 		DELETE FROM WORKER WHERE WORKER_SEQ = #{workerSeq}
 	</delete>
+	
+	
 	<select id="getworkerCommute" parameterType="String" resultType="co.cod.app.admin.worker.WorkerVO">
 		SELECT w.*, (select commute_seq from commute c where w.worker_seq = c.worker_seq and trunc(c.commute_day)= trunc(sysdate))as commute_seq 
 		  FROM worker w

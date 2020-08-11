@@ -37,6 +37,10 @@ WHERE order_seq =  $P{p_orderSeq}]]>
 		<variableExpression><![CDATA[$F{PRICE}.multiply( $F{ORDERLINE_AMOUNT})]]></variableExpression>
 		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
+	<variable name="v_realSum" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{PRICE}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -111,20 +115,20 @@ WHERE order_seq =  $P{p_orderSeq}]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="41" splitType="Immediate">
+		<band height="52" splitType="Immediate">
 			<textField>
-				<reportElement x="375" y="5" width="185" height="30" uuid="abddb7a5-b770-4183-a1b8-1b8a9fec2dbc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{v_summ}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="280" y="5" width="100" height="30" uuid="788a7abc-06d0-448b-8d5d-3fc7cb10b7ca"/>
+				<reportElement x="310" y="10" width="100" height="30" uuid="788a7abc-06d0-448b-8d5d-3fc7cb10b7ca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은 고딕" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA["합계"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="11" width="155" height="30" uuid="e884bc04-32a8-45fc-9e37-86f7e224ed8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_realSum}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>

@@ -13,4 +13,6 @@ public class CalculateVO {
 	Integer price;
 	String startTime;
 	String endTime;
+	Integer orderState;
+	Integer priceAdd;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <script>
 
 $(function() {
@@ -25,7 +26,7 @@ function calculateListResult(data) {
 	var sum = 0;
 	$.each(data, function(idx, item) {
 		$('<tr>').append($('<td id="time">').html(item.orderTime))
-				 .append($('<td>').html(item.price))
+				 .append($('<td id="getPrice">').html(item.price))
 				 .appendTo('tbody');
 		sum += item.price;
 	})
@@ -63,8 +64,13 @@ $('body').on('click','#ctbl tr',function(){
 //메뉴 목록 조회 응답
 function calSelectResult(data) {
 	$("#detail").empty();
+	value = '<div class="row"><div class="col-6">메뉴 명</div><div class="col-2">가격</div><div class="col-2">수량</div><div class="col-2">총액</div></div>'
+	html = '<div align="right"><button type="buton" class="btn btn-outline-primary" id="excel">'+
+	'출력</button></div>';
+	$('#detail').append(html).append(value);
 	$.each(data, function(idx, item) {		
-		if(item.orderState == 1){
+		/* 여기안먹힘 */
+		if(item.ORDER_STATE == 1){
 			name = '아이스 '+item.MENU_NAME;
 			price = (parseInt(item.PRICE)+parseInt(item.PRICE_ADD))
 		} else{
@@ -72,12 +78,21 @@ function calSelectResult(data) {
 			price = item.PRICE
 		}
 		total = item.ORDERLINE_AMOUNT * price;
+		
 		$('<div class="row">').append($('<div>').addClass('col-6').html(name))
 								.append($('<div>').addClass('col-2').html(price))
 								.append($('<div>').addClass('col-2').html(item.ORDERLINE_AMOUNT))
 								.append($('<div>').addClass('col-2').html(total))
-								.appendTo('#detail');
-	})
+								.appendTo('#detail'); 
+		 html+='<div class="row"><div col-6>'+name+'</div>'+
+		'<div col-2>'+price+'</div>'+
+		'<div col-2>'+item.ORDERLINE_AMOUNT+'</div>'+
+		'<div col-2>'+total+'</div>'+
+		'</div>'; 
+		
+		//console.log(sum);
+	})	
+	
 }
 </script>
 <div class="container">
@@ -114,7 +129,8 @@ function calSelectResult(data) {
 			</tr>
 		</tfoot>
 	</table>
-	<div class="col-8" id="detail" style="padding: 3em;"></div>
-		
+	<div class="col-8" id="detail" style="padding: 3em;" align>
 	</div>
+	</div>
+	
 </div>

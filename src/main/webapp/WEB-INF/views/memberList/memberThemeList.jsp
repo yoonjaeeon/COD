@@ -97,7 +97,7 @@ $(function(){
 						<c:if test="${not empty sessionScope.loginEmail}">
 					<div class="heart" data-class="${theme.bookmarks}">
 						<c:if test="${not empty theme.bookmarks}">
-							<i class="far fa-heart" style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
+							<i class="far fa-heart" style="color: red" data-id='${theme.adminId}' data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
 							id="bookmarkDelete${theme.bookmarkSeq}" 
 							></i>
 						</c:if>
@@ -158,8 +158,7 @@ $(function(){ /* bookmark로 시작하는 id에 접근 */
     			dataType :'json' ,
     			success:function(){
     				$("#bookmarkDelete"+seq).css('color','black');
-    				$(this).find('i').removeAttr( 'id' );
-    				$(this).find('i').addAttr("id","bookmarkInsert");
+    				$(this).find('i').attr("id","bookmarkInsert");
     				i.toggleClass('red');
 					//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
     				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */

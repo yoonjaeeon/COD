@@ -117,7 +117,7 @@ $(function(){
 								</c:if>
 								<c:if
 									test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
-									<i class="far fa-heart" style="color: red" data-placement="top"
+									<i class="far fa-heart" style="color: red" data-placement="top" data-id='${area.adminId }'
 										title="즐겨찾기 " data-toggle="tooltip"
 										id="bookmarkDelete${area.bookmarkSeq}"></i>
 								</c:if>
@@ -157,8 +157,7 @@ $('.heart').on('click', function(){
 			dataType :'json' ,
 			success:function(){
 				$("#bookmarkDelete"+seq).css('color','black');
-				$(this).find('i').removeAttr( 'id' )
-				$(this).find('i').addAttr("id","bookmarkInsert")
+				$(this).find('i').attr("id","bookmarkInsert")
 				i.toggleClass('red');
 				//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
 				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */

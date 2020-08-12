@@ -124,14 +124,16 @@ public class CafeController {
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, SeatVO seatVO, HttpSession session) {
-		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO.getAdminId()));
+		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
+		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		model.addAttribute("seatList", seatService.getSeatList(seatVO.getAdminId()));
-		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));
+		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));		
+		
 		return "cafe/cafeMain";
-	}
+	} 
 
 	// 등록폼
 	@RequestMapping("cafeInsertForm")
@@ -246,8 +248,9 @@ public class CafeController {
 
 	@RequestMapping("cafeUpdateForm")
 	public String cafeUpdateForm(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) {
-		model.addAttribute("getCafe", cafeService.getCafe((String) session.getAttribute("adminId")));
-		cafeVO = cafeService.getCafe((String) session.getAttribute("adminId"));
+		cafeVO.setAdminId((String) session.getAttribute("adminId"));
+		model.addAttribute("getCafe", cafeService.getCafe(cafeVO));
+		cafeVO = cafeService.getCafe(cafeVO);
 		if (cafeVO.getPhotoGroup() != null) {
 			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
 			model.addAttribute("fileList", photoService.getPhotoList(photoVO));

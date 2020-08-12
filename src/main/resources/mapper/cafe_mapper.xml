@@ -178,15 +178,16 @@
    
   <!--  일별 -->
   <select id="dayGetCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
-		SELECT TO_CHAR(TRUNC(O.ORDER_TIME), 'MM-dd') "TIME",
-		SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
-		FROM ORDERS O, ORDERLINE OL, MENU M
-		WHERE O.ORDER_SEQ = OL.ORDER_SEQ
-		AND OL.MENU_SEQ = M.MENU_SEQ
-		AND O.ADMIN_ID =#{adminId}
-		GROUP BY TRUNC(O.ORDER_TIME)
-		ORDER BY 1 DESC
+	SELECT TO_CHAR(trunc(order_time),'MM-dd') "TIME", sum((price+price_add*order_state)*orderline_amount) price
+    	 FROM order_view
+		 WHERE admin_id =#{adminId}
+    	 GROUP BY TRUNC(ORDER_TIME)
+		 ORDER BY 1 DESC
   </select>
+   
+   
+   
+   
    
    
    

@@ -42,7 +42,7 @@ public class ReviewController {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				filename = upFile.getName();
 				reviewThumbnail.transferTo(upFile);
 			}
@@ -55,7 +55,7 @@ public class ReviewController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}
@@ -129,7 +129,8 @@ public class ReviewController {
 
 		model.addAttribute("adminReviewList", reviewService.adminReviewList(reviewVO));
 		model.addAttribute("getReviewAvg", reviewService.getReviewAvg(reviewVO.getAdminId()));
-		return "ad/adminCommunity/adminReviewList";
+		String view = "ad/adminCommunity/adminReviewList";
+		return view;
 	}
 	
 
@@ -159,7 +160,7 @@ public class ReviewController {
 		if (reviewThumbnail != null) {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
-				File upFile = new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+				File upFile = new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
 				/*
 				 * FileRenamePolicy.rename(new
 				 * File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
@@ -175,7 +176,7 @@ public class ReviewController {
 			for (MultipartFile file : files) {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
-					File upFile = new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+					File upFile = new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
 					// FileRenamePolicy.rename(new
 					// File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();

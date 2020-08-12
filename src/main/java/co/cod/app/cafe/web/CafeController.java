@@ -153,7 +153,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				filename = upFile.getName();
 				cafeThumbnail.transferTo(upFile);
 			}
@@ -167,7 +167,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}						
@@ -271,7 +271,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				System.out.println(upFile.getAbsolutePath()+"확==============================");
 				filename = upFile.getName();    
 				cafeThumbnail.transferTo(upFile);
@@ -287,7 +287,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 
 					System.out.println(upFile.getAbsolutePath()+"확==============================");
 					filename = upFile.getName();

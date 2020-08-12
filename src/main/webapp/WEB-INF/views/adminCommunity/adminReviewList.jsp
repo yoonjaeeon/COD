@@ -34,15 +34,18 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${adminReviewList }" var="review">
-				<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
-					<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
-					<td>${review.email }</td>
-					<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
-					<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
-					<td>${review.stars }</td>
-				</tr>
-			</c:forEach>
+			<c:if test = "${adminReviewList }!= null">
+				<c:forEach items="${adminReviewList }" var="review">
+					<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
+						<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
+						<td>${review.email }</td>
+						<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
+						<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
+						<td>${review.stars }</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+	
 			</tbody>
 		</table>
 		</div>

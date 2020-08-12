@@ -22,7 +22,9 @@
 	<h2 align="center">관리자 리뷰 조회</h2>
 	<div id="outter"> 
 		<div align="right">
-		총 평점 : <b>${getReviewAvg}</b> 점<br /><br />
+
+			총 평점 : <b>${getReviewAvg}</b> 점<br /><br />
+
 		</div>
 		<table class="table table-hover" >
 		<thead>
@@ -34,7 +36,6 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:if test = "${adminReviewList }!= null">
 				<c:forEach items="${adminReviewList }" var="review">
 					<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
 						<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 100px"></td>
@@ -44,8 +45,9 @@
 						<td>${review.stars }</td>
 					</tr>
 				</c:forEach>
-			</c:if>
-	
+				<c:if test="${empty adminReviewList }">
+					<th>등록된 리뷰가 없습니다.</th>
+				</c:if>
 			</tbody>
 		</table>
 		</div>

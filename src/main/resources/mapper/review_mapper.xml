@@ -18,7 +18,7 @@
 	
 	<!--리뷰 평균  -->
 	<select id ="getReviewAvg" resultType="double">
-	select to_char(avg(stars),'9.9')
+	select nvl(to_char(avg(stars),'9.9'),0)
 	from review
 	where admin_id = #{adminId}
 	</select>

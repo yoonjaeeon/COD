@@ -126,11 +126,10 @@ public class ReviewController {
 
 		reviewVO.setStart(Integer.toString(paging.getFirst())); // start
 		reviewVO.setEnd(Integer.toString(paging.getLast())); // end
-
+		
 		model.addAttribute("adminReviewList", reviewService.adminReviewList(reviewVO));
 		model.addAttribute("getReviewAvg", reviewService.getReviewAvg(reviewVO.getAdminId()));
-		String view = "ad/adminCommunity/adminReviewList";
-		return view;
+		return "ad/adminCommunity/adminReviewList";
 	}
 	
 

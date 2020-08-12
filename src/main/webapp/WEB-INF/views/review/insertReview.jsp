@@ -17,24 +17,44 @@
 		frm.submit();
 	}
 </script>
-<h3>리뷰 작성</h3>
+<br>
+<div class="post">
+<h3 align="center">리뷰 작성</h3>
 <form name="frm" action="insertReview" method="post" enctype="multipart/form-data">
-	작성자: ${loginEmail} <br>
-	카페 이름: ${param.cafeName } <br> 
+<%-- 	작성자: ${loginEmail} <br>
+	카페 이름: ${param.cafeName } <br>  --%>
 	<div class="form-group">
 		<input type="hidden" class="form-control"
 		name="orderSeq" id="orderSeq" value="${param.orderSeq}">
 	    </div>
 	리뷰 내용:<br />
 	<textarea cols="30" rows="10" name="reviewContent" id="reviewContent"></textarea> <br /> 
-	평점 : <input type="text" name="stars" id="stars" /><br />
+	<div class="starRev">
+	  <span class="starR on">1</span>
+	  <span class="starR">2</span>
+	  <span class="starR">3</span>
+	  <span class="starR">4</span>
+	  <span class="starR">5</span>
+	  <input type="hidden" name="stars" id="stars" value="1">
+	</div>
 	대표 사진<br>
       <input type="file" id="upload" name="upload"/>
       <br><br>
-     첨부 사진<br>
+        첨부 사진<br>
       <input multiple="multiple" type="file" id="uploadFile" name="uploadFile"/>
       <br><br>
-
+	<div align="center">
 	<button type="button" onclick="validCheck()">등록</button>
 	<input type="reset" value="지우기" />
+	</div>
 </form>
+</div>
+<script>
+
+$('.starRev span').click(function(){
+	  $(this).parent().children('span').removeClass('on');
+	  $(this).addClass('on').prevAll('span').addClass('on');
+	  $('input:hidden[name="stars"]').val($(this).text());
+	  return false;
+});
+</script>

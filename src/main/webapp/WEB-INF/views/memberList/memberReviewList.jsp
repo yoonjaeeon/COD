@@ -3,23 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
-
-<style>
-ul {
-    list-style:none;
-    margin:0 auto;
-    padding:0;
-}
-
-li {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
-</style>
-
-<!DOCTYPE html>
 <style>
 #outter tbody td{cursor:pointer}
 </style>
@@ -34,26 +17,25 @@ li {
 		}
 	}
 </script>
-<h2>내가 쓴 리뷰</h2>
-<div id="outter"> 
+<br><br>
+<div class="post">
+	<h2 align="center">내가 쓴 리뷰</h2><br>
+	<div id="outter"> 
+		<div id="outter"> 
 	<table border="1">
 	<thead>
 		<tr>
-			<td>No.</td>
 			<td>카페 이름</td>
 			<td>대표 사진</td>
-			<td>작성자</td>
 			<td>등록일</td>
 			<td>평 점</td>
 		</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${reviewList }" var="review">
-			<tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
-				<td>${review.reviewSeq }</td>
+			    <tr onclick="location.href='updateFormReview?reviewSeq=${review.reviewSeq}&cafeName=${review.cafeName}'">
 				<td>${review.cafeName }</td>
 				<td><img src="resources/upload/${review.gdsThumbImg}"style="width: 150px"></td>
-				<td>${review.email }</td>
 				<td><fmt:parseDate value="${review.reviewTime }" pattern="yyyy-MM-dd HH:mm:ss" var="rt"/>
 				<fmt:formatDate value="${rt}" pattern="yyyy-MM-dd"/></td>
 				<td>${review.stars }</td>
@@ -62,13 +44,15 @@ li {
 		</c:forEach>
 		</tbody>
 	</table>
-	
-	<script type="text/javascript">
+	<div align="center">
+	<my:paging paging="${paging}" jsfunc="gopage" />
+	</div>
+	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
 	function gopage(p) {
 		location.href="memberReviewList?p="+p;
-		//document.searchfrm.p.value = p; 검색
- 		//document.searchfrm.submit();
 	}
 </script>
-<my:paging paging="${paging}" jsfunc="gopage" />
-</div>

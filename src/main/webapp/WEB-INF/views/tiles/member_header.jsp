@@ -67,21 +67,36 @@ function logoutCheck(){
                <h3>지역별</h3>
                <p>원하는 위치의 카페를 검색해 보세요 </p>
          </a></li>
-         <li><a href="bookmarks">
-               <h3>즐겨찾기</h3>
-               <p>맘에 드는 카페를 등록해 보세요</p>
-         </a></li>
-         <li><a href="memberMyPage">
-               <h3>MyPage</h3>
-         </a></li>
+
+
+         <c:if test="${not empty sessionScope.loginEmail }">
+         <li>
+         	<a href="bookmarks">
+             	<h3>즐겨찾기</h3>
+             	<p>맘에 드는 카페를 등록해 보세요</p>
+         	</a>
+       	 </li>
+         <li>
+         	<a href="memberMyPage">
+         		<h3>MyPage</h3>
+         	</a>
+         </li>
+         </c:if>
       </ul>
    </section>
 
    <!-- Actions -->
    <section>
-      <ul class="actions stacked">
-         <li><a href="memberLoginForm" class="button large fit">Log In</a></li>
-      </ul>
+   	  <c:if test="${empty sessionScope.loginEmail }">
+	      <ul class="actions stacked">
+	         <li><a href="memberLoginForm" class="button large fit">Log In</a></li>
+	      </ul>
+      </c:if>
+      <c:if test="${not empty sessionScope.loginEmail }">
+	      <ul class="actions stacked">
+	      <li><a onclick="logoutCheck()" class="button large fit"> Log Out</a></li>
+	      </ul>
+      </c:if>
    </section>
 
 </section>

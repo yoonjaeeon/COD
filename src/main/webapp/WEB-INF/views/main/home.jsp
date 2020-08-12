@@ -320,7 +320,7 @@ $('.heart').on('click', function(){
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
-					<a href="cafe?adminId=${list.adminId}" class="image"><img
+					<a href="cafe?adminId=${list.adminId}" class="image"><img class="slick"
 						src="resources/upload/${list.cafeThumbnail }" alt=""></a>
 				</article>
 			</div>
@@ -358,7 +358,7 @@ $('.heart').on('click', function(){
 						</div>
 					</header>
 					<a href="cafe?adminId=${list.adminId}" class="image"> <img
-						src="resources/upload/${list.cafeThumbnail}" alt="">
+						class="slick" src="resources/upload/${list.cafeThumbnail}" alt="">
 					</a>
 				</article>
 			</div>

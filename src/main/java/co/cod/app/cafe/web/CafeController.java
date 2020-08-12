@@ -249,21 +249,15 @@ public class CafeController {
 	@RequestMapping("cafeUpdateForm")
 	public String cafeUpdateForm(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) {
 		cafeVO.setAdminId((String) session.getAttribute("adminId"));
-		model.addAttribute("getCafe", cafeService.getCafe(cafeVO));
-		cafeService.getCafe(cafeVO);
+		cafeVO=cafeService.getCafe(cafeVO);
+		model.addAttribute("getCafe",cafeVO );
 		if (cafeVO.getPhotoGroup() != null) {
 			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
 			model.addAttribute("fileList", photoService.getPhotoList(photoVO));
 			System.out.println("확인" + photoVO);
 		}
-	String result = "ad/cafe/cafeUpdate";
-	AdminVO adminVO = new AdminVO();
-	adminVO.setAdminId((String)session.getAttribute("adminId"));
-	adminVO = adminService.getAdmin(adminVO);
-	if(adminVO.getAdminState()==0) {
-		result = "e/cafe/cafeUpdate";
-	}
-		return result;
+		
+		return "ad/cafe/cafeUpdate";
 	}
 
 	@RequestMapping("cafeUpdate")
@@ -274,7 +268,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				System.out.println(upFile.getAbsolutePath()+"확==============================");
 				filename = upFile.getName();    
 				cafeThumbnail.transferTo(upFile);
@@ -290,7 +284,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 
 					System.out.println(upFile.getAbsolutePath()+"확==============================");
 					filename = upFile.getName();

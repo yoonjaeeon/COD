@@ -56,115 +56,272 @@
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" value="${getCafe.cafeHashtag}" >
       </div>
+      
       <div class="form-group">
          <label >테마:</label>
-         <div class="radio">
+         <c:if test="${getCafe.cafeTheme == 't4'}">
+         <div class="checkbox">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4" checked="checked" >작업하기좋은</label>
          </div>
          <div class="checkbox">
-            <label><input type="radio"  name="cafeTheme" id="theme" value="t5">핸드드립</label>
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
+         </div>
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
+         </div> 
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
          </div>
          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
+         </div>
+         </c:if>
+         <c:if test="${getCafe.cafeTheme=='t5'}">
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t4"  >작업하기좋은</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5" checked="checked">핸드드립</label>
+         </div>
+          <div class="checkbox">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3">야외석있는</label>
-         </div>  
-         <div class="checkbox">
+         </div> 
+          <div class="checkbox">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1">이색카페</label>
-         </div>  
-         <div class="checkbox">
-            <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
          </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
+         </div>
+         </c:if>
+         <c:if test="${getCafe.cafeTheme=='t3'}">
+        <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t4" >작업하기좋은</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
+         </div>
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t3" checked="checked">야외석있는</label>
+         </div> 
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
+         </div>
+         </c:if>
+         <c:if test="${getCafe.cafeTheme=='t1'}"> 
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t4" >작업하기좋은</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
+         </div>
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
+         </div> 
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t1" checked="checked">이색카페</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
+         </div>
+         </c:if>
+         <c:if test="${getCafe.cafeTheme=='t2'}"> 
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t4">작업하기좋은</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
+         </div>
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
+         </div> 
+          <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
+         </div>
+         <div class="checkbox">
+            <label><input type="radio"  name="cafeTheme" id="theme" value="t2" checked="checked">디저트</label>
+         </div>
+         </c:if>
        </div>     
-            <br> 
+            <br>
+             
         <div class="row">
       		<div class="col-3">   
         <div class="form-group">
 	         <label >wifi 여부</label>
-	         <div class="radio">
+	         <c:if test="${getCafe.wifi==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="wifi" id="wifi" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
+	            </div>
+	            <div>
 	            <label><input type="radio"  name="wifi" id="wifi"  value="0">No</label>
-         </div>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.wifi==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="wifi" id="wifi" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="wifi" id="wifi"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
          </div> <br>
         </div>
-        <div class="col-3">   
-         <div class="form-group">
+      <div class="col-3">   
+        <div class="form-group">
 	         <label >키즈존 여부</label>
-	         <div class="radio">
+	         <c:if test="${getCafe.nokid==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="nokid" id="nokid" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio"> 
+	            </div>
+	            <div>
 	            <label><input type="radio"  name="nokid" id="nokid"  value="0">No</label>
-	         </div> 
-	         </div><br>
-         </div>
-         <div class="col-3">   
-         <div class="form-group">
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.nokid==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="nokid" id="nokid" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="nokid" id="nokid"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+        
+          <div class="col-3">   
+        <div class="form-group">
 	         <label >주차여부</label>
-	         <div class="radio">
+	         <c:if test="${getCafe.parking==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="parking" id="parking" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="parking" id="parking" value="0">No</label>
-	         </div> 
-	         </div><br>
-         </div>
-         <div class="col-3">   
-          <div class="form-group">
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="parking" id="parking"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.parking==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="parking" id="parking" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="parking" id="parking"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+        
+        <div class="col-3">   
+        <div class="form-group">
 	         <label >반려견동반여부</label>
-	         <div class="radio">
+	         <c:if test="${getCafe.animal==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="animal" id="animal" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="animal" id="animal" value="0">No</label>
-	         </div>
-	         </div> <br>
-         </div>
-         <div class="col-3">   
-          <div class="form-group">
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="animal" id="animal"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.animal==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="animal" id="animal" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="animal" id="animal"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+        
+       <div class="col-3">   
+        <div class="form-group">
 	         <label >빔프로젝트 대여여부</label>
-	         <div class="radio">
-	            <label><input type="radio"  name="beam" id="beam"  value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="beam" id="beam" value="0">No</label>
-	         </div> 
-	         </div><br>
-		</div>         
-		<div class="col-3">   
-          <div class="form-group">
+	         <c:if test="${getCafe.beam==1}">
+	          <div class="radio">
+	            <label><input type="radio"  name="beam" id="beam" value="1" checked="checked">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="beam" id="beam"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.beam==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="beam" id="beam" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="beam" id="beam"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+        
+		   <div class="col-3">   
+        <div class="form-group">
 	         <label >충전기 대여여부</label>
-	         <div class="radio">
+	         <c:if test="${getCafe.charger==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="charger" id="charger" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="charger" id="charger" value="0">No</label>
-	         </div>
-	         </div> <br>
-         </div>
-         <div class="col-3">   
-             <div class="form-group">
-         <label >단체석 여부</label>
-	         <div class="radio">
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="charger" id="charger"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.charger==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="charger" id="charger" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="charger" id="charger"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+        
+           <div class="col-3">   
+        <div class="form-group">
+	         <label >단체석 여부</label>
+	         <c:if test="${getCafe.bigSeat==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="bigSeat" id="bigSeat" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="bigSeat" id="bigSeat" value="0">No</label>
-	          </div> 
-	         </div><br>
-         </div>
-         <div class="col-3">   
-         <div class="form-group">
-	         <label >대관여부</label>
-	         <div class="radio">
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="bigSeat" id="bigSeat"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.bigSeat==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="bigSeat" id="bigSeat" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="bigSeat" id="bigSeat"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
+         
+      <div class="col-3">   
+        <div class="form-group">
+	         <label >대관 여부</label>
+	         <c:if test="${getCafe.lend==1}">
+	          <div class="radio">
 	            <label><input type="radio"  name="lend" id="lend" value="1" checked="checked">Yes</label>
-	         </div>
-	         <div class="radio">
-	            <label><input type="radio"  name="lend" id="lend" value="0">No</label>
-	         </div>
-	         </div> <br>
-         </div>
- 		</div>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="lend" id="lend"  value="0">No</label>
+	            </div>
+	            </c:if>
+	            <c:if test="${getCafe.lend==0}">
+	           <div class="radio">
+	            <label><input type="radio"  name="lend" id="lend" value="1">Yes</label>
+	            </div>
+	            <div>
+	            <label><input type="radio"  name="lend" id="lend"  value="0" checked="checked">No</label>
+	            </div>
+	            </c:if>
+         </div> <br>
+        </div>
       <div class="btn-group">      
                <button type="button" class="btn btn-primary" onclick="cafeInsert()">재등록</button>
             
@@ -210,12 +367,12 @@
 		}else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
 			alert("카페주소가 입력되지 않았습니다.");
 			$('[name=cafeAddress]').focus();
-		  }else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
+		  /* }else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
 			alert("카페 썸네일이 입력되지 않았습니다.");
 			$('[name=upload]').focus();	 
 		 }else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
 			alert("카페 상세사진이 입력되지 않았습니다.");
-			$('[name=uploadFile]').focus();  
+			$('[name=uploadFile]').focus();  */ 
 		}else{	
 			alert("카페등록이 완료 되었습니다.");
 			form1.submit();

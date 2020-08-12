@@ -7,7 +7,7 @@
 <div class="container">
    <form action="insertCafe" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div align="center">
-      <h2>카페 등록 및 수정</h2></div>
+      <h2>카페 등록</h2></div>
       <div class="form-group">      
          <label> 관리자 아이디:</label>
          <input type="text"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}" readonly>

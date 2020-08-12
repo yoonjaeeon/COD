@@ -47,10 +47,10 @@
 	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.adminId+'</td>'; 
                     html += '<td id="msg'+item.messageSeq+'" ><button data-toggle="modal" data-target="#modalMessage" data-adminId='+item.adminId+' onclick="sendMasterMessages(\''+item.adminId+ "\'," +item.messageSeq+')">답장</button></td>';
                                       
-				    if(item.read === 1){
-	            	html += '<td align="center" id="msg'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
+				    if(item.masterRead === 1){
+	            	html += '<td align="center" id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
 	                }else{
-                	html +='<td align="center" id="msg'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
+                	html +='<td align="center" id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
 	                }
 	                html += '</tr>';
 	                $("#tbody").append(html);
@@ -230,7 +230,7 @@ function sendAjax(){
 					$('#getMessageTitle').html(data.messageTitle);
 					$('#getMessageContent').html(data.messageContent);
 					$('#messageCount').load("getMasterMessageCount");
-					$('#msg'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
+					$('#msgs'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 				}
 			}
 		})

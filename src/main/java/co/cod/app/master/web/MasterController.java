@@ -18,6 +18,7 @@ import co.cod.app.admin.service.AdminService;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.master.service.MasterService;
 import co.cod.app.member.service.MemberService;
+import vofile.MasterNoticeVO;
 import vofile.MasterVO;
 import vofile.MessageVO;
 
@@ -150,6 +151,17 @@ public class MasterController {
 	@ResponseBody
 	public int masterCount(MasterVO masterVO) {
 		return masterService.masterCount(masterVO);
+	}
+	
+	@RequestMapping(value="masterNoticeInsert")
+	public String masterNoticeInsert(MasterNoticeVO masterNoticeVO) {
+		masterService.masterNoticeInsert(masterNoticeVO);
+		return "ma/master/masterMain";
+	}
+	
+	@RequestMapping("masterNoticeForm")
+	public String masterNoticeForm() {
+		return "ad/master/masterNoticeForm";
 	}
 }
 	

@@ -140,4 +140,12 @@
 	 SELECT COUNT(*) state_count FROM ADMIN
       WHERE CAFE_STATE=1
 </select>
+
+<insert id="masterNoticeInsert" parameterType="vofile.MasterNoticeVO">
+INSERT INTO MASTER_NOTICE(MASTER_NOTICE_SEQ, MASTER_NOTICE_TITLE, MASTER_NOTICE_CONTENT)
+    VALUES( (SELECT NVL(MAX(MASTER_NOTICE_SEQ),0)+1 FROM MASTER_NOTICE),
+                  #{masterNoticeTitle},
+                  #{masterNoticeContent}
+    )
+</insert>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.cod.app.master.mapper.MasterMapper;
 import co.cod.app.master.service.MasterService;
 import co.cod.app.message.mapper.MessageMapper;
+import vofile.MasterNoticeVO;
 import vofile.MasterVO;
 import vofile.MessageVO;
 
@@ -71,7 +72,6 @@ public class MasterServiceImpl implements MasterService{
 		return masterMapper.sendMasterMessage(messageVO);
 	}
 
-
 	@Override
 	public List<MessageVO> getFiveMessage(MessageVO messageVO) {
 		return masterMapper.getFiveMessage(messageVO);
@@ -82,8 +82,6 @@ public class MasterServiceImpl implements MasterService{
 	public Map allList() {		
 		return  masterMapper.allList();
 	}
-
-
 	@Override
 	public void insertMaster(MasterVO masterVO) {
 		masterMapper.insertMaster(masterVO);
@@ -92,7 +90,8 @@ public class MasterServiceImpl implements MasterService{
 	public int masterCount(MasterVO masterVO) {
 		return masterMapper.masterCount(masterVO);
 	}
-
-
-	
+	@Override
+	public void masterNoticeInsert(MasterNoticeVO masterNoticeVO) {
+		masterMapper.masterNoticeInsert(masterNoticeVO);
+	}
 }

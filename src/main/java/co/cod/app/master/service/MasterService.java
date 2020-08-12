@@ -3,6 +3,7 @@ package co.cod.app.master.service;
 import java.util.List;
 import java.util.Map;
 
+import vofile.MasterNoticeVO;
 import vofile.MasterVO;
 import vofile.MessageVO;
 
@@ -22,4 +23,5 @@ public interface MasterService {
 	//마스터 올 리스트 
 	public Map allList();
 	public int masterCount(MasterVO masterVO); 
+	public void masterNoticeInsert(MasterNoticeVO masterNoticeVO);
 }

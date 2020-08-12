@@ -22,7 +22,14 @@
 		location.href="masterSalesForm";
 	}
 	
-	
+	function masterInsert(){
+		if(confirm("공지사항 등록 하시겠습니까?")){			
+		frm.submit();
+		}else{
+			return;
+		}
+		
+	}
 	
 </script>
 <div class="container-fluid">
@@ -35,12 +42,17 @@
 	</div>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">관리자님 접속 확인.</h6>
+			<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
 		</div>
 		<div class="card-body">
-			<p><a href="#" onclick="">마스터 ${sessionScope.adminId }  님 환영합니다.</a></p>
-			<p class="mb-0"></p>
-			
+		<form name="frm" id="frm" action="masterNoticeInsert" method="post">
+			<p><input type="text" class="form-control" name="masterNoticeTitle"  id="masterNoticeTitle" placeholder="제목" required></p>
+			<p class="mb-0"><textarea class="form-control" name="masterNoticeContent" id="masterNoticeContent" placeholder="내용" required></textarea></p><br>
+			<div align="center">
+			<button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="masterInsert()">등록</button>
+			<button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="reset">초기화</button>
+			</div>
+			</form>			
 		</div>
 	</div>
 	<br />

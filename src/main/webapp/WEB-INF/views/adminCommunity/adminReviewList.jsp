@@ -18,7 +18,7 @@
 		}
 	}
 </script>
-<div class="container">
+<div class="container"> 
 	<h2 align="center">관리자 리뷰 조회</h2>
 	<div id="outter"> 
 		<div align="right">

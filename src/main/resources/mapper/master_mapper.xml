@@ -131,6 +131,8 @@
 		(SELECT COUNT(*) FROM CAFE )	 "cafe"					
 	FROM DUAL
 </select>
+<delete id="deleteMaster" parameterType="vofile.MasterVO">
+	DELETE FROM ADMIN WHERE ADMIN_ID =#{adminId}
 
-
+</delete>
 </mapper>

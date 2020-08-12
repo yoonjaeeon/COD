@@ -49,12 +49,12 @@ public class MasterController {
 			return "ma/master/masterList";
 		}
 		//
-//		// 삭제
-//		@RequestMapping("masterList")
-//		public String deleteMaster(MasterVO masterVO, Model model) {
-//		model.addAttribute("deleteMaster", masterService.MasterList(masterVO));
-//		return "ma/master/masterList";
-//		}
+		// 삭제
+		@RequestMapping("deleteMaster")
+		public String deleteMaster(MasterVO masterVO, Model model) {		
+		masterService.deleteMaster(masterVO);
+		return "redirect:masterList";
+		}
 	
 	// 맵으로
 	@RequestMapping("masterMain")
@@ -146,5 +146,8 @@ public class MasterController {
 		return masterService.getFiveMessage(messageVO);
 	}
 
+	
+	
+	
 }
 	

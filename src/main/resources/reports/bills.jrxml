@@ -45,90 +45,114 @@ WHERE order_seq =  $P{p_orderSeq}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="115" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		<band height="80" splitType="Stretch">
+			<image hAlign="Center" vAlign="Bottom">
+				<reportElement x="0" y="-5" width="554" height="85" uuid="8fa6575b-0e2f-447a-b522-ced376c0ab8c"/>
+				<imageExpression><![CDATA["reports/coffee-커피알01.jpg"]]></imageExpression>
+			</image>
 			<textField>
-				<reportElement x="0" y="25" width="555" height="30" uuid="5b086a38-d57b-455f-8ee6-6a005d2f2665"/>
-				<textElement textAlignment="Center">
-					<font fontName="맑은 고딕" size="22"/>
+				<reportElement mode="Transparent" x="206" y="27" width="142" height="30" forecolor="#FFFFFF" backcolor="#5C4948" uuid="5b086a38-d57b-455f-8ee6-6a005d2f2665"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="맑은 고딕" size="19" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CAFE_NAME}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="80" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="30" width="180" height="30" uuid="8c94324c-6582-418a-878a-06e9b7a35087"/>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="20" forecolor="#FFFFFF" backcolor="#8C7979" uuid="8c94324c-6582-418a-878a-06e9b7a35087"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["메뉴명"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="187" y="30" width="180" height="30" uuid="cc0176af-0b39-474d-b6fa-31391de33ab6"/>
+				<reportElement mode="Opaque" x="180" y="0" width="170" height="20" forecolor="#FFFFFF" backcolor="#8C7979" uuid="cc0176af-0b39-474d-b6fa-31391de33ab6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["수량"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="30" width="180" height="30" uuid="41f04939-0384-4709-9e06-cdc8a4e20a2c"/>
+				<reportElement mode="Opaque" x="350" y="0" width="205" height="20" forecolor="#FFFFFF" backcolor="#8C7979" uuid="41f04939-0384-4709-9e06-cdc8a4e20a2c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["가격"]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="80" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="10" width="185" height="30" uuid="b1765330-ff52-4859-a069-cd15f7cbb102">
+				<reportElement x="0" y="0" width="180" height="20" uuid="b1765330-ff52-4859-a069-cd15f7cbb102">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8acb4bd-fcd8-416f-8230-dc695ad516bb"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MENU_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="185" y="10" width="185" height="30" uuid="fd08401c-3131-4e35-bedb-456e6a651c52">
+				<reportElement x="180" y="0" width="170" height="20" uuid="fd08401c-3131-4e35-bedb-456e6a651c52">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d111859-a52e-4973-8823-28c143233999"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ORDERLINE_AMOUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="10" width="185" height="30" uuid="86e0a657-e4bc-432f-b106-9cd73ae2f156">
+				<reportElement x="350" y="0" width="205" height="20" uuid="86e0a657-e4bc-432f-b106-9cd73ae2f156">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5792ac70-2e2e-4895-b18c-66b559f9c30c"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#4A2D2C"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14"/>
+					<font fontName="맑은 고딕" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="52" splitType="Immediate">
+		<band height="20" splitType="Immediate">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="310" y="10" width="100" height="30" uuid="788a7abc-06d0-448b-8d5d-3fc7cb10b7ca"/>
+				<reportElement mode="Transparent" x="350" y="0" width="205" height="20" forecolor="#000000" backcolor="#705E5C" uuid="e884bc04-32a8-45fc-9e37-86f7e224ed8f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="16"/>
-				</textElement>
-				<textFieldExpression><![CDATA["합계"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="400" y="11" width="155" height="30" uuid="e884bc04-32a8-45fc-9e37-86f7e224ed8f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="맑은 고딕" size="18"/>
+					<font fontName="맑은 고딕" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{v_realSum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="250" y="0" width="100" height="20" forecolor="#000000" backcolor="#705E5C" uuid="788a7abc-06d0-448b-8d5d-3fc7cb10b7ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="맑은 고딕" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["합계"]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>

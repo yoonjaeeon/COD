@@ -49,12 +49,26 @@
 	function adminListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx, item) {
+			var cafeState ="";
+			switch(item.cafeState) {
+			    case 0: 
+			    	cafeState="카페등록대기"
+			        break;
+			    case 1: 
+			    	cafeState="승인대기"
+			        break;
+			    case 2: 
+			    	cafeState="가맹점"
+			        break;
+			  		    
+			}
+			
 			$('<tr>' )
 				.append($('<td>').append($('<a>').attr({"href":"javascript:void(0)", "onclick":"cafeList(\'" +item.adminId + "\')"}).html(item.adminId)))
 				.append($('<input type=\'hidden\' id=\'hidden_pw\'>').val(item.pw))
 				.append($('<input type=\'hidden\' id=\'hidden_pass2\'>').val(item.pass2))
 				.append($('<td>').html(item.adminPhone))
-				.append($('<td>').html(item.cafeState))
+				.append($('<td>').html(cafeState))
 				.append($('<input type=\'hidden\' id=\'hidden_adminState\'>').val(item.adminState))
 				.append($('<td>').html('<button class=\'btnUpdate1\'>승인</button>'))
 				.append($('<td>').html('<button class=\'btnUpdate2\'>거절</button>'))
@@ -164,9 +178,9 @@
 <body>
 	<hr />
 	<div class="container" align="center">
-		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 " id="state1" /> &nbsp; 
-		<input type="button" class="btn btn-outline-info" value="카페 관리자  " id="state2" /> &nbsp; 
-		<input type="button" class="btn btn-outline-info" value="카페 승인 거절 " id="state3" />
+		<input type="button" class="btn btn-outline-info" value="카페 승인대기 " id="state1" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="카페 가맹점 " id="state2" /> &nbsp; 
+		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 " id="state3" />
 	</div>
       <div class="row" style="margin-bottom: 1em">
       	<div class="col-6"></div>

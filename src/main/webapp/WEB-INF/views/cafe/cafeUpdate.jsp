@@ -44,7 +44,7 @@
       <label>썸네일:</label> <br><br>
       <img src="resources/upload/${getCafe.cafeThumbnail}"style="width: 350px"/><br><br>
      <input type="file" id="upload" name="upload"/>
-     </div>  
+     </div>   
         <div class="form-group">
       <label>카페등록사진:</label><br>
       <c:forEach items="${fileList}" var="file">

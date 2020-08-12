@@ -153,9 +153,9 @@
    </select>
    <!-- 차트 -->
    <select id="getCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
-      SELECT MENU_NAME "name", sum(PRICE)"sum"      
-      FROM MENU
-      where admin_id = #{adminId}
+     SELECT MENU_NAME "name",sum((price+price_add*order_state)*orderline_amount)"sum"
+      FROM order_view
+      where admin_id =#{adminId}
       GROUP BY MENU_NAME
    </select>
    

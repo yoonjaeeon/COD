@@ -77,7 +77,7 @@
             });
             data.addRows(chartdata);//아작스로 데이터 가져온거
             
-            var options = {  title: '판매량이 높은 품목 Best 5',
+            var options = {  title: '월별 판매량',
                     pieHole: 0.4,
             };
     		

@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.cod.app.calculate.CalculateVO;
 import co.cod.app.calculate.service.CalculateService;
-import co.cod.app.menu.MenuVO;
 
 @Controller
 public class CalculateController {
@@ -61,4 +60,17 @@ public class CalculateController {
 		calculateVO.setOrderTime(orderTime);
 		return calculateService.getcalculateList(calculateVO);
 	}
+	
+	   // excel 출력
+	   @RequestMapping("excel.do")
+	   public ModelAndView buyordersexcel(CalculateVO calculateVO) {
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("commonExcelView");
+	      mv.addObject("datas", calculateService.excel(calculateVO));// Map객체를 조회해서 시트를 생성한다.
+	      mv.addObject("filename", "매출확인");// 파일이름을 바꿔준다.
+	      mv.addObject("headers", new String[] { "주문일자", "테이블번호", "메뉴명", "수량", "가격", "총 금액"}); // 헤더의 값만 출력된다.
+	      return mv;    //주문번호, 주문일자, 품목, 수량, 단가, 구매합계, 거래처, 담당자
+	   }
+	
+	
 }

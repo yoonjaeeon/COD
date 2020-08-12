@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<style>
+#totalPrice{text-align:right}
+</style>
 <script>
 
 $(function() {
@@ -25,7 +28,7 @@ function calculateListResult(data) {
 	$("tbody").empty();
 	var sum = 0;
 	$.each(data, function(idx, item) {
-		$('<tr>').append($('<td id="time">').html(item.orderTime))
+		$('<tr data-price='+item.price+'>').append($('<td id="time">').html(item.orderTime))
 				 .append($('<td id="getPrice">').html(item.price))
 				 .appendTo('tbody');
 		sum += item.price;
@@ -46,9 +49,12 @@ function searchCalculateList() {
       });
    }); //조회 버튼 클릭
 }
+var myPrice;
 $('body').on('click','#ctbl tr',function(){
 	var orderTime = $(this).children().eq(0).text();
-	console.log(orderTime);
+	myPrice = $(this).data('price');
+	console.log(myPrice);
+	console.log(orderTime);	
 	$.ajax({
 	   url:'calculateList/'+orderTime,
 	   type:'GET',
@@ -66,7 +72,7 @@ function calSelectResult(data) {
 	$("#detail").empty();
 	value = '<div class="row"><div class="col-6">메뉴 명</div><div class="col-2">가격</div><div class="col-2">수량</div><div class="col-2">총액</div></div>'
 	html = '<div align="right"><button type="buton" class="btn btn-outline-primary" id="excel">'+
-	'출력</button></div>';
+	'<button>출력</button></div>';
 	$('#detail').append(html).append(value);
 	$.each(data, function(idx, item) {		
 		/* 여기안먹힘 */
@@ -88,10 +94,11 @@ function calSelectResult(data) {
 		'<div col-2>'+price+'</div>'+
 		'<div col-2>'+item.ORDERLINE_AMOUNT+'</div>'+
 		'<div col-2>'+total+'</div>'+
-		'</div>'; 
 		
-		//console.log(sum);
+		'</div>'; 
 	})	
+	console.log(myPrice);
+	$('#totalPrice').html('<br>합계 : ' +myPrice);
 	
 }
 </script>
@@ -129,8 +136,11 @@ function calSelectResult(data) {
 			</tr>
 		</tfoot>
 	</table>
-	<div class="col-8" id="detail" style="padding: 3em;" align>
+	<div class="col-8"  style="padding: 3em;" align>
+		<div id="detail"></div>
+		<div id="totalPrice" align="right"></div>		
 	</div>
 	</div>
 	
-</div>
+	</div>
+	

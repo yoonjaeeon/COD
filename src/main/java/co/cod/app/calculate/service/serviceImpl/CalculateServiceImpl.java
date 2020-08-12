@@ -28,5 +28,11 @@ public class CalculateServiceImpl implements CalculateService {
 	@Override
 	public List<Map> getcalculateList(CalculateVO calculateVO) {
 		return calculateMapper.getcalculateList(calculateVO);
+	}
+	@Override
+	public List<Map<String, Object>> excel(CalculateVO calculateVO) {
+		return calculateMapper.excel(calculateVO);
 	}	
+	
+	
 }

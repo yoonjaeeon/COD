@@ -27,12 +27,14 @@ public class CafeServiceImpl implements CafeService{
    @Autowired
    MemberMapper memberMapper;
    
-   @Override
-   public CafeVO getCafe(String adminId) {
-      return cafeMapper.getCafe(adminId);
-   }
+   
 
    @Override
+public CafeVO getCafe(CafeVO cafeVO) {
+	return cafeMapper.getCafe(cafeVO);
+}
+
+@Override
    public List<CafeVO> getCafeList(CafeVO cafeVO) {
       return cafeMapper.getCafeList(cafeVO);
    }

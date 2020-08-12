@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.cod.app.admin.AdminVO;
+import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 
 
@@ -36,8 +37,9 @@ public class TestController {
 	}
 
 	@RequestMapping("cafeList")
-	public String cafeList(Model model ,HttpSession session,AdminVO adminVO) {
-		model.addAttribute("cafeList",cafeservice.getCafe(adminVO.getAdminId()));
+	public String cafeList(Model model ,HttpSession session,CafeVO cafeVO, AdminVO adminVO) {
+		cafeVO.setAdminId((String)session.getAttribute("adminId"));
+		model.addAttribute("cafeList",cafeservice.getCafe(cafeVO));
 		return "ad/cafe/cafeList";
 	}
 	

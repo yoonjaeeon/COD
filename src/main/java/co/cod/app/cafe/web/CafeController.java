@@ -250,7 +250,7 @@ public class CafeController {
 	public String cafeUpdateForm(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) {
 		cafeVO.setAdminId((String) session.getAttribute("adminId"));
 		model.addAttribute("getCafe", cafeService.getCafe(cafeVO));
-		cafeVO = cafeService.getCafe(cafeVO);
+		cafeService.getCafe(cafeVO);
 		if (cafeVO.getPhotoGroup() != null) {
 			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
 			model.addAttribute("fileList", photoService.getPhotoList(photoVO));

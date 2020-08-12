@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
      
-      google.charts.load('current', {'packages':['corechart','bar']}); //모든 차트 다 다운 받고싶을떄
+    google.charts.load('current', {'packages':['corechart']}); //모든 차트 다 다운 받고싶을떄
       google.charts.setOnLoadCallback(drawChart);
       
       function drawChart() {
@@ -47,21 +47,22 @@
         
         
       }
-        function selectHandler(e) {
+        /* function selectHandler(e) {
         	  var row = chart.getSelecttion()[0]["row"]
         	  var column = chart.getSelecttion()[0]["column"]
         	  console.log(chart.getSelecttion());
-        	} 
+        	}  */
+        
         
     	function month() {
         	$('#columnchart_material').empty();
-        	 google.charts.load('current', {'packages':['corechart','bar']}); //모든 차트 다 다운 받고싶을떄
-             google.charts.setOnLoadCallback(drawsChart);
+        	google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
       	}	
     	
         function drawsChart(){	
       	  var data = new google.visualization.DataTable();
-      	  data.addColumn('string', '몇월');
+      	   data.addColumn('string', '몇월');
            data.addColumn('number', '매출');
             
             var chartdata=[];
@@ -75,18 +76,15 @@
           	  }
             });
             data.addRows(chartdata);//아작스로 데이터 가져온거
-            var options = {'title':'월별매출(2020년)',
-                    'width':800,
-                    'height':600,
-                    is3D: true,
-                    vAxis: { format:'0,000', gridlines: {count:60}} , //gridlines: 선이 생김
-                    colors: ['#e6693e', '#f6c7b6', '#ec8f6e', '#f3b49f', '#f6c7b6']};
-    		var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
-    		chart.draw(data, options);
+            
+            var options = {  title: '판매량이 높은 품목 Best 5',
+                    pieHole: 0.4,
+            };
     		
-    		
-    		
+            var chart = new google.visualization.PieChart(document.getElementById('columnchart_material'));
+            chart.draw(data, options);
       }
+      
         
         function day() {
         	$('#columnchart_material').empty();
@@ -118,8 +116,7 @@
                     colors: ['#e6693e', '#f6c7b6', '#ec8f6e', '#f3b49f', '#f6c7b6']};
     		var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
     		chart.draw(data, options);
-    		
-    		
+	
     		
       }  
         
@@ -128,7 +125,7 @@
   </head>
   <body>
   	<button type="button" onclick="drawssChart()" class="col-2" id="day">일별</button>
-  	<button type="button" onclick="month()" class="col-2" id="month">월별</button> 
+  	<button type="button" onclick="drawsChart()" class="col-2" id="month">월별</button> 
     <button type="button" onclick="drawChart()" class="col-2" id="drawChart">매출</button>
     <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
   </body>

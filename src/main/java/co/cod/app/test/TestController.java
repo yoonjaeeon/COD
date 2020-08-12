@@ -57,4 +57,9 @@ public class TestController {
 	public String membertest() {
 		return "ad/member/membertest";
 	}
+	@RequestMapping("chart")
+	public String chart() {
+		return "ad/test/chart";
+	}
+	
 }

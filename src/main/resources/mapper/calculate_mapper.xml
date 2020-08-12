@@ -21,12 +21,12 @@
 		  FROM order_view
 		 WHERE admin_id= #{adminId}      
          <if test = "startTime != null and startTime !='' and endTime =='' ">
-	        AND TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') = #{startTime}
+	        AND TO_CHAR(ORDER_TIME,'yyyy-MM-dd') = #{startTime}
 	     </if>
 	     <if test="startTime != null and startTime !='' and endTime != null and endTime !=''">
-	     	AND    TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') BETWEEN #{startTime} and #{endTime}
+	     	AND    TO_CHAR(ORDER_TIME,'yyyy-MM-dd') BETWEEN #{startTime} and #{endTime}
 	     </if>
-         group by TRUNC(ORDER_TIME)
+         GROUP BY TRUNC(ORDER_TIME)
 		 ORDER BY 1 DESC
      </select> 
      <select id="getcalculateList" parameterType="calculate" resultType="map">
@@ -35,4 +35,17 @@
 	      WHERE admin_id= #{adminId}
 	        AND trunc(order_time) = #{orderTime}
      </select>
+     <select id="excelList" parameterType="calculate" resultType="map">
+		SELECT *
+		  FROM order_view
+		 WHERE admin_id= #{adminId}      
+         <if test = "startTime != null and startTime !='' and endTime =='' ">
+	        AND TO_CHAR(ORDER_TIME,'yyyy-MM-dd') = #{startTime}
+	     </if>
+	     <if test="startTime != null and startTime !='' and endTime != null and endTime !=''">
+	     	AND    TO_CHAR(ORDER_TIME,'yyyy-MM-dd') BETWEEN #{startTime} and #{endTime}
+	     </if>
+         GROUP BY TRUNC(ORDER_TIME)
+		 ORDER BY 1 DESC
+     </select> 
 </mapper>

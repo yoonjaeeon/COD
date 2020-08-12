@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
+import co.cod.app.member.MemberVO;
 import co.cod.app.seat.service.SeatService;
 
 @Controller
@@ -30,12 +31,26 @@ class AdminController {
 	public String insertAdmin(AdminVO adminVO) {
 		return "admin/adminInsert";
 	}
-
+	//아이디 체크 
+		@ResponseBody
+		@RequestMapping(value="/idcheck1", method = RequestMethod.POST)
+		public int idcheck1(AdminVO adminVO){
+		int result = adminService.idcheck1(adminVO);		
+		return result;
+		}
+	
 	// 등록처리
 	@RequestMapping("adminInsert")
 	public String insertAdmin(AdminVO adminVO, Model model) {
 		adminService.insertAdmin(adminVO);
-		return "redirect:home";
+		int result = adminService.idcheck1(adminVO);
+			if(result == 1) {
+					return "/admin/adminInsert";
+			
+			}else if(result == 0) {
+				  adminService.idcheck1(adminVO);
+			}	
+			 return "redirect:home";
 	}
 
 	// 업데이트

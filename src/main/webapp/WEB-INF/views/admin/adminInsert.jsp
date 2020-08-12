@@ -8,6 +8,17 @@
 			frm.id.focus();
 			return;
 		}
+		///////   중복확인 버튼   
+    	var idCheckVal = $("#idCheck1").val();
+		if(idCheckVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");			
+			frm.idCheckVal.value = ""
+			frm.idCheckVal.focus();
+		}else if(idCheckVal == "Y"){
+			$("#idCheck1").submit();
+			frm.idCheckVal.value = ""
+			frm.idCheckVal.focus();
+		} 
 		if (frm.pw.value == "") {
 			alert("비밀번호를 입력하세요.")
 			frm.pw.focus();
@@ -22,7 +33,25 @@
 		alert("회원가입을 축하합니다!");
 		frm.submit();
 	}
-
+//////아이디 중복체크 
+	/////////아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+		function fn_idChk(){
+			$.ajax({
+				url : "idcheck1",
+				type : "post",
+				dataType : "json",
+				data : {"adminId" : $("#adminId").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+						frm.idCheckVal.value = ""
+					}else if(data == null ||  data == ""){
+						$("#idCheck1").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+		}
 	function pwValidCheck() {
 		var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		var reg = /^(?=.*?[a-z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/;
@@ -58,8 +87,8 @@
 <div class="content">
 <h2>관리자 회원가입</h2>
 <form action="adminInsert" name="frm">
-	<br> 아이디<span id="idCheck"></span> <input type="text"
-		name="adminId" id="adminId" placeholder="아이디" onchange="idDupCheck()" />
+	<br> 아이디<span id="idCheck1"></span>
+	<input class="form-control" type="text" id="adminId" name="adminId" onchange="fn_idChk();" />
 	<br /> <br /> 
 	PW <span id="alert-success" style="display: none;">(비밀번호가
 		일치합니다.)</span> 

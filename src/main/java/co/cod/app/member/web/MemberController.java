@@ -1,12 +1,15 @@
 package co.cod.app.member.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,11 +38,36 @@ public class MemberController {
 		return "member/memberInsert";
 	}
 
+//	//아이디 중복 체크 
+//	 @RequestMapping("idcheck")
+//	    @ResponseBody
+//	    public Map<Object, Object> idcheck(@RequestBody String email , MemberVO memberVO) {
+//	      int count = 0;
+//	       Map<Object, Object> map = new HashMap<Object, Object>();
+//	       count = memberService.idcheck(email);
+//	        map.put("cnt", count);	 
+//	        return map;
+//	    }
+	//아이디 체크 
+	@ResponseBody
+	@RequestMapping(value="/idcheck", method = RequestMethod.POST)
+	public int idcheck(MemberVO memberVO){
+		int result = memberService.idcheck(memberVO);		
+		return result;
+	}
+
 	// 등록처리
-	@RequestMapping("memberInsert")
+	@RequestMapping(value = "/memberInsert", method = RequestMethod.POST)
 	public String insertMember(MemberVO memberVO, Model model) {
 		memberService.insertMember(memberVO);
-		return "redirect:home";
+		int result = memberService.idcheck(memberVO);
+			if(result == 1) {
+					return "/member/memberInsert";
+			
+			}else if(result == 0) {
+				  memberService.idcheck(memberVO);
+			}	
+			 return "redirect:home";
 	}
 
 	// 멤버 탈퇴

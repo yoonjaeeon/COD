@@ -38,14 +38,23 @@ function masterList(){
 </script>
 <div class="container">
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">마스터 관리자 리스트</h1>
+	<h1 class="h3 mb-2 text-gray-800">마스터 관리자 리스트</h1><br><br>
+	
 	<!-- DataTales Example -->
+	
+	<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+		<div role="row">
 				<div class="col-sm-12 col-md-6">
-					<table id="order" class="table table-bordered dataTable"
+					<div class="dataTables_length" id="dataTable_length"></div>
+				</div>
+				</div>
+					<div role="row">
+				<div class="col-sm-12">
+				<table id="order" class="table table-bordered dataTable"
 					id="dataTable" width="100%" cellspacing="0" role="grid"
 					aria-describedby="dataTable_info" style="width: 100%;">
 						<thead>
-							<tr role="row">
+								<tr role="row">
 								<th class="sorting_asc" tabindex="0" aria-controls="dataTable"
 									rowspan="1" colspan="1" aria-sort="ascending"
 									aria-label="Name: activate to sort column descending"

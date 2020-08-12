@@ -8,6 +8,18 @@
          frm.id.focus();
          return;
       }
+		///////   중복확인 버튼   
+    	var idCheckVal = $("#idCheck").val();
+		if(idCheckVal == "N"){
+			alert("중복확인 버튼을 눌러주세요.");			
+			frm.idCheckVal.value = ""
+			frm.idCheckVal.focus();
+		}else if(idCheckVal == "Y"){
+			$("#idCheck").submit();
+			frm.idCheckVal.value = ""
+			frm.idCheckVal.focus();
+		} 
+    
       if (frm.pw.value == "") {
          alert("비밀번호를 입력하세요.")
          frm.pw.focus();
@@ -41,14 +53,33 @@
          frm.birthday.focus();
          return;
       }
-      
-      $.ajax({
-         
-      });
+        
       alert("회원가입을 축하합니다!");
       frm.submit();
    }
-
+	////// 아이디 중복체크 
+	/////////아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+		function fn_idChk(){
+			$.ajax({
+				url : "idcheck",
+				type : "post",
+				dataType : "json",
+				data : {"email" : $("#email").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+						frm.idCheckVal.value = ""
+					}else if(data == null ||  data == ""){
+						$("#idCheck").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+	}	
+   ///////비밀번호
+   
+   
+   
    function pwValidCheck() {
       var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
       var reg = /^(?=.*?[a-z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/;
@@ -78,25 +109,29 @@
          frm.pw.focus();
          return;
       }
+	  
+
    }
 </script>
-
 <div class="content">
 <h2>일반 회원가입</h2>
 <form action="memberInsert" name="frm">
-   <br> EMAIL <span id="idCheck"></span> <input type="text"
-      name="email" id="email" placeholder="이메일" onchange="idDupCheck()" />
-   <br /> <br /> PW <span id="alert-success" style="display: none;">비밀번호가
-      일치합니다.</span> <span id="alert-danger"
-      style="display: none; color: #d92742; font-weight: bold;">
-      비밀번호가 일치하지 않습니다.</span> <input type="password" id="pw" name="pw" class="pw"
-      placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
-   pw(확인) <input type="password" id="pw2" class="pw"
-      placeholder="패스워드 확인  "> <br /> <br />
-   <!--    이름 <input type="text" name="name" id="name" /><br /> <br />  -->
-   닉네임 <input type="text" name="nickname" /><br /> <br /> 핸드폰 번호 <input
-      type="text" name="phone" /><br /> <br /> 생년월일<input type="date"
-      name="birthday" /><br /> <br />
+   <br> EMAIL <span id="idCheck"></span>
+ <input class="form-control" type="text" id="email" name="email" onchange="fn_idChk();" />
+
+   <br />
+   
+    PW <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span> 
+       <span id="alert-danger"  style="display: none; color: #d92742; font-weight: bold;">
+      비밀번호가 일치하지 않습니다.</span> 
+      <input type="password" id="pw" name="pw" class="pw" placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
+  
+  
+   pw(확인) <input type="password" id="pw2" class="pw" placeholder="패스워드 확인  "> <br /> <br />
+  
+   닉네임     <input type="text" name="nickname" /><br /> <br /> 
+   핸드폰 번호 <input type="text" name="phone" /><br /> <br /> 
+   생년월일   <input type="date" name="birthday" /><br /> <br />
    <div class="align-center" style="margin-top: 30px">
       <br> <br>
       <div class="align-center" style="margin-top: 30px">
@@ -107,35 +142,6 @@
 </form>
 </div>
 <script>
-function idDupCheck(){
-   var email = $('#email').val();
-   $.ajax({
-      url : 'getEmail',
-      type:'post',
-      contentType: 'application/json;charset=utf-8',
-      dataType : 'json',
-      data : {email:email},
-      always:function(result){
-         if(result == "" && result != null){
-            $('#idCheck').html("아이디 사용 가능");
-         }else if(result == email){
-            $('#idCheck').html("아이디 중복");
-         }
-         }
-         /* var check = [];
-         for(var i=0; i<= result.length; i++){
-            
-            if(result[i].email == $('#email').val()){
-               $('#idCheck').html("아이디 중복");
-            }else{
-               $('#idCheck').html("아이디 사용가능");
-            }
-            
-         }  */
-      });
-   }
-
-
    $('.pw').focusout(function() {
       var pwd1 = $("#pw").val();
       var pwd2 = $("#pw2").val();

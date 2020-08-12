@@ -3,6 +3,7 @@ package co.cod.app.admin.service;
 import java.util.List;
 
 import co.cod.app.admin.AdminVO;
+import co.cod.app.member.MemberVO;
 
 public interface AdminService {
 
@@ -11,6 +12,8 @@ public interface AdminService {
 	public void updateAdmin(AdminVO adminVO);
 	public void deleteAdmin(AdminVO adminVO);
 	public AdminVO adminLogin(AdminVO adminVO);	
+	
+	public int idcheck1(AdminVO adminVO);
 	
 	//adminList
 	public List<AdminVO> getAdminList(AdminVO adminVO);

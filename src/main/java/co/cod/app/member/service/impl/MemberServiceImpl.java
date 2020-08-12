@@ -129,6 +129,11 @@ public class MemberServiceImpl implements MemberService{
 	public void kakaoInsert(MemberVO memberVO) {
 		memberMapper.kakaoInsert(memberVO);
 	}
+
+	@Override  
+	public int idcheck(MemberVO memberVO) {
+		return memberMapper.idcheck(memberVO);
+	}
 	
 	
 }

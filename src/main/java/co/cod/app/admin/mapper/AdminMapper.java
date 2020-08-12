@@ -19,6 +19,8 @@ public interface AdminMapper {
 	public AdminVO adminLogin(AdminVO adminVO);
 	public  List<AdminVO>cafeStateList(AdminVO adminVO);
 	
+	public int idcheck1(AdminVO adminVO);
+	
 //	adminList
 	public List<AdminVO> getAdminList(AdminVO adminVO);
 	public void updateCafeState(AdminVO adminVO);

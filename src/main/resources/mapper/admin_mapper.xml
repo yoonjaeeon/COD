@@ -24,6 +24,12 @@
 		)
 	</insert>
 	
+	<!-- 아이디 중복 체크  -->
+	<select id="idcheck1" parameterType="co.cod.app.admin.AdminVO" resultType="Integer">
+      SELECT COUNT(*) FROM ADMIN
+      WHERE ADMIN_ID = #{adminId}
+	</select>
+	
 	<select id="adminLogin" parameterType="co.cod.app.admin.AdminVO" resultType ="co.cod.app.admin.AdminVO"> 
 	SELECT
 	ADMIN_ID, 	

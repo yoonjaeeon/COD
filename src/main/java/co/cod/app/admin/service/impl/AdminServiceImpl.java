@@ -77,6 +77,10 @@ public class AdminServiceImpl implements AdminService{
 	public void deleteOrderSubmit(AdminVO adminVO) {
 		adminMapper.deleteOrderSubmit(adminVO);
 	}
+	@Override
+	public int idcheck1(AdminVO adminVO) {
+		return adminMapper.idcheck1(adminVO);
+	}
 }
 
 

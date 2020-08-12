@@ -21,6 +21,9 @@ public interface MemberMapper {
 	public MemberVO memberLogin(MemberVO memberVO);
 	public void insertBookmark(BookmarksVO bookmarksVO);
 	public void deleteBookmark(BookmarksVO bookmarksVO);
+	
+	//아이디 중복 체크 
+	public int idcheck(MemberVO memberVO);
 	//멤버  결제 조회 
 	public List <MemberVO> getMyorderList(MemberVO memberVO);
 	//멤버 결제 상세 조회

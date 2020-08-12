@@ -16,15 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.adminnotice.AdminNoticeVO;
 import co.cod.app.admin.adminnotice.service.AdminNoticeService;
-import co.cod.app.menu.MenuVO;
+import co.cod.app.master.service.MasterService;
+import vofile.MasterNoticeVO;
 @Controller
 public class AdminNoticeController {
 
 	@Autowired
 	AdminNoticeService adminNoticeService;
+	@Autowired
+	MasterService masterService;
 
 	// list form
 	@RequestMapping("adminNoticeList")
@@ -80,6 +82,20 @@ public class AdminNoticeController {
 		adminNoticeService.insertAdminNotice(adminNoticeVO);
 		return "redirect:admin";
 	}
+	
+	@RequestMapping("adminMasterNotice")
+	public String adminMasterNotice(MasterNoticeVO masterNoticeVO, Model model) {
+		List list = masterService.getMasterNoticeList();
+		model.addAttribute("list", list);
+		return "ad/adminNotice/adminMasterNotice";
+	}
+	
+	/*
+	 * @RequestMapping("getAdminMasterNotice")
+	 * 
+	 * @ResponseBody public MasterNoticeVO getAdminMasterNotice(MasterNoticeVO
+	 * masterNoticeVO) { return masterService.getMasterNotice(masterNoticeVO); }
+	 */
 	/*
 	 * @RequestMapping("insertAdminNotice") public String
 	 * insertAdminNotice(HttpSession session, AdminNoticeVO adminNoticeVO, Model

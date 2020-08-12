@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.member.MemberVO;
+import vofile.MasterNoticeVO;
 
 public interface AdminService {
 
@@ -25,5 +26,8 @@ public interface AdminService {
 	public Integer getOrderCount(AdminVO adminVO);
 	public void updateOrderSubmit(String orderSeq);
 	public void deleteOrderSubmit(AdminVO adminVO);
+	
+	//마스터 공지사항
+	public MasterNoticeVO getMasterNotice();
 
 }

@@ -98,6 +98,10 @@
 	WHERE ORDER_SEQ = #{orderSeq}
 	ON DELETE CASCADE
 	</delete>
-	
+	<!-- 마스터공지사항 조회 -->
+	<select id="getMasterNotice" resultType="vofile.MasterNoticeVO">
+	SELECT * FROM MASTER_NOTICE
+	WHERE MASTER_NOTICE_SEQ = (SELECT MAX(MASTER_NOTICE_SEQ) FROM MASTER_NOTICE)
+	</select>
 	
 </mapper>

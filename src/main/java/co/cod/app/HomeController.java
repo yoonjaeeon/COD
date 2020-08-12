@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.member.MemberVO;
 import co.cod.app.member.service.MemberService;
+import vofile.MasterNoticeVO;
 
 @Controller
 public class HomeController {
@@ -28,9 +28,10 @@ public class HomeController {
    }
    
    @RequestMapping("admin")
-   public String adminHome(Model model, HttpSession session,AdminVO adminVO) {
+   public String adminHome(Model model, HttpSession session,AdminVO adminVO,MasterNoticeVO masterNoticeVO) {
 	   adminVO.setAdminId((String)(session.getAttribute("adminId")));
 	   model.addAttribute("getOrderView", adminService.getOrderView(adminVO));
+	   model.addAttribute("masterNotice", adminService.getMasterNotice());
       return "ad/admin/adminMain";
    }
    @RequestMapping("master")

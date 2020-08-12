@@ -23,6 +23,12 @@ public interface MasterMapper {
 	public List<MessageVO> getFiveMessage(MessageVO messageVO);
 	// 마스터 올 리스트
 	public Map allList();
+	/* 카페 상태 카운트 */
 	public int masterCount(MasterVO masterVO); 
+	/* 마스터 공지사항 */
 	public void masterNoticeInsert(MasterNoticeVO masterNoticeVO);
+	public void masterNoticeUpdate(MasterNoticeVO masterNoticeVO);
+	public void masterNoticeDelete(MasterNoticeVO masterNoticeVO);
+	public MasterNoticeVO getMasterNotice(MasterNoticeVO masterNoticeVO);
+	public List<MasterNoticeVO> getMasterNoticeList();
  }

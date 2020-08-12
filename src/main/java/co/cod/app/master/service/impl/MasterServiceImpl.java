@@ -94,4 +94,25 @@ public class MasterServiceImpl implements MasterService{
 	public void masterNoticeInsert(MasterNoticeVO masterNoticeVO) {
 		masterMapper.masterNoticeInsert(masterNoticeVO);
 	}
+	@Override
+	public void masterNoticeUpdate(MasterNoticeVO masterNoticeVO) {
+		masterMapper.masterNoticeUpdate(masterNoticeVO);
+	}
+	@Override
+	public void masterNoticeDelete(MasterNoticeVO masterNoticeVO) {
+		masterMapper.masterNoticeDelete(masterNoticeVO);
+		
+	}
+
+	/* 공지단건조회 */
+	@Override
+	public MasterNoticeVO getMasterNotice(MasterNoticeVO masterNoticeVO) {
+		return masterMapper.getMasterNotice(masterNoticeVO);
+	}
+
+	/* 공지전체조회 */
+	@Override
+	public List<MasterNoticeVO> getMasterNoticeList() {
+		return masterMapper.getMasterNoticeList();
+	}
 }

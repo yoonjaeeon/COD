@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.cod.app.admin.AdminVO;
+import vofile.MasterNoticeVO;
 
 public interface AdminMapper {
 		
@@ -31,5 +32,9 @@ public interface AdminMapper {
 	public Integer getOrderCount(AdminVO adminVO);
 	public void updateOrderSubmit(String orderSeq);
 	public void deleteOrderSubmit(AdminVO adminVO);
+	
+	//마스터 공지사항
+	public MasterNoticeVO getMasterNotice();
+	
 }
 

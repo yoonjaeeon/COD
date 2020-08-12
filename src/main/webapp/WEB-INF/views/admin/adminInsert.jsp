@@ -44,7 +44,7 @@
 				success : function(data){
 					if(data == 1){
 						alert("중복된 아이디입니다.");
-						frm.idCheckVal.value = ""
+						frm.adminId.value ="";
 					}else if(data == null ||  data == ""){
 						$("#idCheck1").attr("value", "Y");
 						alert("사용가능한 아이디입니다.");

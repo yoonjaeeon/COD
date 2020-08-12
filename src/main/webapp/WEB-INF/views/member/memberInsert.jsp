@@ -8,7 +8,7 @@
          frm.id.focus();
          return;
       }
-		///////   중복확인 버튼   
+		/* ///////   중복확인 버튼   
     	var idCheckVal = $("#idCheck").val();
 		if(idCheckVal == "N"){
 			alert("중복확인 버튼을 눌러주세요.");			
@@ -18,7 +18,7 @@
 			$("#idCheck").submit();
 			frm.idCheckVal.value = ""
 			frm.idCheckVal.focus();
-		} 
+		}  */
     
       if (frm.pw.value == "") {
          alert("비밀번호를 입력하세요.")
@@ -68,7 +68,7 @@
 				success : function(data){
 					if(data == 1){
 						alert("중복된 아이디입니다.");
-						frm.idCheckVal.value = ""
+						frm.email.value ="";
 					}else if(data == null ||  data == ""){
 						$("#idCheck").attr("value", "Y");
 						alert("사용가능한 아이디입니다.");

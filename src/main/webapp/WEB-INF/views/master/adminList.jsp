@@ -85,7 +85,7 @@
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
 			error : function(xhr, status, msg) {
-				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+				alert();
 			},
 			success : adminListResult
 		});
@@ -115,7 +115,7 @@
 					$('#masterMessageCount').load("masterMessageCount")
 				},
 				error : function(xhr, status, message) {
-					alert(" status: " + status + " 에러:" + message);
+					alert();
 				}
 			});
 		});//수정 버튼 클릭
@@ -143,7 +143,7 @@
 					$('#masterMessageCount').load("masterMessageCount")
 				},
 				error : function(xhr, status, message) {
-					alert(" status: " + status + " 에러:" + message);
+					alert();
 				}
 			});
    

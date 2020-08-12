@@ -16,7 +16,14 @@
       <div class="form-group">      
          <!-- <label> 관리자 아이디:</label> -->
          <input type="hidden"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}">
-      </div>   
+      </div>  
+        <div class="form-group">
+         <label>사업자번호:</label>
+          <div class="row">
+         <input type="text"  class="form-control col-9"  id="cafeBn" name="cafeBn" value="${getCafe.cafeBn}" >
+         <input type="button" class="col-3" id="bnSearch" value="검색">
+      </div>  
+      </div> 
       <div class="form-group">
          <label>카페이름:</label> 
          <input type="text"  class="form-control"  id="cafeName" name="cafeName" value="${getCafe.cafeName}" >
@@ -382,6 +389,10 @@
 	}
 
 </script>
-
+<script type="text/javascript">
+$('body').on('click', '#bnSearch', function() {
+	window.open('https://www.hometax.go.kr/websquare/websquare.wq?w2xPath=/ui/pp/index_pp.xml&tmIdx=1&tm2lIdx=0108000000&tm3lIdx=0108010000')
+});
+</script>
 </body>
 </html>

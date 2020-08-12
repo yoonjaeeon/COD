@@ -71,8 +71,8 @@
         });
         data.addRows(chartdata);//아작스로 데이터 가져온거
         var options = {'title':'광고건수',
-                'width':800,
-                'height':600,
+                'width':900,
+                'height':700,
                 is3D: true,
                 vAxis: { format:'0,000', gridlines: {count:10}} , //gridlines: 선이 생김
                 colors: ['#e6693e', '#f6c7b6', '#ec8f6e', '#f3b49f', '#f6c7b6']};
@@ -89,8 +89,8 @@
     </script>
   </head>
   <body>
-   <button type="button" onclick="drawsChart()" class="col-2" id="month">월별</button>
-   <button type="button" onclick="drawChart()" class="col-2" id="drawChart">매출</button> 
+   <button type="button" onclick="drawsChart()" class="btn btn-secondary col-2" id="month">월별</button>
+   <button type="button" onclick="drawChart()" class="btn btn-secondary col-2" id="drawChart">매출</button> 
     <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
   </body>
 </html>

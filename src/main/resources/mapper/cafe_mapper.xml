@@ -3,10 +3,15 @@
 <mapper namespace="co.cod.app.cafe.mapper.CafeMapper" >
    <select id="getCafe" parameterType="String" resultType="co.cod.app.cafe.CafeVO">
          SELECT 
-         *
-         FROM cafe
-         WHERE admin_id = #{adminId}
+         DISTINCT C.*
+         <if test="email != null and email != '' ">
+        ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,       
+         (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
+          </if>
+         FROM CAFE C RIGHT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
+         WHERE C.ADMIN_ID = #{adminId}
    </select>   
+   
      <insert id="insertCafe" parameterType="co.cod.app.cafe.CafeVO">
         INSERT INTO CAFE (admin_id, cafe_name, cafe_address, cafe_phone,
          cafe_time, cafe_closeday, cafe_thumbnail, photo_group,
@@ -153,9 +158,9 @@
    </select>
    <!-- 차트 -->
    <select id="getCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
-      SELECT MENU_NAME "name", sum(PRICE)"sum"      
-      FROM MENU
-      where admin_id = #{adminId}
+     SELECT MENU_NAME "name",sum((price+price_add*order_state)*orderline_amount)"sum"
+      FROM order_view
+      where admin_id =#{adminId}
       GROUP BY MENU_NAME
    </select>
    

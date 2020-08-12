@@ -17,20 +17,17 @@
    	</select>
    	
    	<select id="calculateList" parameterType="calculate" resultType="calculate">
-        SELECT TRUNC(O.ORDER_TIME) "ORDER_TIME", 
-                SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE
-          FROM ORDERS O, ORDERLINE OL, MENU M
-         WHERE O.ORDER_SEQ = OL.ORDER_SEQ
-           AND OL.MENU_SEQ = M.MENU_SEQ
-           AND O.ADMIN_ID =#{adminId}
+		SELECT trunc(order_time) "order_time", sum((price+price_add*order_state)*orderline_amount) price
+		  FROM order_view
+		 WHERE admin_id= #{adminId}      
          <if test = "startTime != null and startTime !='' and endTime =='' ">
 	        AND TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') = #{startTime}
 	     </if>
 	     <if test="startTime != null and startTime !='' and endTime != null and endTime !=''">
 	     	AND    TO_CHAR(O.ORDER_TIME,'yyyy-MM-dd') BETWEEN #{startTime} and #{endTime}
 	     </if>
-         GROUP BY TRUNC(O.ORDER_TIME)
-         ORDER BY 1 DESC
+         group by TRUNC(ORDER_TIME)
+		 ORDER BY 1 DESC
      </select> 
      <select id="getcalculateList" parameterType="calculate" resultType="map">
 	     SELECT *       

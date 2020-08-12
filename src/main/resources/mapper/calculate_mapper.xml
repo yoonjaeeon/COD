@@ -35,7 +35,7 @@
 	      WHERE admin_id= #{adminId}
 	        AND trunc(order_time) = #{orderTime}
      </select>
-     <select id="excelList" parameterType="calculate" resultType="map">
+     <select id="excel" parameterType="calculate" resultType="map">
 		SELECT *
 		  FROM order_view
 		 WHERE admin_id= #{adminId}      

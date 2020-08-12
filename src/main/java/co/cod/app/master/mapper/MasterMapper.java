@@ -22,4 +22,5 @@ public interface MasterMapper {
 	public List<MessageVO> getFiveMessage(MessageVO messageVO);
 	// 마스터 올 리스트
 	public Map allList();
+	public int masterCount(MasterVO masterVO); 
  }

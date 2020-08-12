@@ -98,6 +98,7 @@
 				success : function(data) {
 					//	adminList();
 					tr.remove();
+					$('#masterMessageCount').load("masterMessageCount")
 				},
 				error : function(xhr, status, message) {
 					alert(" status: " + status + " 에러:" + message);
@@ -125,6 +126,7 @@
 				success : function(data) {
 				//adminList();	
 					tr.remove();
+					$('#masterMessageCount').load("masterMessageCount")
 				},
 				error : function(xhr, status, message) {
 					alert(" status: " + status + " 에러:" + message);

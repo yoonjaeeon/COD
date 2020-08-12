@@ -21,4 +21,5 @@ public interface MasterService {
 	public List<MasterVO> MasterList(MasterVO masterVO);
 	//마스터 올 리스트 
 	public Map allList();
+	public int masterCount(MasterVO masterVO); 
 }

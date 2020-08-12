@@ -135,4 +135,9 @@
 	DELETE FROM ADMIN WHERE ADMIN_ID =#{adminId}
 
 </delete>
+
+<select id="masterCount" parameterType="vofile.MasterVO" resultType="int">
+	 SELECT COUNT(*) state_count FROM ADMIN
+      WHERE CAFE_STATE=1
+</select>
 </mapper>

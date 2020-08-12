@@ -144,7 +144,7 @@ messageSeq = seq;
 	</tbody>
 	
 </table>
-<button id="more" class="btn_review">더 보기</button>
+<button id="more" class="btn btn_review">더 보기</button>
 </div>
 <!-- 페이징 처리하기 -->
 <script type="text/javascript">

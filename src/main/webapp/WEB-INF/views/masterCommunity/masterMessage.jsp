@@ -15,8 +15,8 @@
 
 	
 	function receiveMessage(seq){
-		$('.btn-warning').removeClass('btn-warning');
-		$('.btn-outline-info').eq(0).addClass('btn-warning');
+		$('.btn-outline-info').removeClass('btn-outline-info');
+		$('.btn-outline-info').eq(0).addClass('btn-outline-info');
 		
 		var data = {}
 		if(seq != "undefined" && seq != null && seq!= "" ){
@@ -45,7 +45,7 @@
 	                html += '<tr class="tr" id="tr'+item.messageSeq+'" data-seq='+item.messageSeq+'>';
 	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.messageTitle+'</td>';    
 	                html += '<td data-toggle="modal" data-target="#contentModal" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" >'+item.adminId+'</td>'; 
-                    html += '<td id="msg'+item.messageSeq+'" ><button data-toggle="modal" data-target="#modalMessage" data-adminId='+item.adminId+' onclick="sendMasterMessages(\''+item.adminId+ "\'," +item.messageSeq+')">답장</button></td>';
+                    html += '<td id="msg'+item.messageSeq+'" ><button class="btn btn-outline-info" data-toggle="modal" data-target="#modalMessage" data-adminId='+item.adminId+' onclick="sendMasterMessages(\''+item.adminId+ "\'," +item.messageSeq+')">답장</button></td>';
                                       
 				    if(item.masterRead === 1){
 	            	html += '<td align="center" id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
@@ -120,7 +120,7 @@
 	<tbody id="tbody">
 	</tbody>
 </table>
-<button id="more" class="btn_review">더 보기</button>
+<button id="more" class="btn btn_review">더 보기</button>
 </div>
 
 <!-- 페이징 처리하기 -->
@@ -253,9 +253,10 @@ receiveMessage();
 			</div>
 			<form method="post" id="sendModal" name="sendModal">
 				<input type="hidden" id="sendMessageSeq">
-				<input type="text" name="messageTitle" placeholder="제목 입력" />
-				<input type="text" id="adminId" name="adminId" readonly ><br> 
-					<input type="text" name="messageContent" placeholder="메세지 입력" />
+				<input type="text" name="messageTitle" class="form-control" placeholder="제목 입력" />
+					<textarea type="text" name="messageContent" class="form-control" placeholder="메세지 입력" >
+					</textarea>/<
+				<input type="hidden" id="adminId" name="adminId" readonly ><br> 
 				<div class="modal-footer">
 					<input type="button" onclick="sendAjax()" class="btn btn-danger" value="보내기">
 				</div>

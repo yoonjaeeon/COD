@@ -87,8 +87,10 @@ public class MasterServiceImpl implements MasterService{
 	@Override
 	public void insertMaster(MasterVO masterVO) {
 		masterMapper.insertMaster(masterVO);
-		
-		
+	}
+	@Override
+	public int masterCount(MasterVO masterVO) {
+		return masterMapper.masterCount(masterVO);
 	}
 
 

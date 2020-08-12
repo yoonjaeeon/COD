@@ -32,5 +32,8 @@ public class MasterVO {
 	String cafeState;
 	String advertiseState;
 	
+	Integer stateCount;
+	
+	
 	
 }

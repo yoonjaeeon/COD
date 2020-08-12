@@ -145,9 +145,11 @@ public class MasterController {
 	public List<MessageVO> getFiveMessage(MessageVO messageVO, Model model){
 		return masterService.getFiveMessage(messageVO);
 	}
-
 	
-	
-	
+	@RequestMapping("masterMessageCount")
+	@ResponseBody
+	public int masterCount(MasterVO masterVO) {
+		return masterService.masterCount(masterVO);
+	}
 }
 	

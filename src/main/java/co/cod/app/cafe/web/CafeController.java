@@ -133,7 +133,7 @@ public class CafeController {
 		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));		
 		
 		return "cafe/cafeMain";
-	}
+	} 
 
 	// 등록폼
 	@RequestMapping("cafeInsertForm")

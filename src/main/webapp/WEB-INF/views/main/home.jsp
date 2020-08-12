@@ -60,7 +60,7 @@ $('.heart').on('click', function(){
 })
 </script>
 <div class="main_slick">
-	<c:forEach var="index" begin="1" end="3">
+	<c:forEach var="index" begin="1" end="7">
 		<div>
 			<img src="resources/images/main${index}.jpg" alt="img"
 				class="image fit" style="max-height: 600px; overflow: hidden">

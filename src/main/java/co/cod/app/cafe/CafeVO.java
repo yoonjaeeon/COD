@@ -37,7 +37,6 @@ public class CafeVO {
    double cafeX;
    double cafeY;
    Integer openClose;
-   Integer bookmarksSeq;
    String cafe_submit;
    String distance;
    String month;

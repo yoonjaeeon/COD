@@ -10,7 +10,7 @@
           </if>
           
          FROM CAFE C 
-         <if test="bookmarksSeq != null and bookmarksSeq != '' ">
+         <if test="bookmarkSeq != null and bookmarkSeq != '' ">
          RIGHT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
          </if>
          WHERE C.ADMIN_ID = #{adminId}

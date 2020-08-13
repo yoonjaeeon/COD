@@ -6712,3 +6712,4 @@ body.is-menu-visible #menu {
 	height: 140px !important; 
 	}
 }
+::-webkit-scrollbar { display: none; }

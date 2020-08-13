@@ -5,13 +5,12 @@
 <div id="wrapper">
 	<article class="post">
 		<div class="main_slick">
-			<c:forEach items="${fileList}" var="file" >
-				<div class="image featured"
-					style="max-height: 500px; overflow: hidden">
-					<img src="resources/upload/${file.photoName}" alt="img"
-						class="image fit">
-				</div>
-			</c:forEach>
+		<c:forEach items="${fileList}" var="file">
+			<div>
+				<img src="resources/upload/${file.photoName}" alt="img"
+					class="image fit" style="max-height: 500px; overflow: hidden">
+			</div>
+		</c:forEach>
 		</div>
 		<!-- 기본정보 -->
 		<div class="align-center">

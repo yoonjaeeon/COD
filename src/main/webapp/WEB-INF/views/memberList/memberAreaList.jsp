@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+
 <script>
 $(function(){
 	
@@ -101,14 +105,24 @@ $(function(){
 <div id="listpage">
 	<section class="posts">
 		<c:forEach items="${getArea}" var="area">
+		
 			<article class="mini-post">
-					<h5>${area.distance }km</h5>
+				<c:if test="${empty param.cafeAddress }">
+					 <fmt:parseNumber value="${area.distance }"  var="distance"/>
+						<c:if test="${distance < 1}">
+							<h5><fmt:formatNumber value="${distance *1000}" pattern="0"/> M</h5>
+						</c:if>
+						<c:if test="${distance >=1 }">
+							<h5>${distance } KM</h5>
+						</c:if>
+					 
+				</c:if>
 				<header class="row">
 					<div class="col-sm-9">
 						<h3>
 							<a href="cafe?adminId=${area.adminId }">${area.cafeName }</a>
 						</h3>
-						<h4>#해쉬태그</h4>
+						<h4>${area.cafeHashtag }</h4>
 					</div>
 					<div class="col-sm-3">
 						<c:if test="${not empty sessionScope.loginEmail}">
@@ -118,8 +132,8 @@ $(function(){
 								</c:if>
 								<c:if
 									test="${(not empty sessionScope.loginEmail) and (sessionScope.loginEmail eq area.bookmarks)}">
-									<i class="far fa-heart" style="color: red" data-placement="top" data-id='${area.adminId }'
-										title="즐겨찾기 " data-toggle="tooltip"
+									<i class="far fa-heart" style="color: red" data-placement="top"
+										data-id='${area.adminId }' title="즐겨찾기 " data-toggle="tooltip"
 										id="bookmarkDelete${area.bookmarkSeq}"></i>
 								</c:if>
 								<c:if

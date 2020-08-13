@@ -8,8 +8,7 @@
 	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function() {
-	$('#order').DataTable(
-	);
+	$('#order').DataTable/* .removeClass('sorting').addClass('sorting_desc').attr('aria-label','주문날짜: activate to sort column ascending').attr('aria-sort','descending') */();
 } );
 function myorderList(){
 	$.ajax({

@@ -49,7 +49,7 @@ function sum(){
 }
 
 
-function deleteValue(seq){ //주문상세 지우는 페이지
+function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			$('#total').html(
 					 parseInt($('#total').html())-parseInt($('.menuPrice').html()) 
 					);
@@ -59,7 +59,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 				$('#sum').html($('#total').html());
 				
 			}
-	$('#'+seq+'').empty();
+	$('#'+seq+realState+'').empty();
 	$('#sum').html($('#total').html());
 }
 
@@ -81,7 +81,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 					+'<td align="center">'+state+' '+ name+'</td>'  
 					+'<td ><button onclick="amountDown('+price+","+seq+')">-</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">+</button></td>'  
 					+'<td><span class="menuPrice" id="prices'+seq+'">'+price+'<span></td>'
-					+'<td><button onclick="deleteValue('+seq+')">삭제</button></td>'
+					+'<td><button onclick="deleteValue('+seq+','+realState+')">삭제</button></td>'
 					+ '</tr>';
 			$('#appendTest').append(tr);			
 			$('tr#'+seq+realState).data('orderLine',{menuSeq:seq,orderState:realState, price:price});	
@@ -100,7 +100,9 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 			<header>
 				<h2>주문하는 방법</h2>
 				<h4 class="published">
-					좌석 사진을 옆으로 넘기면서 예약가능한 좌석을 선택 후 <br /> 원하는 메뉴명의 가격을 클릭 맨 하단의 결제 하기 클릭
+					①예약가능한 좌석 선택(옆으로 슬라이드)<br> 
+					②원하는 메뉴 가격 클릭<br> 
+					③하단 '결제 하기' 클릭
 				</h4>
 			</header>
 		</article>
@@ -124,6 +126,7 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 
 			<!-- 좌석선택 -->
 			<div class="main_slick col-lg-6">
+				<h3>좌석선택</h3>
 				<c:forEach items="${seatList }" var="seat">
 					<div id="seatDiv">
 						<article class="mini-post"
@@ -295,8 +298,6 @@ function insertOrder(adminId){
 	obj["orderlineAmount"] = $(item).find('span').first().html();   //수량
 		result.push(obj);  //json 구조의 객체를 result배열에 담아줌.
 	});		
-	console.log("===========================================");
-	console.log(result);
 	
 	 $.ajax({
 		url:"insertOrders",
@@ -310,6 +311,8 @@ function insertOrder(adminId){
         	/* window.open('report.do?orderSeq='+data.orderSeq,'mmmm', "width=550px, height=900px"); */
         	var win = window.open('about:blank', '_blank');
         	 win.location.href ='report.do?orderSeq='+data.orderSeq;
+        	 alert("주문이 완료되었습니다.")
+        	 location.href="myorderList";
         } 
 		
 	})

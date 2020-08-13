@@ -91,7 +91,7 @@ $(function(){
 						<h3>
 							<a href="cafe?adminId=${theme.adminId }">${theme.cafeName }</a>
 						</h3>
-						<h4>#해쉬태그</h4>
+						<h4>${theme.cafeHashtag }</h4>
 					</div>
 					<div class="col-sm-3">
 						<c:if test="${not empty sessionScope.loginEmail}">

@@ -4,15 +4,12 @@
    <select id="getCafe" parameterType="String" resultType="co.cod.app.cafe.CafeVO">
          SELECT 
          DISTINCT C.*
-         <if test="email != null and email != '' ">
+         <if test="email != null and email != ''">
         ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,       
          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
           </if>
-          
          FROM CAFE C 
-         <if test="bookmarkSeq != null and bookmarkSeq != '' ">
-         RIGHT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
-         </if>
+         LEFT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
          WHERE C.ADMIN_ID = #{adminId}
    </select>   
    
@@ -73,7 +70,8 @@
         SELECT 
          C.ADMIN_ID, 
          C.CAFE_NAME, 
-         C.CAFE_THUMBNAIL , 
+         C.CAFE_THUMBNAIL ,
+         C.CAFE_HASHTAG, 
          NVL(R.STARS,0) AS      STARS
          <if test="email != null">
         ,  (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,    
@@ -107,7 +105,8 @@
           C.ADMIN_ID, 
           C.CAFE_NAME,
           C.CAFE_ADDRESS, 
-          C.CAFE_THUMBNAIL , 
+          C.CAFE_THUMBNAIL ,
+          C.CAFE_HASHTAG, 
           NVL(R.STARS,0) AS STARS 
           <if test="email != null">
           ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND EMAIL = #{email} ) AS BOOKMARKS,   
@@ -129,6 +128,7 @@
          C.ADMIN_ID, 
          C.CAFE_NAME, 
          C.CAFE_THUMBNAIL , 
+         C.CAFE_HASHTAG,
          NVL(R.STARS,0) AS      STARS
       FROM CAFE C 
       LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
@@ -143,6 +143,7 @@
          C.ADMIN_ID, 
          C.CAFE_NAME, 
          C.CAFE_THUMBNAIL , 
+         C.CAFE_HASHTAG,
          NVL(R.STARS,0) AS      STARS
       FROM CAFE C 
       LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS

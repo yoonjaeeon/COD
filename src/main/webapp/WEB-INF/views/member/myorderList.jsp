@@ -74,8 +74,7 @@ function myorderList(){
 						</tr>
 					</tfoot>
 					<tbody>
-						<c:forEach begin="0" end="10" items="${getMemberDayOrder}"
-							var="list">
+						<c:forEach items="${getMemberDayOrder}"	var="list">
 							<tr role="row" class="odd" data-toggle="modal"
 								data-target="#contentModal"
 								onclick="getOrders('${list.orderTime}','${list.cafeName }')">
@@ -84,9 +83,12 @@ function myorderList(){
 										value="${date}" pattern="yyyy-MM-dd" /></td>
 								<td>${list.cafeName}</td>
 								<td>${list.price }</td>
-								<td><button type="button"
-										onclick="location.href='insertFormReview?orderSeq=${list.orderSeq}&cafeName=${list.cafeName}'">리뷰
-										쓰러 가기</button></td>
+								<c:if test="${list.reviewCheck==0 }">
+								<td><button type="button" onclick="location.href='insertFormReview?orderSeq=${list.orderSeq}&cafeName=${list.cafeName}'">리뷰 쓰러 가기</button></td>
+								</c:if>
+								<c:if test="${list.reviewCheck==1 }">
+								<td> </td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -172,15 +174,6 @@ $('#contentModal').on('show.bs.modal', function (e) {
 				'<td>'+item.orderlineAmount+'</td>' +
 				'<td>'+item.orderTime+'</td></tr>')
 				
-				/* <c:if test="${list.orderState == 0 }">
-				<td>${list.cafeName}</td>
-				<td>${list.price }</td>
-				</c:if>
-				
-				<c:if test="${list.orderState == 0 }">
-				<td>아이스 ${list.cafeName}</td>
-				<td>${list.price + list.priceAdd }</td>
-				</c:if> */
 			})
 		}
 	})
@@ -188,19 +181,4 @@ $('#contentModal').on('show.bs.modal', function (e) {
 })  
 }
 
-/* function getOrders(time){
-	$.ajax({
-		url :'getMemberOrders',
-		type : 'post',
-		data : {orderTime:time},
-		contentType: 'application/json;charset=utf-8',
-		dataType :'json',
-		success : function(result){
-			$.each(result, function(index, item){
-				$($('#tbody'))
-			})
-		}
-		
-	})
-} */
 </script>

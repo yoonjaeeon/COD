@@ -69,9 +69,10 @@ public class OrdersServiceImpl implements OrdersService {
 	public MemberVO getMileage(MemberVO memberVO) {
 		return ordersMapper.getMileage(memberVO);
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public void updateRivewCheck(Integer orderSeq) {
+		ordersMapper.updateRivewCheck(orderSeq);
+	}
+		
 }

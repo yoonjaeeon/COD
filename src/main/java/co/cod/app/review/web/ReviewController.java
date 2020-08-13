@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
 import co.cod.app.cafe.CafeVO;
+import co.cod.app.orders.service.OrdersService;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
 import co.cod.app.review.ReviewVO;
@@ -27,6 +28,8 @@ public class ReviewController {
 	ReviewService reviewService;
 	@Autowired
 	PhotoService photoService;
+	@Autowired
+	OrdersService orderService;
 
 	// 등록폼
 	@RequestMapping("insertFormReview")
@@ -68,6 +71,7 @@ public class ReviewController {
 		}
 		reviewVO.setEmail((String)session.getAttribute("loginEmail"));
 		reviewService.insertReview(reviewVO);
+		orderService.updateRivewCheck(reviewVO.getOrderSeq());
 		// 서비스 호출
 		return "redirect:memberReviewList";
 	}

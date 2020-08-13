@@ -78,7 +78,7 @@
 	<!-- 나의 오더 결제 조회  -->
 	<select id="getMyorderList" parameterType="co.cod.app.member.MemberVO" resultType="co.cod.app.member.MemberVO"> 
 		SELECT O.ORDER_TIME , O.EMAIL, C.CAFE_NAME, M.PRICE
-		FROM ORDERS O , CAFE C , MENU M 
+		FROM ORDERS O , CAFE C , MENU M
 		WHERE O.ADMIN_ID = C.ADMIN_ID 
 		AND O.ADMIN_ID = M.ADMIN_ID			 
 		ORDER BY ORDER_TIME DESC
@@ -132,22 +132,32 @@
 	</select>
 	
 	<select id="getMemberDayOrder" resultType="vofile.GetMemberDayOrder">
-	SELECT 
-				
+	 SELECT 
                 TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd') "ORDER_TIME", 
                 C.CAFE_NAME CAFE_NAME,
                 SUM((M.PRICE + M.PRICE_ADD * OL.ORDER_STATE )*OL.ORDERLINE_AMOUNT) PRICE,
-                min(o.order_seq) order_seq
+                min(o.order_seq) order_seq,
+                o.review_check
      FROM ORDERS O   JOIN ORDERLINE OL           ON (O.ORDER_SEQ = OL.ORDER_SEQ)
                      JOIN MENU M                 ON (OL.MENU_SEQ = M.MENU_SEQ)
                      JOIN CAFE C                 ON (M.ADMIN_ID = C.ADMIN_ID)
-    WHERE O.EMAIL = #{email}
-    GROUP BY 
+   	 WHERE O.EMAIL = #{email}
+	 GROUP BY 
                 TO_CHAR(O.ORDER_TIME, 'yyyy-MM-dd'), 
-                C.CAFE_NAME
-    ORDER BY 1 DESC
-	</select>
-	
+                C.CAFE_NAME,
+                o.review_check
+    ORDER BY 1 DESC 
+    
+    <!-- SELECT 	TRUNC(ORDER_TIME) "ORDER_TIME", 
+    		CAFE_NAME, 
+    		SUM((PRICE+PRICE_ADD*ORDER_STATE)*ORDERLINE_AMOUNT) PRICE,
+    		MIN(ORDER_SEQ ) ORDER_SEQ,
+    		review_check
+	  FROM order_view
+	 WHERE email = #{email}
+	 GROUP BY TRUNC(ORDER_TIME), CAFE_NAME,  review_check
+	 ORDER BY 1 DESC -->
+	</select>	
 	<select id="getMemberOrders" resultType="vofile.GetMemberDayOrder">
 	SELECT 
 			M.MENU_NAME, 
@@ -164,7 +174,7 @@
      		C.CAFE_NAME=#{cafeName}
 	</select>
 	
-		<select id="getFiveDayOrder" resultType="vofile.GetMemberDayOrder">
+	<select id="getFiveDayOrder" resultType="vofile.GetMemberDayOrder">
     select * FROM
     	(SELECT 
 				

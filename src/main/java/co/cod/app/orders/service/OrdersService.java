@@ -17,4 +17,5 @@ public interface OrdersService {
 	public void updateOrders(OrdersVO ordersVO);
 	public void deleteOrders(OrdersVO ordersVO);
 	public MemberVO getMileage(MemberVO memberVO);
+	public void updateRivewCheck(Integer orderSeq);
 }

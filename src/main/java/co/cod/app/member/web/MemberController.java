@@ -216,8 +216,8 @@ public class MemberController {
 	
 	@RequestMapping("getMemberDayOrder")
 	public List<GetMemberDayOrder> getMemberDayOrder(GetMemberDayOrder getMemberDayOrder,Model model,HttpSession session) {
-		model.addAttribute("getMemberDayOrder", memberService.getMemberDayOrder(getMemberDayOrder));		
 		getMemberDayOrder.setEmail((String)session.getAttribute("loginEmail"));
+		model.addAttribute("getMemberDayOrder", memberService.getMemberDayOrder(getMemberDayOrder));		
 		return memberService.getMemberDayOrder(getMemberDayOrder);
 	}
 	
@@ -246,9 +246,7 @@ public class MemberController {
 		// 카카오 로그인
 		mav.addObject("kakao_url", kakaoUrl); 
 		return mav; 
-	}// end memberLoginForm()
-	   
-	   
+	}// end memberLoginForm()	   
    @RequestMapping(value = "/kakaologin")
    public String getKakaoSignIn(Model model,@RequestParam("code") String code, HttpSession session,MemberVO vo) throws Exception {
 	   JsonNode userInfo = kakaoController.getKakaoUserInfo(code);

@@ -16,10 +16,10 @@ public class GetMemberDayOrder {
 	Integer orderState;
 	Integer priceAdd;
 	Integer orderSeq;
-	
+	// 리뷰 작성여부 
+	Integer reviewCheck;
 	//bookmark 가져오는데 필요한 필드
 	Integer bookmarknum;
-	
 	//review 필요한 필드
 	String reviewTime;
 }

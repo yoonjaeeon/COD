@@ -134,6 +134,7 @@ public class MemberServiceImpl implements MemberService{
 	public int idcheck(MemberVO memberVO) {
 		return memberMapper.idcheck(memberVO);
 	}
-	
+
+
 	
 }

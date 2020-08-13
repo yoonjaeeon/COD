@@ -23,4 +23,5 @@ public interface OrdersMapper {
 	public void mileage(OrderInsertVO orderInsertVO);
 	public void mileageMinus(OrderInsertVO orderInsertVO);
 	public void updateSeat(OrderInsertVO orderInsertVO);
+	public void updateRivewCheck(Integer orderSeq);
 }

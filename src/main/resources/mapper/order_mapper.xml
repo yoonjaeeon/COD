@@ -82,5 +82,7 @@
 	<update id="updateSeat">
 	 update seat set seat_reserve=0 where admin_id=#{adminId} AND seat_seq=#{seatSeq}
 	</update>
-	
+	<update id="updateRivewCheck">
+	update orders set review_check = 1 where order_seq = #{orderSeq}
+	</update>
 </mapper>

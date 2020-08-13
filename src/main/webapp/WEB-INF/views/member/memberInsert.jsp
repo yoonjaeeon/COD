@@ -130,7 +130,7 @@
    pw(확인) <input type="password" id="pw2" class="pw" placeholder="패스워드 확인  "> <br /> <br />
   
    닉네임     <input type="text" name="nickname" /><br /> <br /> 
-   핸드폰 번호 <input type="text" name="phone" /><br /> <br /> 
+   핸드폰 번호 <input type="text" id="phone" name="phone" maxlength="13"/><br /> <br /> 
    생년월일   <input type="date" name="birthday" /><br /> <br />
    <div class="align-center" style="margin-top: 30px">
       <br> <br>
@@ -163,4 +163,41 @@
          }
       }
    });
+   
+   var autoHypenPhone = function(str){
+	    str = str.replace(/[^0-9]/g, '');
+	    var tmp = '';
+	    if( str.length < 4){
+	        return str;
+	    }else if(str.length < 7){
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3);
+	        return tmp;
+	    }else if(str.length < 11){
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3, 3);
+	        tmp += '-';
+	        tmp += str.substr(6);
+	        return tmp;
+	    }else{              
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3, 4);
+	        tmp += '-';
+	        tmp += str.substr(7);
+	        return tmp;
+	    }
+
+	    return str;
+	}
+
+
+	var phone = document.getElementById('phone');
+
+	phone.onkeyup = function(){
+	console.log(this.value);
+	this.value = autoHypenPhone( this.value ) ;  
+	}
 </script>

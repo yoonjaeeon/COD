@@ -228,7 +228,7 @@
                  c.cafe_hashtag,
                  c.admin_id,
                  (select nvl(trunc(avg(stars),1),0) stars from review where admin_id=c.admin_id) stars
-                 <if test="email != null">
+                 <if test="email != null and email != ''">
                  ,nvl((SELECT 1 FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}),0) bookmarks
                  </if>
       from popularcafe_view p ,cafe c

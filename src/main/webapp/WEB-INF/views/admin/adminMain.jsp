@@ -249,7 +249,7 @@ function seatSetting(onOff){
  
 function orderSubmit(seq){
 	var orderSubmit = confirm("주문 완료?");
-	if(orderSubmit == true){
+	if(orderSubmit == true){ 
 	$.ajax({
 		url:'updateOrderSubmit/'+seq,
 		type : 'GET',

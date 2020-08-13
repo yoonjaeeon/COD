@@ -152,42 +152,45 @@
 			<section class="posts row">
 			
 				<!-- 좌석선택 -->
-			<div class="main_slick col-lg-6">
-				<c:forEach items="${seatList }" var="seat">
-					<div id="seatDiv">
-						<article class="mini-post"
-							onclick="getSeat('${seat.seatName}', '${seat.seatSize }', '${seat.seatSeq}')">
-							<header class="row">
-								<div class="col-sm-9">
-									<h3>
-										<a href="single.html">좌석명:${seat.seatName} </a>
-									</h3>
-									<c:if test="${seat.seatSize==1 }">
-										<h4>2인석</h4>
-									</c:if>
-									<c:if test="${seat.seatSize==2 }">
-										<h4>4인석</h4>
-									</c:if>
-									<c:if test="${seat.seatSize==3 }">
-										<h4>단체석</h4>
-									</c:if>
-
-								</div>
-								<div class="col-sm-3">
-									<c:if test="${seat.seatReserve==0 }">
-										<h4>예약불가</h4>
-									</c:if>
-									<c:if test="${seat.seatReserve==1 }">
-										<h4>예약가능</h4>
-									</c:if>
-								</div>
-							</header>
-							<a class="image"><img src="resources/upload/${seat.seatImg}"
-								alt=""></a>
-						</article>
-					</div>
-				</c:forEach>
-			</div>
+			<div class="col-lg-6">
+			<h4>좌우로 스크롤하여 좌석 선택 !</h4>
+				<div class="main_slick">
+					<c:forEach items="${seatList }" var="seat">
+						<div id="seatDiv">
+							<article class="mini-post"
+								onclick="getSeat('${seat.seatName}', '${seat.seatSize }', '${seat.seatSeq}')">
+								<header class="row">
+									<div class="col-sm-9">
+										<h3>
+											<a href="single.html">좌석명:${seat.seatName} </a>
+										</h3>
+										<c:if test="${seat.seatSize==1 }">
+											<h4>2인석</h4>
+										</c:if>
+										<c:if test="${seat.seatSize==2 }">
+											<h4>4인석</h4>
+										</c:if>
+										<c:if test="${seat.seatSize==3 }">
+											<h4>단체석</h4>
+										</c:if>
+	
+									</div>
+									<div class="col-sm-3">
+										<c:if test="${seat.seatReserve==0 }">
+											<h4>예약불가</h4>
+										</c:if>
+										<c:if test="${seat.seatReserve==1 }">
+											<h4>예약가능</h4>
+										</c:if>
+									</div>
+								</header>
+								<a class="image"><img src="resources/upload/${seat.seatImg}"
+									alt=""></a>
+							</article>
+						</div>
+					</c:forEach>
+				</div>
+				</div>
 				
 				<!-- 메뉴판 -->
 				<article class="col-lg-6">

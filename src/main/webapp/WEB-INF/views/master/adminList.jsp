@@ -58,7 +58,7 @@
 			    	cafeState="승인대기"
 			        break;
 			    case 2: 
-			    	cafeState="가맹점"
+			    	cafeState="승인완료 "
 			        break;
 			  		    
 			}
@@ -177,11 +177,12 @@
 
 <body>
 	<hr />
-	<div class="container" align="center">
+	<div class="col-6" >
 		<input type="button" class="btn btn-outline-info" value="카페 승인대기 " id="state1" /> &nbsp; 
 		<input type="button" class="btn btn-outline-info" value="카페 가맹점 " id="state2" /> &nbsp; 
 		<input type="button" class="btn btn-outline-info" value="카페 등록 대기 " id="state3" />
 	</div>
+	<hr>
       <div class="row" style="margin-bottom: 1em">
       	<div class="col-6"></div>
       	<input class="form-control col-5" id="searchMenu" type="text" placeholder="관리자 아이디 ">

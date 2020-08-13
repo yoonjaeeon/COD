@@ -51,7 +51,7 @@ body {
 	<img src="../resources/upload/${review.gdsThumbImg}" style="width: 100%; height: 300px" />
 	</div>
 </div>
-<div class="row" align="center">
+<div class="row" align="center"> 
 	<div class="col-6">
 	<p>${review.reviewContent}</p>
 	</div>

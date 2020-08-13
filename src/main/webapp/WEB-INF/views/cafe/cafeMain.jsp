@@ -23,9 +23,7 @@
 					
 						<c:if test="${not empty sessionScope.loginEmail}">
 						<c:if test="${not empty cafeDetail.bookmarks}">
-							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
-							id="bookmarkDelete${cafeDetail.bookmarkSeq}" 
-							></i>
+							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"></i>
 							</c:if>
 						
 						 <c:if test="${empty cafeDetail.bookmarks}">

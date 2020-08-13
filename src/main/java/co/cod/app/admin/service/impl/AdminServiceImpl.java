@@ -86,5 +86,9 @@ public class AdminServiceImpl implements AdminService{
 	public MasterNoticeVO getMasterNotice() {
 		return adminMapper.getMasterNotice();
 	}
+	@Override
+	public List<AdminVO> getCompleteOrder(AdminVO adminVO) {
+		return adminMapper.getCompleteOrder(adminVO);
+	}
 	
 }

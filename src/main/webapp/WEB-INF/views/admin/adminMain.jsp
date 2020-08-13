@@ -254,10 +254,10 @@ function orderSubmit(seq){
 		url:'updateOrderSubmit/'+seq,
 		type : 'GET',
 		success :  function(data){
-			alert(data);
 			$('#getOrderCount').load("getOrderCount");
 			$('#getOrderCounts').load("getOrderCount");
 			$('#'+seq).remove();
+			location.reload(true);
 		},
 		error : function(xhr, status, message) {
 			alert(" status: " + status + " 에러:" + message);
@@ -334,6 +334,7 @@ function orderDelete(seq){
                 </script>
 						</span>
 					</h6>
+					</li>
 				</a>
 				<!-- Card Content - Collapse -->
 				<div class="collapse show" id="collapseCardExample">
@@ -365,7 +366,43 @@ function orderDelete(seq){
 							</table>
 						</div>
 					</div>
-				</div>
+				</div>	
+				
+				<!-- Card Header - Accordion -->
+				<a href="#collapseCardExamples" class="d-block card-header py-3 collapsed""
+					data-toggle="collapse" role="button" aria-expanded="false"
+					aria-controls="collapseCardExamples">
+					<h6 class="m-0 font-weight-bold text-primary">
+						<i class="far fa-bell"></i> * 서빙완료 * 
+					</h6>
+					</li>
+				</a>
+				
+				<!-- Card Content - Collapse -->
+				<div class="collapse" id="collapseCardExamples">
+					<div class="card-body">
+						<div class="order">
+							<table class="table table-hover" id="table">
+								<thead>
+									<tr>
+										<th>테이블</th>
+										<th>내역</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${completeOrder}" var="lists">
+										<tr>
+											<td>${lists.seatName }</td>
+											<td>${lists.menuName }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>	
+				
+						
 			</div>
 		</div>
 	</div>

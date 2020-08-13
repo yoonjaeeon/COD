@@ -32,6 +32,7 @@ public interface AdminMapper {
 	public Integer getOrderCount(AdminVO adminVO);
 	public void updateOrderSubmit(String orderSeq);
 	public void deleteOrderSubmit(AdminVO adminVO);
+	public List<AdminVO> getCompleteOrder(AdminVO adminVO);
 	
 	//마스터 공지사항
 	public MasterNoticeVO getMasterNotice();

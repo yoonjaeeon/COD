@@ -38,7 +38,7 @@
 			</div>
 			<div class="modal-body">
 				<h2>
-					<span id="getMessageTitle"> </span>
+					<span id="getMessageTitle"></span>
 				</h2>
 				<br> <span id="getMessageContent"></span>
 			</div>
@@ -48,8 +48,6 @@
 		</div>
 	</div>
 </div>
-
-
 <script>
 var $seq;
 function seq(seq){
@@ -62,12 +60,12 @@ $('#contentModal1s').on('show.bs.modal', function (e) {
 		/* url : 'getAdminMasterNotice',
 		data: {masterNoticeSeq:$seq},
 		method:'POST', */
-		contentType:'application/json;charset=utf-8',
 		dataType :'json',
 		success:function(result){
-				$('#getMessageTitle').html(result.masterNoticeTitle);
-				$('#getMessageContent').html(result.masterNoticeContent);
+				$('#contentModal1s #getMessageTitle').html(result.masterNoticeTitle);
+				$('#contentModal1s #getMessageContent').html(result.masterNoticeContent);
 		}
 	});
 });
 </script>
+

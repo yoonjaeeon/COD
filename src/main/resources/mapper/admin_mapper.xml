@@ -67,6 +67,7 @@
 		UPDATE ORDERS SET SUBMIT=0 WHERE ORDER_SEQ=#{orderSeq}
 	</update>
 	
+	<!-- 주문현황 -->
 	<select id="getOrderView" resultType="co.cod.app.admin.AdminVO" parameterType="co.cod.app.admin.AdminVO">
 	SELECT 		ADMIN_ID, 
 				ORDER_TIME, 
@@ -78,6 +79,25 @@
 			          ELSE '' END
 				|| MENU_NAME||' : ' ||ORDERLINE_AMOUNT||'개'|| ', ') WITHIN GROUP (ORDER BY ORDER_SEQ) AS MENU_NAME
 	 FROM ORDER_VIEW OV WHERE SUBMIT=1 AND ADMIN_ID=#{adminId} AND  ROWNUM <![CDATA[ <= ]]>10
+  	GROUP BY ADMIN_ID, ORDER_TIME, SEAT_NAME, CAFE_NAME, ORDER_SEQ
+  	ORDER BY ORDER_SEQ DESC
+	</select>
+	
+	<!-- 서빙완료 -->
+	<select id="getCompleteOrder" resultType="co.cod.app.admin.AdminVO" parameterType="co.cod.app.admin.AdminVO">
+	SELECT 		ADMIN_ID, 
+				ORDER_TIME, 
+				SEAT_NAME, 
+				CAFE_NAME, 
+				ORDER_SEQ,  
+				LISTAGG(
+				CASE WHEN ORDER_STATE = 1 THEN '아이스'
+			          ELSE '' END
+				|| MENU_NAME||' : ' ||ORDERLINE_AMOUNT||'개'|| ', ') WITHIN GROUP (ORDER BY ORDER_SEQ) AS MENU_NAME
+	 FROM ORDER_VIEW OV WHERE SUBMIT=0 
+						 AND ADMIN_ID=#{adminId} 
+						 AND  ROWNUM <![CDATA[ <= ]]>10
+						 AND TO_CHAR(ORDER_TIME, 'yyyy-MM-dd') = TO_CHAR(SYSDATE, 'yyyy-MM-dd')
   	GROUP BY ADMIN_ID, ORDER_TIME, SEAT_NAME, CAFE_NAME, ORDER_SEQ
   	ORDER BY ORDER_SEQ DESC
 	</select>

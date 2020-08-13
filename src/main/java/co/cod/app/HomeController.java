@@ -1,5 +1,7 @@
 package co.cod.app;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,11 @@ public class HomeController {
    @RequestMapping("admin")
    public String adminHome(Model model, HttpSession session,AdminVO adminVO,MasterNoticeVO masterNoticeVO) {
 	   adminVO.setAdminId((String)(session.getAttribute("adminId")));
+	   //서빙완료
+	   model.addAttribute("completeOrder", adminService.getCompleteOrder(adminVO));
+	   //주문현황
 	   model.addAttribute("getOrderView", adminService.getOrderView(adminVO));
+	   //마스터 공지사항
 	   model.addAttribute("masterNotice", adminService.getMasterNotice());
       return "ad/admin/adminMain";
    }

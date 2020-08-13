@@ -1,5 +1,6 @@
 package co.cod.app.admin.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import co.cod.app.member.MemberVO;
 import co.cod.app.seat.service.SeatService;
 
 @Controller
@@ -150,6 +150,17 @@ class AdminController {
 	public String deleteOrderSubmit(AdminVO adminVO, HttpSession session) {
 		adminService.deleteOrderSubmit(adminVO);
 		return "삭제 완료";
+	}
+
+	/* 서빙완료 가져오는 매퍼 */
+	@RequestMapping("getCompleteOrder")
+	@ResponseBody
+	public List<AdminVO> getCompleteOrder(AdminVO adminVO, HttpSession session, Model model){
+		adminVO.setAdminId((String)session.getAttribute("adminId"));
+		List lists;
+		lists = adminService.getCompleteOrder(adminVO);
+		model.addAttribute("completeOrder", lists);
+		return adminService.getCompleteOrder(adminVO);
 	}
 
 	// 좌석 전체조회

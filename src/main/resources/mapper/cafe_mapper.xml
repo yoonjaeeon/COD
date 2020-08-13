@@ -8,7 +8,11 @@
         ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,       
          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
           </if>
-         FROM CAFE C RIGHT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
+          
+         FROM CAFE C 
+         <if test="bookmarksSeq != null and bookmarksSeq != '' ">
+         RIGHT OUTER JOIN BOOKMARKS B ON (C.ADMIN_ID = B.ADMIN_ID)
+         </if>
          WHERE C.ADMIN_ID = #{adminId}
    </select>   
    

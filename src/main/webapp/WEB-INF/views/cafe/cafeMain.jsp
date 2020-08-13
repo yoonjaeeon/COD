@@ -5,10 +5,10 @@
 <div id="wrapper">
 	<article class="post">
 		<div class="main_slick">
-			<c:forEach var="index" begin="1" end="3">
+			<c:forEach items="${fileList}" var="file" >
 				<div class="image featured"
 					style="max-height: 500px; overflow: hidden">
-					<img src="resources/images/main${index}.jpg" alt="img"
+					<img src="resources/upload/${file.photoName}" alt="img"
 						class="image fit">
 				</div>
 			</c:forEach>

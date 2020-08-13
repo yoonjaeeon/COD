@@ -125,14 +125,17 @@ public class CafeController {
 	@RequestMapping("cafe")
 	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO,PhotoVO photoVO, SeatVO seatVO, HttpSession session) {
 		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
+		cafeVO =cafeService.getCafe(cafeVO);
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		model.addAttribute("seatList", seatService.getSeatList(seatVO.getAdminId()));
-		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));		
-	//	model.addAttribute("fileList", photoService.getPhotoList(photoVO));
-
+		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));	
+		if(cafeVO.getPhotoGroup() != null) {
+			photoVO.setPhotoGroup(cafeVO.getPhotoGroup());
+			model.addAttribute("fileList", photoService.getPhotoList(photoVO));
+		}
 		return "cafe/cafeMain";
 	} 
 

@@ -234,7 +234,6 @@
 			</div>
 			<button type="button" class="btn_review" >more</button>
 		</div>
-
 		<!-- 지도 -->
 		<div>
 			<article class="mini-post">
@@ -301,9 +300,6 @@
 			// 마커 위에 인포윈도우를 표시합니다
 			infowindow.open(map, marker);
 		});
-	</script>
-
-<script type="text/javascript">
 //첫번째 페이지 로드
 // $(".cafeReviewList").load("cafeReviewList?adminId=${param.adminId}");
 //more 버튼 클릭시

@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.Paging;
-import co.cod.app.cafe.CafeVO;
 import co.cod.app.orders.service.OrdersService;
 import co.cod.app.photo.PhotoVO;
 import co.cod.app.photo.service.PhotoService;
@@ -137,13 +136,23 @@ public class ReviewController {
 	}
 	
 
-	// 카페상세 리뷰 리스트
+	// 카페 리뷰 리스트
 	@RequestMapping("cafeReviewList")
 	public String cafeReviewList(Model model, ReviewVO reviewVO) {
 		model.addAttribute("cafeReviewList", reviewService.getReviewList(reviewVO));
 		return "e/review/cafeReviewList";
 	}
-
+	//
+	@RequestMapping("reviewDetail/{reviewSeq}")
+	public String cafeReviewDetail(@PathVariable Integer reviewSeq, Model model, ReviewVO reviewVO) {
+		reviewVO.setReviewSeq(reviewSeq);
+		reviewVO = reviewService.getReview(reviewVO);
+		PhotoVO photoVO = new PhotoVO();
+		photoVO.setPhotoGroup(reviewVO.getPhotoGroup());
+		model.addAttribute("review", reviewVO);
+		model.addAttribute("photo",photoService.getPhotoList(photoVO));
+		return "e/review/reviewDetail";
+	}
 	// 수정폼
 	@RequestMapping("updateFormReview")
 	public String updateFormreview(ReviewVO reviewVO, Model model, PhotoVO photoVO) {
@@ -207,11 +216,11 @@ public class ReviewController {
 	}
 	
 	// 관리자 리뷰 삭제 처리
-		@RequestMapping("adminDeleteReview")
-		public String adminDeletereview(ReviewVO reviewVO, Model model) {
+	@RequestMapping("adminDeleteReview")
+	public String adminDeletereview(ReviewVO reviewVO, Model model) {
 
-			reviewService.adminDeleteReview(reviewVO);
-			// 서비스 호출
-			return "redirect:adminReviewList";
-		}
+		reviewService.adminDeleteReview(reviewVO);
+		// 서비스 호출
+		return "redirect:adminReviewList";
+	}
 }

@@ -147,16 +147,6 @@
                 C.CAFE_NAME,
                 o.review_check
     ORDER BY 1 DESC 
-    
-    <!-- SELECT 	TRUNC(ORDER_TIME) "ORDER_TIME", 
-    		CAFE_NAME, 
-    		SUM((PRICE+PRICE_ADD*ORDER_STATE)*ORDERLINE_AMOUNT) PRICE,
-    		MIN(ORDER_SEQ ) ORDER_SEQ,
-    		review_check
-	  FROM order_view
-	 WHERE email = #{email}
-	 GROUP BY TRUNC(ORDER_TIME), CAFE_NAME,  review_check
-	 ORDER BY 1 DESC -->
 	</select>	
 	<select id="getMemberOrders" resultType="vofile.GetMemberDayOrder">
 	SELECT 

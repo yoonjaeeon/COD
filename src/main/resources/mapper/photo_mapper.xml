@@ -9,13 +9,10 @@
 		WHERE photo_seq = #{photoSeq} 
 	</select>
 	<select id="getPhotoList" resultType="co.cod.app.photo.PhotoVO" parameterType="co.cod.app.photo.PhotoVO">
-			SELECT
-			*
-			FROM PHOTO
-			where
-				photo_group = #{photoGroup}
+			SELECT		*
+			  FROM 		PHOTO
+			 WHERE		photo_group = #{photoGroup}
 	</select>
-	
 	<select id="getPhotoMax" resultType="co.cod.app.photo.PhotoVO" >
 		select nvl(max(photo_group),0)+1 photo_group from photo
 	</select>	

@@ -55,7 +55,7 @@ function menuInsert(){
 function menuDelete() {
    //삭제 버튼 클릭
    $('body').on('click','#btnDelete',function(){
-     // var menuSeq = $(this).closest('tr').find('#menuSeq').val();
+      var menuSeq = $(this).closest('tr').find('#menuSeq').val();
       var result = confirm("정말로 삭제하시겠습니까?");
       if(result) {
          $.ajax({

@@ -122,11 +122,13 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 
 	<!-- detail -->
 	<div id="listpage">
+		<div class="row">
+			<div class="col-6"><h3>좌석선택</h3></div>
+			<div class="col-6"><h3>menu</h3></div>
+		</div>
 		<section class="posts row">
-
 			<!-- 좌석선택 -->
 			<div class="main_slick col-lg-6">
-				<h3>좌석선택</h3>
 				<c:forEach items="${seatList }" var="seat">
 					<div id="seatDiv">
 						<article class="mini-post"
@@ -165,7 +167,6 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 
 			<!-- 메뉴판 -->
 			<article class="col-lg-6">
-				<h3>menu</h3>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item row"><div
 							class="col-lg-6 col-md-8 published">

@@ -103,7 +103,7 @@
 	* 2차 관리자 패스워드 * <input type="password" id="pass2" name="pass2" class="pass2"
 		placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />					
 	핸드폰 번호 <input
-		type="text" name="adminPhone" /><br /> <br /> 
+		type="text" id="adminPhone" name="adminPhone" maxlength="13" placeholder="010-0000-0000"/><br /> <br /> 
 			
 	<div class="align-center" style="margin-top: 30px">
 		<br> <br>
@@ -135,4 +135,41 @@
 			}
 		}
 	});
+	
+	 var autoHypenPhone = function(str){
+		    str = str.replace(/[^0-9]/g, '');
+		    var tmp = '';
+		    if( str.length < 4){
+		        return str;
+		    }else if(str.length < 7){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3);
+		        return tmp;
+		    }else if(str.length < 11){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 3);
+		        tmp += '-';
+		        tmp += str.substr(6);
+		        return tmp;
+		    }else{              
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 4);
+		        tmp += '-';
+		        tmp += str.substr(7);
+		        return tmp;
+		    }
+
+		    return str;
+		}
+
+
+		var adminPhone = document.getElementById('adminPhone');
+
+		adminPhone.onkeyup = function(){
+		console.log(this.value);
+		this.value = autoHypenPhone( this.value ) ;  
+		}
 </script> 

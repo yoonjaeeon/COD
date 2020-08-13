@@ -145,6 +145,12 @@ $(document).ready(function(){
 		});
 	});
 });
+
+var str = document.getElementById("textarea").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+document.getElementById("textarea").value = str;
 </script>
 </head>
 <body>
@@ -152,8 +158,8 @@ $(document).ready(function(){
 		<h4>공지사항</h4>
 		<br>
 		<form id="masterNoticeF" class="form-horizontal">
-				<input type="text" placeholder="공지사항 제목" id="masterNoticeTitle"	name="masterNoticeTitle" style="width: 100%" required><br> <br>
-				<textarea placeholder="공지사항을 입력해주세요" id="masterNoticeContent"	name="masterNoticeContent" style="width: 100%; height: 150px" required></textarea>
+				<input class="form-control" type="text" placeholder="공지사항 제목" id="masterNoticeTitle"	name="masterNoticeTitle" style="width: 100%" required><br>
+				<textarea class="form-control" placeholder="공지사항을 입력해주세요" id="masterNoticeContent"	name="masterNoticeContent" style="width: 100%; height: 150px;" required></textarea>
 				<input type="hidden" id="masterNoticeSeq" name="masterNoticeSeq"><br> <br>
 			<br>
 			<div class="btn-group">

@@ -45,11 +45,10 @@ class AdminController {
 		adminService.insertAdmin(adminVO);
 		int result = adminService.idcheck1(adminVO);
 			if(result == 1) {
-					return "/admin/adminInsert";
+					return "";
 			
 			}else if(result == 0) {
-				  adminService.idcheck1(adminVO);
-			}	
+				  adminService.idcheck1(adminVO);			}	
 			 return "redirect:home";
 	}
 

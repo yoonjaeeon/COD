@@ -130,7 +130,7 @@
    pw(확인) <input type="password" id="pw2" class="pw" placeholder="패스워드 확인  "> <br /> <br />
   
    닉네임     <input type="text" name="nickname" /><br /> <br /> 
-   핸드폰 번호 <input type="text" id="phone" name="phone" maxlength="13"/><br /> <br /> 
+   핸드폰 번호 <input type="text" id="phone" name="phone" maxlength="13" placeholder="010-0000-0000"/><br /> <br /> 
    생년월일   <input type="date" name="birthday" /><br /> <br />
    <div class="align-center" style="margin-top: 30px">
       <br> <br>

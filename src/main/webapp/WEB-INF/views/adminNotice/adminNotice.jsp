@@ -152,8 +152,8 @@ $(document).ready(function(){
 		<h4>공지사항</h4>
 		<br>
 		<form id="adminNoticeF" class="form-horizontal">
-				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%" required><br> <br>
-				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px" required></textarea>
+				<input class="form-control" type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%" required/><br>
+				<textarea class="form-control" placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px;" required></textarea>
 				<input type="hidden" id="adminNoticeSeq" name="adminNoticeSeq"><br> <br>
 			<br>
 			<div class="btn-group">
@@ -185,3 +185,20 @@ $(document).ready(function(){
 	</div>
 
 	<hr />
+	
+	<script>
+	$(document).ready(function(){
+		  $("#searchNotice").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#masterNoticeTbl tr").filter(function() {
+		    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+	});
+
+	var str = document.getElementById("textarea").value;
+
+	str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+	document.getElementById("textarea").value = str;
+	</script>

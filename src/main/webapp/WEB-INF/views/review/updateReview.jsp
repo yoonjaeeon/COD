@@ -23,7 +23,7 @@ function button2(){
 <input type="hidden" name="reviewSeq" value="${review.reviewSeq }">
 	    </div>
 리뷰 내용:<br/>
-<textarea cols="30" rows="10"
+<textarea class="form-control" cols="30" rows="10"
           name="reviewContent" id="reviewContent">${review.reviewContent}</textarea><br/>
 평 점 : 
 	<div class="starRev">
@@ -66,4 +66,19 @@ $('.starRev span').click(function(){
 	  $('input:hidden[name="stars"]').val($(this).text());
 	  return false;
 });
+/* 띄우기, 엔터 적용 */
+$(document).ready(function(){
+	  $("#searchNotice").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#masterNoticeTbl tr").filter(function() {
+	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
+
+var str = document.getElementById("textarea").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+document.getElementById("textarea").value = str;
 </script>

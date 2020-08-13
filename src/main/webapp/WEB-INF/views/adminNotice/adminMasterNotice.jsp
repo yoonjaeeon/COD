@@ -40,7 +40,7 @@
 				<h2>
 					<span id="getMessageTitle"></span>
 				</h2>
-				<br> <span id="getMessageContent"></span>
+				<br> <textarea class="form-control" id="getMessageContent" style="width:100% ; height:150px; border:none;" readonly></textarea>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
@@ -67,5 +67,10 @@ $('#contentModal1s').on('show.bs.modal', function (e) {
 		}
 	});
 });
+var str = document.getElementById("textarea").value;
+
+str = str.replaceAll("<br/>", "\r\n");
+
+document.getElementById("textarea").value = str;
 </script>
 

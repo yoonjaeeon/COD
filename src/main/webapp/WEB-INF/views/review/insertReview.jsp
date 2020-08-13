@@ -28,7 +28,7 @@
 		name="orderSeq" id="orderSeq" value="${param.orderSeq}">
 	    </div>
 	리뷰 내용:<br />
-	<textarea cols="30" rows="10" name="reviewContent" id="reviewContent"></textarea> <br /> 
+	<textarea class="form-control" cols="30" rows="10" name="reviewContent" id="reviewContent"></textarea> <br /> 
 	<div class="starRev">
 	  <span class="starR on">1</span>
 	  <span class="starR">2</span>
@@ -38,10 +38,10 @@
 	  <input type="hidden" name="stars" id="stars" value="1">
 	</div>
 	대표 사진<br>
-      <input type="file" id="upload" name="upload"/>
+      <input class="form-control" type="file" id="upload" name="upload"/>
       <br><br>
         첨부 사진<br>
-      <input multiple="multiple" type="file" id="uploadFile" name="uploadFile"/>
+      <input class="form-control" multiple="multiple" type="file" id="uploadFile" name="uploadFile"/>
       <br><br>
 	<div align="center">
 	<button type="button" onclick="validCheck()">등록</button>
@@ -57,4 +57,19 @@ $('.starRev span').click(function(){
 	  $('input:hidden[name="stars"]').val($(this).text());
 	  return false;
 });
+
+$(document).ready(function(){
+	  $("#searchNotice").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#masterNoticeTbl tr").filter(function() {
+	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
+
+var str = document.getElementById("textarea").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+document.getElementById("textarea").value = str;
 </script>

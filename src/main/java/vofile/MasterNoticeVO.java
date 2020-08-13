@@ -8,4 +8,5 @@ public class MasterNoticeVO {
 	Integer	masterNoticeSeq;
 	String masterNoticeTitle;
 	String masterNoticeContent;	
+	String masterNoticeDate;
 }

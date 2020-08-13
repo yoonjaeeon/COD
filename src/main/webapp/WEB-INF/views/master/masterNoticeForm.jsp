@@ -7,11 +7,11 @@
 <script src="./resources/json.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	adminNoticeList();
-	adminNoticeSelect();
-	adminNoticeDelete();
-	adminNoticeInsert();
-	adminNoticeUpdate();
+	masterNoticeList();
+	masterNoticeSelect();
+	masterNoticeDelete();
+	masterNoticeInsert();
+	masterNoticeUpdate();
 	init();
 });
 
@@ -19,25 +19,25 @@ $(function(){
 function init() {
    //초기화 버튼 클릭
    $('#btnInit').on('click',function(){
-      $('#adminNoticeF').each(function(){
+      $('#masterNoticeF').each(function(){
          this.reset();
-         $('textArea[name="adminNoticeContent"]').text("");
+         $('textArea[name="masterNoticeContent"]').text("");
       });
    });
 }//init
 
 //공지 등록 요청
-function adminNoticeInsert(){
+function masterNoticeInsert(){
    $('#btnInsert').on('click',function(){
-	  console.log($("#adminNoticeF").serialize())
+	  console.log($("#masterNoticeF").serialize())
       $.ajax({ 
-          url: "adminNotice",  
+          url: "masterNotice",  
           type: 'POST',  
           dataType: 'json', 
-          data :  $("#adminNoticeF").serialize(),
+          data :  $("#masterNoticeF").serialize(),
           success: function(response) {
              if(response.result == true) {
-                adminNoticeList();
+                masterNoticeList();
              }
           }, 
           error:function(xhr, status, message) { 
@@ -45,14 +45,14 @@ function adminNoticeInsert(){
           } 
        });  
    });
-}//adminNoticeInsert
+}//masterNoticeInsert
 //공지 삭제
-function adminNoticeDelete() {
+function masterNoticeDelete() {
    //삭제 버튼 클릭
    $('body').on('click','#btnDelete',function(){
-      var adminNoticeSeq = $(this).closest('tr').find('#adminNoticeSeq').val();
+      var masterNoticeSeq = $(this).closest('tr').find('#masterNoticeSeq').val();
       $.ajax({
-         url:'adminNotice/'+adminNoticeSeq,  
+         url:'masterNotice/'+masterNoticeSeq,  
          type:'DELETE',
          contentType:'application/json;charset=utf-8',
          dataType:'json',
@@ -60,87 +60,87 @@ function adminNoticeDelete() {
             console.log("상태값 :" + status + " Http에러메시지 :"+msg);
          }, success:function(xhr) {
             console.log(xhr.result);
-            adminNoticeList();
+            masterNoticeList();
          }
       });
    }); //삭제 버튼 클릭
-}//adminNoticeDelete
+}//masterNoticeDelete
 
 //메뉴 조회 요청
-function adminNoticeSelect() {
+function masterNoticeSelect() {
    $('body').on('click','#btnSelect',function(){
-      var adminNoticeSeq = $(this).closest('tr').find('#adminNoticeSeq').val();
+      var masterNoticeSeq = $(this).closest('tr').find('#masterNoticeSeq').val();
       $.ajax({
-         url:'adminNotice/'+adminNoticeSeq,
+         url:'masterNotice/'+masterNoticeSeq,
          type:'GET',
          contentType:'application/json;charset=utf-8',
          dataType:'json',
          error:function(xhr,status,msg){
             alert("상태값 :" + status + " Http에러메시지 :"+msg);
          },
-         success:adminNoticeSelectResult
+         success:masterNoticeSelectResult
       });
    }); //조회 버튼 클릭
 }
 
 //메뉴 조회 응답
-function adminNoticeSelectResult(adminNotice) {
-	$('input:hidden[name="adminNoticeSeq"]').val(adminNotice.adminNoticeSeq);
-	$('input:text[name="adminNoticeTitle"]').val(adminNotice.adminNoticeTitle);
-	$('textArea[name="adminNoticeContent"]').text(adminNotice.adminNoticeContent);
-}//adminNoticeSelectResult
+function masterNoticeSelectResult(masterNotice) {
+	$('input:hidden[name="masterNoticeSeq"]').val(masterNotice.masterNoticeSeq);
+	$('input:text[name="masterNoticeTitle"]').val(masterNotice.masterNoticeTitle);
+	$('textArea[name="masterNoticeContent"]').text(masterNotice.masterNoticeContent);
+}//masterNoticeSelectResult
 
 //메뉴 수정 요청
-function adminNoticeUpdate() {
+function masterNoticeUpdate() {
    $('#btnUpdate').on('click',function(){
       $.ajax({ 
-          url: "adminNotice", 
+          url: "masterNotice", 
           type: 'PUT', 
-          data: JSON.stringify($("#adminNoticeF").serializeObject()),
+          data: JSON.stringify($("#masterNoticeF").serializeObject()),
           dataType: 'json', 
           contentType: 'application/json',
           success: function(data) { 
-              adminNoticeList();
+              masterNoticeList();
           },
           error:function(xhr, status, message) { 
               alert(" status: "+status+" er:"+message);
           }
       });
    });
-}//adminNoticeUpdate
+}//masterNoticeUpdate
 
 //메뉴 목록 조회 요청
-function adminNoticeList() {
+function masterNoticeList() {
    $.ajax({
-      url:'adminNotice',
+      url:'masterNotice',
       type:'GET',
       contentType:'application/json;charset=utf-8',
       dataType:'json',
       error:function(xhr,status,msg){
          alert("상태값 :" + status + " Http에러메시지 :"+msg);
       },
-      success:adminNoticeListResult
+      success:masterNoticeListResult
    });
-}//adminNoticeList
+}//masterNoticeList
 
 //메뉴 목록 조회 응답
-function adminNoticeListResult(data) {
+function masterNoticeListResult(data) {
    $("tbody").empty();
    $.each(data,function(idx,item){
       $('<tr>')
-      .append($('<td>').html(item.adminNoticeTitle))
-      .append($('<td>').html(item.adminNoticeTime))
+      .append($('<td>').html(item.masterNoticeTitle))
+      .append($('<td>').html(item.masterNoticeDate))
       .append($('<td>').html('<i id="btnSelect" class="fas fa-eye"style="font-size:24px"\'></button>'))
       .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
-      .append($('<input type=\'hidden\' id=\'adminNoticeSeq\'>').val(item.adminNoticeSeq))
+      .append($('<input type=\'hidden\' id=\'masterNoticeSeq\'>').val(item.masterNoticeSeq))
       .appendTo('tbody');
    });//each
-}//adminNoticeListResult
+}//masterNoticeListResult
 	
 $(document).ready(function(){
 	  $("#searchNotice").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
-	    $("#adminNoticeTbl tr").filter(function() {
+	    $("#masterNoticeTbl tr").filter(function() {
 	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
 	});
@@ -151,10 +151,10 @@ $(document).ready(function(){
 	<div align="center" class="container">
 		<h4>공지사항</h4>
 		<br>
-		<form id="adminNoticeF" class="form-horizontal">
-				<input type="text" placeholder="공지사항 제목" id="adminNoticeTitle"	name="adminNoticeTitle" style="width: 100%" required><br> <br>
-				<textarea placeholder="공지사항을 입력해주세요" id="adminNoticeContent"	name="adminNoticeContent" style="width: 100%; height: 150px" required></textarea>
-				<input type="hidden" id="adminNoticeSeq" name="adminNoticeSeq"><br> <br>
+		<form id="masterNoticeF" class="form-horizontal">
+				<input type="text" placeholder="공지사항 제목" id="masterNoticeTitle"	name="masterNoticeTitle" style="width: 100%" required><br> <br>
+				<textarea placeholder="공지사항을 입력해주세요" id="masterNoticeContent"	name="masterNoticeContent" style="width: 100%; height: 150px" required></textarea>
+				<input type="hidden" id="masterNoticeSeq" name="masterNoticeSeq"><br> <br>
 			<br>
 			<div class="btn-group">
 				<input type="button" class="btn" value="등록" id="btnInsert" />
@@ -171,7 +171,7 @@ $(document).ready(function(){
 			<input class="form-control col-5" id="searchNotice" type="text"	placeholder="Search..">
 			<i class="fa fa-search col-1" style="font-size: 24px;"></i>
 		</div>
-		<table class="table text-center" id="adminNoticeTbl">
+		<table class="table text-center" id="masterNoticeTbl">
 			<thead>
 				<tr>
 					<th class="text-center">제목</th>

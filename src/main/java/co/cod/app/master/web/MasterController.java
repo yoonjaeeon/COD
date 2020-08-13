@@ -1,6 +1,9 @@
 package co.cod.app.master.web;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.cod.app.admin.AdminVO;
+import co.cod.app.admin.adminnotice.AdminNoticeVO;
 import co.cod.app.admin.service.AdminService;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.master.service.MasterService;
@@ -153,15 +157,58 @@ public class MasterController {
 		return masterService.masterCount(masterVO);
 	}
 	
+	/* 메인페이지 공지사항 INSERT */
 	@RequestMapping(value="masterNoticeInsert")
 	public String masterNoticeInsert(MasterNoticeVO masterNoticeVO) {
 		masterService.masterNoticeInsert(masterNoticeVO);
 		return "ma/master/masterMain";
 	}
-	
+
+	/* 공지사항 FORM */
 	@RequestMapping("masterNoticeForm")
 	public String masterNoticeForm() {
-		return "ad/master/masterNoticeForm";
+		return "ma/master/masterNoticeForm";
 	}
+
+	/* 공지사항 */
+	//insert
+	@RequestMapping(value="/masterNotice", method=RequestMethod.POST)
+	@ResponseBody
+	public Map insertMasterNotice(MasterNoticeVO masterNoticeVO, Model model, HttpSession session) {
+		masterService.masterNoticeInsert(masterNoticeVO);
+		return Collections.singletonMap("result",true);
+	}
+	//수정
+	@RequestMapping(value="/masterNotice", method = RequestMethod.PUT,consumes="application/json")
+	@ResponseBody
+	public MasterNoticeVO updateMasterNotice(@RequestBody MasterNoticeVO masterNoticeVO, Model model) {
+		masterService.masterNoticeUpdate(masterNoticeVO);
+		return masterNoticeVO;
+	}
+	
+	//삭제
+	@RequestMapping(value="/masterNotice/{masterNoticeSeq}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Map deleteMasterNotice(@PathVariable String masterNoticeSeq, MasterNoticeVO masterNoticeVO, Model model) {
+		masterService.masterNoticeDelete(masterNoticeVO);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+
+	/* 공지사항 단건조회 */
+	@RequestMapping(value = "/masterNotice/{masterNoticeSeq}", method = RequestMethod.GET)
+	@ResponseBody
+	public MasterNoticeVO getMasterNotice(@PathVariable Integer masterNoticeSeq, MasterNoticeVO masterNoticeVO, Model model) {
+		masterNoticeVO.setMasterNoticeSeq(masterNoticeSeq);
+		return masterService.getMasterNotice(masterNoticeVO);
+	}
+
+	/* 전체조회 */
+		@RequestMapping(value="/masterNotice", method=RequestMethod.GET)
+		@ResponseBody
+		public List<MasterNoticeVO> getMasterNoticeList(Model model, HttpSession session) {
+			return  masterService.getMasterNoticeList();
+		}
 }
 	

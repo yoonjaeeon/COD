@@ -98,9 +98,9 @@ function deleteValue(seq){ //주문상세 지우는 페이지
 		<h2>${menuList[1].cafeName}</h2>
 		<article class="mini-post">
 			<header>
-				<h3>이벤트</h3>
+				<h2>주문하는 방법</h2>
 				<h4 class="published">
-					구매후 다른 각도의 음료 사진 2장을 인스타 업로드 후 <br /> 직원에게 보여주시면 쿠기 무료 제공
+					좌석 사진을 옆으로 넘기면서 예약가능한 좌석을 선택 후 <br /> 원하는 메뉴명의 가격을 클릭 맨 하단의 결제 하기 클릭
 				</h4>
 			</header>
 		</article>

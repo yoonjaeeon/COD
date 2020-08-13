@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.mapper.AdminMapper;
 import co.cod.app.admin.service.AdminService;
+import vofile.MasterNoticeVO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -81,6 +82,9 @@ public class AdminServiceImpl implements AdminService{
 	public int idcheck1(AdminVO adminVO) {
 		return adminMapper.idcheck1(adminVO);
 	}
+	@Override
+	public MasterNoticeVO getMasterNotice() {
+		return adminMapper.getMasterNotice();
+	}
+	
 }
-
-

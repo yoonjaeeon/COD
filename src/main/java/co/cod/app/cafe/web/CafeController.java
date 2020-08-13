@@ -123,7 +123,7 @@ public class CafeController {
 
 	/* 카페상세페이지 */
 	@RequestMapping("cafe")
-	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO, SeatVO seatVO, HttpSession session) {
+	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO,PhotoVO photoVO, SeatVO seatVO, HttpSession session) {
 		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
 		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
@@ -131,7 +131,8 @@ public class CafeController {
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));
 		model.addAttribute("seatList", seatService.getSeatList(seatVO.getAdminId()));
 		model.addAttribute("adminNotice", cafeService.adminNotice(cafeVO));		
-		
+	//	model.addAttribute("fileList", photoService.getPhotoList(photoVO));
+
 		return "cafe/cafeMain";
 	} 
 
@@ -155,7 +156,7 @@ public class CafeController {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 				filename = upFile.getName();
 				cafeThumbnail.transferTo(upFile);
 			}
@@ -169,7 +170,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}						

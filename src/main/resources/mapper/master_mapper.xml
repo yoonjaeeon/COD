@@ -142,10 +142,32 @@
 </select>
 
 <insert id="masterNoticeInsert" parameterType="vofile.MasterNoticeVO">
-INSERT INTO MASTER_NOTICE(MASTER_NOTICE_SEQ, MASTER_NOTICE_TITLE, MASTER_NOTICE_CONTENT)
+INSERT INTO MASTER_NOTICE(MASTER_NOTICE_SEQ, MASTER_NOTICE_TITLE, MASTER_NOTICE_CONTENT, MASTER_NOTICE_DATE)
     VALUES( (SELECT NVL(MAX(MASTER_NOTICE_SEQ),0)+1 FROM MASTER_NOTICE),
                   #{masterNoticeTitle},
-                  #{masterNoticeContent}
+                  #{masterNoticeContent},
+                  sysdate
     )
 </insert>
+<!-- 마스터 공지사항 수정 -->
+<update id="masterNoticeUpdate" parameterType="vofile.MasterNoticeVO">
+UPDATE MASTER_NOTICE 
+SET MASTER_NOTICE_TITLE = #{masterNoticeTitle},
+	MASTER_NOTICE_CONTENT = #{masterNoticeContent}
+WHERE MASTER_NOTICE_SEQ = #{masterNoticeSeq}
+</update>
+<!-- 마스터 공지사항 삭제 -->
+<delete id="masterNoticeDelete" parameterType="vofile.MasterNoticeVO">
+DELETE FROM MASTER_NOTICE
+WHERE MASTER_NOTICE_SEQ = #{masterNoticeSeq}
+</delete>
+<select id="getMasterNotice" parameterType="vofile.MasterNoticeVO" resultType="vofile.MasterNoticeVO">
+SELECT * FROM MASTER_NOTICE
+WHERE MASTER_NOTICE_SEQ=#{masterNoticeSeq}
+</select>
+
+<select id="getMasterNoticeList" resultType="vofile.MasterNoticeVO">
+SELECT * FROM MASTER_NOTICE
+ORDER BY MASTER_NOTICE_SEQ DESC
+</select>
 </mapper>

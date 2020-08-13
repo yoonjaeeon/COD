@@ -21,15 +21,18 @@
 					
 					<div class="heart" data-class="${cafeDetail.bookmarks}">
 					
+						<c:if test="${not empty sessionScope.loginEmail}">
 						<c:if test="${not empty cafeDetail.bookmarks}">
 							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
 							id="bookmarkDelete${cafeDetail.bookmarkSeq}" 
 							></i>
-						</c:if>
-						<c:if test="${not empty cafeDetail.bookmarks}">
+							</c:if>
+						
+						 <c:if test="${empty cafeDetail.bookmarks}">
 							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color:black" data-placement="top" title="즐겨찾기 "	
 							data-toggle="tooltip" id="bookmarkInsert"></i>
-						</c:if> 
+						</c:if>  
+						</c:if>
 						
 						</div>
 					

@@ -115,9 +115,9 @@ messageSeq = seq;
                 html += '<td>'+item.messageDate+'</td>';    
 			    	  
 			    if(item.read === 1){
-            	html += '<td id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
+            	html += '<td id="msgss'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
                 }else{
-                	html +='<td id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
+                	html +='<td id="msgss'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
                 }
                 html += '</tr>';
                 $("#tbody").append(html);
@@ -201,7 +201,7 @@ messageSeq = seq;
 			</div>
 			<form action="insertMessage" class="margin2">
 				<input type="text" class="form-control" id="messageTitle" name="messageTitle" placeholder="제목 입력" /><br>
-				<input type="text" class="form-control"	id="messageContent" name="messageContent" placeholder="메세지 입력" />
+				<textarea class="form-control"	id="messageContent" name="messageContent" placeholder="메세지 입력"></textarea>
 				<div class="modal-footer">
 					<input type="submit" class="btn btn-danger" value="보내기">
 				</div>
@@ -239,14 +239,14 @@ $('#contentModal').on('show.bs.modal', function (e) {
 				$('#getMessageTitle').html(data.messageTitle);
 				$('#getMessageContent').html(data.messageContent);
 				$('#messageCount').load("getMessageCount");
-				$('#msgs'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
+				$('#msgss'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 		}
 	});
 });
 	
 receiveMessage();
 
-var str = document.getElementById("textarea").value;
+var str = document.getElementById("textarea").val();
 
 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 

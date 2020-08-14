@@ -44,7 +44,7 @@ public class ReviewController {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+						.rename(new File("C:\\cod\\upload", filename));
 				filename = upFile.getName();
 				reviewThumbnail.transferTo(upFile);
 			}
@@ -57,7 +57,7 @@ public class ReviewController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+							.rename(new File("C:\\cod\\upload", filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}
@@ -172,7 +172,7 @@ public class ReviewController {
 		if (reviewThumbnail != null) {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
-				File upFile = new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+				File upFile = new File("C:\\cod\\upload", filename);
 				/*
 				 * FileRenamePolicy.rename(new
 				 * File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
@@ -188,7 +188,7 @@ public class ReviewController {
 			for (MultipartFile file : files) {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
-					File upFile = new File("D:\\git\\COD\\src\\main\\webapp\\resources\\upload", filename);
+					File upFile = new File("C:\\cod\\upload", filename);
 					// FileRenamePolicy.rename(new
 					// File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();

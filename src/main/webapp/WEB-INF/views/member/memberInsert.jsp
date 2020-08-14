@@ -115,7 +115,7 @@
 </script>
 <div class="content">
 <h2>일반 회원가입</h2>
-<form action="memberInsert" name="frm">
+<form action="memberInsert" name="frm" method="post">
    <br> EMAIL <span id="idCheck"></span>
  <input class="form-control" type="text" id="email" name="email" onchange="fn_idChk();" />
 

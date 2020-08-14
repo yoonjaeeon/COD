@@ -370,7 +370,7 @@ $('.heart').on('click', function(){
 	$(".main_slick").slick({
 		dots : true,
 		infinite : true,
-		speed : 400,
+		speed : 200,
 		slidesToShow : 1,
 		adaptiveHeight : true
 	});

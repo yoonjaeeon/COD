@@ -14,7 +14,7 @@
       </div>
           <div class="form-group">
          <label>사업자번호:</label>
-         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" maxlength="11" placeholder="000-00-0000" >
+         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" maxlength="12" placeholder="000-00-00000" >
       </div>  
       <div class="form-group">
          <label>카페이름:</label>

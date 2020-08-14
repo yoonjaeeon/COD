@@ -81,6 +81,12 @@ messageSeq = seq;
 		})
 } //end of sendMessage 
 
+var messageSeq ;
+function messageUpdate(seq){
+messageSeq = seq;
+	/* 1 안읽음, 0 읽음	 */
+}
+
 //받은 메세지함
  function receiveMessage(seq){
 	var data = {}
@@ -109,9 +115,9 @@ messageSeq = seq;
                 html += '<td>'+item.messageDate+'</td>';    
 			    	  
 			    if(item.read === 1){
-            	html += '<td>'+'<i class="far fa-envelope"></i>'+'</td>';
+            	html += '<td id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope"></i>'+'</td>';
                 }else{
-                	html +='<td>'+'<i class="far fa-envelope-open"></i>'+'</td>';
+                	html +='<td id="msgs'+item.messageSeq+'">'+'<i class="far fa-envelope-open"></i>'+'</td>';
                 }
                 html += '</tr>';
                 $("#tbody").append(html);
@@ -233,9 +239,16 @@ $('#contentModal').on('show.bs.modal', function (e) {
 				$('#getMessageTitle').html(data.messageTitle);
 				$('#getMessageContent').html(data.messageContent);
 				$('#messageCount').load("getMessageCount");
+				$('#msgs'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 		}
 	});
 });
 	
 receiveMessage();
+
+var str = document.getElementById("textarea").value;
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+document.getElementById("textarea").value = str;
 </script>

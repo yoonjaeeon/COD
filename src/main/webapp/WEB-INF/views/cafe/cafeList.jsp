@@ -20,7 +20,7 @@ function backF(){
          <input type="text"  class="form-control" id="id" name="adminId" value="${cafeList.adminId}" readonly>
       </div>   
        <div class="form-group">
-         <label>사업자번호:</label>
+         <label>사업자번호:</label><span id="saup" style="color:red"></span>
           <div class="row">
          <input type="text"  class="form-control col-9"  id="cafeBn" name="cafeBn" value="${cafeList.cafeBn}" >
          <input type="button" class="col-3" id="bnSearch" value="검색">
@@ -74,8 +74,23 @@ function backF(){
    </form>
 </div>      
    <script type="text/javascript">
+   /* 사업자번호 조회 */
 $('body').on('click', '#bnSearch', function() {
-	window.open('https://www.hometax.go.kr/websquare/websquare.wq?w2xPath=/ui/pp/index_pp.xml&tmIdx=1&tm2lIdx=0108000000&tm3lIdx=0108010000')
+	
+	var value = $('#cafeBn').val();
+
+	$.ajax( {
+		url : "checkBus",
+		data :  {value : value},
+		success : function(datas){
+			
+			console.log( $(datas).find("smpcBmanTrtCntn").text());
+			$('#saup').text($(datas).find("smpcBmanTrtCntn").text());
+			
+		}
+	})
+	
+	
 });
 </script>  
   

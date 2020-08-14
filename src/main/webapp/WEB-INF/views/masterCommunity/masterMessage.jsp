@@ -223,20 +223,20 @@ function sendAjax(){
 			data : {messageSeq:messageSeq},
 			dataType :'json',
 			success:function(data){
-				if(data == null){
-					alert("data=0");
-					data=0;
-				}else{
-					$('#getMessageTitle').html(data.messageTitle);
-					$('#getMessageContent').html(data.messageContent);
-					$('#messageCount').load("getMasterMessageCount");
-					$('#msgs'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
-				}
+				$('#messageCount').load("getMasterMessageCount");
+				$('#getMessageTitle').html(data.messageTitle);
+				$('#getMessageContent').html(data.messageContent);
+				$('#msgs'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
 			}
 		})
-
 	})  
 receiveMessage();
+	
+	 var str = document.getElementById("textarea").value;
+
+	 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+	 document.getElementById("textarea").value = str;
 </script>
 
 <!-- Modal Message -->
@@ -254,8 +254,8 @@ receiveMessage();
 			<form method="post" id="sendModal" name="sendModal">
 				<input type="hidden" id="sendMessageSeq">
 				<input type="text" name="messageTitle" class="form-control" placeholder="제목 입력" />
-					<textarea type="text" name="messageContent" class="form-control" placeholder="메세지 입력" >
-					</textarea>/<
+					<textarea name="messageContent" class="form-control" placeholder="메세지 입력" >
+					</textarea>
 				<input type="hidden" id="adminId" name="adminId" readonly ><br> 
 				<div class="modal-footer">
 					<input type="button" onclick="sendAjax()" class="btn btn-danger" value="보내기">

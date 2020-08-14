@@ -3,6 +3,7 @@ package co.cod.app.cafe.web;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -15,19 +16,25 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import co.cod.app.FileRenamePolicy;
 import co.cod.app.admin.AdminVO;
 import co.cod.app.admin.service.AdminService;
-import co.cod.app.admin.worker.WorkerVO;
 import co.cod.app.cafe.CafeVO;
 import co.cod.app.cafe.service.CafeService;
 import co.cod.app.menu.service.MenuService;
@@ -42,6 +49,10 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+
+
+
+
 
 @Controller
 public class CafeController {
@@ -72,6 +83,12 @@ public class CafeController {
 		return "memberList/memberAreaList";
 	}
 
+	@RequestMapping("cafeList")
+	public String cafeList(Model model ,HttpSession session,CafeVO cafeVO, AdminVO adminVO) {			
+		model.addAttribute("cafeList",cafeService.getCafe(cafeVO));
+		return "ma/cafe/cafeList";
+	}
+	
 	/* 카페 테마 리스트 보여주게하기. */
 	@RequestMapping("themeList")
 	public String getThemeList(HttpSession session, CafeVO cafeVO, Model model) {
@@ -333,6 +350,33 @@ public class CafeController {
 		result.put("result", Boolean.TRUE);
 		return result;
 	}
+	
+	//사업자 번호 받아오기
+	@RequestMapping("checkBus")
+    public  void checkBus(@RequestParam String value,HttpServletResponse res) throws IOException {
+		value = value.replaceAll("-", "");
+        res.setContentType("text/xml; charset=UTF-8");
+        String url = "https://teht.hometax.go.kr/wqAction.do?actionId=ATTABZAA001R08";
+        RestTemplate template = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+
+        URI uri = UriComponentsBuilder.fromUriString(url).buildAndExpand().encode().toUri(); 
+
+        String prop = "<map id=\"ATTABZAA001R08\">" + 
+                "<pubcUserNo/>" + 
+                "<mobYn>N</mobYn>" + 
+                "<inqrTrgtClCd>1</inqrTrgtClCd>" + 
+                "<txprDscmNo>"+value+"</txprDscmNo>" + 
+                "<dongCode>15</dongCode>" + 
+                "<psbSearch>Y</psbSearch>" + 
+                "<map id=\"userReqInfoVO\"/>" + 
+                "</map>";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_XML);
+        HttpEntity<String> request = new HttpEntity<>(prop, headers);
+        String result = template.postForObject(url, request, String.class);
+        res.getWriter().print(result);
+    }
+
 	
 	
 	

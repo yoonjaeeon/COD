@@ -13,7 +13,7 @@ function backF(){
 
 <body>
 <div class="container">
-   <form action="insertCafe" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
+   <form action="cafeList" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div align="center"><h2>카페 확인</h2></div>
       <div class="form-group">      
          <label> 관리자 아이디:</label>

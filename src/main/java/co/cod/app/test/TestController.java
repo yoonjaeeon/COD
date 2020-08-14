@@ -36,12 +36,7 @@ public class TestController {
 		return "ad/memberList/memberOrderList";
 	}
 
-	@RequestMapping("cafeList")
-	public String cafeList(Model model ,HttpSession session,CafeVO cafeVO, AdminVO adminVO) {
-		cafeVO.setAdminId((String)session.getAttribute("adminId"));
-		model.addAttribute("cafeList",cafeservice.getCafe(cafeVO));
-		return "ad/cafe/cafeList";
-	}
+	
 	
 	@RequestMapping("cafeWaiting")
 	public String cafeWaiting() {

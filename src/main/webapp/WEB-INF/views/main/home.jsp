@@ -7,6 +7,7 @@ if(message.length>0){
 	alert('${msg}');
 }
 
+$(function(){
 $('.heart').on('click', function(){
 	var i = $(this).find('i')
 	console.log($(this).data('class')) 
@@ -24,7 +25,7 @@ $('.heart').on('click', function(){
 			success:function(){
 				$("#bookmarkDelete"+seq).css('color','black');
 				$(this).find('i').removeAttr( 'id' )
-				$(this).find('i').addAttr("id","bookmarkInsert")
+				$(this).find('i').attr("id","bookmarkInsert")
 				i.toggleClass('red');
 				//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
 				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
@@ -48,6 +49,7 @@ $('.heart').on('click', function(){
 			} 
 		})
 	}	  
+})
 })
 </script>
 <div class="main_slick">
@@ -169,7 +171,7 @@ $('.heart').on('click', function(){
 
 		<div class="card mb-2 py-1 border-bottom-primary" id="동구"
 			onclick="location.href='areaList?cafeAddress=동구'">
-			<div class="card-body" >
+			<div class="card-body">
 				<a href="#" class="hvr-float-shadow"><font
 					style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;">동구</font></font></a>
@@ -299,20 +301,24 @@ $('.heart').on('click', function(){
 						<div class="col-sm-2">
 							<div class="heart" data-class="${list.bookmarks}">
 								<c:if test="${list.bookmarks == 1 }">
-									<i class="far fa-heart" style="color: red"></i>
+									<i class="far fa-heart" data-placement="top" title="즐겨찾기 "
+										data-toggle="tooltip" style="color: red" data-id='${list.adminId}'
+										id="bookmarkDelete${list.bookmarkSeq}"></i>
 								</c:if>
 								<c:if test="${list.bookmarks == 0}">
-									<i class="far fa-heart"></i>
-								</c:if>
-								<c:if test="${empty list.bookmarks}">
-									<i class="far fa-heart"></i>
-								</c:if>
+									<i class="far fa-heart" data-placement="top" title="즐겨찾기 "
+										data-toggle="tooltip" data-id='${list.adminId}'></i>
+								</c:if>								
 							</div>
+							<c:if test="${empty list.bookmarks}">
+									<i class="far fa-heart" data-placement="top" title="로그인이 필요한 기능 "
+										data-toggle="tooltip"></i>
+								</c:if>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
-					<a href="cafe?adminId=${list.adminId}" class="image"><img class="slick"
-						src="resources/upload/${list.cafeThumbnail }" alt=""></a>
+					<a href="cafe?adminId=${list.adminId}" class="image"><img
+						class="slick" src="resources/upload/${list.cafeThumbnail }" alt=""></a>
 				</article>
 			</div>
 		</c:forEach>
@@ -336,15 +342,20 @@ $('.heart').on('click', function(){
 						<div class="col-sm-2">
 							<div class="heart" data-class="${list.bookmarks}">
 								<c:if test="${list.bookmarks == 1 }">
-									<i class="far fa-heart" style="color: red"></i>
+									<i class="far fa-heart" data-placement="top" title="즐겨찾기 "
+										data-toggle="tooltip" style="color: red" data-id='${list.adminId}'
+										id="bookmarkDelete${list.bookmarkSeq}"></i>
 								</c:if>
 								<c:if test="${list.bookmarks == 0}">
-									<i class="far fa-heart"></i>
-								</c:if>
-								<c:if test="${empty list.bookmarks}">
-									<i class="far fa-heart"></i>
+									<i class="far fa-heart" data-placement="top" title="즐겨찾기 "
+										data-toggle="tooltip" data-id='${list.adminId}'></i>
 								</c:if>
 							</div>
+							
+								<c:if test="${empty list.bookmarks}">
+									<i class="far fa-heart" data-placement="top" title="로그인이 필요한 기능 "
+										data-toggle="tooltip" ></i>
+								</c:if>
 							<h4>${list.stars }</h4>
 						</div>
 					</header>
@@ -367,6 +378,8 @@ $('.heart').on('click', function(){
 		alt=""></a>
 </div>
 <script>
+$('[data-toggle="tooltip"]').tooltip();
+
 	$(".main_slick").slick({
 		dots : true,
 		infinite : true,

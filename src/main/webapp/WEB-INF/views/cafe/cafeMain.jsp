@@ -2,6 +2,51 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script>
+$(function(){
+	$('.heart').on('click', function(){
+		var i = $(this).find('i');
+		console.log($(this).data('class')) 
+		if(i.css('color')=='rgb(255, 0, 0)'){
+			if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
+				return
+			}else
+			/* 클린한 곳에서 id를 찾아서 8번째 문자를 반환시켜줌 */
+			var seq = $(this).find('i').attr('id').substr(14);
+			$.ajax({
+				url :'deleteBookmark?', 
+				data : {bookmarkSeq:seq},
+				method : 'post',
+				dataType :'json' ,
+				success:function(){
+					$("#bookmarkDelete"+seq).css('color','black');
+					$(this).find('i').removeAttr( 'id' )
+					$(this).find('i').attr("id","bookmarkInsert")
+					i.toggleClass('red');
+					//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
+					//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
+				} 
+			})
+		}else{
+			if(!confirm("즐겨찾기목록에 등록하시겠습니까?")){
+				return
+			}
+			var id = i.data('id');
+			$.ajax({
+				url :'insertBookmark', 
+				data : {adminId:id },
+				method : 'post',
+				dataType :'json' ,
+				success:function(data){
+					i.css('color', 'red')
+					.attr('id', 'bookmarkDelete'+data.bookmarkSeq)    				
+				} 
+			})
+		}	  
+	})
+	})
+</script>
+
 <div id="wrapper">
 	<article class="post">
 		<div class="main_slick">
@@ -17,12 +62,12 @@
 			<div class="row">
 				<div class="col-lg-4 boxs" style="padding: 2em">
 					<div id="cafeName"><h2>${cafeDetail.cafeName }</h2></div>
-					
 					<div class="heart" data-class="${cafeDetail.bookmarks}">
 					
 						<c:if test="${not empty sessionScope.loginEmail}">
 						<c:if test="${not empty cafeDetail.bookmarks}">
-							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"></i>
+							<i class="far fa-heart" data-id='${cafeDetail.adminId}' style="color: red" data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"
+							id="bookmarkDelete${cafeDetail.bookmarkSeq}"></i>
 							</c:if>
 						
 						 <c:if test="${empty cafeDetail.bookmarks}">
@@ -249,6 +294,7 @@
 </div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
 	<script>
+	$('[data-toggle="tooltip"]').tooltip();
 	//리뷰 작성 체크
 		function orderLogin() {
 			alert("주문은 회원가입 후 가능합니다");
@@ -365,46 +411,6 @@ $(function(){
 		});
 	});
 	
-	$('.heart').on('click', function(){
-    	var i = $(this).find('i')
-    	console.log($(this).data('class')); 
-    	if(i.css('color')=='rgb(255, 0, 0)'){
-    		if(!confirm("정말 즐겨찾기목록에서 삭제하시겠습니까?")){
-    			return
-    		}else
-    		/* 클린한 곳에서 id를 찾아서 8번째 문자를 반환시켜줌 */
-    		var seq = $(this).find('i').attr('id').substr(14);
-    		$.ajax({
-    			url :'deleteBookmark?', 
-    			data : {bookmarkSeq:seq},
-    			method : 'post',
-    			dataType :'json' ,
-    			success:function(){
-    				$("#bookmarkDelete"+seq).css('color','black');
-    				$(this).find('i').attr("id","bookmarkInsert");    				
-    				i.toggleClass('red');
-					//.attr.idadd('id', 'id="bookmarkDelete${theme.bookmarkSeq} ')
-    				//$("#bookmark"+seq).closest('article').remove() /* closest 조상중에서 찾음 */
-    			} 
-    		})
-    	}else{
-    		if(!confirm("즐겨찾기목록에 등록하시겠습니까?")){
-    			return
-    		}
-    		var result = $(this).find('i');
-    		var id = $(this).find('i').data('id')
-    		$.ajax({
-    			url :'insertBookmark', 
-    			data : {adminId:id },
-    			method : 'post',
-    			dataType :'json' ,
-    			success:function(data){
-    				result.attr('style', 'color:red')
-    				.attr('id', 'bookmarkDelete'+data.bookmarkSeq);
-    			} 
-    		})
-    	}
-    });
 
 })
 	

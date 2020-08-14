@@ -126,7 +126,7 @@ public class CafeController {
 	public String cafe(Model model, CafeVO cafeVO, ReviewVO reviewVO,PhotoVO photoVO, SeatVO seatVO, HttpSession session) {
 		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
 		cafeVO =cafeService.getCafe(cafeVO);
-		model.addAttribute("cafeDetail", cafeService.getCafe(cafeVO));
+		model.addAttribute("cafeDetail", cafeVO);
 		model.addAttribute("cafeMenu", menuService.getMenuList(cafeVO.getAdminId()));
 		model.addAttribute("cafeLocation", cafeService.getLocation(cafeVO));
 		model.addAttribute("reviewList", reviewService.getReviewList(reviewVO));

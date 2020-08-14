@@ -89,7 +89,7 @@
 	        </div>
 	        <div class="col-3">
 	         <div class="form-group">
-	         <label >키즈존 여부</label>
+	         <label >노키즈존 여부</label>
 	         <div class="radio">
 	            <label><input type="radio"  name="nokid" id="nokid" value="1" >Yes</label>
 	         </div>

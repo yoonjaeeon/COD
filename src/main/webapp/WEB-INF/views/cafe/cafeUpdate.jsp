@@ -178,7 +178,7 @@
         </div>
       <div class="col-3">   
         <div class="form-group">
-	         <label >키즈존 여부</label>
+	         <label >노키즈존 여부</label>
 	         <c:if test="${getCafe.nokid==1}">
 	          <div class="radio">
 	            <label><input type="radio"  name="nokid" id="nokid" value="1" checked="checked">Yes</label>

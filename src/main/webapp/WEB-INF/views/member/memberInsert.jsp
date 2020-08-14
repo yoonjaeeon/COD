@@ -59,26 +59,24 @@
    }
 	////// 아이디 중복체크 
 	/////////아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
-		function fn_idChk(){
-			$.ajax({
-				url : "idcheck",
-				type : "post",
-				dataType : "json",
-				data : {"email" : $("#email").val()},
-				success : function(data){
-					if(data == 1){
-						alert("중복된 아이디입니다.");
-						frm.email.value ="";
-					}else if(data == null ||  data == ""){
-						$("#idCheck").attr("value", "Y");
-						alert("사용가능한 아이디입니다.");
-					}
+	function fn_idChk(){
+		$.ajax({
+			url : "idcheck",
+			type : "post",
+			dataType : "json",
+			data : {"email" : $("#email").val()},
+			success : function(data){
+				if(data == 1){
+					alert("중복된 아이디입니다.");
+					frm.email.value ="";
+				}else if(data == null ||  data == ""){
+					$("#idCheck").attr("value", "Y");
+					$("#idCheck").css('display', 'inline-block');
 				}
-			})
+			}
+		})
 	}	
    ///////비밀번호
-   
-   
    
    function pwValidCheck() {
       var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -116,7 +114,7 @@
 <div class="content">
 <h2>일반 회원가입</h2>
 <form action="memberInsert" name="frm" method="post">
-   <br> EMAIL <span id="idCheck"></span>
+   <br> EMAIL <span id="idCheck" style="display:none;">사용가능한 아이디 입니다.</span>
  <input class="form-control" type="text" id="email" name="email" onchange="fn_idChk();" />
 
    <br />
@@ -157,7 +155,6 @@
             $("#alert-success").css('display', 'none');
             $("#alert-danger").css('display', 'inline-block');
             $("#pw").val("");
-            
             $("#pw2").val("");
             frm.pw.focus();
          }

@@ -390,11 +390,6 @@ function getSeat(seatName, seatSize, seatSeq){
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : cafeName,
 	            amount : $('#sum').html(),
-	            buyer_email : 'yedam@ac.kr',
-	            buyer_name : '서강',
-	            buyer_tel : '010-1598-1521',
-	            buyer_addr : '대구 곽병원',
-	            buyer_postcode : '123-456',
 	            //m_redirect_url : 'http://www.naver.com'
 	        }, function(rsp) {
 	            if ( rsp.success ) {

@@ -100,7 +100,7 @@ $(function(){
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>
             <a class="collapse-item" href="adminNoticeList">공지사항관리</a>
             <a class="collapse-item" href="cafeUpdateForm">카페수정</a>
-             <a class="collapse-item" href="cafe?adminId=${sessionScope.adminId }">내 카페보기</a>
+             <a class="collapse-item" href="cafe?adminId=${sessionScope.adminId }" target="_blank">내 카페보기</a>
           </div>
         </div>
       </li>

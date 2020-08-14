@@ -25,7 +25,7 @@ function logoutCheck(){
          <li><a href="themeList">테마별</a></li>
          <li><a href="areaList">지역별</a></li>
          </c:if>
-         <c:if test="${empty sessionScope.loginEmail }">
+         <c:if test="${empty sessionScope.loginEmail and empty sessionScope.adminId}">
          <li><a href="memberLoginForm">로그인</a></li>
          <li><a href="memberInsertForm">회원가입</a></li>
          </c:if>         

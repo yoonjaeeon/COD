@@ -1,15 +1,12 @@
 package co.cod.app.member.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,16 +35,6 @@ public class MemberController {
 		return "member/memberInsert";
 	}
 
-//	//아이디 중복 체크 
-//	 @RequestMapping("idcheck")
-//	    @ResponseBody
-//	    public Map<Object, Object> idcheck(@RequestBody String email , MemberVO memberVO) {
-//	      int count = 0;
-//	       Map<Object, Object> map = new HashMap<Object, Object>();
-//	       count = memberService.idcheck(email);
-//	        map.put("cnt", count);	 
-//	        return map;
-//	    }
 	//아이디 체크 
 	@ResponseBody
 	@RequestMapping(value="/idcheck", method = RequestMethod.POST)
@@ -60,14 +47,7 @@ public class MemberController {
 	@RequestMapping(value = "/memberInsert", method = RequestMethod.POST)
 	public String insertMember(MemberVO memberVO, Model model) {
 		memberService.insertMember(memberVO);
-		int result = memberService.idcheck(memberVO);
-			if(result == 1) {
-					return "/member/memberInsert";
-			
-			}else if(result == 0) {
-				  memberService.idcheck(memberVO);
-			}	
-			 return "redirect:home";
+		return "redirect:home";
 	}
 
 	// 멤버 탈퇴
@@ -156,22 +136,8 @@ public class MemberController {
 			return "member/Login";
 		}
 
-		/*
-		 * if(result.getEmail().equals(memberVO.getEmail()) &&
-		 * result.getPw().equals(memberVO.getPw())) { return "redirect:home"; }else
-		 * if(result.getPw().equals(null)) { model.addAttribute("msg", "잘못된 PW입니다.");
-		 * return "memberLoginForm"; }else if(result.getEmail().equals(null)) { return
-		 * "memberLoginForm"; }
-		 */
 		return null;
 
-		/*
-		 * if() { model.addAttribute("msg", email +"님 환영합니다");
-		 * session.setAttribute("sessionEmail", email); return "redirect:home"; }else
-		 * if( ) { model.addAttribute("msg", "잘못된 ID입니다."); return "memberLoginForm";
-		 * }else if(memberVO.getPw() != pw) { model.addAttribute("msg", "잘못된 PW입니다.");
-		 * return "memberLoginForm"; } return "redirect:home";
-		 */
 	}
 
 	@RequestMapping("memberLoginForm")
@@ -180,12 +146,6 @@ public class MemberController {
         model.addAttribute("kakao_url", kakaoUrl);
 		return "member/Login";
 	}
-
-	@RequestMapping("memberMain")
-	public String memberMain(Model model) {
-		return "";
-	}
-
 	@RequestMapping("insertBookmark")
 	@ResponseBody
 	public BookmarksVO insertBookmark(Model model, BookmarksVO bookmarksVO, HttpSession session) {

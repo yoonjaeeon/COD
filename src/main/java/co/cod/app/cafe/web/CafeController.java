@@ -306,7 +306,7 @@ public class CafeController {
 		cafeService.updateCafe(cafeVO);
 		AdminVO adminVO = new AdminVO();
 		adminVO.setAdminId((String) session.getAttribute("adminId"));
-		adminVO.setCafeState(1);
+		adminVO.setCafeState(2);
 		adminService.updateCafeState(adminVO);
 		return "redirect:admin";
 	}

@@ -7,11 +7,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<!-- slick -->
-	<link rel="stylesheet" type="text/css" href="resources/slick/slick.css" />
-	<link rel="stylesheet" type="text/css"href="resources/slick/slick-theme.css" />
-	<script src="resources/slick/slick.min.js"></script>
-	<script src="resources/member/assets/js/jquery.min.js"></script>
 <style type="text/css">
 body {
     margin:2em;
@@ -75,35 +70,24 @@ body {
 	</div>
 	<div class="col-12" align="center">
 	<br><br>
-		<button class="btn btn-outline-info" style="margin-right: 25px">수정</button> <button class="btn btn-outline-info">삭제</button>
+		
 	</div>
+	
 </div>
-<div class="main_slick">
-
+<div class="row">
 	<c:forEach items="${photo}" var="p" >
-
+		<div class="col-6">
 			<div class="image featured"	style="width:100%;  overflow: hidden">
 				<img src="../resources/upload/${p.photoName}" class="image fit">
 			</div>
-
+		</div>
 	</c:forEach>
-
 </div>
 
 <script>
-$("div.main_slick").slick({
-	infinite : true,
-	speed : 400,
-	slidesToShow : 1,
-	adaptiveHeight : true,
-	dot : true
-});
-
-
 var str = document.getElementById("textarea").value;
 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 document.getElementById("textarea").value = str;
 </script>
-
 </body>
 </html>

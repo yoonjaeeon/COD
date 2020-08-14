@@ -247,9 +247,7 @@
 		</div>
 	</article>
 </div>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
-
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=094a897b2c2dd75dce40464014299bf4"></script>
 	<script>
 	//리뷰 작성 체크
 		function orderLogin() {
@@ -302,6 +300,9 @@
 //첫번째 페이지 로드
 // $(".cafeReviewList").load("cafeReviewList?adminId=${param.adminId}");
 //more 버튼 클릭시
+
+$(function(){
+	
 	$(".btn_review").click(function() {
 	 $.ajax(
 		{url: "cafeReviewList",
@@ -316,17 +317,7 @@
 	$(".btn_toggle").click(function() {
 		$(".toggleView").collapse('toggle');
 	});
-	function getSeat(seatName, seatSize, seatSeq){
-		$('#seatName').html(seatName);
-		$('#seatSeq').html(seatSeq);
-		if(seatSize == 1){
-		$('#seatSize').html("2인석");
-		}else if(seatSize == 2){
-			$('#seatSize').html("4인석")
-		}else{
-			$('#seatSize').html("단체석")
-		}
-	}
+
 	$("div.main_slick").slick({
 		infinite : true,
 		speed : 400,
@@ -414,4 +405,19 @@
     		})
     	}
     });
+
+})
+	
+	function getSeat(seatName, seatSize, seatSeq){
+		$('#seatName').html(seatName);
+		$('#seatSeq').html(seatSeq);
+		if(seatSize == 1){
+		$('#seatSize').html("2인석");
+		}else if(seatSize == 2){
+			$('#seatSize').html("4인석")
+		}else{
+			$('#seatSize').html("단체석")
+		}
+	}
+	
 </script>

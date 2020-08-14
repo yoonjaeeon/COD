@@ -14,7 +14,7 @@
       </div>
           <div class="form-group">
          <label>사업자번호:</label>
-         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" maxlength="11" placeholder="000-00-0000" >
+         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" maxlength="12" placeholder="000-00-00000" >
       </div>  
       <div class="form-group">
          <label>카페이름:</label>
@@ -43,10 +43,10 @@
       <label>썸네일:</label> 
       <input type="file" id="upload" name="upload"/>
      </div>  
-     	<div class="form-group">
+        <div class="form-group">
       <label>카페상세사진:</label> 
       <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
-     	</div> 
+        </div> 
       <div class="form-group">
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" >
@@ -69,104 +69,104 @@
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
          </div>
        </div>     
-        	 <br>
+            <br>
          <div>
          <label>문의사항:</label><br>
          <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent"></textarea>
       </div><br>
       <div class="row">
-      		<div class="col-3">
-				<div class="form-group">
-				   <label >wifi 여부</label>
-				   <div class="radio">
-				      <label><input type="radio"  name="wifi" id="wifi" value="1" >Yes</label>
-			    </div>
-				   
-				<div class="radio">
-				      <label><input type="radio"  name="wifi" id="wifi"  value="0" checked="checked">No</label>
-			    </div>
-			    </div><br>
-	        </div>
-	        <div class="col-3">
-	         <div class="form-group">
-	         <label >노키즈존 여부</label>
-	         <div class="radio">
-	            <label><input type="radio"  name="nokid" id="nokid" value="1" >Yes</label>
-	         </div>
-	         <div class="radio"> 
-	            <label><input type="radio"  name="nokid" id="nokid"  value="0" checked="checked">No</label>
-	         </div> 
-	         </div><br>
-	         </div>
-	         <div class="col-3">
-		         <div class="form-group">
-		         <label >주차여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="parking" id="parking" value="1" >Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="parking" id="parking" value="0" checked="checked">No</label>
-		         </div> 
-		         </div><br>
-	         </div>
-	         <div class="col-3">
-		         <div class="form-group">
-		         <label >반려견동반여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="animal" id="animal" value="1" >Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="animal" id="animal" value="0" checked="checked">No</label>
-		         </div>
-		         </div> <br>
-	         </div>
-	         <div class="col-3">
-	          <div class="form-group">
-	         <label >빔프로젝트 대여여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="beam" id="beam"  value="1" >Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="beam" id="beam" value="0" checked="checked">No</label>
-		         </div> 
-		         </div><br>
-	         </div>
-	         <div class="col-3">
-		          <div class="form-group">
-		         <label >충전기 대여여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="charger" id="charger" value="1" >Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="charger" id="charger" value="0" checked="checked">No</label>
-		         </div>
-		         </div> <br>
-	         </div>
-	         <div class="col-3">
-	             <div class="form-group">
-		         <label >단체석 여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="bigSeat" id="bigSeat" value="1">Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="bigSeat" id="bigSeat" value="0"  checked="checked">No</label>
-		         </div> 
-		         </div><br>
-	         </div>
-	         <div class="col-3">
-		         <div class="form-group">
-		         <label >대관여부</label>
-		         <div class="radio">
-		            <label><input type="radio"  name="lend" id="lend" value="1" >Yes</label>
-		         </div>
-		         <div class="radio">
-		            <label><input type="radio"  name="lend" id="lend" value="0" checked="checked">No</label>
-		         </div>
-	         </div>
-	         </div> <br>
+            <div class="col-3">
+            <div class="form-group">
+               <label >wifi 여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="wifi" id="wifi" value="1" >Yes</label>
+             </div>
+               
+            <div class="radio">
+                  <label><input type="radio"  name="wifi" id="wifi"  value="0" checked="checked">No</label>
+             </div>
+             </div><br>
+           </div>
+           <div class="col-3">
+            <div class="form-group">
+            <label >노키즈존 여부</label>
+            <div class="radio">
+               <label><input type="radio"  name="nokid" id="nokid" value="1" >Yes</label>
+            </div>
+            <div class="radio"> 
+               <label><input type="radio"  name="nokid" id="nokid"  value="0" checked="checked">No</label>
+            </div> 
+            </div><br>
+            </div>
+            <div class="col-3">
+               <div class="form-group">
+               <label >주차여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="parking" id="parking" value="1" >Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="parking" id="parking" value="0" checked="checked">No</label>
+               </div> 
+               </div><br>
+            </div>
+            <div class="col-3">
+               <div class="form-group">
+               <label >반려견동반여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="animal" id="animal" value="1" >Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="animal" id="animal" value="0" checked="checked">No</label>
+               </div>
+               </div> <br>
+            </div>
+            <div class="col-3">
+             <div class="form-group">
+            <label >빔프로젝트 대여여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="beam" id="beam"  value="1" >Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="beam" id="beam" value="0" checked="checked">No</label>
+               </div> 
+               </div><br>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+               <label >충전기 대여여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="charger" id="charger" value="1" >Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="charger" id="charger" value="0" checked="checked">No</label>
+               </div>
+               </div> <br>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+               <label >단체석 여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="bigSeat" id="bigSeat" value="1">Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="bigSeat" id="bigSeat" value="0"  checked="checked">No</label>
+               </div> 
+               </div><br>
+            </div>
+            <div class="col-3">
+               <div class="form-group">
+               <label >대관여부</label>
+               <div class="radio">
+                  <label><input type="radio"  name="lend" id="lend" value="1" >Yes</label>
+               </div>
+               <div class="radio">
+                  <label><input type="radio"  name="lend" id="lend" value="0" checked="checked">No</label>
+               </div>
+            </div>
+            </div> <br>
          </div>
          <input type="hidden" name="cafeX">
-		 <input type="hidden" name="cafeY">	
+       <input type="hidden" name="cafeY">   
       <div class="btn-group">      
              <button type="button" class="btn btn-primary" onclick="cafeInsert()">등록</button>
            <!--  <button type="submit" data-toggle="modal" data-target="#contentModal"  class="btn btn-primary" >등록</button>  -->
@@ -178,11 +178,11 @@
 
 
 <script>
-	//주소-좌표 변환 객체를 생성
-	var geocoder = new daum.maps.services.Geocoder();
-	
+   //주소-좌표 변환 객체를 생성
+   var geocoder = new daum.maps.services.Geocoder();
+   
     $('body').on('click', '#adressSearch', function() {
-    	new daum.Postcode({
+       new daum.Postcode({
             oncomplete: function(data) {
                 var addr = data.address; // 최종 주소 변수
                 // 주소 정보를 해당 필드에 넣는다.
@@ -206,102 +206,102 @@
                 });
             }
         }).open();
-	}); 
+   }); 
 
 </script>
   <script type="text/javascript">
-	function cafeInsert(){
-		if ($('[name=cafeBn]').val() ==""|| $('[name=cafeBn]').val() == null){
-			alert("사업자 번호가 입력되지 않았습니다.");			
-			$('[name=cafeBn]').focus();
-		}else if($('[name=cafeName]').val() == ""|| $('[name=cafeName]').val() == null){
-			alert("카페이름이 입력되지 않았습니다.");
-			$('[name=cafeName]').focus();
-		}else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
-			alert("카페주소가 입력되지 않았습니다.");
-			$('[name=cafeAddress]').focus();
-		 } else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
-			alert("카페 썸네일이 입력되지 않았습니다.");
-			$('[name=upload]').focus();	 
-		 }else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
-			alert("카페 상세사진이 입력되지 않았습니다.");
-			$('[name=uploadFile]').focus(); 
-		
-		 }else{	
-			alert("카페등록이 완료 되었습니다.");
-			form1.submit();
-			return;
-		}
-	}
+   function cafeInsert(){
+      if ($('[name=cafeBn]').val() ==""|| $('[name=cafeBn]').val() == null){
+         alert("사업자 번호가 입력되지 않았습니다.");         
+         $('[name=cafeBn]').focus();
+      }else if($('[name=cafeName]').val() == ""|| $('[name=cafeName]').val() == null){
+         alert("카페이름이 입력되지 않았습니다.");
+         $('[name=cafeName]').focus();
+      }else if($('[name=cafeAddress]').val() == ""|| $('[name=cafeAddress]').val() == null){
+         alert("카페주소가 입력되지 않았습니다.");
+         $('[name=cafeAddress]').focus();
+       } else if($('[name=upload]').val() == ""|| $('[name=upload]').val() == null){
+         alert("카페 썸네일이 입력되지 않았습니다.");
+         $('[name=upload]').focus();    
+       }else if($('[name=uploadFile]').val() == ""|| $('[name=uploadFile]').val() == null){
+         alert("카페 상세사진이 입력되지 않았습니다.");
+         $('[name=uploadFile]').focus(); 
+      
+       }else{   
+         alert("카페등록이 완료 되었습니다.");
+         form1.submit();
+         return;
+      }
+   }
 
-	 var autoHypenPhone = function(str){
-		    str = str.replace(/[^0-9]/g, '');
-		    var tmp = '';
-		    if( str.length < 4){
-		        return str;
-		    }else if(str.length < 7){
-		        tmp += str.substr(0, 3);
-		        tmp += '-';
-		        tmp += str.substr(3);
-		        return tmp;
-		    }else if(str.length < 11){
-		        tmp += str.substr(0, 3);
-		        tmp += '-';
-		        tmp += str.substr(3, 3);
-		        tmp += '-';
-		        tmp += str.substr(6);
-		        return tmp;
-		    }else{              
-		        tmp += str.substr(0, 3);
-		        tmp += '-';
-		        tmp += str.substr(3, 4);
-		        tmp += '-';
-		        tmp += str.substr(7);
-		        return tmp;
-		    }
+    var autoHypenPhone = function(str){
+          str = str.replace(/[^0-9]/g, '');
+          var tmp = '';
+          if( str.length < 4){
+              return str;
+          }else if(str.length < 7){
+              tmp += str.substr(0, 3);
+              tmp += '-';
+              tmp += str.substr(3);
+              return tmp;
+          }else if(str.length < 11){
+              tmp += str.substr(0, 3);
+              tmp += '-';
+              tmp += str.substr(3, 3);
+              tmp += '-';
+              tmp += str.substr(6);
+              return tmp;
+          }else{              
+              tmp += str.substr(0, 3);
+              tmp += '-';
+              tmp += str.substr(3, 4);
+              tmp += '-';
+              tmp += str.substr(7);
+              return tmp;
+          }
 
-		    return str;
-		}
-
-
-		var phone = document.getElementById('phone');
-
-		phone.onkeyup = function(){
-		console.log(this.value);
-		this.value = autoHypenPhone( this.value ) ;  
-		}
-		
-		
-		var autoHypenCafeBn = function(str){
-		    str = str.replace(/[^0-9]/g, '');
-		    var tmp = '';
-		    if( str.length < 4){
-		        return str;
-		    }else if(str.length < 5){
-		        tmp += str.substr(0, 3);
-		        tmp += '-';
-		        tmp += str.substr(3);
-		        return tmp;
-		    }else{              
-		        tmp += str.substr(0, 3);
-		        tmp += '-';
-		        tmp += str.substr(3, 2);
-		        tmp += '-';
-		        tmp += str.substr(5);
-		        return tmp;
-		    }
-
-		    return str;
-		}
+          return str;
+      }
 
 
-		var phone = document.getElementById('cafeBn');
+      var phone = document.getElementById('phone');
 
-		cafeBn.onkeyup = function(){
-		console.log(this.value);
-		this.value = autoHypenCafeBn( this.value ) ;  
-		}
-	
+      phone.onkeyup = function(){
+      console.log(this.value);
+      this.value = autoHypenPhone( this.value ) ;  
+      }
+      
+      
+      var autoHypenCafeBn = function(str){
+          str = str.replace(/[^0-9]/g, '');
+          var tmp = '';
+          if( str.length < 4){
+              return str;
+          }else if(str.length < 5){
+              tmp += str.substr(0, 3);
+              tmp += '-';
+              tmp += str.substr(3);
+              return tmp;
+          }else{              
+              tmp += str.substr(0, 3);
+              tmp += '-';
+              tmp += str.substr(3, 2);
+              tmp += '-';
+              tmp += str.substr(5);
+              return tmp;
+          }
+
+          return str;
+      }
+
+
+      var phone = document.getElementById('cafeBn');
+
+      cafeBn.onkeyup = function(){
+      console.log(this.value);
+      this.value = autoHypenCafeBn( this.value ) ;  
+      }
+   
 </script>
   
   

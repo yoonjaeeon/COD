@@ -300,7 +300,7 @@
       cafeBn.onkeyup = function(){
       console.log(this.value);
       this.value = autoHypenCafeBn( this.value ) ;  
-      }
+      } 
    
 </script>
   

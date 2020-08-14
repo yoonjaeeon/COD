@@ -96,7 +96,7 @@ $(function(){
             <a class="collapse-item" href="adminMenuForm">메뉴관리</a>
             <a class="collapse-item" href="seatForm">좌석관리</a>
             <a class="collapse-item" href="inventoryList">재고관리</a>
-            <a class="collapse-item" href="adminWorkerForm">알바생관리</a>
+            <a class="collapse-item" href="adminWorkerForm">직원관리</a>
             <a class="collapse-item" href="adminReviewList">리뷰조회</a>
             <a class="collapse-item" href="adminNoticeList">공지사항관리</a>
             <a class="collapse-item" href="cafeUpdateForm">카페수정</a>

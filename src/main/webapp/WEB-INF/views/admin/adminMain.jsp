@@ -346,7 +346,6 @@ function orderDelete(seq){
 										<th>테이블</th>
 										<th>주문내역</th>
 										<th>완료</th>
-										<th>거절</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -358,26 +357,26 @@ function orderDelete(seq){
 											<!-- onclick 메소드 필요 함 -->
 											<td><i class="fas fa-heart" id="success"
 												onclick="orderSubmit(${list.orderSeq })"></i></td>
-											<td><i class="fas fa-heart" id="delete"
-												onclick="orderDelete(${list.orderSeq })"></i></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
-				</div>	
-				
+				</div>
+
 				<!-- Card Header - Accordion -->
-				<a href="#collapseCardExamples" class="d-block card-header py-3 collapsed""
+				<a href="#collapseCardExamples"
+					class="d-block card-header py-3 collapsed"
+					"
 					data-toggle="collapse" role="button" aria-expanded="false"
 					aria-controls="collapseCardExamples">
 					<h6 class="m-0 font-weight-bold text-primary">
-						<i class="far fa-bell"></i> * 서빙완료 * 
+						<i class="far fa-bell"></i> * 서빙완료 *
 					</h6>
 					</li>
 				</a>
-				
+
 				<!-- Card Content - Collapse -->
 				<div class="collapse" id="collapseCardExamples">
 					<div class="card-body">
@@ -400,9 +399,9 @@ function orderDelete(seq){
 							</table>
 						</div>
 					</div>
-				</div>	
-				
-						
+				</div>
+
+
 			</div>
 		</div>
 	</div>

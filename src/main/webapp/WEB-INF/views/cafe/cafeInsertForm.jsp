@@ -14,7 +14,7 @@
       </div>
           <div class="form-group">
          <label>사업자번호:</label>
-         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" >
+         <input type="text"  class="form-control"  id="cafeBn" name="cafeBn" maxlength="11" placeholder="000-00-0000" >
       </div>  
       <div class="form-group">
          <label>카페이름:</label>
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group" >
          <label>전화번호:</label>
-         <input type="text"  class="form-control" id="phone" name="cafePhone" >
+         <input type="text"  class="form-control" id="phone" name="cafePhone" maxlength="13" placeholder="010-0000-0000" >
       </div>  
       <div class="form-group">
          <label>카페영업시간:</label>
@@ -234,6 +234,74 @@
 		}
 	}
 
+	 var autoHypenPhone = function(str){
+		    str = str.replace(/[^0-9]/g, '');
+		    var tmp = '';
+		    if( str.length < 4){
+		        return str;
+		    }else if(str.length < 7){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3);
+		        return tmp;
+		    }else if(str.length < 11){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 3);
+		        tmp += '-';
+		        tmp += str.substr(6);
+		        return tmp;
+		    }else{              
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 4);
+		        tmp += '-';
+		        tmp += str.substr(7);
+		        return tmp;
+		    }
+
+		    return str;
+		}
+
+
+		var phone = document.getElementById('phone');
+
+		phone.onkeyup = function(){
+		console.log(this.value);
+		this.value = autoHypenPhone( this.value ) ;  
+		}
+		
+		
+		var autoHypenCafeBn = function(str){
+		    str = str.replace(/[^0-9]/g, '');
+		    var tmp = '';
+		    if( str.length < 4){
+		        return str;
+		    }else if(str.length < 5){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3);
+		        return tmp;
+		    }else{              
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 2);
+		        tmp += '-';
+		        tmp += str.substr(5);
+		        return tmp;
+		    }
+
+		    return str;
+		}
+
+
+		var phone = document.getElementById('cafeBn');
+
+		cafeBn.onkeyup = function(){
+		console.log(this.value);
+		this.value = autoHypenCafeBn( this.value ) ;  
+		}
+	
 </script>
   
   

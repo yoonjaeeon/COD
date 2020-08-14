@@ -155,11 +155,12 @@ public class CafeController {
 		adminVO.setAdminId((String) session.getAttribute("adminId"));
 		adminVO.setCafeState(1);
 		MultipartFile cafeThumbnail = cafeVO.getUpload();
+		String pathSet = session.getServletContext().getRealPath("resources/upload");
 		if (cafeThumbnail != null) {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\cod\\upload", filename));
+						.rename(new File(pathSet, filename));
 				filename = upFile.getName();
 				cafeThumbnail.transferTo(upFile);
 			}
@@ -173,7 +174,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\cod\\upload", filename));
+							.rename(new File(pathSet, filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}						
@@ -268,11 +269,12 @@ public class CafeController {
 	public String cafeUpdate(Model model, CafeVO cafeVO, PhotoVO photoVO, HttpSession session) throws Exception, IOException {
 		cafeVO.setAdminId((String) session.getAttribute("adminId"));
 		MultipartFile cafeThumbnail = cafeVO.getUpload();
+		String pathSet = session.getServletContext().getRealPath("resources/upload");
 		if (cafeThumbnail != null) {
 			String filename = cafeThumbnail.getOriginalFilename();
 			if (cafeThumbnail != null && cafeThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\cod\\upload", filename));
+						.rename(new File(pathSet, filename));
 				System.out.println(upFile.getAbsolutePath()+"확==============================");
 				filename = upFile.getName();    
 				cafeThumbnail.transferTo(upFile);
@@ -288,7 +290,7 @@ public class CafeController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\cod\\upload", filename));
+							.rename(new File(pathSet, filename));
 
 					System.out.println(upFile.getAbsolutePath()+"확==============================");
 					filename = upFile.getName();

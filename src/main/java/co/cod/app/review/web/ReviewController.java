@@ -40,11 +40,12 @@ public class ReviewController {
 	@RequestMapping("insertReview")
 	public String insertreview(ReviewVO reviewVO, PhotoVO photoVO, HttpSession session) throws IOException {
 		MultipartFile reviewThumbnail = reviewVO.getUpload();
+		String pathSet = session.getServletContext().getRealPath("resources/upload");
 		if (reviewThumbnail != null) {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
 				File upFile = FileRenamePolicy
-						.rename(new File("C:\\cod\\upload", filename));
+						.rename(new File(pathSet, filename));
 				filename = upFile.getName();
 				reviewThumbnail.transferTo(upFile);
 			}
@@ -57,7 +58,7 @@ public class ReviewController {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
 					File upFile = FileRenamePolicy
-							.rename(new File("C:\\cod\\upload", filename));
+							.rename(new File(pathSet, filename));
 					filename = upFile.getName();
 					file.transferTo(upFile);
 				}
@@ -167,12 +168,13 @@ public class ReviewController {
 
 	// 수정처리
 	@RequestMapping("updateReview")
-	public String updatereview(ReviewVO reviewVO, PhotoVO photoVO) throws Exception {
+	public String updatereview(ReviewVO reviewVO, PhotoVO photoVO, HttpSession session) throws Exception {
 		MultipartFile reviewThumbnail = reviewVO.getUpload();
+		String pathSet = session.getServletContext().getRealPath("resources/upload");
 		if (reviewThumbnail != null) {
 			String filename = reviewThumbnail.getOriginalFilename();
 			if (reviewThumbnail != null && reviewThumbnail.getSize() > 0) {
-				File upFile = new File("C:\\cod\\upload", filename);
+				File upFile = new File(pathSet, filename);
 				/*
 				 * FileRenamePolicy.rename(new
 				 * File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
@@ -188,7 +190,7 @@ public class ReviewController {
 			for (MultipartFile file : files) {
 				String filename = file.getOriginalFilename();
 				if (file != null && file.getSize() > 0) {
-					File upFile = new File("C:\\cod\\upload", filename);
+					File upFile = new File(pathSet, filename);
 					// FileRenamePolicy.rename(new
 					// File("D:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
 					filename = upFile.getName();

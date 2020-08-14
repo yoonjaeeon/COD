@@ -79,10 +79,11 @@ $(document).ready(function(){
 		});
 	});
 });
-
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 var str = document.getElementById("textarea").value;
-
 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
 document.getElementById("textarea").value = str;
 </script>

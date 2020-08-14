@@ -21,11 +21,8 @@
 <div class="post">
 <h3 align="center">리뷰 작성</h3>
 <form name="frm" action="insertReview" method="post" enctype="multipart/form-data">
-<%-- 	작성자: ${loginEmail} <br>
-	카페 이름: ${param.cafeName } <br>  --%>
 	<div class="form-group">
-		<input type="hidden" class="form-control"
-		name="orderSeq" id="orderSeq" value="${param.orderSeq}">
+		<input type="hidden" class="form-control" name="orderSeq" id="orderSeq" value="${param.orderSeq}">
 	    </div>
 	리뷰 내용:<br />
 	<textarea class="form-control" cols="30" rows="10" name="reviewContent" id="reviewContent"></textarea> <br /> 
@@ -73,9 +70,13 @@ $(document).ready(function(){
 	});
 });
 
+/* textarea 줄띄움작업 */
 var str = document.getElementById("textarea").value;
-
 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
 document.getElementById("textarea").value = str;
+
+$(".custom-file-input").on("change", function() {
+	var fileName = $(this).val().split("\\").pop();
+	$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>

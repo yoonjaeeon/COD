@@ -39,40 +39,45 @@
          <label>휴무일:</label>
          <input type="text"  class="form-control" id="close" name="cafeCloseday" >
       </div>
-        <div class="form-group">
-      <label>썸네일:</label> 
-      <input type="file" id="upload" name="upload"/>
-     </div>  
-        <div class="form-group">
-      <label>카페상세사진:</label> 
-      <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
-        </div> 
+      	<label>썸네일:</label> 
+	<div class="custom-file mb-3">
+	      <input type="file" class="custom-file-input" id="upload" name="upload">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+    </div>
+      <br>
+        <label>카페상세사진:</label> 
+      <div class="custom-file mb-3">
+	      <input multiple="multiple" type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+      </div>
       <div class="form-group">
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" >
       </div>
       <div class="form-group">
          <label >테마:</label>
-         <div class="radio">
+         <div class="row">
+         <div class="radio col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4" checked="checked" >작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5">핸드드립</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3">야외석있는</label>
          </div>  
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1">이색카페</label>
          </div>  
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2">디저트</label>
          </div>
-       </div>     
+       </div>
+       </div>
             <br>
          <div>
          <label>문의사항:</label><br>
-         <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent"></textarea>
+         <textarea rows="15" cols="40" id="cafeAskContent" name="cafeAskContent" style=" width: 100%; height: 150px"></textarea>
       </div><br>
       <div class="row">
             <div class="col-3">
@@ -165,13 +170,11 @@
             </div>
             </div> <br>
          </div>
-         <input type="hidden" name="cafeX">
-       <input type="hidden" name="cafeY">   
-      <div class="btn-group">      
-             <button type="button" class="btn btn-primary" onclick="cafeInsert()">등록</button>
-           <!--  <button type="submit" data-toggle="modal" data-target="#contentModal"  class="btn btn-primary" >등록</button>  -->
-            <!-- <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" /> -->
-            <input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />
+      <input type="hidden" name="cafeX">
+      <input type="hidden" name="cafeY">   
+      <div align="center">      
+            <button type="button" class="btn btn-outline-info" onclick="cafeInsert()">등록</button>
+            <input type="button"  class="btn btn-outline-info" value="초기화" id="btnInit" />
       </div>
    </form>
 </div>      
@@ -193,16 +196,11 @@
                     if (status === daum.maps.services.Status.OK) {
                         var result = results[0]; //첫번째 결과의 값을 활용
                         var coords = new daum.maps.LatLng(result.y, result.x);
-
                         console.log(result.y);
                         console.log(result.x);
-                        
                         $('input:hidden[name="cafeY"]').val(result.y);
-                        $('input:hidden[name="cafeX"]').val(result.x);
-                        /* document.getElementById("cafeY").text(result.y);
-                        document.getElementById("cafeX").text(result.x);
- */
-                    }
+                        $('input:hidden[name="cafeX"]').val(result.x);                
+                        }
                 });
             }
         }).open();
@@ -293,15 +291,17 @@
 
           return str;
       }
-
-
       var phone = document.getElementById('cafeBn');
-
       cafeBn.onkeyup = function(){
       console.log(this.value);
       this.value = autoHypenCafeBn( this.value ) ;  
       } 
-   
+
+	   $(".custom-file-input").on("change", function() {
+	     var fileName = $(this).val().split("\\").pop();
+	     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	   });
+
 </script>
   
   

@@ -41,21 +41,25 @@ function button2(){
  </c:forEach>
 
 </div>
-대표 사진 <br>
-      <input type="file" id="gdsThumbImg" name="upload" value="${review.gdsThumbImg }"/>
- <br><br>
-첨부 사진 <br>
-      <input multiple="multiple" type="file" id="photoGroup" name="uploadFile" value="${review.photoGroup }"/>
+	<c:if test="${sessionScope.loginEmail == review.email}">
+대표 사진<br>
+	<div class="custom-file mb-3">
+	      <input type="file" class="custom-file-input" id="upload" name="upload">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+    </div>
+      <br><br>
+        첨부 사진<br>
+      <div class="custom-file mb-3">
+	      <input type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+      </div>
  <br><br>
  <div align="center">
-	<c:if test="${sessionScope.loginEmail == review.email}">
 	<button type="button" onclick ="button1()">수정</button>
 	<input type="reset" value="지우기" />
-	</c:if>
-	<c:if test="${sessionScope.loginEmail != review.email }">
 	<button type="button" onclick ="button2()">목록으로</button>
-	</c:if>
 </div>
+</c:if>
 </form>
 </div>
 

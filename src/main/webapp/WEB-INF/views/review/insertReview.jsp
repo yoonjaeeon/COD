@@ -38,10 +38,16 @@
 	  <input type="hidden" name="stars" id="stars" value="1">
 	</div>
 	대표 사진<br>
-      <input class="form-control" type="file" id="upload" name="upload"/>
+	<div class="custom-file mb-3">
+	      <input type="file" class="custom-file-input" id="upload" name="upload">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+    </div>
       <br><br>
         첨부 사진<br>
-      <input class="form-control" multiple="multiple" type="file" id="uploadFile" name="uploadFile"/>
+      <div class="custom-file mb-3">
+	      <input type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
+	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+      </div>
       <br><br>
 	<div align="center">
 	<button type="button" onclick="validCheck()">등록</button>

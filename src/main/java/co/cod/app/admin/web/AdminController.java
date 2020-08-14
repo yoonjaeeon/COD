@@ -42,13 +42,7 @@ class AdminController {
 	// 등록처리
 	@RequestMapping("adminInsert")
 	public String insertAdmin(AdminVO adminVO, Model model) {
-		adminService.insertAdmin(adminVO);
-		int result = adminService.idcheck1(adminVO);
-			if(result == 1) {
-					return "";
-			
-			}else if(result == 0) {
-				  adminService.idcheck1(adminVO);			}	
+		adminService.insertAdmin(adminVO);	
 			 return "redirect:home";
 	}
 

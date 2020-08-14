@@ -86,7 +86,7 @@
 
 <div class="content">
 <h2>관리자 회원가입</h2>
-<form action="adminInsert" name="frm">
+<form action="adminInsert" name="frm" >
 	<br> 아이디<span id="idCheck1"></span>
 	<input class="form-control" type="text" id="adminId" name="adminId" onchange="fn_idChk();" />
 	<br /> <br /> 

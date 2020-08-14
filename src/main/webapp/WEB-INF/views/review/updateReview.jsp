@@ -62,7 +62,7 @@ function button2(){
 </c:if>
 </form>
 </div>
-
+    
 <script>
 $('.starRev span').click(function(){
 	  $(this).parent().children('span').removeClass('on');

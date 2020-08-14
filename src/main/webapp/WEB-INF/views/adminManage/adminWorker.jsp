@@ -155,8 +155,8 @@
 			.append($('<td>').html(item.pay))
 			.append($('<td>').html(grade))
 			.append($('<td>').html(item.workerBirth))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+			.append($('<td>').html('<i id="btnSelect" class="fas fa-eye"style="font-size:24px"\'></button>'))
+      		.append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
 			.append($('<input type=\'hidden\' class=\'workerSeq\'>').val(item.workerSeq))
 			.appendTo('tbody');
 		});//each
@@ -188,11 +188,11 @@
 						   		<option value="1">정직원</option>
 						   		<option value="2">알바</option>
 					</select>
-			</div>  
+			</div><br>
 			<div class="btn-group">      
-				<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
-				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-				<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+				<input type="button"  class="btn btn-outline-info" value="등록"  id="btnInsert" /> 
+				<input type="button"  class="btn btn-outline-info" value="수정"  id="btnUpdate" />
+				<input type="button"  class="btn btn-outline-info" value="초기화" id="btnInit" />		
 					</div>
 		</form>
 		</div>

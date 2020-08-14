@@ -175,8 +175,8 @@
 			.append($('<td>').html(item.seatName))					
 			.append($('<td>').html(item.seatSize))
 			.append($('<td>').html("<img class='seatimg' src='resources/upload/"+ item.seatImg +"'>"))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+			.append($('<td>').html('<i id="btnSelect" class="fas fa-eye"style="font-size:24px"\'></button>'))
+      		.append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
@@ -200,36 +200,42 @@
 					<div class="form-group">   
 						<label>인원 선택:</label>
 						<select class="form-control" name="seatSize">
-							   		<option value="1">1~2인 이상</option>
-							   		<option value="2">2~4인 이상</option>
-							   		<option value="3">단체석</option>
+					   		<option value="1">1~2인 이상</option>
+					   		<option value="2">2~4인 이상</option>
+					   		<option value="3">단체석</option>
 						</select>
 					</div>  
- 					 <div class="form-group">
-					<label>좌석 사진:</label><br> 
-					<input type="file" name="upload" id="upload" >
-					</div> 
-					<div class="btn-group">      
-						<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
-						<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-						<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+ 					<div class="form-group">
+						<label>좌석 사진:</label><br> 
+						<div class="custom-file mb-3">
+					      <input type="file" class="custom-file-input" id="upload" name="upload">
+					      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+					    </div>
+				    </div>
+					<div class="btn-group" style="margin-left: 7em">      
+						<input type="button"  class="btn btn-outline-info" value="등록"  id="btnInsert" /> 
+						<input type="button"  class="btn btn-outline-info" value="수정"  id="btnUpdate" />
+						<input type="button"  class="btn btn-outline-info" value="초기화" id="btnInit" />		
 					</div>
 				</form>
 			</div>
 				<div class="inputArea">
  					<p>좌석 사진</p>
- 					<img id="seatImg" src="resources/upload/"style="width: 500px">
+ 					<img id="seatImg" style="width: 500px">
  				</div>
 			</div>
 	<div>
 		<div class="col-lg-6">
+		<br><br>
 		<h2>좌석 목록</h2>
 		<table class="table text-center">
 			<thead>
 			<tr>
-				<th class="text-center">좌석 이름</th>
-				<th class="text-center">인원</th>
-				<th class="text-center">좌석 사진</th>
+				<th>좌석 이름</th>
+				<th>인원</th>
+				<th>좌석 사진</th>
+				<th>조회</th>
+				<th>삭제</th>
 			</tr>
 			</thead>
 			<tbody></tbody>
@@ -238,29 +244,4 @@
  </div>
 </div>
 </body>
-<%-- <h1>카페 좌석 관리</h1>
-<style>
-	div { text-align: center; }
-</style>
-<div class="container">
-	<div style="float:right;">
-       <button onclick="location='insertSeatForm'">좌석 등록</button>
-    </div>
-	<div id="listpage">
-		<section class="posts">
-				<article >
-						<div class="row"> 
-						<c:forEach begin="0" end="3">
-						<div class="col-md-6">
-						<a href="#" class="image fit"><img src="resources/images/main2.jpg"	alt="" style="width: 60%"></a>
-							<h3>
-								<a href="updateSeatForm">좌석 번호</a>
-							</h3>
-							<h4>1~2인이상</h4>
-						</div>				
-						</c:forEach>
-						</div>
-				</article>
-		</section>
-	</div>
-</div> --%>
+

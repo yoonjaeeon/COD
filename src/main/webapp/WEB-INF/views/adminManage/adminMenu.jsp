@@ -97,10 +97,14 @@ function menuSelectResult(menu) {
 	$('input:text[name="menuName"]').val(menu.menuName);
 	$('input:text[name="price"]').val(menu.price);
 	$('input:text[name="priceAdd"]').val(menu.priceAdd);
+	if(menu.priceAdd != 0){
+	$('input:radio[name="addState"]').filter("[value=1]").prop("checked",true);
+	}
 	$('input:radio[name="menuState"]').filter("[value="+menu.menuState+"]").prop("checked",true);
 	$('input:radio[name="signiture"]').filter("[value="+menu.signiture+"]").prop("checked",true);
 	$('input:radio[name="popularMenu"]').filter("[value="+menu.popularMenu+"]").prop("checked",true);
 	$('input:radio[name="newMenu"]').filter("[value="+menu.newMenu+"]").prop("checked",true);
+	setDisplay();
 
 }//menuSelectResult
 
@@ -142,15 +146,42 @@ function menuList() {
 function menuListResult(data) {
    $("tbody").empty();
    $.each(data,function(idx,item){
+	   var icon;
+	   switch(item.menuState) {
+	    case 0: 
+	    	icon = "HOT";
+	        break;
+	    case 1: 
+	    	icon = "ICE";
+	         break;
+	    case 2:
+	    	icon = "ALL";
+	    	break;
+	    default: 
+	    	icon = "<i class='fas fa-cookie'></i>";
+	        break;
+	  }
+	  var scheck="";
+	  var ncheck="";
+	  var pcheck="";
+	  if(item.signiture == 1){
+			scheck="<i class='fa fa-check' style='font-size:24px'></i>";
+	  }
+	  if(item.newMenu == 1){
+		  ncheck="<i class='fa fa-check' style='font-size:24px'></i>";
+	  }
+	  if(item.popularMenu == 1){
+		  pcheck="<i class='fa fa-check' style='font-size:24px'></i>";
+	  }
+	
       $('<tr>')
       .append($('<td>').html(item.menuSort))
       .append($('<td>').html(item.menuName))
-      .append($('<td>').html(item.price))
-      .append($('<td>').html(item.menuState))
-      .append($('<td>').html(item.newMenu))
-      .append($('<td>').html(item.signiture))
-      .append($('<td>').html(item.popularMenu))
-      .append($('<td>').html(item.priceAdd))
+      .append($('<td>').html(item.price+item.priceAdd))
+      .append($('<td>').html(icon))
+      .append($('<td>').html(ncheck))
+      .append($('<td>').html(scheck))
+      .append($('<td>').html(pcheck))
       .append($('<td>').html('<i id="btnSelect" class="fas fa-eye"style="font-size:24px"\'></button>'))
       .append($('<td>').html('<i id=\'btnDelete\'class="fas fa-times-circle" style="font-size:24px"></i>'))
       .append($('<input type=\'hidden\' id=\'menuSeq\'>').val(item.menuSeq))
@@ -180,6 +211,9 @@ function setDisplay(){
     	$('#priceAdd').hide();
     }
 }
+function setting(){
+	$('#priceAdd').val()=0;
+}
 
 </script>
 <div class="container">
@@ -205,10 +239,10 @@ function setDisplay(){
                <h6>아이스추가금여부</h6>
             </div>
             <div class="col-2">
-               Hot <input type="radio"  name="menuState" value="0">
+               Hot <input type="radio"  name="menuState" value="0" onclick="setting()">
             </div>
             <div class="col-2">
-               ICE <input type="radio"  name="menuState" value="1"> <br>
+               ICE <input type="radio"  name="menuState" value="1" onclick="setting()"> <br>
                Yes <input type="radio"  name="signiture" value="1"><br>
                Yes <input type="radio"  name="popularMenu" value="1">   <br>
                Yes <input type="radio"  name="newMenu" value="1"><br>
@@ -248,7 +282,6 @@ function setDisplay(){
                <th class="text-center">신메뉴</th>
                <th class="text-center">시그니처</th>
                <th class="text-center">신메뉴</th>
-               <th class="text-center">추가금</th>
                <th class="text-center"> 조회 </th>
                <th class="text-center"> 삭제 </th>
             </tr>

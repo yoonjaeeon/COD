@@ -10,6 +10,7 @@ $(function(){
    menuDelete();
    menuUpdate();
    menuInsert();
+   setDisplay();
    init();
 });
 
@@ -89,7 +90,6 @@ function menuSelect() {
       });
    }); //조회 버튼 클릭
 }
-
 //메뉴 조회 응답
 function menuSelectResult(menu) {
 	$('input:hidden[name="menuSeq"]').val(menu.menuSeq);
@@ -164,14 +164,23 @@ $(document).ready(function(){
 	    	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
 	});
+	$("#price").on("keyup", function(event){
+		var regNumber = /^[0-9]*$/;
+		var temp = $("#price").val();
+		if(!regNumber.test(temp)){
+			$("#price").val(temp.replace(/[^0-9]/g,""));
+			alert("숫자만입력해주세요");
+		}
+	})
 });
 function setDisplay(){
-    if($('input:radio[id=add]').is(':checked')){
-    	$('#addDiv').show();
-    }else{
-    	$('#addDiv').hide();
+	if($('input:radio[id=add]').is(':checked')){
+    	$('#priceAdd').show();
+    }else if($('input:radio[id=noadd]').is(':checked')){
+    	$('#priceAdd').hide();
     }
 }
+
 </script>
 <div class="container">
          <h4>메뉴 등록 및 수정</h4><br>
@@ -210,11 +219,10 @@ function setDisplay(){
               	 N o <input type="radio"  name="signiture" checked="checked" value="0"><br>
                	 N o <input type="radio"  name="popularMenu" checked="checked" value="0"><br>
                	 N o <input type="radio"  name="newMenu" checked="checked" value="0"><br>
-                 N o <input type="radio"  name="addState" checked="checked" value="0"><br>
+                 N o <input type="radio"  name="addState" id = "noadd" checked="checked" value="0" onclick="setDisplay()" ><br>
             </div>
-            <div id="addDiv">
-            <input type="text" class="form-control" name="priceAdd" placeholder="아이스추가금" value="0">
-			</div>
+            <input type="text" class="form-control" id="priceAdd" name="priceAdd" placeholder="아이스추가금" value="0">
+
       </div>
       <div class= "container" align="center">
       <input type="button" class="btn btn-outline-info" value="등록" id="btnInsert"/>

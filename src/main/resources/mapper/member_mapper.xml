@@ -220,6 +220,7 @@
                  (select nvl(trunc(avg(stars),1),0) stars from review where admin_id=c.admin_id) stars
                  <if test="email != null and email != ''">
                  ,nvl((SELECT 1 FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}),0) bookmarks
+                 ,(SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
                  </if>
       from popularcafe_view p ,cafe c
      where p.cafe_name = c.cafe_name
@@ -231,6 +232,7 @@
 	 (select nvl(trunc(avg(stars),1),0) stars from review where admin_id=c.admin_id) stars
 	 <if test="email != null">
                  ,nvl((SELECT 1 FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}),0) bookmarks
+                 ,(SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
      </if>
 	FROM CAFE C
 	ORDER BY CAFE_SUBMIT DESC)

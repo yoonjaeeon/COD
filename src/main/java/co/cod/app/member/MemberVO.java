@@ -28,4 +28,5 @@ String cafeHashtag;
 double stars;
 Integer bookmarks;
 String adminId;
+Integer bookmarkSeq;
 }

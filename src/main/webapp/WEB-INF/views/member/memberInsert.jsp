@@ -8,28 +8,11 @@
          frm.id.focus();
          return;
       }
-		/* ///////   중복확인 버튼   
-    	var idCheckVal = $("#idCheck").val();
-		if(idCheckVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");			
-			frm.idCheckVal.value = ""
-			frm.idCheckVal.focus();
-		}else if(idCheckVal == "Y"){
-			$("#idCheck").submit();
-			frm.idCheckVal.value = ""
-			frm.idCheckVal.focus();
-		}  */
-    
       if (frm.pw.value == "") {
          alert("비밀번호를 입력하세요.")
          frm.pw.focus();
          return;
       }
-      /* if (frm.name.value == "") {
-         alert("이름를 입력해주세요");
-         frm.name.focus();
-         return;
-      } */
       if (frm.pw2.value == "") {
          alert("비밀번호를 확인해주세요!");
          frm.pw2.focus();

@@ -83,44 +83,44 @@
                                   GROUP BY
                                    ADMIN_ID) R
                                   ON (C.ADMIN_ID = R.ADMIN_ID)
-      <where>
-         <if test="cafeTheme != null">
-            CAFE_THEME = #{cafeTheme}
-         </if>
-      </where>
+      JOIN admin a on(a.admin_id= c.admin_id)
+     WHERE a.cafe_state=2                            
+     <if test="cafeTheme != null">
+        AND CAFE_THEME = #{cafeTheme}
+     </if>
       ORDER BY CAFE_THEME DESC
    </select>
   
    <!-- 랜덤 리스트  -->
     <select id="getRandomList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-    SELECT * FROM (SELECT * FROM 
-    	CAFE ORDER BY DBMS_RANDOM.VALUE)
-       WHERE <![CDATA[ROWNUM <= 10]]> 
+    SELECT c.* FROM (SELECT * FROM CAFE ORDER BY DBMS_RANDOM.VALUE)c
+      JOIN admin a on(a.admin_id= c.admin_id)
+     WHERE <![CDATA[ROWNUM <= 10]]> 
+       AND a.cafe_state = 2
    </select>
    
    
    <!-- 지역리스트 -->
    <select id="getAreaList" resultType="co.cod.app.cafe.CafeVO" parameterType="co.cod.app.cafe.CafeVO">
-       SELECT 
-          C.ADMIN_ID, 
-          C.CAFE_NAME,
-          C.CAFE_ADDRESS, 
-          C.CAFE_THUMBNAIL ,
-          C.CAFE_HASHTAG, 
-          NVL(R.STARS,0) AS STARS 
-          <if test="email != null">
-          ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND EMAIL = #{email} ) AS BOOKMARKS,   
-          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
-          </if>    
+       SELECT C.ADMIN_ID, 
+	          C.CAFE_NAME,
+	          C.CAFE_ADDRESS, 
+	          C.CAFE_THUMBNAIL ,
+	          C.CAFE_HASHTAG, 
+	          NVL(R.STARS,0) AS STARS 
+	          <if test="email != null">
+	          ,(SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID AND EMAIL = #{email} ) AS BOOKMARKS,   
+	          (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL= #{email}) BOOKMARK_SEQ
+	          </if>
          FROM CAFE C LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/ COUNT(STARS),1) STARS
                                        FROM REVIEW
                                        GROUP BY ADMIN_ID) R  
-            ON (C.ADMIN_ID = R.ADMIN_ID)
-         <where>
-            <if test="cafeAddress != null">
-               C.CAFE_ADDRESS LIKE '%'||#{cafeAddress}||'%'
-            </if>
-         </where>
+           ON (C.ADMIN_ID = R.ADMIN_ID)
+         JOIN admin a on(a.admin_id= c.admin_id)
+        WHERE a.cafe_state=2
+        <if test="cafeAddress != null">
+            AND C.CAFE_ADDRESS LIKE '%'||#{cafeAddress}||'%'
+        </if>
    </select>
    
    <select id="memberAreaList" resultType="co.cod.app.cafe.CafeVO">
@@ -136,6 +136,8 @@
                                   GROUP BY
                                    ADMIN_ID) R
                                   ON (C.ADMIN_ID = R.ADMIN_ID)
+      join admin a on(a.admin_id= c.admin_id)
+      where a.cafe_state=2
    </select>
    
    <select id="memberThemeList" resultType="co.cod.app.cafe.CafeVO">
@@ -150,7 +152,9 @@
                                   FROM REVIEW
                                   GROUP BY
                                    ADMIN_ID) R
-                                  ON (C.ADMIN_ID = R.ADMIN_ID)      
+                                  ON (C.ADMIN_ID = R.ADMIN_ID)
+      JOIN admin a on(a.admin_id= c.admin_id)
+      WHERE a.cafe_state=2      
       ORDER BY CAFE_THEME DESC
    </select>
    
@@ -166,7 +170,7 @@
    <select id="getCafeMap" resultType="map" parameterType="co.cod.app.cafe.CafeVO">
      SELECT MENU_NAME "name",sum((price+price_add*order_state)*orderline_amount)"sum"
       FROM order_view
-      where admin_id =#{adminId}
+      WHERE admin_id =#{adminId}
       GROUP BY MENU_NAME
    </select>
    

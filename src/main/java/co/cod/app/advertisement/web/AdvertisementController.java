@@ -48,14 +48,15 @@ public class AdvertisementController {
 	@RequestMapping(value="/advert", method=RequestMethod.POST, headers = ("content-type=multipart/*"))	            
 	@ResponseBody
 	public Map<String, Object> insertAdvertisement(AdvertisementVO advertisementVO, Model model
-			,@RequestParam("upload")MultipartFile uploadfile
+			,@RequestParam("upload")MultipartFile uploadfile, HttpSession session
 			) throws IOException {		
 		Map<String, Object> map = new HashMap<String, Object>();
 		MultipartFile file = advertisementVO.getUpload();
+		String pathSet = session.getServletContext().getRealPath("resources/upload");
         String filename = file.getOriginalFilename();
         if (file != null && file.getSize() > 0) {
             File upFile = FileRenamePolicy
-                  .rename(new File("C:\\Dev\\git\\COD\\src\\main\\webapp\\resources\\upload", filename));
+                  .rename(new File(pathSet, filename));
             filename = upFile.getName();
             file.transferTo(upFile);
          }

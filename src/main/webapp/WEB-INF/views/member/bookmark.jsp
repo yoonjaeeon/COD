@@ -40,7 +40,7 @@
 								onMouseOut="this.innerHTML='ABOUT STYLE'" -->
 								
 							<i class="far fa-heart" style="color: red" 
-							data-placement="top" title="즐겨찾기  취소"	data-toggle="tooltip"						
+							data-placement="top" title="즐겨찾기 "	data-toggle="tooltip"						
 							id="bookmark${bookmark.bookmarkSeq}" ></i>
 						<%-- </c:if>
 						<c:if test="${empty bookmark.email}">

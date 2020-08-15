@@ -27,17 +27,14 @@ function amountDown(price,seq){ //수량 및 가격 내려줌
 	}
 	
 }
-function amountUp(price,seq){
+function amountUp(price,seq){//수량 및 가격 올려줌
 	var value = $(event.target).prev();
 	var $price =parseInt(price); 
 	value.html(parseInt(value.html())+1);
 	$('#prices'+seq+'').html(parseInt(price)*parseInt(value.html()));
 			sum();
-			
-			
-	//+1 , 가격+
 }
-function sum(){
+function sum(){ //토탈 가격 
 	var result=0;	
 		$('.menuPrice').each(function(index, item){
 			result += parseInt($(item).html());
@@ -63,7 +60,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 	$('#sum').html($('#total').html());
 }
 
-//메뉴 클릭시
+//메뉴 클릭시 수량과 가격 찍음
 	function test(name, price, seq, state, realState, seatSeq) {
 		var validCheck=$('tr#'+seq+realState);
 		if(validCheck.length > 0 ) {
@@ -106,21 +103,14 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 				</h4>
 			</header>
 		</article>
-
 	</div>
-
-
-	<!-- 서비스 -->
 	<article class="mini-post">
 		<header>
 			<h2 align="center">주문하기</h2>
-
 		</header>
 	</article>
 	<br>
-	<!-- end service -->
 
-	<!-- detail -->
 	<div id="listpage">
 		<div class="row">
 			<div class="col-6"><h3>좌석선택</h3></div>
@@ -249,15 +239,14 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
-				<button onclick="insertOrder('${menuList[0].adminId}')">주문승인 테스트</button>
-			<!-- <input type="button" value="결제" id="price" /> -->
+				<%-- <button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button>	 --%>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
 
-//마일리지 유효성 검사
+//마일리지 체크
 function mileageUse(){
 	if(parseInt($('#sum').html()) == parseInt($('#total').html())){
 	 $('#sum').html(
@@ -286,13 +275,11 @@ $('#useMileage').focusout(function() {
 });
 
 function insertOrder(adminId){
-	
 	var seatSeq = $('#seatSeq').html();
 	var amount =  $('#amount')
 	var mileage = $('#total').html();
 	var mileageUse = $("#useMileage").val();
 	var seatSeq = $('#seatSeq').html();
-			//id="amount'+seq+'"
 	var result =[];		
 	var trs = $('#appendTest tr').each(function(index, item){
 	var obj = $(item).data('orderLine')
@@ -309,9 +296,8 @@ function insertOrder(adminId){
         data: JSON.stringify( {mileage:mileage , mileageUse :mileageUse ,adminId : adminId,     
         					seatSeq:seatSeq, orderlineList:result, seatSeq: seatSeq} ),        	
         success : function(data){
-        	/* window.open('report.do?orderSeq='+data.orderSeq,'mmmm', "width=550px, height=900px"); */
-        	var win = window.open('about:blank', '_blank');
-        	 win.location.href ='report.do?orderSeq='+data.orderSeq;
+        	var win = window.open('about:blank', '_blank' ,'width=600, height=900 '); //영수증 속성
+        	 win.location.href ='report.do?orderSeq='+data.orderSeq; //영수증 출력
         	 alert("주문이 완료되었습니다.")
         	 location.href="myorderList";
         } 
@@ -320,9 +306,9 @@ function insertOrder(adminId){
 } 
 
 
-$('[data-toggle="tooltip"]').tooltip();
+$('[data-toggle="tooltip"]').tooltip(); //즐겨찾기 tooltip
 
-function getSeat(seatName, seatSize, seatSeq){
+function getSeat(seatName, seatSize, seatSeq){ //좌석정보 받아옴
 	$('#seatName').html(seatName);
 	$('#seatSeq').html(seatSeq);
 	if(seatSize == 1){
@@ -376,10 +362,9 @@ function getSeat(seatName, seatSize, seatSeq){
 </script>
 
 <script>
-  var IMP = window.IMP; // 생략가능
-  IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	//아엠포트 결제연동
-	//var name= cafeName;
+//결제 API
+  var IMP = window.IMP;
+  IMP.init('iamport'); // 
   function requestPay(cafeName,adminId){
 	  if($('#seatName').html() =="" || $('#seatName').html() == null){
 		  alert("좌석을 선택해주세요.");
@@ -393,12 +378,7 @@ function getSeat(seatName, seatSize, seatSeq){
 	            //m_redirect_url : 'http://www.naver.com'
 	        }, function(rsp) {
 	            if ( rsp.success ) {
-	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			         insertOrder(adminId);
-			     
-	                    	
-	                      //성공시 이동할 페이지
-	    	                <%-- location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg; --%>
                 }else {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;   

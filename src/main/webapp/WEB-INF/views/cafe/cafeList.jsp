@@ -76,21 +76,16 @@ function backF(){
    <script type="text/javascript">
    /* 사업자번호 조회 */
 $('body').on('click', '#bnSearch', function() {
-	
 	var value = $('#cafeBn').val();
-
 	$.ajax( {
 		url : "checkBus",
 		data :  {value : value},
 		success : function(datas){
-			
 			console.log( $(datas).find("smpcBmanTrtCntn").text());
 			$('#saup').text($(datas).find("smpcBmanTrtCntn").text());
 			
 		}
 	})
-	
-	
 });
 </script>  
   

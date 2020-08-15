@@ -64,11 +64,6 @@
 	</select>
 
 	<select id="sendMessage" resultType="vofile.MessageVO">
-		<!-- SELECT * 
-		  FROM MESSAGE
-		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=1
-		 ORDER BY MESSAGE_SEQ DESC -->
-		 
 		 SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
 	SELECT *
         from message m 
@@ -81,12 +76,7 @@
          ) A ) B WHERE rn <![CDATA[<=]]> 5
 	</select>
 	
-	<select id="receiveMessage" resultType="vofile.MessageVO">
-		<!-- SELECT * 
-		  FROM MESSAGE
-		 WHERE ADMIN_ID=#{adminId} AND SEND_RECEIVE=0
-		 ORDER BY MESSAGE_SEQ DESC -->
-		 
+	<select id="receiveMessage" resultType="vofile.MessageVO"> <!-- 메세지 가져옴 -->
 	SELECT B.* FROM ( SELECT A.*, ROWNUM rn FROM (
 	SELECT *
         from message m 

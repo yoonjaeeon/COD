@@ -213,7 +213,8 @@ messageSeq = seq;
 
 
 <script>
-$('#more').on("click", function(p){
+
+$('#more').on("click", function(p){//페이징 처리 more버튼 누르면  값을 받아옴
 	 var seq = $('#tbody tr').last().data('seq');
 	 receiveMessage(seq);
 	 /* $.ajax({

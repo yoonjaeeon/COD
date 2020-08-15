@@ -254,8 +254,7 @@ receiveMessage();
 			<form method="post" id="sendModal" name="sendModal">
 				<input type="hidden" id="sendMessageSeq">
 				<input type="text" name="messageTitle" class="form-control" placeholder="제목 입력" />
-					<textarea name="messageContent" class="form-control" placeholder="메세지 입력" >
-					</textarea>
+					<textarea name="messageContent" class="form-control" placeholder="메세지 입력" ></textarea>
 				<input type="hidden" id="adminId" name="adminId" readonly ><br> 
 				<div class="modal-footer">
 					<input type="button" onclick="sendAjax()" class="btn btn-danger" value="보내기">

@@ -6,7 +6,7 @@
 	SELECT * FROM   
                           (SELECT 	*
                               FROM 	MESSAGE
-                             WHERE	ADMIN_ID = 'ha' 
+                             WHERE	ADMIN_ID = #{adminId} 
                                  AND SEND_RECEIVE=0 
                                  AND READ=1
                              ORDER 	BY MESSAGE_SEQ DESC)

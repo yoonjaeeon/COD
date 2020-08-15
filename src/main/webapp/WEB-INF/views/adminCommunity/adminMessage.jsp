@@ -62,7 +62,7 @@ messageSeq = seq;
 				$("#tbody tr:gt(0)").empty();
 					  $.each(data, function (index, item) {
 		                    let html = '';
-		                    html += '<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
+		                    html += '<tr data-toggle="modal" data-target="#contentModal3" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
 		                    html += '<td>'+item.messageTitle+'</td>';	 
 		                    html += '<td>'+item.messageDate+'</td>';    
 		                    if(item.masterRead === 1){
@@ -110,7 +110,7 @@ messageSeq = seq;
 			//	$("#tbody tr:gt(0)").empty();
 			$.each(data, function (index, item) {
                 let html = '';
-                html += '<tr data-toggle="modal" data-target="#contentModals" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
+                html += '<tr data-toggle="modal" data-target="#contentModal3" onclick="messageUpdate('+item.messageSeq+')" id="msg'+item.messageSeq+'" class="tr" data-seq='+item.messageSeq+'>';
                 html += '<td>'+item.messageTitle+'</td>';    
                 html += '<td>'+item.messageDate+'</td>';    
 			    	  
@@ -163,7 +163,7 @@ messageSeq = seq;
 
 <form action="" id="modal" method="post"></form>
 <!-- Modal -->
-<div class="modal fade" id="contentModals" tabindex="-1" role="dialog"
+<div class="modal fade" id="contentModal3" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -228,27 +228,21 @@ function messageUpdate(seq){
 }
 
 //모달창 메세지 받기
-$('#contentModal').on('show.bs.modal', function (e) {
-	console.log(e.target); 
+$('#contentModal3').on('show.bs.modal', function() {
 	$.ajax({
 		url : 'getMessage',  
 		method:'post',
 		data : {messageSeq:messageSeq},
 		dataType :'json',
 		success:function(data){
-				$('#getMessageTitle').html(data.messageTitle);
-				$('#getMessageContent').html(data.messageContent);
-				$('#messageCount').load("getMessageCount");
+				$('#contentModal3 #getMessageTitle').html(data.messageTitle);
+				$('#contentModal3 #getMessageContent').html(data.messageContent);
 				$('#msgss'+messageSeq).find('i').removeClass('fa-envelope').addClass('fa-envelope-open');
+				$('#messageCount').load("getMessageCount");
 		}
 	});
 });
-	
 receiveMessage();
 
-var str = document.getElementById("textarea").val();
 
-str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
-document.getElementById("textarea").value = str;
 </script>

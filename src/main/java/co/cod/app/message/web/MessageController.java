@@ -93,7 +93,8 @@ public class MessageController {
 	
 	@RequestMapping("fiveMessage")
 	@ResponseBody
-	public List<MessageVO> fiveMessage(MessageVO messageVO){
+	public List<MessageVO> fiveMessage(MessageVO messageVO,HttpSession session){
+		messageVO.setAdminId((String)session.getAttribute("adminId"));
 		return messageService.fiveMessage(messageVO);
 	}
 	

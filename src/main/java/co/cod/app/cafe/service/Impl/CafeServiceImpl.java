@@ -131,6 +131,11 @@ public List<CafeVO> getRandomList(CafeVO cafeVO) {
 public List<Map<String, Object>> dayGetCafeMap(CafeVO cafeVO) {
 	return cafeMapper.dayGetCafeMap(cafeVO);
 }
+
+@Override
+public List<CafeVO> selectCafe(CafeVO cafeVO) {
+	return cafeMapper.selectCafe(cafeVO);
+}
    
    
 

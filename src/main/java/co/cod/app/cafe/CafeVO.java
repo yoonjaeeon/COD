@@ -43,8 +43,12 @@ public class CafeVO {
    String day;
    String cafeState;
    String cafeBn;
+   
 
 	//공지사항 들고오는 필드
 	String adminNoticeContent;
 	String adminNoticeTime;
+	
+	//검색 필드
+	String search;
 }

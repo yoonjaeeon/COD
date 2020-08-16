@@ -27,6 +27,8 @@ public interface CafeMapper {
    public void updateCafeSubmit(String adminId);
    public CafeVO adminNotice(CafeVO cafeVO);
    public List<CafeVO> getRandomList(CafeVO cafeVO);
+   public List<CafeVO> selectCafe(CafeVO cafeVO);
+   
 
    
 }

@@ -33,5 +33,6 @@ public interface CafeService {
    public List<CafeVO> getRandomList(CafeVO cafeVO);
    //카페 업데이트 할때 cafe_state 변경
   // public void updateCafeState(CafeVO cafeVO);
+   public List<CafeVO> selectCafe(CafeVO cafeVO); //카페 검색
    
 }

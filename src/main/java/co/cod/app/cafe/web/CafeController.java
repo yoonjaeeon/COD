@@ -376,6 +376,14 @@ public class CafeController {
         String result = template.postForObject(url, request, String.class);
         res.getWriter().print(result);
     }
+	
+	@RequestMapping("selectCafe")
+	public String selectCafe(CafeVO cafeVO, Model model){
+		List list;
+		list = cafeService.selectCafe(cafeVO);
+		model.addAttribute("sCafe", list);
+		return "selectCafe";
+	}
 
 	
 	

@@ -39,7 +39,7 @@ $(function(){
 <div class="main_feature text-center">
 	<div class="icon_slick">
 		<c:forEach items="${areas }" var="area">
-			<div class="single_feature" id="${area }">
+			<div class="single_feature" id="${area}">
 				<div class="single_feature_icon">
 					<i class="fas fa-map-marker-alt"></i>
 				</div>

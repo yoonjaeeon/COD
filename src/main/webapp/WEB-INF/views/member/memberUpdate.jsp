@@ -19,11 +19,11 @@
 	    }
 		
 		function validCheck1() {
-		return deleteMember;
-	
+			var result = confirm("정말 탈퇴하시겠습니까??");
+			 if (result == true){
+				 $.post("memberDelete");
+			 }
 		}
-
-	
 	/* function pwValidCheck() {
 		var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		var reg = /^(?=.*?[a-z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/;
@@ -62,11 +62,11 @@
 			<input type="hidden" name="email" value="${member.email}"/>	
 			PW <span id="alert-success" style="display: none;" >비밀번호가 일치합니다.</span>
 			<span id="alert-danger"  style="display: none; color: #d92742; font-weight: bold;"> 비밀번호가 일치하지 않습니다.</span> 
-			<input type="password" id="pw" name="pw" class="pw" placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
-			pw(확인) <input type="password" id="pw2" class="pw" placeholder="패스워드 확인  "> <br /> <br />
-			닉네임 <input type="text" name="nickname" value="${member.nickname}" /><br /> <br /> 
-			핸드폰 번호 <input type="text" name="phone" value="${member.phone}"/><br /> <br /> 
-			생년월일<input type="date" name="birthday" /><br /> <br />
+			<input type="password" id="pw" name="pw" class="form-control pw" placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
+			pw(확인) <input type="password" id="pw2" class="form-control pw" placeholder="패스워드 확인  "> <br /> <br />
+			닉네임 <input type="text" name="nickname" class="form-control" value="${member.nickname}" /><br /> <br /> 
+			핸드폰 번호 <input type="text" name="phone" class="form-control" value="${member.phone}"/><br /> <br /> 
+			생년월일<input type="date" id="date" class="form-control" name="birthday"><br /> <br />
 			<div class="align-center" style="margin-top: 30px">
 			<br> <br>
 			<div class="align-center" style="margin-top: 30px">

@@ -306,7 +306,7 @@ function orderDelete(seq){
 			</div>
 		</div>
 		<!-- 테이블 on off -->
-		<div class="card shadow mb-4">
+		<div class="card mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold">* 테이블 ON/OFF *</h6>
 			</div>
@@ -318,23 +318,14 @@ function orderDelete(seq){
 
 	<!-- 메인오른쪽 -->
 	<div class="col-lg-6">
-
-		<div class="card shadow mb-4">
 			<!-- 주문현황 -->
-			<div class="card shadow mb-4">
-				<!-- Card Header - Accordion -->
-				<a href="#collapseCardExample" class="d-block card-header py-3"
-					data-toggle="collapse" role="button" aria-expanded="true"
-					aria-controls="collapseCardExample">
-					<h6 class="m-0 font-weight-bold text-primary">
-						<i class="far fa-bell"></i> * 주문현황 * <span
-							class="badge badge-danger badge-counter" id="getOrderCounts">
-							<script>
-                $('#getOrderCounts').load("getOrderCount")
-                </script>
+			<div class="card mb-4">
+				<a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+					<h6 class="m-0 font-weight-bold">
+						<i class="far fa-bell"></i> * 주문현황 * 
+						<span class="badge badge-danger badge-counter" id="getOrderCounts">
 						</span>
 					</h6>
-					</li>
 				</a>
 				<!-- Card Content - Collapse -->
 				<div class="collapse show" id="collapseCardExample">
@@ -366,17 +357,11 @@ function orderDelete(seq){
 				</div>
 
 				<!-- Card Header - Accordion -->
-				<a href="#collapseCardExamples"
-					class="d-block card-header py-3 collapsed"
-					"
-					data-toggle="collapse" role="button" aria-expanded="false"
-					aria-controls="collapseCardExamples">
-					<h6 class="m-0 font-weight-bold text-primary">
+				<a href="#collapseCardExamples"	class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExamples">
+					<h6 class="m-0 font-weight-bold">
 						<i class="far fa-bell"></i> * 서빙완료 *
 					</h6>
-					</li>
 				</a>
-
 				<!-- Card Content - Collapse -->
 				<div class="collapse" id="collapseCardExamples">
 					<div class="card-body">
@@ -400,41 +385,35 @@ function orderDelete(seq){
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-12">
-		<div class="col-lg-12" align="center">
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold">
-						<a href="adminMasterNotice">*공지사항 *</a>
-					</h6>
-				</div>
-				<div class="card-body">
-					<div class="row cafetables" align="center" id="tblView">
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<h4>
-										<a href="adminMasterNotice">${masterNotice.masterNoticeTitle }</a>
-									</h4>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col">
-									<h6>
-										<a href="adminMasterNotice">${masterNotice.masterNoticeContent }</a>
-									</h6>
-								</div>
-							</div>
+<div class="col-lg-12" align="center">
+	<div class="card mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold">
+				<a href="adminMasterNotice">*공지사항 *</a>
+			</h6>
+		</div>
+		<div class="card-body">
+			<div class="row cafetables" align="center" id="tblView">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<h4>
+								<a href="adminMasterNotice">${masterNotice.masterNoticeTitle }</a>
+							</h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h6>
+								<a href="adminMasterNotice">${masterNotice.masterNoticeContent }</a>
+							</h6>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

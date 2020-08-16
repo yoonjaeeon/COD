@@ -16,7 +16,7 @@ public interface MemberMapper {
 	public void insertMember( MemberVO memberVO);
 	public void kakaoInsert(MemberVO memberVO);
 	public void updateMember( MemberVO memberVO);
-	public void deleteMember( MemberVO memberVO);
+	public void deleteMember(String email);
 	public List<BookmarksVO> getBookmarks(BookmarksVO bookmarksVO);
 	public MemberVO memberLogin(MemberVO memberVO);
 	public void insertBookmark(BookmarksVO bookmarksVO);

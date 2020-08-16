@@ -50,12 +50,13 @@ public class MemberController {
 		return "redirect:home";
 	}
 
-	// 멤버 탈퇴
-	@RequestMapping("memberDelete")
-	public String deleteMember(MemberVO memberVO) {
-		return "member/memberMyPage";
+	// 회원탈퇴
+	@RequestMapping(value="memberDelete", method = RequestMethod.POST)
+	public String deleteMember(HttpSession session) {
+		memberService.deleteMember((String)session.getAttribute("loginEmail"));
+		session.invalidate();
+		return "redirect:home";
 	}
-
 	// 전체조회
 	@RequestMapping("getMemberList")
 	public List getMemberList(MemberVO memberVO, Model model) {
@@ -75,7 +76,7 @@ public class MemberController {
 		return "member/memberMyPage";
 	}
 
-	//회원 정보 조회  
+	//내 정보 수정 폼으로 
 	@RequestMapping("memberUpdateForm")
 	public String getMember(MemberVO memberVO, Model model ,HttpSession session) {
 		memberVO.setEmail((String)session.getAttribute("loginEmail"));
@@ -85,9 +86,9 @@ public class MemberController {
 
 	// 멤버 업데이트
 	@RequestMapping("updateMember")
+	@ResponseBody
 	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {
-		memberVO.setEmail((String)session.getAttribute("email"));
-		model.addAttribute("member", memberService.getMember(memberVO));
+		memberService.updateMember(memberVO);
 		return "member/memberMyPage";
 	}
 	

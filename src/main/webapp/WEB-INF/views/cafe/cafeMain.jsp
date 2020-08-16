@@ -79,29 +79,42 @@ $(function(){
 						</div>
 					
 					<br> <br>
-					<button>
-						<i class='fas fa-map-marker-alt'></i> ${cafeDetail.cafeAddress }
+					<div class="row">
+					<button class="col-6">
+						<a href="#addr">
+							<i class='fas fa-map-marker-alt'></i> 주소보기
+						</a>
 					</button>
-					<c:if test="${empty sessionScope.loginEmail}">
-						<button type="button" onclick="orderLogin()">
-							<i class="fas fa-shopping-cart"> </i> 주문하기
-						</button>
+					<c:if test="${cafeDetail.openClose == 1}">
+						<c:if test="${empty sessionScope.loginEmail}">
+							<button type="button" onclick="orderLogin()" class="col-6">
+								<i class="fas fa-shopping-cart"> </i> 주문하기
+							</button>
+						</c:if>
+						<c:if test="${not empty sessionScope.loginEmail}">
+							<button	class="col-6" onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
+								<i class="fas fa-shopping-cart"> </i> 주문하기
+							</button>
+						</c:if>
 					</c:if>
-					<c:if test="${not empty sessionScope.loginEmail}">
-						<button
-							onclick="location.href='cafeOrder?adminId=${cafeDetail.adminId}'">
-							<i class="fas fa-shopping-cart"> </i> 주문하기
+					<c:if test="${cafeDetail.openClose == 0}">
+						<button class="col-6" type="button">
+							영업시간 <i class ="fa fa-times-circle"></i>
 						</button>
 					</c:if>
 				</div>
-				<div class="col-lg-8 boxs">
+				</div>
+				<!-- 공지사항 -->
+				<div class="col-lg-8 boxs" style="padding: 1em">
 					<article class="mini-post">
 						<header>
 							<h3>공지사항</h3>
+							<textarea rows="" cols=""></textarea>
 							<p class="published">${adminNotice.adminNoticeContent }</p>
-							<a href="#" class="author"><i class='far fa-heart'></i> <!-- <img src="resources/images/avatar.jpg" alt=""> --></a>
+							<a href="#" class="author"><i class='far fa-heart'></i></a>
 						</header>
 					</article>
+					<!-- 기본정보 -->
 					<article class="mini-post">
 						<header>
 							<h3>기본 정보</h3>
@@ -111,7 +124,6 @@ $(function(){
 							</h4>
 						</header>
 					</article>
-
 				</div>
 			</div>
 		</div>
@@ -130,7 +142,6 @@ $(function(){
 								<h4>와이파이</h4>
 							</div>
 						</c:if>
-
 						<c:if test="${'1' == cafeDetail.animal }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
@@ -157,7 +168,6 @@ $(function(){
 								<h4>주차가능</h4>
 							</div>
 						</c:if>
-
 						<c:if test="${'1' == cafeDetail.charger }">
 							<div class="single_feature">
 								<div class="single_feature_icon">
@@ -195,7 +205,6 @@ $(function(){
 		<!-- detail -->
 		<div id="listpage">
 			<section class="posts row">
-			
 				<!-- 좌석선택 -->
 			<div class="col-lg-6">
 			<h4>좌우로 스크롤하여 좌석 선택 !</h4>
@@ -276,13 +285,17 @@ $(function(){
 				<div class="padding2 row cafeReviewList">
 				</div>
 			</div>
-			<button type="button" class="btn_review" >more</button>
+			<div align="center">
+				<button type="button" class="btn_review" >리뷰 더 보기</button>
+			</div>
+			<br>
 		</div>
 		<!-- 지도 -->
-		<div>
+		<div id="addr">
 			<article class="mini-post">
 				<header>
 					<h3>카페위치</h3>
+					<p> ${cafeDetail.cafeAddress }</p>
 				</header>
 			</article>
 			<div id="map" style="width: 100%; height: 350px;">

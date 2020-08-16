@@ -178,7 +178,6 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 									onclick="test('${menu.menuName }',${menu.price },${menu.menuSeq},'',0)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
 									title="Hot선택 " data-toggle="tooltip">${menu.price }</div>
-
 								<div
 									onclick="test('${menu.menuName }',${menu.price+menu.priceAdd },${menu.menuSeq}, '아이스', 1)"
 									class="col-lg-3 col-md-2 published" data-placement="top"
@@ -239,7 +238,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
-				<%-- <button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button>	 --%>
+			<button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button>
 		</div>
 	</div>
 </div>

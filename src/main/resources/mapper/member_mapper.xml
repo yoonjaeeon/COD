@@ -49,7 +49,6 @@
 		 BIRTHDAY = #{birthday},
 		 NICKNAME = #{nickname} 
 		 WHERE EMAIL = #{email}
-		
 	</update>
 	
 
@@ -113,10 +112,10 @@
 
 
 	<delete id="deleteMember" parameterType="String">
-		
-		DELETE FROM member
-		WHERE email =#{email}
-	
+		UPDATE MEMBER SET
+			PW = 'null', 
+		 	PHONE = 'null'
+		WHERE EMAIL = #{email}
 	</delete>
 
 	<select id="getEmail" parameterType="co.cod.app.member.MemberVO">

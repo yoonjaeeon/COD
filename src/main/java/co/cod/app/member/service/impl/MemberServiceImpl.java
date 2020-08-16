@@ -39,8 +39,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void deleteMember(MemberVO memberVO) {
-		memberMapper.deleteMember(memberVO);
+	public void deleteMember(String email) {
+		memberMapper.deleteMember(email);
 	}
 
 	@Override

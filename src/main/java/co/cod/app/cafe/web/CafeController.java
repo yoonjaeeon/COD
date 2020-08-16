@@ -379,8 +379,8 @@ public class CafeController {
 	
 	@RequestMapping("selectCafe")
 	public String selectCafe(CafeVO cafeVO, Model model){
-		List list;
-		list = cafeService.selectCafe(cafeVO);
+		List list = cafeService.selectCafe(cafeVO);
+		model.addAttribute("search", cafeVO.getSearch());
 		model.addAttribute("sCafe", list);
 		return "member/selectCafe";
 	}

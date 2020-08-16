@@ -51,9 +51,9 @@ function logoutCheck(){
 <section id="menu">
    <!-- Search -->
    <section>
-      <form class="search" method="get" action="#">
-         <input type="text" name="query" placeholder="Search" />
-      </form>
+   	<form id="search" method="get" action="selectCafe">
+       <input type="text" name="search" placeholder="카페이름or주소검색" />
+    </form>
    </section>
 
    <!-- Links -->

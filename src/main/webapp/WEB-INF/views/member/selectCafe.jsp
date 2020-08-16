@@ -3,9 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="padding2" align="center">
-	<h3>인기리스트</h3>
+	<h3>${search } 에 대한 검색결과</h3>
 	<hr>
 	<div class="main_slicks">
+		<c:if test="${empty sCafe}">
+		<div>
+			<h4>검색 결과가 없습니다</h4>
+		</div>
+		</c:if>
 		<c:forEach items="${sCafe }" var="list">
 			<div>
 				<article class="mini-post">

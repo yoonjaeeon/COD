@@ -40,7 +40,7 @@
 									<i class="far fa-heart" data-placement="top" title="로그인이 필요한 기능 "
 										data-toggle="tooltip" ></i>
 								</c:if>
-							<h4>${list.stars }</h4>
+							<h4>${list.stars }</h4> 
 						</div> 
 					</header>
 					<a href="cafe?adminId=${list.adminId}" class="image"> <img

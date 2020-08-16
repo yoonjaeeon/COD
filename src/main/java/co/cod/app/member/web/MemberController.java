@@ -86,7 +86,6 @@ public class MemberController {
 
 	// 멤버 업데이트
 	@RequestMapping("updateMember")
-	@ResponseBody
 	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {
 		memberService.updateMember(memberVO);
 		return "redirect:memberMyPage";

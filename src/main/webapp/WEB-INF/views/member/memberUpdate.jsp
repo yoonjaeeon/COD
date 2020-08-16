@@ -16,7 +16,6 @@
 		}else{
 		alert("수정이 완료 되었습니다");
 		frm.submit();
-		location.href="memberMyPage";
 	}
 	    }
 		
@@ -69,8 +68,9 @@
 			닉네임 <input type="text" name="nickname" class="form-control" value="${member.nickname}" /><br /> <br /> 
 			핸드폰 번호 <input type="text" name="phone" class="form-control" value="${member.phone}"/><br /> <br /> 
 			<fmt:parseDate value="${member.birthday }" pattern="yyyy-MM-dd" var="birthdays"/>
+			<fmt:formatDate value="${birthdays }" pattern="yyyy-MM-dd" var="memberBirthday"/>
 			생년월일<input type="date" id="birthday" class="form-control" name="birthday" 
-			value="${birthdays}"><br /> <br />
+			value="${memberBirthday}"><br /> <br />
 			<div class="align-center" style="margin-top: 30px">
 			<br> <br>
 			<div class="align-center" style="margin-top: 30px">

@@ -22,8 +22,8 @@ function backF(){
        <div class="form-group">
          <label>사업자번호:</label><span id="saup" style="color:red"></span>
           <div class="row">
-         <input type="text"  class="form-control col-9"  id="cafeBn" name="cafeBn" value="${cafeList.cafeBn}" >
-         <input type="button" class="col-3" id="bnSearch" value="검색">
+          <input type="text"  class="form-control col-9"  id="cafeBn" name="cafeBn" value="${cafeList.cafeBn}" >
+         <button type="button" class="btn btn-info" id="bnSearch">검색</button>
       </div>
       <div class="form-group">
          <label>카페이름:</label>
@@ -66,7 +66,7 @@ function backF(){
 
 
       <div class="btn-group">      
-             <input type="button" class="btn btn-primary" value="확인" id="back"> 
+             <input type="button" class="btn btn-info" value="확인" id="back"> 
            <!--  <button type="submit" data-toggle="modal" data-target="#contentModal"  class="btn btn-primary" >등록</button>  -->
             <!-- <input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" /> -->
          

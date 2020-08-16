@@ -29,6 +29,8 @@ $(function(){
 	//위도 경도 보여주는 function
 	function showPosition(position) {		 
 		  location.href="location?cafeX="+position.coords.longitude+"&cafeY="+position.coords.latitude;
+		  location.href="location?cafeX="+undefined.coords.longitude+"&cafeY="+undefined.coords.latitude;
+
 	}
 	
 	//아이콘 고정

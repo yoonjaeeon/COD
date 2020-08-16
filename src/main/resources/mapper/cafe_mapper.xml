@@ -235,10 +235,33 @@ WHERE ADMIN_ID = #{adminId}
    </select>
    
    <select id="selectCafe" parameterType="co.cod.app.cafe.CafeVO" resultType="co.cod.app.cafe.CafeVO">
-   select * 
+  <!--  select * 
      from cafe 
     where cafe_name like '%'||#{search}||'%'
-       or cafe_address like '%'||#{search}||'%'
+       or cafe_address like '%'||#{search}||'%' -->
+       
+        SELECT 
+         C.ADMIN_ID, 
+         C.CAFE_NAME, 
+         C.CAFE_THUMBNAIL ,
+         C.CAFE_HASHTAG, 
+         NVL(R.STARS,0) AS      STARS
+         <if test="email != null">
+        ,  (SELECT EMAIL FROM BOOKMARKS WHERE ADMIN_ID =C.ADMIN_ID  AND   EMAIL =#{email}) AS BOOKMARKS,    
+         (SELECT BOOKMARK_SEQ FROM BOOKMARKS WHERE ADMIN_ID=C.ADMIN_ID AND EMAIL=#{email}) BOOKMARK_SEQ
+          </if>
+      FROM CAFE C 
+      LEFT OUTER JOIN (SELECT ADMIN_ID, TRUNC((SUM(STARS))/COUNT(STARS),1) STARS
+                                  FROM REVIEW
+                                  GROUP BY
+                                   ADMIN_ID) R
+                                  ON (C.ADMIN_ID = R.ADMIN_ID)
+      JOIN admin a on(a.admin_id= c.admin_id)
+     WHERE a.cafe_state=2 and (cafe_name like '%'||#{search}||'%'
+       or cafe_address like '%'||#{search}||'%')                           
+     <if test="cafeTheme != null">
+     </if>
+      ORDER BY CAFE_THEME DESC
    </select>
   
   

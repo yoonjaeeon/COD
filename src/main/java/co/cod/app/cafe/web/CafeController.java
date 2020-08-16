@@ -378,7 +378,8 @@ public class CafeController {
     }
 	
 	@RequestMapping("selectCafe")
-	public String selectCafe(CafeVO cafeVO, Model model){
+	public String selectCafe(CafeVO cafeVO, Model model,HttpSession session){
+		cafeVO.setEmail((String)session.getAttribute("loginEmail"));
 		List list = cafeService.selectCafe(cafeVO);
 		model.addAttribute("search", cafeVO.getSearch());
 		model.addAttribute("sCafe", list);

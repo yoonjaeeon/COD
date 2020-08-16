@@ -42,7 +42,7 @@
       <br><br>
         첨부 사진<br>
       <div class="custom-file mb-3">
-	      <input type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
+	      <input type="file" multiple="multiple" class="custom-file-input" id="uploadFile" name="uploadFile">
 	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
       </div>
       <br><br>
@@ -76,7 +76,7 @@ str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 document.getElementById("textarea").value = str;
 
 $(".custom-file-input").on("change", function() {
-	var fileName = $(this).val().split("\\").pop();
-	$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	  var fileName = $(this).val().split("\\").pop();
+	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 </script>

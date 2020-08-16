@@ -91,7 +91,6 @@ function inventorySelectResult(inventory) {
 	$('input:text[name="nowVolume"]').val(inventory.nowVolume);
 	$('input:text[name="inventoryPrice"]').val(inventory.inventoryPrice);
 
-
 }//InventorySelectResult
 
 //메뉴 수정 요청
@@ -135,8 +134,6 @@ function inventoryListResult(data) {
    $.each(data,function(idx,item){
       $('<tr>')
       .append($('<input type=\'hidden\' id=\'adminId\'>').html(item.adminId))
-/*       .append($('<td>').html(item.adminId)) */
-/*       .append($('<td class=\'inventorySeq\'></td>').html(item.inventorySeq)) */
       .append($('<input type=\'hidden\' class=\'inventorySeq\'>').html(item.inventorySeq))
       .append($('<td>').html(item.inventoryName))
       .append($('<td>').html(item.inventoryAmount))
@@ -159,17 +156,18 @@ $(document).ready(function(){
 </script>
 <div class="container">
          <h4>재고 관리</h4><br>
-   <form name="inventoryform" id="inventoryform" class="form-horizontal row">
-      <div class="col-lg-6" >
-      	 <input type="hidden" name="adminId">
-      	 <input type="hidden" name="inventorySeq">
-      	 <input type="text" class="form-control" name="inventoryName"   placeholder="재고명" id="inventoryName">      <br>
-         <input type="text" class="form-control" name="inventoryAmount"   placeholder="재고수량" id="inventoryAmount">      <br>
-         <input type="text" class="form-control" name="volume"   placeholder="용량" id="volume">      <br>
-         <input type="text" class="form-control" name="nowVolume"   placeholder="현재용량" id="nowVolume">      <br>
-         <input type="text" class="form-control" name="inventoryPrice"   placeholder="단가" id="inventoryPrice">      <br>
-      </div>
-
+   <form name="inventoryform" id="inventoryform" class="form-horizontal row" >
+      <div align="center">
+	      <div class="row" style="width: 80%; margin: 30px">
+	      	 <input type="hidden" name="adminId">
+	      	 <input type="hidden" name="inventorySeq">
+	      	 <input type="text" class="form-control  " name="inventoryName"   placeholder="재고명" id="inventoryName">      <br><br>
+	         <input type="text" class="form-control  " name="inventoryAmount"   placeholder="재고수량" id="inventoryAmount">     <br> <br>
+	         <input type="text" class="form-control  " name="volume"   placeholder="용량" id="volume">      <br><br>
+	         <input type="text" class="form-control  " name="nowVolume"   placeholder="현재용량" id="nowVolume">      <br><br>
+	         <input type="text" class="form-control  " name="inventoryPrice"   placeholder="단가" id="inventoryPrice">
+	      </div>
+	  </div>
       <div class= "container" align="center">
       <input type="button" class="btn btn-outline-info" value="등록" id="btnInsert"/>
       <input type="button" class="btn btn-outline-info" value="수정" id="btnUpdate" />

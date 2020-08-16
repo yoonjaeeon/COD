@@ -181,7 +181,7 @@
 		});//each
 	}//userListResult
 </script>
-<body>
+
 <div class="container">
 	<div class="row">
 			<div class="col-lg-6">
@@ -219,9 +219,9 @@
 					</div>
 				</form>
 			</div>
-				<div class="inputArea">
+				<div class="inputArea col-lg-6">
  					<p>좌석 사진</p>
- 					<img id="seatImg" style="width: 500px">
+ 					<img id="seatImg" style="width: 100%; max-height: 300px; overflow: hidden;">
  				</div>
 			</div>
 	<div>
@@ -243,5 +243,11 @@
 	</div>
  </div>
 </div>
-</body>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 

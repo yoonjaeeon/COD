@@ -109,8 +109,9 @@ $(function(){
 					<article class="mini-post">
 						<header>
 							<h3>공지사항</h3>
-							<textarea rows="" cols=""></textarea>
-							<p class="published">${adminNotice.adminNoticeContent }</p>
+							<textarea class="published" style="border:none; width:100%;height:100px; background:white; overflow:scroll; resize: none"readonly="readonly" >
+								${adminNotice.adminNoticeContent }
+							</textarea>
 							<a href="#" class="author"><i class='far fa-heart'></i></a>
 						</header>
 					</article>

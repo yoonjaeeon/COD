@@ -10,13 +10,12 @@
 
 </head>
 <body>
-<div class="container">
-   <form action="cafeUpdate" id="form1" name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
-      <div align="center"><h2>카페 수정</h2></div>
-      <div class="form-group">      
-         <!-- <label> 관리자 아이디:</label> -->
-         <input type="hidden"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}">
-      </div>  
+<div class="container" >
+   <form action="cafeUpdate" id="form1" name="form1" method="post" class="form-horizontal" style="width: 85%"enctype="multipart/form-data">
+      <div align="center"><h2>카페 수정</h2></div> 
+        <!-- <label> 관리자 아이디:</label> -->
+        <input type="hidden"  class="form-control" id="id" name="adminId" value="${sessionScope.adminId}">
+
         <div class="form-group">
          <label>사업자번호:</label>
           <div class="row">
@@ -47,113 +46,125 @@
          <label>휴무일:</label>
          <input type="text"  class="form-control" id="close" name="cafeCloseday" value="${getCafe.cafeCloseday}" >
       </div>
-        <div class="form-group">
-      <label>썸네일:</label> <br><br>
-      <img src="resources/upload/${getCafe.cafeThumbnail}"style="width: 350px"/><br><br>
-     <input type="file" id="upload" name="upload"/>
-     </div>   
-        <div class="form-group">
+      <div class="row">
+      <label class="col-6">썸네일:</label><label class="col-6">카페상세사진:</label> 
+      </div>
+      <div class="row">
+		  <div class="custom-file mb-3 col-6">
+		      <input type="file" class="custom-file-input" id="upload" name="upload">
+		      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+		  </div>
+	      <div class="custom-file mb-3 col-6">
+		      <input multiple="multiple" type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
+		      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+	      </div>
+	  </div>
+      <br>
       <label>카페등록사진:</label><br>
+      <img src="resources/upload/${getCafe.cafeThumbnail}"style="width: 350px; max-height: 300px"/><br><br>
+      <div class="row">
       <c:forEach items="${fileList}" var="file">
+      	<div class="col-4">
    		<img src="resources/upload/${file.photoName}"style="width: 300px"/><br>
- 	  </c:forEach> 
-      <input multiple="multiple" type="file"  id="uploadFile" name="uploadFile"/>
-      </div> 
+   		</div>
+ 	  </c:forEach>
+ 	  </div>
+ 	  <br>
       <div class="form-group">
          <label>해시테그:</label>
          <input type="text"  class="form-control" id="cafeHashtag" name="cafeHashtag" value="${getCafe.cafeHashtag}" >
       </div>
       
-      <div class="form-group">
-         <label >테마:</label>
+      <label >테마:</label><br>
+      <div class="form-group row">
          <c:if test="${getCafe.cafeTheme == 't4'}">
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4" checked="checked" >작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
          </div>
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
          </div> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
          </div>
          </c:if>
          <c:if test="${getCafe.cafeTheme=='t5'}">
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4"  >작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5" checked="checked">핸드드립</label>
          </div>
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3">야외석있는</label>
          </div> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1">이색카페</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
          </div>
          </c:if>
          <c:if test="${getCafe.cafeTheme=='t3'}">
-        <div class="checkbox">
+        <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4" >작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
          </div>
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3" checked="checked">야외석있는</label>
          </div> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
          </div>
          </c:if>
          <c:if test="${getCafe.cafeTheme=='t1'}"> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4" >작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
          </div>
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
          </div> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1" checked="checked">이색카페</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2" >디저트</label>
          </div>
          </c:if>
          <c:if test="${getCafe.cafeTheme=='t2'}"> 
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t4">작업하기좋은</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t5" >핸드드립</label>
          </div>
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t3" >야외석있는</label>
          </div> 
-          <div class="checkbox">
+          <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t1" >이색카페</label>
          </div>
-         <div class="checkbox">
+         <div class="checkbox col-4">
             <label><input type="radio"  name="cafeTheme" id="theme" value="t2" checked="checked">디저트</label>
          </div>
          </c:if>
        </div>     
-            <br>
-             
+       <br>
+       <hr>      
         <div class="row">
 	      	<div class="col-3">   
 	        <div class="form-group">
@@ -331,7 +342,7 @@
 	        </div>
 	        </div>
       <div class="btn-group">      
-               <button type="button" class="btn btn-primary" onclick="cafeInsert()">재등록</button>
+               <button type="button" class="btn btn-primary" onclick="cafeInsert()">수정</button>
             
       </div>
    </form>

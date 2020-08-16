@@ -22,10 +22,10 @@ function button2(){
 <div class="form-group">
 <input type="hidden" name="reviewSeq" value="${review.reviewSeq }">
 	    </div>
-리뷰 내용:<br/>
+<h4>리뷰 내용</h4>
 <textarea class="form-control" cols="30" rows="10"
           name="reviewContent" id="reviewContent">${review.reviewContent}</textarea><br/>
-평 점 : 
+<h4>평 점</h4>
 	<div class="starRev">
 		<c:forEach var="index" begin="1" end="5" >
 		<span class="starR <c:if test="${review.stars>=index}">on</c:if>">${index }</span>
@@ -33,26 +33,36 @@ function button2(){
 	  	<input type="hidden" name="stars" id="stars" value="${review.stars}">
 	</div>
 <div class="inputArea">
- <p>대표 사진</p>
+ <h4>대표사진</h4>
  <img src="resources/upload/${review.gdsThumbImg}"style="width: 500px"/>
- <p>리뷰 사진</p>
+ <h4>리뷰 사진</h4>
+ <div class="row">
  <c:forEach items="${fileList}" var="file">
-   <img src="resources/upload/${file.photoName}"style="width: 500px"/>
+   <div class="col-4">
+   <img src="resources/upload/${file.photoName}"style="width: 100%; max-height: 200px; overflow: hidden"/>
+   </div>
  </c:forEach>
+ </div>
 
 </div>
 	<c:if test="${sessionScope.loginEmail == review.email}">
-대표 사진<br>
-	<div class="custom-file mb-3">
-	      <input type="file" class="custom-file-input" id="upload" name="upload">
-	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
-    </div>
+	<div class="row">
+    	<div class="col-6">    
+		    <h4>대표 사진</h4>
+			<div class="custom-file mb-3">
+			      <input type="file" class="custom-file-input" id="upload" name="upload" >
+			      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+		    </div>
+	    </div>
       <br><br>
-        첨부 사진<br>
-      <div class="custom-file mb-3">
-	      <input type="file" class="custom-file-input" id="uploadFile" name="uploadFile">
-	      <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+      <div class="col-6">
+		      <h4>첨부 사진</h4>
+		      <div class="custom-file mb-3">
+			      <input multiple="multiple" class="custom-file-input" type="file" id="uploadFile" name="uploadFile">
+		      	  <label class="custom-file-label" for="customFile"> 파일을 선택해 주세요 </label>
+		      </div>
       </div>
+    </div>
  <br><br>
  <div align="center">
 	<button type="button" onclick ="button1()">수정</button>
@@ -80,8 +90,8 @@ $(document).ready(function(){
 	});
 });
 $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	  var fileName = $(this).val().split("\\").pop();
+	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 var str = document.getElementById("textarea").value;
 str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');

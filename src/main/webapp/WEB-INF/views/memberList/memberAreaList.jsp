@@ -108,7 +108,7 @@ $(function(){
 			</div>
 			<h4>달성군</h4>
 		</div> -->
-	</div>
+	</div>  
 </div>
 <div id="listpage">
 	<section class="posts">

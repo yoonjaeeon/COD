@@ -80,11 +80,13 @@ public class CafeController {
 	public String AreaList(CafeVO cafeVO, Model model, HttpSession session) {
 		cafeVO.setEmail((String) session.getAttribute("loginEmail"));
 		List list = cafeService.AreaList(cafeVO);
-		ArrayList<String> area = new ArrayList<String>();
-		area.add("내주변");		area.add("중구");		area.add("남구");		area.add("서구");
-		area.add("북구");		area.add("동구");		area.add("수성구");		area.add("달서구");		area.add("달성군");
+		/*
+		 * ArrayList<String> area = new ArrayList<>(); area.add("location");
+		 * area.add("중구"); area.add("남구"); area.add("서구"); area.add("북구");
+		 * area.add("동구"); area.add("수성구"); area.add("달서구"); area.add("달성군");
+		 */
 		model.addAttribute("getArea", list);
-		model.addAttribute("areas",area);
+		//model.addAttribute("areas",area);
 		return "memberList/memberAreaList";
 	}
 

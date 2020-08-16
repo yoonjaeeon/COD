@@ -70,18 +70,13 @@ $('body').on('click','#ctbl tr',function(){
 //메뉴 목록 조회 응답
 function calSelectResult(data) {
 	$("#detail").empty();
-	value = '<div class="row"><div class="col-6">메뉴 명</div><div class="col-2">가격</div><div class="col-2">수량</div><div class="col-2">총액</div></div>'
-	html = '<div align="right"><button type="buton" class="btn btn-outline-primary" id="excel">'+
-	'<button>출력</button></div>';
-	$('#detail').append(html).append(value);
 	$.each(data, function(idx, item) {		
-		/* 여기안먹힘 */
 		if(item.ORDER_STATE == 1){
 			name = '아이스 '+item.MENU_NAME;
-			price = (parseInt(item.PRICE)+parseInt(item.PRICE_ADD))
+			price = (parseInt(item.PRICE)+parseInt(item.PRICE_ADD));
 		} else{
-			name =	item.MENU_NAME
-			price = item.PRICE
+			name =	item.MENU_NAME;
+			price = item.PRICE;
 		}
 		total = item.ORDERLINE_AMOUNT * price;
 		
@@ -89,15 +84,9 @@ function calSelectResult(data) {
 								.append($('<div>').addClass('col-2').html(price))
 								.append($('<div>').addClass('col-2').html(item.ORDERLINE_AMOUNT))
 								.append($('<div>').addClass('col-2').html(total))
-								.appendTo('#detail'); 
-		 html+='<div class="row"><div col-6>'+name+'</div>'+
-		'<div col-2>'+price+'</div>'+
-		'<div col-2>'+item.ORDERLINE_AMOUNT+'</div>'+
-		'<div col-2>'+total+'</div>'+
-		
-		'</div>'; 
+								.appendTo($('#detail')); 
+	
 	})	
-	console.log(myPrice);
 	$('#totalPrice').html('<br>합계 : ' +myPrice);
 	
 }

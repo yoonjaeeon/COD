@@ -34,6 +34,7 @@ function calculateList(){
 			<th>Name</th>
 			<th>출근시간</th>
 			<th>퇴근시간</th>
+			<th>일급</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,11 +43,13 @@ function calculateList(){
 			<fmt:parseDate value="${commute.COMMUTE_DAY}" pattern="yyyy-MM-dd" var="date"/>
 			<fmt:parseDate value="${commute.START_TIME}" pattern="yyyy-MM-dd HH:mm" var="start"/>
 			<fmt:parseDate value="${commute.END_TIME}" pattern="yyyy-MM-dd HH:mm" var="end"/>
+			<fmt:formatNumber value="${commute.DAY_PAY}" pattern="#,###.## 원" var="pay"/>
 			<tr>
 				<td><fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/></td>
 				<td>${commute.WORKER_NAME }</td>
 				<td><fmt:formatDate value="${start}" pattern="HH:mm"/></td>
 				<td><fmt:formatDate value="${end}" pattern="HH:mm"/></td>
+				<td>${pay }</td>
 			</tr>
 		</c:forEach>
 	</tbody>

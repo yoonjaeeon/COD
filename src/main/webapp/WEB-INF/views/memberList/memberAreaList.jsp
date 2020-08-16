@@ -46,68 +46,6 @@ $(function(){
 				<h4>${area}</h4>
 			</div>
 		</c:forEach>
-		<!-- <div class="single_feature" id="location">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>내주변</h4>
-		</div>
-		<div class="single_feature" id="중구"
-			onclick="location.href='areaList?cafeAddress=중구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>중구</h4>
-		</div>
-		<div class="single_feature" id="남구"
-			onclick="location.href='areaList?cafeAddress=남구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>남구</h4>
-		</div>
-		<div class="single_feature" id="서구"
-			onclick="location.href='areaList?cafeAddress=서구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>서구</h4>
-		</div>
-		<div class="single_feature" id="북구"
-			onclick="location.href='areaList?cafeAddress=북구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>북구</h4>
-		</div>
-		<div class="single_feature" id="동구"
-			onclick="location.href='areaList?cafeAddress=동구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>동구</h4>
-		</div>
-		<div class="single_feature" id="수성구"
-			onclick="location.href='areaList?cafeAddress=수성구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>수성구</h4>
-		</div>
-		<div class="single_feature" id="달서구"
-			onclick="location.href='areaList?cafeAddress=달서구'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>달서구</h4>
-		</div>
-		<div class="single_feature" id="달성군"
-			onclick="location.href='areaList?cafeAddress=달성군'">
-			<div class="single_feature_icon">
-				<i class="fas fa-map-marker-alt"></i>
-			</div>
-			<h4>달성군</h4>
-		</div> -->
 	</div> 
 </div>
 <div id="listpage">

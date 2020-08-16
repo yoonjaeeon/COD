@@ -83,10 +83,6 @@ public class CafeController {
 		ArrayList<String> area = new ArrayList<String>();
 		area.add("내주변");		area.add("중구");		area.add("남구");		area.add("서구");
 		area.add("북구");		area.add("동구");		area.add("수성구");		area.add("달서구");		area.add("달성군");
-		for(String a: area) {
-			System.out.println("---------");
-			System.out.println(a);
-		}
 		model.addAttribute("getArea", list);
 		model.addAttribute("areas",area);
 		return "memberList/memberAreaList";

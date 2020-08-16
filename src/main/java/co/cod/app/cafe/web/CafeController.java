@@ -382,11 +382,7 @@ public class CafeController {
 		List list;
 		list = cafeService.selectCafe(cafeVO);
 		model.addAttribute("sCafe", list);
-		return "selectCafe";
+		return "member/selectCafe";
 	}
 
-	
-	
-	
-	
 }

@@ -237,7 +237,8 @@ WHERE ADMIN_ID = #{adminId}
    <select id="selectCafe" parameterType="co.cod.app.cafe.CafeVO" resultType="co.cod.app.cafe.CafeVO">
    select * 
      from cafe 
-    where cafe_name like '%#{search}%' or cafe_address like '%'||#{cafeAddress}||'%'
+    where cafe_name like '%'||#{search}||'%'
+       or cafe_address like '%'||#{search}||'%'
    </select>
   
   

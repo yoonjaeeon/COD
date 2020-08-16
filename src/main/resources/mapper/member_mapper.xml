@@ -204,6 +204,7 @@
    WHERE B.EMAIL=#{email}
    )
    WHERE  <![CDATA[ROWNUM <= 5]]> 
+   ORDER BY BOOKMARKNUM DESC
 	</select>
 	
 	<select id="getFiveReview" resultType="vofile.GetMemberDayOrder">

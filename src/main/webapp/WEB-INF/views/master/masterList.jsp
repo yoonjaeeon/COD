@@ -87,7 +87,7 @@ function masterList(){
 									<td>${masterList.adminId}</td>
 									<td>${masterList.pw}</td>
 									<td>${masterList.adminPhone }</td>
-									<td><button type="button" onclick="idDelete('${masterList.adminId}')">삭제</button></td>
+									<td><button type="button" class="btn" onclick="idDelete('${masterList.adminId}')"><i class="fas fa-times-circle" style="font-size:24px"></i></button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -109,4 +109,3 @@ function masterList(){
 			</table>
 		</div>
 	</div>
-</div>

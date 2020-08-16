@@ -38,7 +38,7 @@ public class MasterController {
 		// e등로폼
 		@RequestMapping("masterInsertForm")
 		public String insertMaster(MasterVO masterVO) {
-			return "master/masterInsert";
+			return "ma/master/masterInsert";
 		}
 
 		// 등록처리

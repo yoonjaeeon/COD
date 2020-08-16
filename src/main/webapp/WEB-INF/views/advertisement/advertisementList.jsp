@@ -201,7 +201,6 @@
 	
 </script>
 
-<body>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-4">
@@ -235,15 +234,17 @@
 				<div class="form-group">   
 					<label>계약만료:</label>
 					<input type="date" id="date" class="form-control" name="contractENDPeriod" >	   		
+				</div>				
+				<div class="custom-file">
+				  <label>첨부파일:</label>
+				  <input type="file" class="custom-file-input" id="upload" name="upload">
+				  <label class="custom-file-label" for="customFile">Choose file</label>
 				</div>
-				  
-					 <div class="form-group">
-				<label>첨부파일:</label> <input type="file" name="upload" id="upload" />
-				</div> 
-				<div class="btn-group">      
-					<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
-					<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-					<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+
+				<div align="center">      
+					<input type="button"  class="btn btn-outline-info" value="등록"  id="btnInsert" /> 
+					<input type="button"  class="btn btn-outline-info" value="수정"  id="btnUpdate" />
+					<input type="button"  class="btn btn-outline-info" value="초기화" id="btnInit" />		
 				</div>
 			</form>
 		</div>
@@ -274,27 +275,12 @@
 				<tbody></tbody>
 			</table>
 		</div>
-		</div>
-<!-- 	<div class="row" style="margin-bottom: 1em">
-      	<div class="col-6"></div>
-      	<input class="form-control col-5" id="searchMenu" type="text" placeholder="관리자 아이디 ">
-      	<i class="fa fa-search col-1" style="font-size:24px;" ></i>
-      </div>
-	<div class="col-lg">
-		<h2>관리자 리스트</h2>
-		<table class="table text-center" id="adminTbl">
-			<thead>
-				<tr >
-					<th class="text-center">관리자 아이디</th>
-					<th class="text-center">관리자 연락처</th>
-					<th class="text-center">관리자 대기 상태</th>
-					<th class="text-center">상태승인</th>
-					<th class="text-center">상태거절</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-	</div> -->
+	</div>
 </div>
 </div>
-</body>
+<script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>

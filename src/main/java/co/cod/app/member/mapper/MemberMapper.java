@@ -38,5 +38,6 @@ public interface MemberMapper {
 	public List<MemberVO> popularList(MemberVO memberVO);
 	public List<MemberVO> newCafeList(MemberVO memberVO);
 	public List<CafeVO> location(CafeVO cafeVO);
+	public void deleteAfterUpdate(String email); 
 	
 }

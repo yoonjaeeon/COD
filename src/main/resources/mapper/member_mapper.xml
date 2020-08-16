@@ -117,6 +117,10 @@
 		 	PHONE = 'null'
 		WHERE EMAIL = #{email}
 	</delete>
+	<!-- 삭제시 탈퇴된 회원 닉네임 남기기 -->
+	<update id="deleteAfterUpdate" parameterType="String">
+	UPDATE MEMBER SET NICKNAME='(탈퇴된 회원)' WHERE EMAIL=#{email}
+	</update>
 
 	<select id="getEmail" parameterType="co.cod.app.member.MemberVO">
 	SELECT EMAIL 

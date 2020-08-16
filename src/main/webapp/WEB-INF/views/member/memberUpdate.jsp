@@ -22,7 +22,7 @@
 		function validCheck1() {
 			var result = confirm("정말 탈퇴하시겠습니까??");
 			 if (result == true){
-				 $.post("memberDelete");
+				 frm2.submit();
 			 }
 		}
 	/* function pwValidCheck() {
@@ -66,7 +66,7 @@
 			<input type="password" id="pw" name="pw" class="form-control pw" placeholder=" ※ 패스워드는 특수문자,영문 1개 이상을 포함하여야 합니다 ※  "><br />
 			pw(확인) <input type="password" id="pw2" class="form-control pw" placeholder="패스워드 확인  "> <br /> <br />
 			닉네임 <input type="text" name="nickname" class="form-control" value="${member.nickname}" /><br /> <br /> 
-			핸드폰 번호 <input type="text" name="phone" class="form-control" value="${member.phone}"/><br /> <br /> 
+			핸드폰 번호 <input type="text" name="phone" id="phone" maxlength="13" class="form-control" value="${member.phone}"/><br /> <br /> 
 			<fmt:parseDate value="${member.birthday }" pattern="yyyy-MM-dd" var="birthdays"/>
 			<fmt:formatDate value="${birthdays }" pattern="yyyy-MM-dd" var="memberBirthday"/>
 			생년월일<input type="date" id="birthday" class="form-control" name="birthday" 
@@ -79,6 +79,9 @@
 			<input type="reset" value="지우기">
 			</div>
 		</div>
+	</form>
+	<form action="memberDelete" method="post" type="hidden" name="frm2">
+	<input type="hidden" name="email" value="${member.email}">
 	</form>
 </div>
 <script>
@@ -102,4 +105,41 @@
 			}
 		}
 	});
+	
+	 var autoHypenPhone = function(str){
+		    str = str.replace(/[^0-9]/g, '');
+		    var tmp = '';
+		    if( str.length < 4){
+		        return str;
+		    }else if(str.length < 7){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3);
+		        return tmp;
+		    }else if(str.length < 11){
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 3);
+		        tmp += '-';
+		        tmp += str.substr(6);
+		        return tmp;
+		    }else{              
+		        tmp += str.substr(0, 3);
+		        tmp += '-';
+		        tmp += str.substr(3, 4);
+		        tmp += '-';
+		        tmp += str.substr(7);
+		        return tmp;
+		    }
+
+		    return str;
+		}
+
+
+		var phone = document.getElementById('phone');
+
+		phone.onkeyup = function(){
+		console.log(this.value);
+		this.value = autoHypenPhone( this.value ) ;  
+		}
 </script>

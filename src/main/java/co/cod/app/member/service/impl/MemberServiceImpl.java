@@ -41,6 +41,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMember(String email) {
 		memberMapper.deleteMember(email);
+		memberMapper.deleteAfterUpdate(email);
 	}
 
 	@Override

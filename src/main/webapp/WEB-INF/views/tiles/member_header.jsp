@@ -53,7 +53,7 @@ function logoutCheck(){
    <section>
    	<form id="search" method="get" action="selectCafe">
        <input type="text" name="search" placeholder="카페이름or주소검색" />
-    </form>
+    </form> 
    </section>
 
    <!-- Links -->

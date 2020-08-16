@@ -27,6 +27,7 @@
 		$('#btnInit').on('click',function(){
 			$('#advertform').each(function(){
 				this.reset();
+				$(".custom-file-label").html('Choose file');
 			});
 		});
 
@@ -125,14 +126,6 @@
 	function advertUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click', function(){	
-			/* var advertiseSeq = $('tbody').find('#sel_advertiseSeq').text();
-			var advertiser = $('input:text[name="advertiser"]').val();
-			var advertiserPhone = $('input:text[name="advertiserPhone"]').val();
-			var advertiseMoney = $('input:text[name="advertiseMoney"]').val();
-			var site = $('input:text[name="site"]').val();
-			var contractPeriod = $('select[name="contractPeriod"]').val();
-			var advertiseFile = $('input:file[name="upload"]').val();
-		 */	
 		 var form = $('#advertform')[0];
 			var data = new FormData(form);
 			
@@ -140,8 +133,7 @@
 			    url: "advertup", 
 			    type: 'post', 
 			    dataType: 'json', 
-			    data : data, /* JSON.stringify({advertiseSeq:advertiseSeq, advertiser: advertiser, advertiserPhone:advertiserPhone,advertiseMoney:advertiseMoney, site:site,contractPeriod:contractPeriod }) */
-			   /*  contentType:'application/json;charset=utf-8', */	    
+			    data : data,  
 			    enctype: 'multipart/form-data',
 			    contentType:false,
 			    processData: false,
@@ -182,8 +174,6 @@
 			.append($('<td>').html(item.advertiseFile))
 			.append($('<td>').html(item.site))
 			.append($('<td>').html(item.remain+"일"))
-			//.append($('<td>').html(item.contractPeriod))
-			//.append($('<td>').html(item.contractENDPeriod))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 			.appendTo('tbody');
@@ -234,12 +224,12 @@
 				<div class="form-group">   
 					<label>계약만료:</label>
 					<input type="date" id="date" class="form-control" name="contractENDPeriod" >	   		
-				</div>				
+				</div>	
+				<label>첨부파일:</label>			
 				<div class="custom-file">
-				  <label>첨부파일:</label>
 				  <input type="file" class="custom-file-input" id="upload" name="upload">
 				  <label class="custom-file-label" for="customFile">Choose file</label>
-				</div>
+				</div><br><br>
 
 				<div align="center">      
 					<input type="button"  class="btn btn-outline-info" value="등록"  id="btnInsert" /> 

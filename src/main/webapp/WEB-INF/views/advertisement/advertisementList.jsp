@@ -208,7 +208,7 @@
 			<form id="advertform" class="form-horizontal" method="post"  enctype="multipart/form-data" >
 				<h2>광고등록</h2>
 				<div class="form-group">
-					<label> 광고번호:</label> <input type="text" class="form-control"
+					<!-- <label> 광고번호:</label>  --><input type="hidden" class="form-control"
 						name="advertiseSeq" id="advertiseSeq" readonly>
 				</div>
 				<div class="form-group">

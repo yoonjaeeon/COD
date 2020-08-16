@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
  
@@ -12,10 +13,11 @@
 			alert("비밀번호를 확인해주세요!");
 			frm.pw2.focus();
 			return;
-		}
-
+		}else{
 		alert("수정이 완료 되었습니다");
 		frm.submit();
+		location.href="memberMyPage";
+	}
 	    }
 		
 		function validCheck1() {
@@ -66,11 +68,13 @@
 			pw(확인) <input type="password" id="pw2" class="form-control pw" placeholder="패스워드 확인  "> <br /> <br />
 			닉네임 <input type="text" name="nickname" class="form-control" value="${member.nickname}" /><br /> <br /> 
 			핸드폰 번호 <input type="text" name="phone" class="form-control" value="${member.phone}"/><br /> <br /> 
-			생년월일<input type="date" id="date" class="form-control" name="birthday"><br /> <br />
+			<fmt:parseDate value="${member.birthday }" pattern="yyyy-MM-dd" var="birthdays"/>
+			생년월일<input type="date" id="birthday" class="form-control" name="birthday" 
+			value="${birthdays}"><br /> <br />
 			<div class="align-center" style="margin-top: 30px">
 			<br> <br>
 			<div class="align-center" style="margin-top: 30px">
-			<button type="submit" onclick="validCheck()">수정완료</button>
+			<button type="button" onclick="validCheck()">수정완료</button>
 			<button type="button" onclick="validCheck1()">회원탈퇴</button>
 			<input type="reset" value="지우기">
 			</div>

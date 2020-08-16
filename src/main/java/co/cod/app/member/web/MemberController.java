@@ -89,7 +89,7 @@ public class MemberController {
 	@ResponseBody
 	public String updateMember(Model model,MemberVO memberVO,HttpSession session) {
 		memberService.updateMember(memberVO);
-		return "member/memberMyPage";
+		return "redirect:memberMyPage";
 	}
 	
 	

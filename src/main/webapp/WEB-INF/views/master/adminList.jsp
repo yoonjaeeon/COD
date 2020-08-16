@@ -70,9 +70,14 @@
 				.append($('<td>').html(item.adminPhone))
 				.append($('<td>').html(cafeState))
 				.append($('<input type=\'hidden\' id=\'hidden_adminState\'>').val(item.adminState))
-				.append($('<td>').html('<button class=\'btnUpdate1\'>승인</button>'))
-				.append($('<td>').html('<button class=\'btnUpdate2\'>거절</button>'))
-				.appendTo('tbody');
+				  /* if(item.cafeState == 1 || item.cafeState == 0){  
+					$find('#tbody') */
+					.append($('<td>').html('<button class=\'btnUpdate1\'>승인</button>'))
+					.append($('<td>').html('<button class=\'btnUpdate2\'>거절</button>'))
+					.appendTo('tbody');
+				  /* }else{
+					.appendTo('tbody');
+				 }   */
 			});
 		//$('#contentModal').modal()
 	}
@@ -200,7 +205,7 @@
 					<th class="text-center">상태거절</th>
 				</tr>
 			</thead>
-			<tbody></tbody>
+			<tbody id="tbody"></tbody>
 		</table>
 	</div>
 </body>

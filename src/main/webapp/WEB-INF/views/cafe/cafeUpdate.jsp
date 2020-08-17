@@ -20,7 +20,6 @@
          <label>사업자번호:</label>
           <div class="row">
          <input type="text"  class="form-control col-9"  id="cafeBn" name="cafeBn" value="${getCafe.cafeBn}" >
-         <input type="button" class="col-3" id="bnSearch" value="검색">
       </div>  
       </div> 
       <div class="form-group">

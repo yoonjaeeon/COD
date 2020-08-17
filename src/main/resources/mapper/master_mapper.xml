@@ -126,9 +126,14 @@
 		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =1) "cafe1",
 		(SELECT COUNT(*) FROM ADMIN WHERE CAFE_STATE =2) "cafe2",
 		(SELECT COUNT(*) FROM ADVERTISEMENT WHERE ADVERTISE_STATE=1) "ad",
-		(SELECT COUNT(*) FROM message WHERE send_receive =1) "mess",
+		(SELECT COUNT(*) FROM message WHERE MASTER_READ=1 AND SEND_RECEIVE =1 AND MASTER_SEND =0) "mess",
 		(SELECT COUNT(*) FROM WORKER )	 "work",
-		(SELECT COUNT(*) FROM CAFE )	 "cafe"					
+		(SELECT COUNT(*) FROM CAFE )	 "cafe",
+		(SELECT TO_CHAR(SUM(CASE WHEN ORDER_STATE = 1 THEN (PRICE +(PRICE_ADD * ORDERLINE_AMOUNT))
+                                    ELSE (PRICE * ORDERLINE_AMOUNT)
+                                    END)
+            ,'999,999,999,999,999') PRICE
+            FROM ORDER_VIEW)	"A1"					
 	FROM DUAL
 </select>
 <delete id="deleteMaster" parameterType="vofile.MasterVO">

@@ -174,8 +174,8 @@
 			.append($('<td>').html(item.advertiseFile))
 			.append($('<td>').html(item.site))
 			.append($('<td>').html(item.remain+"일"))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+			.append($('<td>').html('<button class="btn btn-outline-info" id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button class="btn btn-outline-info" id=\'btnDelete\'>삭제</button>'))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
@@ -253,11 +253,11 @@
 				<tr>				
 					<th class="text-center">광고번호</th>
 					<th class="text-center">광고주</th>
-					<th class="text-center">광고주연락처</th>
+					<th class="text-center">연락처</th>
 					<th class="text-center">금액</th>
 				    <th class="text-center">첨부파일</th>
 					<th class="text-center">사이트</th>
-					<th class="text-center">계약남은기간</th>
+					<th class="text-center">만료기간</th>
 					<th class="text-center">조회</th>
 					<th class="text-center">삭제</th>
 				</tr>

@@ -76,7 +76,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			var tr =							
 				'<tr id="'+seq+realState+'" data-price="'+price+'">'  
 					+'<td align="center">'+state+' '+ name+'</td>'  
-					+'<td ><span onclick="amountDown('+price+","+seq+')" style="margin-right:5px"><i class="fas fa-minus-circle"></i></span><span id="amount'+seq+'">' + 1	+ '</span><span onclick="amountUp('+price+","+seq+')"style="margin-left:5px"><i class="fas fa-plus-circle"></i></span></td>'  
+					+'<td ><button onclick="amountDown('+price+","+seq+')">ㅡ</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">┼</button></td>'  
 					+'<td><span class="menuPrice" id="prices'+seq+'">'+price+'<span></td>'
 					+'<td><button onclick="deleteValue('+seq+','+realState+')">삭제</button></td>'
 					+ '</tr>';
@@ -238,7 +238,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			<button type="button"
 				onclick="requestPay('${menuList[0].cafeName}','${menuList[0].adminId }');">
 				결제</button>
-			<%-- <button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button> --%>
+			<button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button>
 		</div>
 	</div>
 </div>

@@ -36,7 +36,7 @@ public class OrdersServiceImpl implements OrdersService {
 		ordersMapper.insertOrders(orderInsertVO);
 		ordersMapper.mileage(orderInsertVO);
 		ordersMapper.mileageMinus(orderInsertVO);
-		ordersMapper.updateSeat(orderInsertVO);
+		/* ordersMapper.updateSeat(orderInsertVO); */
 		for(OrderlineVO orderlineVO: orderInsertVO.getOrderlineList()) {
 			orderlineVO.setOrderSeq(orderInsertVO.getOrderSeq());
 			ordersMapper.insertOrderLine(orderlineVO);

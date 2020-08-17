@@ -76,7 +76,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			var tr =							
 				'<tr id="'+seq+realState+'" data-price="'+price+'">'  
 					+'<td align="center">'+state+' '+ name+'</td>'  
-					+'<td ><button onclick="amountDown('+price+","+seq+')">-</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">+</button></td>'  
+					+'<td ><button onclick="amountDown('+price+","+seq+')">ㅡ</button><span id="amount'+seq+'">' + 1	+ '</span><button onclick="amountUp('+price+","+seq+')">┼</button></td>'  
 					+'<td><span class="menuPrice" id="prices'+seq+'">'+price+'<span></td>'
 					+'<td><button onclick="deleteValue('+seq+','+realState+')">삭제</button></td>'
 					+ '</tr>';

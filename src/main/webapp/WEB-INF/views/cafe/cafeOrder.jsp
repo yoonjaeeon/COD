@@ -241,7 +241,7 @@ function deleteValue(seq,realState){ //주문상세 지우는 페이지
 			<%-- <button onclick="insertOrder('${menuList[0].adminId}')">영수증 테스트</button> --%>
 		</div>
 	</div>
-</div>
+</div> 
 
 <script type="text/javascript">
 
